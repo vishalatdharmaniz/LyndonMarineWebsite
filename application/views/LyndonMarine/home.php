@@ -1,7 +1,7 @@
 <?php
 include'includes/header.php';
 ?>
-<section id="main-head">
+<!-- <section id="main-head">
 <center><h3 style="color:#8B0000;"><?php echo $message; ?></h3></center>
   <div class="container">
     <div class="row">
@@ -104,7 +104,7 @@ include'includes/header.php';
       </div>
     </div>
   </div>
-</section>
+</section> -->
 <?php
 include'includes/footer.php';
 ?>
