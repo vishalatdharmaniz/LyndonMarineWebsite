@@ -108,11 +108,11 @@ if (ENVIRONMENT == 'development')
 }
 elseif(ENVIRONMENT == 'production')
 {
-    define('VESSEL_IMAGES_BASE_URL', 'http://dharmani.com/LyndonMarineImages/ProfileImages/');
+    define('PROFILE_IMAGES_BASE_URL', 'http://dharmani.com/LyndonMarineImages/ProfileImages/');
 }
 else
 {
-    define('VESSEL_IMAGES_BASE_URL', 'http://root.lyndonmarine.com/LyndonMarineImages/ProfileImages/');
+    define('PROFILE_IMAGES_BASE_URL', 'http://root.lyndonmarine.com/LyndonMarineImages/ProfileImages/');
 }
 
 /* Vessel Images Base Url */
