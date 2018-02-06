@@ -40,16 +40,23 @@ class AddCertificate extends CI_Controller
 
             for($i=1;$i<=5;$i++)
             {
-	            	if ($_FILES["document".$i]["name"] != NULL)
-	            {
-	                $target_file = $target_dir .'UploadedDocuments/'. basename($_FILES["document".$i]["name"]);
-	                move_uploaded_file($_FILES['document'. $i]['tmp_name'], $target_file);
-	                $document[$i] = $base_url_website. $_FILES["document".$i]["name"];   
-	            }
-	            else
+            	if ($_REQUEST['document'.$i.'-removed'] == '1')
 	            {
 	                $document[$i] = '';
 	            }
+	            else
+	            {
+		            	if ($_FILES["document".$i]["name"] != NULL)
+		            {
+		                $target_file = $target_dir .'UploadedDocuments/'. basename($_FILES["document".$i]["name"]);
+		                move_uploaded_file($_FILES['document'. $i]['tmp_name'], $target_file);
+		                $document[$i] = $base_url_website. $_FILES["document".$i]["name"];   
+		            }
+		            else
+		            {
+		                $document[$i] = '';
+		            }
+		        }
 	                
             }
 

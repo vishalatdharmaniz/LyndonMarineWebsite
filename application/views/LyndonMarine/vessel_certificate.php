@@ -11,23 +11,17 @@ include'includes/header_login.php';
         </div>
       </div>
       <?php
-      // $all_checked = array();
-      //  foreach($certificate_data as $data) 
-      //   {   echo "
-      //       <script>
-      //       var e = document.getElementById(". $data['certificate_id']; .");
-      //       if(e.checked==true)
-      //       {
-      //         array_push($all_checked, $data['certificate_id']);
-      //       }
-      //       </script>
-      //   "; }
+       // $all_checked = array();
+       // foreach($certificate_data as $data) 
+       //  {   
+       // include 'includes/GetCertificateIdsJs.php';
+       //    }
+       //    var_dump($all_checked);
        ?>
       <div class="col-md-3">
         <div class="main-edit-add"> <a class="btn-blue" href="<?php echo base_url();?>index.php/AddCertificateScreen/index/<?php echo $vessel_id; ?>">Add</a> </div>
         <br>
         <div class="main-edit-add"> <a class="btn-blue" href="<?php echo base_url(); ?>index.php/VesselCertificate/index/<?php echo $vessel_id; ?>">All Certificate</a> </div>
-        <!--  <br><div class="main-edit-add"> <a class="btn-blue" onclick="mail_details(<?php echo $all_checked; ?>)" >Mail Document</a> </div> --> 
       </div>
     </div>
   </div>
@@ -44,7 +38,7 @@ include'includes/header_login.php';
         <div class="input-group">
        
           <input type="text" class="form-control-text" placeholder="Search" name="search" id="search_vessel">
-          <span class="input-group-btn"> <a class="btn btn-default text-muted" href="#" title="Clear"><i class="glyphicon glyphicon-remove"></i> </a>
+          <span class="input-group-btn"> <a class="btn btn-default text-muted" href="#" title="Clear" onclick="reset()"><i class="glyphicon glyphicon-remove"></i> </a>
           <button onclick="search(document.getElementById('search_vessel').value)" type="button" class="btn btn-info"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
           </span>
           </div>
@@ -61,7 +55,7 @@ include'includes/header_login.php';
     </div>-->
     <div class="row">
       <div class="col-md-8"> <a>
-        <button type="button" id="yellow" class="update text-center btn btn-yelow btn-sm"></button>
+        <button type="button" onclick="document.getElementsByClassName" class="update text-center btn btn-yelow btn-sm"></button>
         </a>&nbsp;<span>Due in 45 days</span>&nbsp;&nbsp;
         <button type="button" class="update text-center btn btn-brwon btn-sm"></button>
         &nbsp;<span>Due in 30 days</span>&nbsp;&nbsp;
@@ -116,7 +110,7 @@ include'includes/header_login.php';
 
                 ?>
                   <?php if($calday>30 && $calday<=45) { ?>
-                  <button type="button" class="update text-center btn btn-yelow btn-sm"></button>
+                  <button type="button" id="yellow" class="update text-center btn btn-yelow btn-sm"></button>
                   <?php }
                   elseif($calday>=1 && $calday<=30) {
                   ?>
@@ -131,7 +125,7 @@ include'includes/header_login.php';
                     ?>
                   <button type="button" class="update text-center btn btn-green btn-sm"></button>
                   <?php } ?></td>
-                <td><input type="checkbox" id="<?php echo $data['certificate_id']; ?>"></td>
+                <td><input type="checkbox" name="chkbx" class="checkid" id="<?php echo $data['certificate_id'] ?>" value="<?php echo $data['certificate_id']; ?>"></td>
                 <td class="text-center"><a href="<?php echo base_url();?>index.php/DeleteCertificate/index/<?php echo $data['certificate_id']; ?>/<?php echo $data['vessel_id']; ?>" Onclick="return confirm('Are you Sure?');" class="btn-bk"><i class="fa fa-trash" aria-hidden="true"></i></a> <a href="<?php echo base_url();?>index.php/VesselCertificate/edit_certificate/<?php echo $data['certificate_id']; ?>" class="btn-bk"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
               </tr>
               <!--tr>
