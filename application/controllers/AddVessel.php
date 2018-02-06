@@ -70,13 +70,20 @@ class AddVessel extends CI_Controller
                 $target_file[$i] = $target_dir .'uploads/'. basename($_FILES["image".$i]["name"]);
                 $imageFileType[$i]= pathinfo($target_file[$i],PATHINFO_EXTENSION);
                 move_uploaded_file($_FILES["image".$i]["tmp_name"], $target_file[$i]);
-                if ($_FILES["image".$i]["name"] != NULL)
+                if ($_REQUEST['image'.$i.'-removed'] == '1')
                 {
-                    $image[$i] =$image_base_url. $_FILES["image".$i]["name"];
+                    $image[$i] = '';
                 }
                 else
                 {
-                    $image[$i] = '';
+                    if ($_FILES["image".$i]["name"] != NULL)
+                    {
+                        $image[$i] =$image_base_url. $_FILES["image".$i]["name"];
+                    }
+                    else
+                    {
+                        $image[$i] = '';
+                    }
                 }
             }
 

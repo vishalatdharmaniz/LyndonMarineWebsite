@@ -15,7 +15,36 @@ include'includes/header_login.php';
 <section id="table-data">
 <div class="container">
 <?php foreach($vessel_details as $vessels) { ?>
-      
+  <div class="row">
+      <div class="col-md-8 col-md-offset-2 text-center">
+        <div class="image-table text-center">
+        <!-- <img src="" alt="" class="img-responsive">-->
+        
+        <div class="owl-carousel owl-theme">
+            <?php if ($vessels["image1"] != ""): ?>
+            <div class="item"><img src="<?php echo $vessels["image1"]; ?>" alt=""></div>
+            <?php endif; ?>
+            <?php if ($vessels["image2"] != ""): ?>
+            <div class="item"><img src="<?php echo $vessels["image2"]; ?>" alt=""></div>
+            <?php endif; ?>
+            <?php if ($vessels["image3"] != ""): ?>
+            <div class="item"><img src="<?php echo $vessels["image3"]; ?>" alt=""></div>
+            <?php endif; ?>
+            <?php if ($vessels["image4"] != ""): ?>
+            <div class="item"><img src="<?php echo $vessels["image4"]; ?>" alt=""></div>
+            <?php endif; ?>
+            <?php if ($vessels["image5"] != ""): ?>
+            <div class="item"><img src="<?php echo $vessels["image5"]; ?>" alt=""></div>
+            <?php endif; ?>
+          </div>
+            </div>
+          </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2 text-center">
+                                </div>
+      </div>
+          
     <div class="row">
         
       <div class="col-md-10 col-md-offset-1">
