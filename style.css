@@ -737,3 +737,38 @@ input.form-control-text-on {
 	padding: 60px 0;
 	width: 100%;
 }
+
+
+#work-done .panel-body
+{
+    padding:40px 0;
+}
+#work-done .input-group
+{
+    padding: 40px 0;
+}
+#work-done .form-control-text {
+    color: #444;
+    padding: 25px 15px;
+    font-size: 18px;
+}
+#work-done a.btn.btn-default.text-muted {
+      padding: 14px;
+    border-radius: 0px;
+    font-size: 16px;
+}
+#work-done button.btn.btn-info {
+    padding: 14px;
+    border-radius: 0px;
+    font-size: 16px;
+}
+#image-details .owl-carousel .owl-item .item{
+width: 100%;
+    height: 450px;
+}
+#image-details .owl-carousel .owl-item .item img{
+max-width: 100%;
+    max-height: 100%;
+    margin: 0 auto;
+    display: block;
+}
