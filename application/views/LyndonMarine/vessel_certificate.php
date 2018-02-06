@@ -22,6 +22,7 @@ include'includes/header_login.php';
         <div class="main-edit-add"> <a class="btn-blue" href="<?php echo base_url();?>index.php/AddCertificateScreen/index/<?php echo $vessel_id; ?>">Add</a> </div>
         <br>
         <div class="main-edit-add"> <a class="btn-blue" href="<?php echo base_url(); ?>index.php/VesselCertificate/index/<?php echo $vessel_id; ?>">All Certificate</a> </div>
+         <!-- <br><div class="main-edit-add"> <a class="btn-blue" onclick="myFunction()" >Mail Document</a> </div>  -->
       </div>
     </div>
   </div>
