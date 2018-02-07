@@ -93,7 +93,7 @@ include'includes/header_login.php';
                     <br>
                     <a href="<?php echo $certificate_data['document1']; ?>" class="btn btn-primary"> View</a>&nbsp;
                       <?php if(!empty($certificate_data['document1'])) {?>
-                      <span id = "show-document1"><?php $value = explode("UploadedDocuments/",$certificate_data['document1']);echo substr($value[1],0,10); ?></span>
+                      <span id = "show-document1"><?php $value = explode("CertificateDocuments/",$certificate_data['document1']);echo substr($value[1],0,10); ?></span>
                       <?php } 
                       else { ?>
                       <span> No Document Available </span>
@@ -112,7 +112,7 @@ include'includes/header_login.php';
                     <br>
                     <a href="<?php echo $certificate_data['document2']; ?>" class="btn btn-primary"> View</a>&nbsp;
                       <?php if(!empty($certificate_data['document2'])) {?>
-                      <span  id = "show-document2"><?php $value = explode("UploadedDocuments/",$certificate_data['document2']);echo substr($value[1],0,10); ?></span>
+                      <span  id = "show-document2"><?php $value = explode("/",$certificate_data['document2']);echo substr($value[6],0,10); ?></span>
                       <?php } 
                       else { ?>
                       <span> No Document Available </span>
@@ -131,7 +131,7 @@ include'includes/header_login.php';
                     <br>
                     <a href="<?php echo $certificate_data['document3']; ?>" class="btn btn-primary"> View</a>&nbsp;
                       <?php if(!empty($certificate_data['document3'])) {?>
-                      <span id = "show-document3"><?php $value = explode("UploadedDocuments/",$certificate_data['document3']);echo substr($value[1],0,10); ?></span>
+                      <span id = "show-document3"><?php $value = explode("/",$certificate_data['document3']);echo substr($value[6],0,10); ?></span>
                       <?php } 
                       else { ?>
                       <span> No Document Available </span>
@@ -150,7 +150,7 @@ include'includes/header_login.php';
                     <br>
                     <a href="<?php echo $certificate_data['document4']; ?>" class="btn btn-primary"> View</a>&nbsp;
                       <?php if(!empty($certificate_data['document4'])) {?>
-                      <span id = "show-document4"><?php $value = explode("UploadedDocuments/",$certificate_data['document4']);echo substr($value[1],0,10); ?></span>
+                      <span id = "show-document4"><?php $value = explode("/",$certificate_data['document4']);echo substr($value[6],0,10); ?></span>
                       <?php } 
                       else { ?>
                       <span> No Document Available </span>
@@ -169,7 +169,7 @@ include'includes/header_login.php';
                     <br>
                     <a href="<?php echo $certificate_data['document5']; ?>" class="btn btn-primary"> View</a>&nbsp;
                       <?php if(!empty($certificate_data['document5'])) {?>
-                      <span id = "show-document5"><?php $value = explode("UploadedDocuments/",$certificate_data['document5']);echo substr($value[1],0,10); ?></span>
+                      <span id = "show-document5"><?php $value = explode("/",$certificate_data['document5']);echo substr($value[6],0,10); ?></span>
                       <?php } 
                       else { ?>
                       <span> No Document Available </span>

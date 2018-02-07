@@ -32,11 +32,17 @@ class AddCertificate extends CI_Controller
 			{
 	            $extention_until = str_replace('/', '-', $extention_until);
 	            $extention_until = date("Y-m-d", strtotime($extention_until));
-            }		
+            }
+
+            $directory_name = '../LyndonMarineImages/CertificateDocuments/'.$certificate_name;//print_r($directory_name);die();
+			if(!is_dir($directory_name))
+			    {
+			        mkdir($directory_name);
+			    }	
 
 					 /* Upload Documents */
 			$target_dir = TARGET_DIR;
-			$base_url_website = DOCUMENT_BASE_URL;
+			$base_url_website = DOCUMENT_BASE_URL.'/'.$certificate_name.'/';
 
             for($i=1;$i<=5;$i++)
             {
@@ -48,7 +54,9 @@ class AddCertificate extends CI_Controller
 	            {
 		            	if ($_FILES["document".$i]["name"] != NULL)
 		            {
-		                $target_file = $target_dir .'UploadedDocuments/'. basename($_FILES["document".$i]["name"]);
+		            	
+		                $target_file = $directory_name.'/'. basename($_FILES["document".$i]["name"]);
+		                //print_r($target_file);die();
 		                move_uploaded_file($_FILES['document'. $i]['tmp_name'], $target_file);
 		                $document[$i] = $base_url_website. $_FILES["document".$i]["name"];   
 		            }
