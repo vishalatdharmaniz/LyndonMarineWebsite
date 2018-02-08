@@ -14,13 +14,13 @@ class Vessel_model extends CI_Model
 	
 	function get_all_vessel_details()
 	{
-		$all_vessel_details = $this->db->query("SELECT * FROM vessels WHERE 1 ORDER BY UNIX_TIMESTAMP(vesssel_date) DESC, `time` DESC");
+		$all_vessel_details = $this->db->query("SELECT * FROM vessels WHERE 1 ORDER BY UNIX_TIMESTAMP(vessel_date) DESC, `time` DESC");
 		return $all_vessel_details->result_array();
 	}
 	
 	function get_vessel_data_by_userid($user_id)
 	{
-		$query = $this->db->query("SELECT * FROM vessels WHERE user_id='$user_id'");
+		$query = $this->db->query("SELECT * FROM vessels WHERE user_id='$user_id' ORDER BY UNIX_TIMESTAMP(vessel_date) DESC, `time` DESC");
 		return $query->result_array();
 	}
 

@@ -93,7 +93,7 @@ include'includes/header_login.php';
                     <br>
                     <a href="<?php echo $certificate_data['document1']; ?>" class="btn btn-primary"> View</a>&nbsp;
                       <?php if(!empty($certificate_data['document1'])) {?>
-                      <span id = "show-document1"><?php $value = explode("CertificateDocuments/",$certificate_data['document1']);echo substr($value[1],0,10); ?></span>
+                      <span id = "show-document1"><?php $value = explode("/",$certificate_data['document1']);echo substr($value[6],0,10); ?></span>
                       <?php } 
                       else { ?>
                       <span> No Document Available </span>
