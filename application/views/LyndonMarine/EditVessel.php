@@ -28,26 +28,31 @@ include'includes/header_login.php';
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="exampleInputEmail1">Image1 </label>
-                  <input type="file" name="image1" accept="image/*">
-                  <span id="remove" name="cross"><img id="delimg" src="<?php echo $vessels['image1']; ?>" style="width:100px; height:100px;" alt="" class="img-responsive">
-                  <?php if(!empty($vessels['image1'])) { $value = explode("uploads/",$vessels['image1']);echo substr($value[1],0,10); } else { echo "";}?>
-                  X</span>
+                  <input type="file" id="image1-chosen" name="image1" accept="image/*">
+                 <span id="show-image1"><img src="<?php echo $vessels['image1']; ?>" style="width:100px; height:100px;" alt="" class="img-responsive">
+                  <?php //if(!empty($vessels['image1'])) { $value = explode("/",$vessels['image1']);echo substr($value[5],0,10); } else { echo "";}?>
+                  <button type="button" id="remove-image1" >Remove</button>
+                  </span>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="exampleInputPassword1">Image2</label>
-                  <input type="file" name="image2" accept="image/*">
-                  <img src="<?php echo $vessels['image2']; ?>" style="width:100px; height:100px;" alt="" class="img-responsive">
-                  <?php if(!empty($vessels['image2'])) { $value = explode("uploads/",$vessels['image2']);echo substr($value[1],0,10); } else { echo "";}?>
+                  <input type="file" id="image2-chosen" name="image2" accept="image/*">
+                  <span id="show-image2"><img src="<?php echo $vessels['image2']; ?>" style="width:100px; height:100px;" alt="" class="img-responsive">
+                  <?php //if(!empty($vessels['image2'])) { $value = explode("/",$vessels['image2']);echo substr($value[5],0,10); } else { echo "";}?>
+                  </span>
+                  <button type="button" id="remove-image2" >Remove</button>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="exampleInputPassword1">Image3</label>
-                  <input type="file" name="image3" accept="image/*">
-                  <img src="<?php echo $vessels['image3']; ?>" style="width:100px; height:100px;" alt="" class="img-responsive">
-                  <?php if(!empty($vessels['image3'])) { $value = explode("uploads/",$vessels['image3']);echo substr($value[1],0,10); } else { echo "";}?>
+                  <input type="file" id="image3-chosen" name="image3" accept="image/*">
+                  <span id="show-image3"><img src="<?php echo $vessels['image3']; ?>" style="width:100px; height:100px;" alt="" class="img-responsive">
+                  <?php //if(!empty($vessels['image3'])) { $value = explode("/",$vessels['image3']);echo substr($value[5],0,10); } else { echo "";}?>
+                  </span>
+                  <button type="button" id="remove-image3" >Remove</button>
                 </div>
               </div>
             </div>
@@ -55,17 +60,22 @@ include'includes/header_login.php';
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="exampleInputEmail1">Image4 </label>
-                  <input type="file" name="image4" accept="image/*">
-                  <img src="<?php echo $vessels['image4']; ?>" style="width:100px; height:100px;" alt="" class="img-responsive">
-                  <?php if(!empty($vessels['image4'])) { $value = explode("uploads/",$vessels['image4']);echo substr($value[1],0,10); } else { echo "";}?>
+                  <input type="file" id="image4-chosen" name="image4" accept="image/*">
+                  <span id="show-image4"><img src="<?php echo $vessels['image4']; ?>" style="width:100px; height:100px;" alt="" class="img-responsive">
+                  <?php //if(!empty($vessels['image4'])) { $value = explode("/",$vessels['image4']);echo substr($value[5],0,10); } else { echo "";}?>
+                  <button type="button" id="remove-image4" >Remove</button>
+                  </span>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="exampleInputPassword1">Image5</label>
-                  <input type="file" name="image5" accept="image/*">
-                  <img src="<?php echo $vessels['image5']; ?>" style="width:100px; height:100px;" alt="" class="img-responsive">
-                  <?php if(!empty($vessels['image5'])) { $value = explode("uploads/",$vessels['image5']);echo substr($value[1],0,10); } else { echo "";}?>
+                  <input type="file" id="image5-chosen" name="image5" accept="image/*">
+                  <span id="show-image5"><img src="<?php echo $vessels['image5']; ?>" style="width:100px; height:100px;" alt="" class="img-responsive">
+                  <?php //if(!empty($vessels['image5'])) { $value = explode("/",$vessels['image5']);echo substr($value[5],0,10); } else { echo "";}?>
+                  
+                  <button type="button" id="remove-image5" >Remove</button>
+                  </span>
                 </div>
               </div>
             </div>
@@ -294,6 +304,12 @@ include'includes/header_login.php';
                 </div>
               </div>
             </div>
+            </div>
+        <input type="hidden" value="0" name="image1-removed" id="image1-removed">
+        <input type="hidden" name="image2-removed" id="image2-removed">
+        <input type="hidden" name="image3-removed" id="image3-removed">
+        <input type="hidden" name="image4-removed" id="image4-removed">
+        <input type="hidden" name="image5-removed" id="image5-removed">
             <button type="submit" class="btn btn-black">Save </button>
 
           </form>
@@ -342,4 +358,47 @@ el.addEventListener('keyup', function (event) {
     
 });
 $('#select_vessel_type,#select_status,#selected_role').hide();
+
+    $("#remove-image1").click(function(){
+     alert("Photo 1 cannot be empty");
+    });
+      $("#remove-image2").click(function(){
+      document.getElementById("image2-removed").value = '1';
+      document.getElementById("show-image2").style.display = 'none';
+    });
+      $("#remove-image3").click(function(){
+      document.getElementById("image3-removed").value = '1';
+      document.getElementById("show-image3").style.display = 'none';
+    });
+      $("#remove-image4").click(function(){
+      document.getElementById("image4-removed").value = '1';
+      document.getElementById("show-image4").style.display = 'none';
+    });
+      $("#remove-image5").click(function(){
+      document.getElementById("image5-removed").value = '1';
+      document.getElementById("show-image5").style.display = 'none';
+    });
+      
+
+    $("#image1-chosen").click(function(){
+      document.getElementById("image2-removed").value = '0';
+      // document.getElementById("show-photo2").style.display = 'none';
+    });
+
+    $("#image2-chosen").click(function(){
+      document.getElementById("image2-removed").value = '0';
+      // document.getElementById("show-photo2").style.display = 'none';
+    });
+      $("#image3-chosen").click(function(){
+      document.getElementById("image3-removed").value = '0';
+      // document.getElementById("show-photo3").style.display = 'none';
+    });
+      $("#image4-chosen").click(function(){
+      document.getElementById("image4-removed").value = '0';
+      // document.getElementById("show-photo4").style.display = 'none';
+    });
+      $("#image5-chosen").click(function(){
+      document.getElementById("image5-removed").value = '0';
+    });
+
 </script>

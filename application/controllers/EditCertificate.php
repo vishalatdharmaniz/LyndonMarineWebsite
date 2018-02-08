@@ -38,25 +38,40 @@ class EditCertificate extends CI_Controller
 		{
             $extention_until = str_replace('/', '-', $extention_until);
             $extention_until = date("Y-m-d", strtotime($extention_until));
-        }	
+        }
+
+
+        $directory_name = '../LyndonMarineImages/CertificateDocuments/'.$certificate_name;//print_r($directory_name);die();
+		if(!is_dir($directory_name))
+		    {
+		        mkdir($directory_name);
+		    }	
+
 		$target_dir = TARGET_DIR;
   
                     /* Upload Documents */
 
-        $base_url_website = DOCUMENT_BASE_URL;
+        $base_url_website = DOCUMENT_BASE_URL.'/'.$certificate_name.'/';
 
             for($i=1;$i<=5;$i++)
             {
-	            	if ($_FILES["document".$i]["name"] != NULL)
-	             {
-	                 $target_file = $target_dir .'UploadedDocuments/'. basename($_FILES['document'.$i]['name']);
-	                 move_uploaded_file($_FILES['document'. $i]['tmp_name'], $target_file);
-	                 $document[$i] = $base_url_website. $_FILES["document".$i]["name"];     
-	             }
-	             else
-	             {
-	                 $document[$i] = $certificate_data[0]["document".$i];
-	             }
+            	if ($_REQUEST['document'.$i.'-removed'] == '1')
+	            {
+	                $document[$i] = '';
+	            }
+	            else
+		            {
+		            	if ($_FILES["document".$i]["name"] != NULL)
+		             {
+		                 $target_file = $directory_name.'/'.  basename($_FILES['document'.$i]['name']);
+		                 move_uploaded_file($_FILES['document'. $i]['tmp_name'], $target_file);
+		                 $document[$i] = $base_url_website. $_FILES["document".$i]["name"];     
+		             }
+		             else
+		             {
+		                 $document[$i] = $certificate_data[0]["document".$i];
+		             }
+		        }
 
             }
 		

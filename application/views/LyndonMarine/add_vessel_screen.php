@@ -34,19 +34,21 @@ color: red;
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="exampleInputEmail1">Image1 </label>
-                  <input required type="file" name="image1" accept="image/*">
+                  <input required type="file" id="image1-chosen" name="image1" accept="image/*">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="exampleInputPassword1">Image2</label>
-                  <input type="file" name="image2" accept="image/*">
+                  <button type="button" id="remove-image2" >Remove</button>
+                  <input id="image2-chosen" type="file" name="image2" accept="image/*">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="exampleInputPassword1">Image3</label>
-                  <input type="file" name="image3" accept="image/*">
+                  <button type="button" id="remove-image3" >Remove</button>
+                  <input id="image3-chosen" type="file" name="image3" accept="image/*">
                 </div>
               </div>
             </div>
@@ -54,13 +56,15 @@ color: red;
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="exampleInputEmail1">Image4 </label>
-                  <input type="file" name="image4" accept="image/*">
+                  <button type="button" id="remove-image4" >Remove</button>
+                  <input id="image4-chosen" type="file" name="image4" accept="image/*">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="exampleInputPassword1">Image5</label>
-                  <input type="file" name="image5" accept="image/*">
+                  <button type="button" id="remove-image5" >Remove</button>
+                  <input id="image5-chosen" type="file" name="image5" accept="image/*">
                 </div>
               </div>
             </div>
@@ -285,7 +289,13 @@ color: red;
       				</div>
       			  </div>
       			</div>
-              
+          </div>   
+          <input type="hidden" value="0" name="image1-removed" id="image1-removed">
+        <input type="hidden" name="image2-removed" id="image2-removed">
+        <input type="hidden" name="image3-removed" id="image3-removed">
+        <input type="hidden" name="image4-removed" id="image4-removed">
+        <input type="hidden" name="image5-removed" id="image5-removed">
+
             <button id="save_button" type="submit" name="submit" class="btn btn-black">Save </button>
           </form>
         </div>
@@ -352,4 +362,47 @@ el.addEventListener('keyup', function (event) {
   this.value = this.value.replace(/\D/g, '')
                          .replace(/\B(?=(\d{3})+(?!\d))/g, '');
 });
+
+// $("#remove-image1").click(function(){
+//      alert("Photo 1 cannot be empty");
+//     });
+      
+ $("#remove-image2").click(function(){
+      document.getElementById("image2-removed").value = '1';
+      // document.getElementById("show-image2").style.display = 'none';
+    });
+      $("#remove-image3").click(function(){
+      document.getElementById("image3-removed").value = '1';
+      // document.getElementById("show-image3").style.display = 'none';
+    });
+      $("#remove-image4").click(function(){
+      document.getElementById("image4-removed").value = '1';
+      // document.getElementById("show-image4").style.display = 'none';
+    });
+      $("#remove-image5").click(function(){
+      document.getElementById("image5-removed").value = '1';
+      // document.getElementById("show-image5").style.display = 'none';
+    });
+
+$("#image1-chosen").click(function(){
+      document.getElementById("image2-removed").value = '0';
+      // document.getElementById("show-image2").style.display = 'none';
+    });
+
+$("#image2-chosen").click(function(){
+      document.getElementById("image2-removed").value = '0';
+      // document.getElementById("show-image2").style.display = 'none';
+    });
+      $("#image3-chosen").click(function(){
+      document.getElementById("image3-removed").value = '0';
+      // document.getElementById("show-image3").style.display = 'none';
+    });
+      $("#image4-chosen").click(function(){
+      document.getElementById("image4-removed").value = '0';
+      // document.getElementById("show-image4").style.display = 'none';
+    });
+      $("#image5-chosen").click(function(){
+      document.getElementById("image5-removed").value = '0';
+      // document.getElementById("show-image5").style.display = 'none';
+    });
 </script>

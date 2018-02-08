@@ -86,13 +86,14 @@ include'includes/header_login.php';
                 <div class="form-group">
                   <div class="col-md-4">
                     <label class="control-label">Document 1 </label>
-                    <input type="file" name="document1" accept="pdf/*"><br>
+                    <button type="button" id="remove-document1" >Remove</button>
+                    <input type="file" id="document1-chosen" name="document1" accept="pdf/*"><br>
                   </div>
                   <div class="col-md-8">
                     <br>
                     <a href="<?php echo $certificate_data['document1']; ?>" class="btn btn-primary"> View</a>&nbsp;
                       <?php if(!empty($certificate_data['document1'])) {?>
-                      <span><?php $value = explode("UploadedDocuments/",$certificate_data['document1']);echo substr($value[1],0,10); ?></span>
+                      <span id = "show-document1"><?php $value = explode("/",$certificate_data['document1']);echo substr($value[6],0,10); ?></span>
                       <?php } 
                       else { ?>
                       <span> No Document Available </span>
@@ -104,13 +105,14 @@ include'includes/header_login.php';
                 <div class="form-group">
                   <div class="col-md-4">
                     <label class="control-label">Document 2</label>
-                    <input type="file" name="document2" accept="pdf/*"><br>
+                    <button type="button" id="remove-document2" >Remove</button>
+                    <input type="file" id="document2-chosen" name="document2" accept="pdf/*"><br>
                   </div>
                   <div class="col-md-8">
                     <br>
                     <a href="<?php echo $certificate_data['document2']; ?>" class="btn btn-primary"> View</a>&nbsp;
                       <?php if(!empty($certificate_data['document2'])) {?>
-                      <span><?php $value = explode("UploadedDocuments/",$certificate_data['document2']);echo substr($value[1],0,10); ?></span>
+                      <span  id = "show-document2"><?php $value = explode("/",$certificate_data['document2']);echo substr($value[6],0,10); ?></span>
                       <?php } 
                       else { ?>
                       <span> No Document Available </span>
@@ -122,13 +124,14 @@ include'includes/header_login.php';
                 <div class="form-group">
                   <div class="col-md-4">
                     <label class="control-label">Document 3</label>
-                    <input type="file" name="document3" accept="pdf/*"><br>
+                    <button type="button" id="remove-document3" >Remove</button>
+                    <input type="file" id="document3-chosen" name="document3" accept="pdf/*"><br>
                   </div>
                   <div class="col-md-8">
                     <br>
                     <a href="<?php echo $certificate_data['document3']; ?>" class="btn btn-primary"> View</a>&nbsp;
                       <?php if(!empty($certificate_data['document3'])) {?>
-                      <span><?php $value = explode("UploadedDocuments/",$certificate_data['document3']);echo substr($value[1],0,10); ?></span>
+                      <span id = "show-document3"><?php $value = explode("/",$certificate_data['document3']);echo substr($value[6],0,10); ?></span>
                       <?php } 
                       else { ?>
                       <span> No Document Available </span>
@@ -140,13 +143,14 @@ include'includes/header_login.php';
                 <div class="form-group">
                   <div class="col-md-4">
                     <label class="control-label">Document 4</label>
-                    <input type="file" name="document4" accept="pdf/*"><br>
+                    <button type="button" id="remove-document4" >Remove</button>
+                    <input type="file" id="document4-chosen" name="document4" accept="pdf/*"><br>
                   </div>
                   <div class="col-md-8">
                     <br>
                     <a href="<?php echo $certificate_data['document4']; ?>" class="btn btn-primary"> View</a>&nbsp;
                       <?php if(!empty($certificate_data['document4'])) {?>
-                      <span><?php $value = explode("UploadedDocuments/",$certificate_data['document4']);echo substr($value[1],0,10); ?></span>
+                      <span id = "show-document4"><?php $value = explode("/",$certificate_data['document4']);echo substr($value[6],0,10); ?></span>
                       <?php } 
                       else { ?>
                       <span> No Document Available </span>
@@ -158,13 +162,14 @@ include'includes/header_login.php';
                 <div class="form-group">
                   <div class="col-md-4">
                     <label class="control-label">Document 5</label>
-                    <input type="file" name="document5" accept="pdf/*"><br>
+                    <button type="button" id="remove-document5" >Remove</button>
+                    <input type="file" id="document5-chosen" name="document5" accept="pdf/*"><br>
                   </div>
                   <div class="col-md-8">
                     <br>
                     <a href="<?php echo $certificate_data['document5']; ?>" class="btn btn-primary"> View</a>&nbsp;
                       <?php if(!empty($certificate_data['document5'])) {?>
-                      <span><?php $value = explode("UploadedDocuments/",$certificate_data['document5']);echo substr($value[1],0,10); ?></span>
+                      <span id = "show-document5"><?php $value = explode("/",$certificate_data['document5']);echo substr($value[6],0,10); ?></span>
                       <?php } 
                       else { ?>
                       <span> No Document Available </span>
@@ -172,6 +177,11 @@ include'includes/header_login.php';
                   </div>
                 </div>
             </div>
+        <input type="hidden" name="document1-removed" id="document1-removed">
+        <input type="hidden" name="document2-removed"  id="document2-removed">
+        <input type="hidden" name="document3-removed"  id="document3-removed">
+        <input type="hidden" name="document4-removed"  id="document4-removed">
+        <input type="hidden" name="document5-removed"  id="document5-removed">
             <button type="submit" class="btn btn-black">Save </button>
           </form>
         
@@ -190,6 +200,48 @@ include'includes/footer.php';
      $( "#datepicker3" ).datepicker({ dateFormat: 'dd/mm/yy' }).val();
   } );
   $('#selectedvalue').hide();
+
+  $("#remove-document1").click(function(){
+      document.getElementById("document1-removed").value = '1';
+      document.getElementById("show-document1").style.display = 'none';
+    });
+      $("#remove-document2").click(function(){
+      document.getElementById("document2-removed").value = '1';
+      document.getElementById("show-document2").style.display = 'none';
+    });
+      $("#remove-document3").click(function(){
+      document.getElementById("document3-removed").value = '1';
+      document.getElementById("show-document3").style.display = 'none';
+    });
+      $("#remove-document4").click(function(){
+      document.getElementById("document4-removed").value = '1';
+      document.getElementById("show-document4").style.display = 'none';
+    });
+      $("#remove-document5").click(function(){
+      document.getElementById("document5-removed").value = '1';
+      document.getElementById("show-document5").style.display = 'none';
+});
+
+$("#document1-chosen").click(function(){
+      document.getElementById("document1-removed").value = '0';
+      // document.getElementById("show-document1").style.display = 'none';
+    });
+      $("#document2-chosen").click(function(){
+      document.getElementById("document2-removed").value = '0';
+      // document.getElementById("show-document2").style.display = 'none';
+    });
+      $("#document3-chosen").click(function(){
+      document.getElementById("document3-removed").value = '0';
+      // document.getElementById("show-document3").style.display = 'none';
+    });
+      $("#document4-chosen").click(function(){
+      document.getElementById("document4-removed").value = '0';
+      // document.getElementById("show-document4").style.display = 'none';
+    });
+      $("#document5-chosen").click(function(){
+      document.getElementById("document5-removed").value = '0';
+      // document.getElementById("show-document5").style.display = 'none';
+});
 </script>
 <!--script>
   var dateToday = $('#datepicker2').val();

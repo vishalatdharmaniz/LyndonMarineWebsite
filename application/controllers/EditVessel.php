@@ -57,25 +57,36 @@ class EditVessel extends CI_Controller
 
 		$vessel_date = str_replace('/', '-', $vessel_date);
         $vessel_date = date("Y-m-d", strtotime($vessel_date));
-
+$directory_name = '../LyndonMarineImages/VesselImages/'.$vessel_name;//print_r($directory_name);die();
+if(!is_dir($directory_name))
+    {
+        mkdir($directory_name);
+    }
 		$target_dir = TARGET_DIR;
     
-            $image_base_url = VESSEL_IMAGES_BASE_URL;
+            $image_base_url = VESSEL_IMAGES_BASE_URL.'/'.$vessel_name.'/';
            
             for($i=1;$i<=5;$i++)
             {
-                $target_file[$i] = $target_dir .'uploads/'. basename($_FILES["image".$i]["name"]);
+                $target_file[$i] = $directory_name.'/'. basename($_FILES["image".$i]["name"]);
                 $imageFileType[$i]= pathinfo($target_file[$i],PATHINFO_EXTENSION);
                 move_uploaded_file($_FILES["image".$i]["tmp_name"], $target_file[$i]);
-                if ($_FILES["image".$i]["name"] != NULL)
+	            if ($_REQUEST['image'.$i.'-removed'] == '1')
                 {
-                    $image[$i] =$image_base_url. $_FILES["image".$i]["name"];
+                    $image[$i] = '';
                 }
                 else
                 {
-                	
-                    $image[$i] = $vessel_details[0]["image".$i];
-                }
+	                if ($_FILES["image".$i]["name"] != NULL)
+	                {
+	                    $image[$i] =$image_base_url. $_FILES["image".$i]["name"];
+	                }
+	                else
+	                {
+	                	
+	                    $image[$i] = $vessel_details[0]["image".$i];
+	                }
+	            }
             }
 
                     /* Upload Documents */
