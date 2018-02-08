@@ -189,7 +189,7 @@ switch (ENVIRONMENT)
 
 /*
  * ---------------------------------------------------------------
- *  Resolve the system path for increased reliability   test
+ *  Resolve the system path for increased reliability
  * ---------------------------------------------------------------
  */
 
