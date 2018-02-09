@@ -31,7 +31,7 @@ include'includes/header_login.php';
                   <input type="file" id="image1-chosen" name="image1" accept="image/*">
                  <span id="show-image1"><img src="<?php echo $vessels['image1']; ?>" style="width:100px; height:100px;" alt="" class="img-responsive">
                   <?php //if(!empty($vessels['image1'])) { $value = explode("/",$vessels['image1']);echo substr($value[5],0,10); } else { echo "";}?>
-                  <button type="button" id="remove-image1" >Remove</button>
+                  <button type="button" class="btn btn-danger" id="remove-image1" style="margin-top:10px;">Remove</button>
                   </span>
                 </div>
               </div>
@@ -42,7 +42,7 @@ include'includes/header_login.php';
                   <span id="show-image2"><img src="<?php echo $vessels['image2']; ?>" style="width:100px; height:100px;" alt="" class="img-responsive">
                   <?php //if(!empty($vessels['image2'])) { $value = explode("/",$vessels['image2']);echo substr($value[5],0,10); } else { echo "";}?>
                   </span>
-                  <button type="button" id="remove-image2" >Remove</button>
+                  <button type="button" class="btn btn-danger" id="remove-image2" style="margin-top:10px;">Remove</button>
                 </div>
               </div>
               <div class="col-md-4">
@@ -52,7 +52,7 @@ include'includes/header_login.php';
                   <span id="show-image3"><img src="<?php echo $vessels['image3']; ?>" style="width:100px; height:100px;" alt="" class="img-responsive">
                   <?php //if(!empty($vessels['image3'])) { $value = explode("/",$vessels['image3']);echo substr($value[5],0,10); } else { echo "";}?>
                   </span>
-                  <button type="button" id="remove-image3" >Remove</button>
+             <button type="button" class="btn btn-danger" id="remove-image3" style="margin-top:10px;">Remove</button>
                 </div>
               </div>
             </div>
@@ -63,7 +63,7 @@ include'includes/header_login.php';
                   <input type="file" id="image4-chosen" name="image4" accept="image/*">
                   <span id="show-image4"><img src="<?php echo $vessels['image4']; ?>" style="width:100px; height:100px;" alt="" class="img-responsive">
                   <?php //if(!empty($vessels['image4'])) { $value = explode("/",$vessels['image4']);echo substr($value[5],0,10); } else { echo "";}?>
-                  <button type="button" id="remove-image4" >Remove</button>
+                  <button type="button" class="btn btn-danger" id="remove-image4" style="margin-top:10px;">Remove</button>
                   </span>
                 </div>
               </div>
@@ -74,7 +74,7 @@ include'includes/header_login.php';
                   <span id="show-image5"><img src="<?php echo $vessels['image5']; ?>" style="width:100px; height:100px;" alt="" class="img-responsive">
                   <?php //if(!empty($vessels['image5'])) { $value = explode("/",$vessels['image5']);echo substr($value[5],0,10); } else { echo "";}?>
                   
-                  <button type="button" id="remove-image5" >Remove</button>
+                  <button type="button" class="btn btn-danger" id="remove-image5" style="margin-top:10px;">Remove</button>
                   </span>
                 </div>
               </div>
