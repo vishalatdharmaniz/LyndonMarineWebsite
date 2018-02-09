@@ -86,14 +86,14 @@ include'includes/header_login.php';
                 <div class="form-group">
                   <div class="col-md-4">
                     <label class="control-label">Document 1 </label>
-                    <button type="button" id="remove-document1" >Remove</button>
                     <input type="file" id="document1-chosen" name="document1" accept="pdf/*"><br>
                   </div>
                   <div class="col-md-8">
                     <br>
                     <a href="<?php echo $certificate_data['document1']; ?>" class="btn btn-primary"> View</a>&nbsp;
                       <?php if(!empty($certificate_data['document1'])) {?>
-                      <span id = "show-document1"><?php $value = explode("/",$certificate_data['document1']);echo substr($value[6],0,10); ?></span>
+                      <span id = "show-document1"><?php $value = explode("/",$certificate_data['document1']);echo substr($value[6],0,20); ?></span>
+                      <button type="button"  class="btn btn-danger" id="remove-document1" style="margin-left:10px;">Remove</button>
                       <?php } 
                       else { ?>
                       <span> No Document Available </span>
@@ -105,14 +105,14 @@ include'includes/header_login.php';
                 <div class="form-group">
                   <div class="col-md-4">
                     <label class="control-label">Document 2</label>
-                    <button type="button" id="remove-document2" >Remove</button>
                     <input type="file" id="document2-chosen" name="document2" accept="pdf/*"><br>
                   </div>
                   <div class="col-md-8">
                     <br>
                     <a href="<?php echo $certificate_data['document2']; ?>" class="btn btn-primary"> View</a>&nbsp;
                       <?php if(!empty($certificate_data['document2'])) {?>
-                      <span  id = "show-document2"><?php $value = explode("/",$certificate_data['document2']);echo substr($value[6],0,10); ?></span>
+                      <span  id = "show-document2"><?php $value = explode("/",$certificate_data['document2']);echo substr($value[6],0,20); ?></span>
+                      <button type="button"  class="btn btn-danger" id="remove-document2" style="margin-left:10px;">Remove</button>
                       <?php } 
                       else { ?>
                       <span> No Document Available </span>
@@ -124,14 +124,14 @@ include'includes/header_login.php';
                 <div class="form-group">
                   <div class="col-md-4">
                     <label class="control-label">Document 3</label>
-                    <button type="button" id="remove-document3" >Remove</button>
                     <input type="file" id="document3-chosen" name="document3" accept="pdf/*"><br>
                   </div>
                   <div class="col-md-8">
                     <br>
                     <a href="<?php echo $certificate_data['document3']; ?>" class="btn btn-primary"> View</a>&nbsp;
                       <?php if(!empty($certificate_data['document3'])) {?>
-                      <span id = "show-document3"><?php $value = explode("/",$certificate_data['document3']);echo substr($value[6],0,10); ?></span>
+                      <span id = "show-document3"><?php $value = explode("/",$certificate_data['document3']);echo substr($value[6],0,20); ?></span>
+                      <button type="button"  class="btn btn-danger" id="remove-document3" style="margin-left:10px;">Remove</button>
                       <?php } 
                       else { ?>
                       <span> No Document Available </span>
@@ -143,14 +143,14 @@ include'includes/header_login.php';
                 <div class="form-group">
                   <div class="col-md-4">
                     <label class="control-label">Document 4</label>
-                    <button type="button" id="remove-document4" >Remove</button>
                     <input type="file" id="document4-chosen" name="document4" accept="pdf/*"><br>
                   </div>
                   <div class="col-md-8">
                     <br>
                     <a href="<?php echo $certificate_data['document4']; ?>" class="btn btn-primary"> View</a>&nbsp;
                       <?php if(!empty($certificate_data['document4'])) {?>
-                      <span id = "show-document4"><?php $value = explode("/",$certificate_data['document4']);echo substr($value[6],0,10); ?></span>
+                      <span id = "show-document4"><?php $value = explode("/",$certificate_data['document4']);echo substr($value[6],0,20); ?></span>
+                      <button type="button"  class="btn btn-danger" id="remove-document4" style="margin-left:10px;">Remove</button>
                       <?php } 
                       else { ?>
                       <span> No Document Available </span>
@@ -162,18 +162,19 @@ include'includes/header_login.php';
                 <div class="form-group">
                   <div class="col-md-4">
                     <label class="control-label">Document 5</label>
-                    <button type="button" id="remove-document5" >Remove</button>
                     <input type="file" id="document5-chosen" name="document5" accept="pdf/*"><br>
                   </div>
                   <div class="col-md-8">
                     <br>
                     <a href="<?php echo $certificate_data['document5']; ?>" class="btn btn-primary"> View</a>&nbsp;
                       <?php if(!empty($certificate_data['document5'])) {?>
-                      <span id = "show-document5"><?php $value = explode("/",$certificate_data['document5']);echo substr($value[6],0,10); ?></span>
+                      <span id = "show-document5"><?php $value = explode("/",$certificate_data['document5']);echo substr($value[6],0,20); ?></span>
+                      <button type="button"  class="btn btn-danger" id="remove-document5" style="margin-left:10px;">Remove</button>
                       <?php } 
                       else { ?>
                       <span> No Document Available </span>
                       <?php } ?>
+
                   </div>
                 </div>
             </div>
