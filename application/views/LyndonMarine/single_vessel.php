@@ -74,7 +74,7 @@ include'includes/header_login.php';
           </div>
         </div>
 		<div class="col-md-3">
-          <div class="done-text"> <a href="#"><img src="<?php echo base_url(); ?>img/icon/Survey.png" class="img-responsive"></a>
+          <div class="done-text"> <a href="<?php echo base_url(); ?>index.php/VesselSurvey/index"><img src="<?php echo base_url(); ?>img/icon/Survey.png" class="img-responsive"></a>
             <h3>Survey </h3>
           </div>
         </div>

@@ -67,7 +67,7 @@ include'includes/header_login.php';
                    <th scope="row">Comments</th>
                   <td><?php echo $certificate_data['comments']; ?></td> 
                 </tr>
-                <tr>
+                <!--<tr>
                   <th scope="row">Document 1</th>
                     <td>
                       <a href="<?php echo $certificate_data['document1']; ?>" class="btn btn-primary"> View</a>&nbsp;
@@ -78,8 +78,8 @@ include'includes/header_login.php';
                       <span> No Document Available </span>
                       <?php } ?>
                     </td>
-                </tr>
-                <tr>
+                </tr>-->
+                <!--<tr>
                   <th scope="row">Document 2</th>
                     <td>
                       <a href="<?php echo $certificate_data['document2']; ?>" class="btn btn-primary"> View</a>&nbsp;
@@ -90,8 +90,8 @@ include'includes/header_login.php';
                       <span> No Document Available </span>
                       <?php } ?>
                     </td>
-                </tr>
-                <tr>
+                </tr>-->
+                <!--<tr>
                   <th scope="row">Document 3</th>
                     <td>
                       <a href="<?php echo $certificate_data['document3']; ?>" class="btn btn-primary"> View</a>&nbsp;
@@ -102,8 +102,8 @@ include'includes/header_login.php';
                       <span> No Document Available </span>
                       <?php } ?>
                     </td>
-                </tr>
-                <tr>
+                </tr>-->
+                <!--<tr>
                   <th scope="row">Document 4</th>
                     <td>
                       <a href="<?php echo $certificate_data['document4']; ?>" class="btn btn-primary"> View</a>&nbsp;
@@ -114,8 +114,8 @@ include'includes/header_login.php';
                       <span> No Document Available </span>
                       <?php } ?>
                     </td>
-                </tr>
-                <tr>
+                </tr>-->
+                <!--<tr>
                   <th scope="row">Document 5</th>
                     <td>
                       <a href="<?php echo $certificate_data['document5']; ?>" class="btn btn-primary"> View</a>&nbsp;
@@ -126,12 +126,62 @@ include'includes/header_login.php';
                       <span> No Document Available </span>
                       <?php } ?>
                     </td>
-                </tr>
+                </tr>-->
                 </tbody>
                
               </table>
             </div>
+          
+            <div class="row">
+            	<div class="doc-img">
+                	<ul>
+                    	<li><img src="http://via.placeholder.com/100x100" class="img-responsive"><a href="<?php echo $certificate_data['document1']; ?>" target="_blank" class="btn btn-primary">View </a>&nbsp;
+                      <?php if(!empty($certificate_data['document1'])) {?>
+                      <span><?php $value = explode("/",$certificate_data['document1']);echo substr($value[6],0,20); ?></span>
+                      <?php } 
+                      else { ?>
+                     <!-- <span> No Document Available </span>-->
+                      <?php } ?></li>
+                      
+                      <li>
+                      <a href="<?php echo $certificate_data['document2']; ?>" target="_blank" class="btn btn-primary"> View</a>&nbsp;
+                      <?php if(!empty($certificate_data['document2'])) {?>
+                      <span><?php $value = explode("/",$certificate_data['document2']);echo substr($value[6],0,20); ?></span>
+                      <?php } 
+                      else { ?>
+                     <!-- <span> No Document Available </span>-->
+                      <?php } ?></li>
+                      
+                      <li><a href="<?php echo $certificate_data['document3']; ?>" target="_blank" class="btn btn-primary"> View</a>&nbsp;
+                      <?php if(!empty($certificate_data['document3'])) {?>
+                      <span><?php $value = explode("/",$certificate_data['document3']);echo substr($value[6],0,10); ?></span>
+                      <?php } 
+                      else { ?>
+                     <!-- <span> No Document Available </span>-->
+                      <?php } ?></li>
+                      
+                        <li><a href="<?php echo $certificate_data['document4']; ?>" target="_blank" class="btn btn-primary"> View</a>&nbsp;
+                      <?php if(!empty($certificate_data['document4'])) {?>
+                      <span><?php $value = explode("/",$certificate_data['document4']);echo substr($value[6],0,10); ?></span>
+                      <?php } 
+                      else { ?>
+                    <!--  <span> No Document Available </span>-->
+                      <?php } ?></li>
+                      
+                        <li><a href="<?php echo $certificate_data['document5']; ?>" target="_blank" class="btn btn-primary"> View</a>&nbsp;
+                      <?php if(!empty($certificate_data['document5'])) {?>
+                      <span><?php $value = explode("/",$certificate_data['document5']);echo substr($value[6],0,10); ?></span>
+                      <?php } 
+                      else { ?>
+                  <!--    <span> No Document Available </span></li>-->
+                      <?php } ?>
+                	</ul>
+            	</div>	
             </div>
+            
+            </div>
+            
+            
             
             
     </div>
