@@ -1,6 +1,31 @@
 <?php
 include'includes/header_login.php';
 ?>
+<style>
+   .pagination-box
+{
+padding:20px;
+}
+
+.pagination-box strong
+{
+    padding: 5px 10px;
+    background-color: #444;
+    color: #fff;
+  margin: 0 5px;
+  text-decoration: none;
+  cursor:pointer;
+}
+
+.pagination-box a {
+    width: 20px;
+    padding: 5px 10px;
+    background-color: #444;
+    margin: 0 5px;
+  color: #fff;
+  text-decoration: none;
+}
+</style>
 <section id="main-edit">
   <div class="container">
     <div class="row">
@@ -9,19 +34,11 @@ include'includes/header_login.php';
           <h2>Vessel Certificates</h2>
         </div>
       </div>
-      <?php
-       $all_checked = array();
-       foreach($certificate_data as $data) 
-        {   
-       include 'includes/GetCertificateIdsJs.php';
-          }
-          //var_dump($all_checked);
-       ?>
       <div class="col-md-3">
         <div class="main-edit-add"> <a class="btn-blue" href="<?php echo base_url();?>index.php/AddCertificateScreen/index/<?php echo $vessel_id; ?>">Add</a> </div>
         <br>
         <div class="main-edit-add"> <a class="btn-blue" href="<?php echo base_url(); ?>index.php/VesselCertificate/index/<?php echo $vessel_id; ?>">All Certificate</a> </div>
-        <!--  <br><div class="main-edit-add"> <a class="btn-blue" onclick="<?php $all_checked; ?>" >Mail Document</a> </div>  -->
+         <br><div class="main-edit-add"> <a class="btn-blue" onclick="mail_selected_vessels()" >Mail Document</a> </div> 
       </div>
     </div>
   </div>
@@ -127,7 +144,7 @@ include'includes/header_login.php';
 								  <?php } ?>
 							</td>
 							<td>
-								<input type="checkbox" name="chkbx[]" id="<?php echo $data['certificate_id'] ?>">
+								<input type="checkbox" name="checkbox" id="checkbox<?php echo $data['certificate_id']; ?>">
 							</td>
 							<td class="text-center">
 								<a href="<?php echo base_url();?>index.php/DeleteCertificate/index/<?php echo $data['certificate_id']; ?>/<?php echo $data['vessel_id']; ?>" Onclick="return confirm('Are you Sure?');" class="btn-bk">
@@ -141,9 +158,20 @@ include'includes/header_login.php';
 		<?php } ?>
             </tbody>
           </table>
+
         </div>
       </div>
     </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="text-center">
+          <div class="pagination-box">
+            <?php echo $links; ?>
+          </div>
+        </div>
+      </div>
+    </div>
+            
   </div>
 </section>
 <?php
@@ -198,4 +226,37 @@ $("tbody tr#green").each(function() {
   $('#brown,#yellow,#red').hide();
 });
 });
+
+function getCheckedBoxes(chkboxName) {
+                                    var checkboxes = document.getElementsByName(chkboxName);
+                                    var checkboxesChecked = [];
+                                    // loop over them all
+                                    for (var i=0; i<checkboxes.length; i++) {
+                                        // And stick the checked ones onto an array...
+                                        if (checkboxes[i].checked) {
+                                            checkboxesChecked.push(checkboxes[i]);
+                                        }
+                                    }
+                                    // Return the array if it is non-empty, or null
+                                    return checkboxesChecked.length > 0 ? checkboxesChecked : null;
+                                    }
+
+// Call as
+function mail_selected_vessels()
+{
+    var checkedBoxes = getCheckedBoxes("checkbox");
+    var checkbox_ids = '';
+    for (var index = 0; index < checkedBoxes.length; index++) 
+    {
+        var checkbox_id = checkedBoxes[index].getAttribute("id");
+        checkbox_ids+=checkbox_id+"@";
+    }
+    var email = prompt("Please enter the Email of recepient:", "abc@gmail.com");
+    if (email != null) {
+        checkbox_ids = checkbox_ids.slice(0,-1)
+        window.location.href = "<?php echo site_url(); ?>/MailCertificateDetail/multiple_vessels/"+checkbox_ids+"/"+email;
+    }
+
+}
+
 </script>
