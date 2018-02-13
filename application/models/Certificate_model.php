@@ -3,7 +3,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Certificate_model extends CI_Model
 {	
-	
+	function __construct(){
+        parent::__construct();
+        $this->certificate_table = "certificate";
+    }
 	function add_certificate($data)
 	{
 		$this->db->insert('certificate',$data);
@@ -52,6 +55,18 @@ class Certificate_model extends CI_Model
         $searchdata = $this->db->query("SELECT * FROM certificate WHERE ((certificate_no LIKE '%$searchname%') OR (certificate_name LIKE '%$searchname%')) AND (vessel_id='$vessel_id')");
 			return $searchdata->result_array();
 	}
+
+	public function get_all_certificate_data_for_pagination($vessel_id,$offset)
+    {
+        $all_items = $this->db->query("SELECT * FROM certificate WHERE vessel_id='$vessel_id' LIMIT 6 OFFSET $offset");
+        return $all_items->result_array();
+    }
+
+	public function get_total_certificate($vessel_id)
+    {
+        $count_certificate = $this->db->query("SELECT * FROM certificate WHERE vessel_id = '$vessel_id'");
+        return COUNT($count_certificate->result_array());
+    }
 }
 
 ?>
