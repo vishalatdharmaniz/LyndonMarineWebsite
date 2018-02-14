@@ -2,7 +2,7 @@
 include'includes/header.php';
 ?>
 <section id="main-head">
-<center><h3 style="color:#8B0000;"><?php echo $message; ?></h3></center>
+<h3 style="color:#8B0000;margin-left:68%;margin-bottom:10px"><?php echo $message; ?></h3>
   <div class="container">
     <div class="row">
       <div class="col-md-6">

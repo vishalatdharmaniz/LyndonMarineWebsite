@@ -22,11 +22,11 @@ include'includes/header_login.php';
             <div class="row">
               <div class="form-group col-md-6">
                 <label class="control-label">Certificate No.</label>
-                <input type="text" placeholder="Certificate No"  name="certificate_no" class="form-control-text" value="<?php echo $certificate_data['certificate_no']; ?>">
+                <input required type="text" placeholder="Certificate No"  name="certificate_no" class="form-control-text" value="<?php echo $certificate_data['certificate_no']; ?>">
               </div>
               <div class="form-group col-md-6">
                 <label class="control-label">Certificate Name</label>
-                <input type="text" placeholder="Certificate" name="certificate_name" class="form-control-text" value="<?php echo $certificate_data['certificate_name']; ?>">
+                <input required type="text" placeholder="Certificate" name="certificate_name" class="form-control-text" value="<?php echo $certificate_data['certificate_name']; ?>">
               </div>
             </div>
             <div class="row">
@@ -74,7 +74,7 @@ include'includes/header_login.php';
               </div>
               <div class="form-group col-md-6">
                 <label class="control-label">Comments</label>
-                <input type="text" required name="comments" placeholder="Comments" class="form-control-text" value="<?php echo $certificate_data['comments']; ?>">
+                <input type="text" name="comments" placeholder="Comments" class="form-control-text" value="<?php echo $certificate_data['comments']; ?>">
               </div>
             </div>
             <div class="row">

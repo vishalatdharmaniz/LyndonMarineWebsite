@@ -16,7 +16,7 @@ class Certificate_model extends CI_Model
 	
 	function get_certificate_data($certificate_id)
 	{
-		var_dump($certificate_id);
+
 		$certificate_data = $this->db->query("SELECT * FROM certificate WHERE certificate_id='$certificate_id'");
 		return $certificate_data->result_array();
 	}
@@ -49,16 +49,23 @@ class Certificate_model extends CI_Model
         $this->db->query("DELETE FROM certificate WHERE  certificate_id='$certificate_id'");
     }
     
-    function searchtable($searchname,$vessel_id)
+    function searchtable($searchname,$vessel_id,$offset)
     {
 
-        $searchdata = $this->db->query("SELECT * FROM certificate WHERE ((certificate_no LIKE '%$searchname%') OR (certificate_name LIKE '%$searchname%')) AND (vessel_id='$vessel_id')");
+        $searchdata = $this->db->query("SELECT * FROM certificate WHERE ((certificate_no LIKE '%$searchname%') OR (certificate_name LIKE '%$searchname%')) AND (vessel_id='$vessel_id') LIMIT 10 OFFSET $offset");
 			return $searchdata->result_array();
+	}
+	
+	function searchtable_total($searchname,$vessel_id)
+    {
+
+        $searchtable_total = $this->db->query("SELECT * FROM certificate WHERE ((certificate_no LIKE '%$searchname%') OR (certificate_name LIKE '%$searchname%')) AND (vessel_id='$vessel_id')");
+			return COUNT($searchtable_total->result_array());
 	}
 
 	public function get_all_certificate_data_for_pagination($vessel_id,$offset)
     {
-        $all_items = $this->db->query("SELECT * FROM certificate WHERE vessel_id='$vessel_id' LIMIT 6 OFFSET $offset");
+        $all_items = $this->db->query("SELECT * FROM certificate WHERE vessel_id='$vessel_id' LIMIT 10 OFFSET $offset");
         return $all_items->result_array();
     }
 
@@ -67,6 +74,12 @@ class Certificate_model extends CI_Model
         $count_certificate = $this->db->query("SELECT * FROM certificate WHERE vessel_id = '$vessel_id'");
         return COUNT($count_certificate->result_array());
     }
+
+    function search_by_certificate_type($searchtype,$vessel_id)
+    {
+        $searchdata = $this->db->query("SELECT * FROM certificate WHERE (certificate_type LIKE '$searchtype') AND (vessel_id='$vessel_id')");
+			return $searchdata->result_array();
+	}
 }
 
 ?>
