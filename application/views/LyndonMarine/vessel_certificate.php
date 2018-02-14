@@ -1,31 +1,6 @@
 <?php
 include'includes/header_login.php';
 ?>
-<style>
-   .pagination-box
-{
-padding:20px;
-}
-
-.pagination-box strong
-{
-    padding: 5px 10px;
-    background-color: #444;
-    color: #fff;
-  margin: 0 5px;
-  text-decoration: none;
-  cursor:pointer;
-}
-
-.pagination-box a {
-    width: 20px;
-    padding: 5px 10px;
-    background-color: #444;
-    margin: 0 5px;
-  color: #fff;
-  text-decoration: none;
-}
-</style>
 <section id="main-edit">
   <div class="container">
     <div class="row">
@@ -48,7 +23,9 @@ padding:20px;
     <div class="row">
       <div class="col-md-6 col-md-offset-3">
         <div class="input-group">
+        <form onsubmit="searchEnter(document.getElementById('search_vessel').value); return false;">
           <input type="text" class="form-control-text" placeholder="Search" name="search" id="search_vessel">
+        </form>
           <span class="input-group-btn">
       			<a class="btn btn-default text-muted" href="#" title="Clear" onclick="reset()"><i class="glyphicon glyphicon-remove"></i> </a>
       			<button onclick="search(document.getElementById('search_vessel').value)" type="button" class="btn btn-info">
@@ -57,6 +34,16 @@ padding:20px;
           </span>
         </div>
       </div>
+      <!-- <div class="col-md-3">
+      <select class="form-control-text" name="certificate_type" id="certificate_type">
+        <option value="class">Class</option>
+        <option value="flag">Flag</option>
+        <option value="safety">Safety</option>
+        <option value="management">Management</option>
+        <option value="other">Other</option>
+      </select>
+      <button id="button_type" class="btn btn-primary" onclick="search_type()">Select</button>
+      </div> -->
     </div>
     <div class="row">
 		<div class="col-md-8">
@@ -86,7 +73,7 @@ padding:20px;
                 <th width="33" class="text-center">View</th>
                 <th width="42">Status</th>
                 <th width="41">Select</th>
-                <th width="110"></th>
+                <th width="110">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -165,9 +152,9 @@ padding:20px;
     <div class="row">
       <div class="col-md-12">
         <div class="text-center">
-          <div class="pagination-box">
+          
             <?php echo $links; ?>
-          </div>
+          
         </div>
       </div>
     </div>
@@ -179,6 +166,17 @@ include'includes/footer.php';
 ?>
 <script>
   function search(search_vessel)
+{
+    if(search_vessel == "")
+    {
+        alert("Please enter a value to be searched");
+    }
+    else
+    {
+            window.location.href = "<?php echo base_url(); ?>index.php/VesselCertificate/searchdata/"+search_vessel+"/"+<?php echo $data['vessel_id'] ?>;
+    }
+}
+function searchEnter(search_vessel)
 {
     if(search_vessel == "")
     {
@@ -258,5 +256,8 @@ function mail_selected_vessels()
     }
 
 }
+ $('#button_type').click(function(){ 
+    alert($('#certificate_type :selected').text());
+  });
 
 </script>

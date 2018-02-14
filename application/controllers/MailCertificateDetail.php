@@ -56,7 +56,7 @@ class MailCertificateDetail extends CI_Controller {
 
         $headers  = 'MIME-Version: 1.0' . "\r\n";
         $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-        $headers .= "From: lyndon_marine@dharmani.com";
+        $headers .= "From: office@lyndonmarine.com";
         
         mail($to,$subject,$txt,$headers);
         
@@ -137,7 +137,7 @@ class MailCertificateDetail extends CI_Controller {
         $subject = "Your Requested list of Certificate from LyndonMarine";
         $headers  = 'MIME-Version: 1.0' . "\r\n";
         $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-        $headers .= "From: lyndon_marine@dharmani.com";
+        $headers .= "From: office@lyndonmarine.com";
         
         mail($to,$subject,$txt,$headers);
         
