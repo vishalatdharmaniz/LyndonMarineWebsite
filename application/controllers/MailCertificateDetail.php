@@ -6,6 +6,7 @@ class MailCertificateDetail extends CI_Controller {
     public function index($certificate_id,$email_of_recepient)
     {
         //var_dump($certificate_id);die();
+
         $this->load->model('Certificate_model');
         
         $certificate_data = $this->Certificate_model->get_certificate_details_by_certificate_id($certificate_id);
@@ -78,6 +79,7 @@ class MailCertificateDetail extends CI_Controller {
         $this->load->model('Certificate_model');
 
         $txt .= "<h3>Good Day <br><br> Please find here list of certificates requested:</h3><br>";
+
         foreach ($checkbox_ids as $certificate_id)
         {
 
@@ -88,7 +90,9 @@ class MailCertificateDetail extends CI_Controller {
         $certificate_id = $certificate_data[0]["certificate_id"];
         $certificate_no = $certificate_data[0]["certificate_no"];
         $certificate_name = $certificate_data[0]["certificate_name"];
+
         $certificate_type = $certificate_data[0]["certificate_type"];
+
         $document1 = $certificate_data[0]["document1"];
         $document2 = $certificate_data[0]["document2"];
         $document3 = $certificate_data[0]["document3"];
@@ -105,9 +109,11 @@ class MailCertificateDetail extends CI_Controller {
                 $document[$i] = str_replace(" ","%20","$document[$i]");
             }
             
+
             $txt .= "<h2>Certificate Name:".$certificate_name."</h2><br>";
             $txt .= "<h2>Certificate Type:".$certificate_type."</h2><br>";
             
+
             
             $txt .= "<h1>Documents:</h1><br>";
 
@@ -138,6 +144,7 @@ class MailCertificateDetail extends CI_Controller {
 
         $to = "$email_of_recepient";
         $subject = "$certificate_name, $certificate_type, Documents";
+
         $headers  = 'MIME-Version: 1.0' . "\r\n";
         $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
         $headers .= "From: office@lyndonmarine.com";
