@@ -34,16 +34,22 @@ include'includes/header_login.php';
           </span>
         </div>
       </div>
-      <!-- <div class="col-md-3">
-      <select class="form-control-text" name="certificate_type" id="certificate_type">
+      <div class="col-md-3">
+      <div class="input-group">
+      <select class="form-control-text" placeholder="Select" name="certificate_type" id="certificate_type">
         <option value="class">Class</option>
         <option value="flag">Flag</option>
         <option value="safety">Safety</option>
         <option value="management">Management</option>
         <option value="other">Other</option>
       </select>
-      <button id="button_type" class="btn btn-primary" onclick="search_type()">Select</button>
-      </div> -->
+      <span class="input-group-btn">
+      <button onclick="searchtype(document.getElementById('certificate_type').value)" type="button" class="btn btn-info">
+        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+      </button>
+      </span>
+      </div>
+     </div>
     </div>
     <div class="row">
 		<div class="col-md-8">
@@ -185,6 +191,17 @@ function searchEnter(search_vessel)
     else
     {
             window.location.href = "<?php echo base_url(); ?>index.php/VesselCertificate/searchdata/"+search_vessel+"/"+<?php echo $data['vessel_id'] ?>;
+    }
+}
+ function searchtype(certificate_type)
+{
+    if(certificate_type == "")
+    {
+        alert("Please enter a value to be searched");
+    }
+    else
+    {
+            window.location.href = "<?php echo base_url(); ?>index.php/VesselCertificate/search_certificate_type/"+certificate_type+"/"+<?php echo $data['vessel_id'] ?>;
     }
 }
 function reset(search_vessel)
