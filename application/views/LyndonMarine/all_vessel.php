@@ -59,7 +59,6 @@ include'includes/header_login.php';
                   <?php } ?>
                 </div>
               </div>
-              
               <!--div>
                  <?php
                  foreach($results as $data) { 

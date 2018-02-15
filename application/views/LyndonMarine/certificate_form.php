@@ -74,7 +74,7 @@ include'includes/header_login.php';
               </div>
               <div class="form-group col-md-6">
                 <label class="control-label">Comments</label>
-                <input type="text" required name="comments" placeholder="Comments" class="form-control-text">
+                <input type="text" name="comments" placeholder="Comments" class="form-control-text">
               </div>
             </div>
             <div class="row">
@@ -87,18 +87,21 @@ include'includes/header_login.php';
                 <div class="form-group">
                   <label for="exampleInputEmail1">Upload Doc1 </label>
                   <input type="file" name="document1" accept="pdf/*">
+                  <button type="button"  class="btn btn-danger" id="remove-document1" style="margin-top:10px;">Remove</button>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="exampleInputPassword1">Upload Doc2</label>
                   <input type="file" name="document2" accept="pdf/*">
+                  <button type="button" class="btn btn-danger" id="remove-document2" style="margin-top:10px;">Remove</button>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="exampleInputPassword1">Upload Doc3</label>
                   <input type="file" name="document3" accept="pdf/*">
+                  <button type="button" class="btn btn-danger" id="remove-document3" style="margin-top:10px;">Remove</button>
                 </div>
               </div>
             </div>
@@ -107,12 +110,14 @@ include'includes/header_login.php';
                 <div class="form-group">
                   <label for="exampleInputEmail1">Upload Doc4 </label>
                   <input type="file" name="document4" accept="pdf /*">
+                  <button type="button" class="btn btn-danger" id="remove-document4" style="margin-top:10px;">Remove</button>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="exampleInputPassword1">Upload Doc5</label>
                   <input type="file" name="document5" accept="pdf/*">
+                  <button type="button" class="btn btn-danger" id="remove-document5" style="margin-top:10px;">Remove</button>
                 </div>
               </div>
             </div>
