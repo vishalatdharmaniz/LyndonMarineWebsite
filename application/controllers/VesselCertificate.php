@@ -120,7 +120,7 @@ $total_certificate = $this->Certificate_model->get_total_certificate($vessel_id)
         $this->load->view('LyndonMarine/vessel_certificate',$data);
     }
 
-    public function search_certificate_type($searchtype,$vessel_id,$offset=0)
+    public function search_certificate_type($searchtype,$vessel_id)
     {
         $this->load->library('pagination');
         $this->load->model('Certificate_model');
@@ -143,13 +143,14 @@ $total_certificate = $this->Certificate_model->get_total_certificate($vessel_id)
             $config['last_tag_close'] = '</li>';
             $config['cur_tag_open'] = '<li class="active"><a href="#">';
             $config['cur_tag_close'] = '</a></li>';
-            
-           $offset = ($this->uri->segment(5)) ? $this->uri->segment(5) : 0;
+
+        $offset = ($this->uri->segment(5)) ? $this->uri->segment(5) : 0;
         $certificate_data = $this->Certificate_model->search_by_certificate_type($searchtype,$vessel_id,$offset);
         // print_r($certificate_data);die();
         $data['certificate_data'] = $certificate_data;
-        $total_search_certificate = $this->Certificate_model->search_total_certificate_type($searchtype,$vessel_id);
 
+        $total_search_certificate = $this->Certificate_model->search_total_certificate_type($searchtype,$vessel_id);
+// print_r($total_search_certificate);die();
             $config['base_url'] = base_url().'index.php/VesselCertificate/search_certificate_type/'.$searchtype.'/'.$vessel_id;
             $config['total_rows'] = $total_search_certificate;
             $config['per_page'] = 10;
@@ -160,9 +161,7 @@ $total_certificate = $this->Certificate_model->get_total_certificate($vessel_id)
             $data['links'] = $this->pagination->create_links();
 
             $data['offset'] = $offset;
-
-
-        $vessel_id = $certificate_data[0]['vessel_id'];
+        // $vessel_id = $certificate_data[0]['vessel_id'];
         $data['vessel_id'] = $vessel_id;  
         $this->load->view('LyndonMarine/vessel_certificate',$data);
     }
