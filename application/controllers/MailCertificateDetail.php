@@ -74,16 +74,17 @@ class MailCertificateDetail extends CI_Controller {
             $checkbox_id = str_replace("checkbox","", $checkbox_id);
             array_push($checkbox_ids, $checkbox_id);
         }
+// var_dump($checkbox_ids);die();
         $this->load->model('Certificate_model');
         $txt = "<h3>Good Day</h3><br>";
         $txt = "<h3 style='color:red;'>Please find here list of certificates requested:</h3><br>";
         foreach ($checkbox_ids as $certificate_id)
         {
-        
-            $certificate_data = $this->Certificate_model->get_certificate_details_by_certificate_id($certificate_id);
 
+            $certificate_data = $this->Certificate_model->get_certificate_details_by_certificate_id($certificate_id);
+// print_r($certificate_data);die();
             $data['certificate_data'] = $certificate_data[0];
-            
+
         $certificate_id = $certificate_data[0]["certificate_id"];
         $certificate_no = $certificate_data[0]["certificate_no"];
         $certificate_name = $certificate_data[0]["certificate_name"];
@@ -97,9 +98,9 @@ class MailCertificateDetail extends CI_Controller {
             for($i = 1; $i <= 5 ; $i++)
             {
                 $document[$i] = $certificate_data[0]['document'.$i];
-                $exploded_doc = explode("CertificateDocuments/", $document[$i]);
-                $name = isset($exploded_doc[1]) ? $exploded_doc[1] : NULL;
-                $document_name[$i] = empty($name) ? "" : $name;  print_r($document_name[$i]);die();
+                $exploded_doc = explode("/", $document[$i]);
+                $name = isset($exploded_doc[6]) ? $exploded_doc[6] : NULL;
+                $document_name[$i] = empty($name) ? "" : $name;  
                 $document[$i] = str_replace(" ","%20","$document[$i]");
             }
             
@@ -111,23 +112,23 @@ class MailCertificateDetail extends CI_Controller {
 
         if ($certificate_data[0]["document1"] != NULL)
         {
-            $txt .= "<h4>Certificate 1:</h4><a href=$document1>$document[1]</a>";
+            $txt .= "<h4>Certificate 1:</h4><a href=$document1>$document_name[1]</a>";
         }
         if ($certificate_data[0]["document2"] != NULL)
         {
-            $txt .= "<h4>Certificate 2:</h4><a href=$document2>$document[2]</a>";
+            $txt .= "<h4>Certificate 2:</h4><a href=$document2>$document_name[2]</a>";
         }
         if ($certificate_data[0]["document3"] != NULL)
         {
-            $txt .= "<h4>Certificate 3:</h4><a href=$document3>$document[3]</a>";
+            $txt .= "<h4>Certificate 3:</h4><a href=$document3>$document_name[3]</a>";
         }
         if ($certificate_data[0]["document4"] != NULL)
         {
-            $txt .= "<h4>Certificate 4:</h4><a href=$document4>$document[4]</a>";
+            $txt .= "<h4>Certificate 4:</h4><a href=$document4>$document_name[4]</a>";
         }
         if ($certificate_data[0]["document5"] != NULL)
         {
-            $txt .= "<h4>Certificate 5:</h4><a href=$document5>$document[5]</a>";
+            $txt .= "<h4>Certificate 5:</h4><a href=$document5>$document_name[5]</a>";
         }
             $txt .= "<hr>";
 

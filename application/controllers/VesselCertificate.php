@@ -99,7 +99,6 @@ $total_certificate = $this->Certificate_model->get_total_certificate($vessel_id)
             
            $offset = ($this->uri->segment(5)) ? $this->uri->segment(5) : 0;
         $certificate_data = $this->Certificate_model->searchtable($searchname,$vessel_id,$offset);
-        // print_r($certificate_data);die();
         $data['certificate_data'] = $certificate_data;
 
         $total_search_certificate = $this->Certificate_model->searchtable_total($searchname,$vessel_id);
@@ -146,11 +145,11 @@ $total_certificate = $this->Certificate_model->get_total_certificate($vessel_id)
 
         $offset = ($this->uri->segment(5)) ? $this->uri->segment(5) : 0;
         $certificate_data = $this->Certificate_model->search_by_certificate_type($searchtype,$vessel_id,$offset);
-        // print_r($certificate_data);die();
+
         $data['certificate_data'] = $certificate_data;
 
         $total_search_certificate = $this->Certificate_model->search_total_certificate_type($searchtype,$vessel_id);
-// print_r($total_search_certificate);die();
+
             $config['base_url'] = base_url().'index.php/VesselCertificate/search_certificate_type/'.$searchtype.'/'.$vessel_id;
             $config['total_rows'] = $total_search_certificate;
             $config['per_page'] = 10;
