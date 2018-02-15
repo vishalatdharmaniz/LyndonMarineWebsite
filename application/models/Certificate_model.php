@@ -58,7 +58,6 @@ class Certificate_model extends CI_Model
 	
 	function searchtable_total($searchname,$vessel_id)
     {
-
         $searchtable_total = $this->db->query("SELECT * FROM certificate WHERE ((certificate_no LIKE '%$searchname%') OR (certificate_name LIKE '%$searchname%')) AND (vessel_id='$vessel_id')");
 			return COUNT($searchtable_total->result_array());
 	}
