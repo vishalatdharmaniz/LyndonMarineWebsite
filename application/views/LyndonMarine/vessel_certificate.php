@@ -1,6 +1,16 @@
 <?php
 include'includes/header_login.php';
 ?>
+<style>
+  .form-control-text1{
+    color: #444;
+    
+ 
+ padding: 15px 10px;
+  font-size: 18px;
+
+  }
+</style>
 <section id="main-edit">
   <div class="container">
     <div class="row">
@@ -36,18 +46,19 @@ include'includes/header_login.php';
       </div>
       <div class="col-md-3">
         <div class="input-group">
-          <select class="form-control-text" placeholder="Select" name="certificate_type" id="certificate_type">
+          <select class="form-control-text1" placeholder="Select" name="certificate_type" id="certificate_type">
+            <option></option>
             <option value="class">Class</option>
             <option value="flag">Flag</option>
             <option value="safety">Safety</option>
             <option value="management">Management</option>
             <option value="other">Other</option>
           </select>
-          <span class="input-group-btn">
+          <!-- <span class="input-group-btn">
             <button onclick="searchtype(document.getElementById('certificate_type').value)" type="button" class="btn btn-info">
               <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
             </button>
-          </span>
+          </span> -->
         </div>
      </div>
     </div>
@@ -204,6 +215,7 @@ function searchEnter(search_vessel)
             window.location.href = "<?php echo base_url(); ?>index.php/VesselCertificate/search_certificate_type/"+certificate_type+"/"+<?php echo $data['vessel_id'] ?>;
     }
 }
+
 function reset(search_vessel)
 {
   $('#search_vessel').val('');
@@ -273,5 +285,8 @@ function mail_selected_vessels()
     }
 
 }
-
+$('#certificate_type').change(function(){
+      $selected_value=$('#certificate_type option:selected').text();
+      window.location.href = "<?php echo base_url(); ?>index.php/VesselCertificate/search_certificate_type/"+$selected_value+"/"+<?php echo $data['vessel_id'] ?>;
+    });
 </script>

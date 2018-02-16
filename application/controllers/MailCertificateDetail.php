@@ -77,14 +77,18 @@ class MailCertificateDetail extends CI_Controller {
         }
 // var_dump($checkbox_ids);die();
         $this->load->model('Certificate_model');
+        $this->load->model('Vessel_model');
 
-        $txt .= "<h3>Good Day <br><br> Please find here list of certificates requested:</h3><br>";
+        $txt = "<h3>Good Day <br><br> Please find here list of certificates requested:</h3><br>";
 
         foreach ($checkbox_ids as $certificate_id)
         {
 
             $certificate_data = $this->Certificate_model->get_certificate_details_by_certificate_id($certificate_id);
 // print_r($certificate_data);die();
+             $vessel_id = $certificate_data[0]["vessel_id"];
+            $vessel_data = $this->Vessel_model->get_vessel_details_by_id($vessel_id);
+           
             $data['certificate_data'] = $certificate_data[0];
 
         $certificate_id = $certificate_data[0]["certificate_id"];
@@ -98,8 +102,10 @@ class MailCertificateDetail extends CI_Controller {
         $document3 = $certificate_data[0]["document3"];
         $document4 = $certificate_data[0]["document4"];
         $document5 = $certificate_data[0]["document5"];
-            
-    
+        
+        $vessel_name= $vessel_data[0]['vessel_name'];
+        $imo_number= $vessel_data[0]['imo_number'];
+
             for($i = 1; $i <= 5 ; $i++)
             {
                 $document[$i] = $certificate_data[0]['document'.$i];
@@ -111,7 +117,7 @@ class MailCertificateDetail extends CI_Controller {
             
 
             $txt .= "<h2>Certificate Name:".$certificate_name."</h2><br>";
-            $txt .= "<h2>Certificate Type:".$certificate_type."</h2><br>";
+            $txt .= "<h2>Certificate No:".$certificate_no."</h2><br>";
             
 
             
@@ -143,7 +149,7 @@ class MailCertificateDetail extends CI_Controller {
         $txt .= "<h5>Best Regards</h5><br>";
 
         $to = "$email_of_recepient";
-        $subject = "$certificate_name, $certificate_type, Documents";
+        $subject = "$vessel_name, $imo_number, Documents";
 
         $headers  = 'MIME-Version: 1.0' . "\r\n";
         $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
