@@ -47,7 +47,7 @@ include'includes/header_login.php';
       <div class="col-md-3">
         <div class="input-group">
           <select class="form-control-text1" placeholder="Select" name="certificate_type" id="certificate_type">
-            <option></option>
+            <option selected value="">Select Certificate Type</option>
             <option value="class">Class</option>
             <option value="flag">Flag</option>
             <option value="safety">Safety</option>
@@ -63,16 +63,49 @@ include'includes/header_login.php';
      </div>
     </div>
     <div class="row">
-		<div class="col-md-8">
-			<button type="button" id="yellowclor" class="update text-center btn btn-yelow btn-sm"></button>
-			&nbsp;<span>Due in 45 days</span>&nbsp;&nbsp;
-			<button type="button" id="brownclr" class="update text-center btn btn-brwon btn-sm"></button>
-			&nbsp;<span>Due in 30 days</span>&nbsp;&nbsp;
-			<button type="button" id="redclor" class="update text-center btn btn-red btn-sm"></button>
-			&nbsp;<span>Due Now or Overdue</span>&nbsp;&nbsp;
-			<button type="button" id="greenclr" class="update text-center btn btn-green btn-sm"></button>
-			&nbsp;<span>Valid More than 45 days</span>&nbsp;&nbsp;
-		</div>
+      <div class="col-md-8">
+        <?php
+          if(array_key_exists('range',$_REQUEST)){
+             $range = $_REQUEST['range'];
+          }else{
+            $range ="";
+          }
+          ?>
+<form id="drop_down"action="<?php echo base_url(); ?>index.php/VesselCertificate/search_dropdown_status/<?php echo $vessel_id; ?>" method="get">
+          <span>
+            <select name="range" style="width: 169px;" onchange="this.form.submit()">
+              <option value="yellow" <?php if($range == "yellow"){echo "selected=selected";}?>>Due in 45 days</option>
+              <option value="brown" <?php if($range == "brown"){echo "selected=selected";}?>> Due in 30 days </option>
+              <option value="red" <?php if($range == "red"){echo "selected=selected";}?>>Due Now or Overdue</option>
+              <option value="green" <?php if($range == "green"){echo "selected=selected";}?>>Valid More than 45 days</option>
+            </select>
+          </span>
+      </form>
+      </div>
+    </div>
+      <div class="row">
+    <div class="col-md-8">
+      <form id="drop_down"action="<?php echo base_url(); ?>index.php/VesselCertificate/search_dropdown_status/<?php echo $vessel_id; ?>" method="get">
+      <input type="hidden" name="range" value="yellow" />
+      <button type="submit" id="yellowclor" class="update text-center btn btn-yelow btn-sm"></button>
+      </form>
+      &nbsp;<span>Due in 45 days</span>&nbsp;&nbsp;
+      <form id="drop_down"action="<?php echo base_url(); ?>index.php/VesselCertificate/search_dropdown_status/<?php echo $vessel_id; ?>" method="get">
+      <input type="hidden" name="range" value="brown" />
+      <button type="button" id="brownclr" class="update text-center btn btn-brwon btn-sm"></button>
+      </form>
+      &nbsp;<span>Due in 30 days</span>&nbsp;&nbsp;
+      <form id="drop_down"action="<?php echo base_url(); ?>index.php/VesselCertificate/search_dropdown_status/<?php echo $vessel_id; ?>" method="get">
+      <input type="hidden" name="range" value="red" />
+      <button type="submit" id="redclor" class="update text-center btn btn-red btn-sm"></button>
+      </form>
+      &nbsp;<span>Due Now or Overdue</span>&nbsp;&nbsp;
+      <form id="drop_down"action="<?php echo base_url(); ?>index.php/VesselCertificate/search_dropdown_status/<?php echo $vessel_id; ?>" method="get">
+      <input type="hidden" name="range" value="green" />
+      <button type="submit" id="greenclr" class="update text-center btn btn-green btn-sm"></button>
+      </form>
+      &nbsp;<span>Valid More than 45 days</span>&nbsp;&nbsp;
+    </div>
     </div>
     <div class="row">
       <div class="panel-body">

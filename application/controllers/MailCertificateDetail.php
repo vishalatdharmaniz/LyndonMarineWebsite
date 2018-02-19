@@ -116,37 +116,38 @@ class MailCertificateDetail extends CI_Controller {
             }
             
 
-            $txt .= "<h2>Certificate Name:".$certificate_name."</h2><br>";
-            $txt .= "<h2>Certificate No:".$certificate_no."</h2><br>";
+            /*  $txt .= "<h3>Certificate Name:".$certificate_name."</h3>";
+            $txt .= "<h3>Certificate No:".$certificate_no."</h3><br>"; */
             
-
+             $txt .= "<h3>Vessel Name:".$vessel_name."</h3>";
+            $txt .= "<h3>IMO No:".$imo_number."</h3><br>";
             
             $txt .= "<h1>Documents:</h1><br>";
 
         if ($certificate_data[0]["document1"] != NULL)
         {
-            $txt .= "<h4>Certificate 1:</h4><a href=$document1>$document_name[1]</a>";
+            $txt .= "<h4>Certificate 1:</h4><a href=$document[1]>$document_name[1]</a>";
         }
         if ($certificate_data[0]["document2"] != NULL)
         {
-            $txt .= "<h4>Certificate 2:</h4><a href=$document2>$document_name[2]</a>";
+            $txt .= "<h4>Certificate 2:</h4><a href=$document[2]>$document_name[2]</a>";
         }
         if ($certificate_data[0]["document3"] != NULL)
         {
-            $txt .= "<h4>Certificate 3:</h4><a href=$document3>$document_name[3]</a>";
+            $txt .= "<h4>Certificate 3:</h4><a href=$document[3]>$document_name[3]</a>";
         }
         if ($certificate_data[0]["document4"] != NULL)
         {
-            $txt .= "<h4>Certificate 4:</h4><a href=$document4>$document_name[4]</a>";
+            $txt .= "<h4>Certificate 4:</h4><a href=$document[4]>$document_name[4]</a>";
         }
         if ($certificate_data[0]["document5"] != NULL)
         {
-            $txt .= "<h4>Certificate 5:</h4><a href=$document5>$document_name[5]</a>";
+            $txt .= "<h4>Certificate 5:</h4><a href=$document[5]>$document_name[5]</a>";
         }
             $txt .= "<hr>";
 
         }
-        $txt .= "<h5>Best Regards</h5><br>";
+        $txt .= "<h3>Best Regards</h3><br>";
 
         $to = "$email_of_recepient";
         $subject = "$vessel_name, $imo_number, Documents";

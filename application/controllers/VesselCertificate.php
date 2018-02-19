@@ -165,6 +165,60 @@ $total_certificate = $this->Certificate_model->get_total_certificate($vessel_id)
         $this->load->view('LyndonMarine/vessel_certificate',$data);
     }
 
+    public function search_dropdown_status($vessel_id){
+        $range = $_REQUEST['range'];
+        $this->load->library('pagination');
+        $this->load->model('Certificate_model');
+
+        
+        $config = array();
+
+        $config["base_url"] = base_url() . "index.php/VesselCertificate/search_dropdown_status/$vessel_id?range=$range";
+        $config['per_page'] = '10';
+            $config['num_links'] = '5';
+            $config['full_tag_open'] = '<ul class="pagination">';
+            $config['full_tag_close'] = '</ul>';
+            $config['first_link'] = 'First';
+            $config['first_tag_open'] = '<li>';
+            $config['first_tag_close'] = '</li>';
+            $config['num_tag_open'] = '<li>';
+            $config['num_tag_close'] = '</li>';
+            $config['prev_link'] = 'prev';
+            $config['prev_tag_open'] = '<li>';
+            $config['prev_tag_close'] = '</li>';
+            $config['next_link'] = 'Next';
+            $config['next_tag_open'] = '<li>';
+            $config['next_tag_close'] = '</li>';
+            $config['last_link'] = 'Last';
+            $config['last_tag_open'] = '<li>';
+            $config['last_tag_close'] = '</li>';
+            $config['cur_tag_open'] = '<li class="active"><a href="#">';
+            $config['cur_tag_close'] = '</a></li>';
+            $config['use_page_numbers'] = TRUE;
+            $config['page_query_string'] = TRUE;
+            $config['reuse_query_string'] = TRUE;
+            
+            $page = 1;
+            if($this->input->get('per_page')){
+                $page = ($this->input->get('per_page')) ;
+            }
+            
+            $uri_segment = ($page-1) * $config["per_page"]; 
+            $config['uri_segment'] = $uri_segment;
+            
+                    
+            $result = $this->Certificate_model->getSheetLog('','', '', '=', '', $config['per_page'], $uri_segment,null,null,null,$range,'','',$vessel_id);
+
+            
+            $abc=count($this->Certificate_model->getSheetLog('','', '', '=', '', '', '',null,null,null,$range,'','',$vessel_id));
+            
+            $config["total_rows"] = $abc;
+            $this->pagination->initialize($config);
+             $data['links'] = $this->pagination->create_links();
+            $data['certificate_data'] = $result;
+                    $data['vessel_id'] = $vessel_id;  
+            $this->load->view('LyndonMarine/vessel_certificate',$data);
+    }   
 }
 
 ?>

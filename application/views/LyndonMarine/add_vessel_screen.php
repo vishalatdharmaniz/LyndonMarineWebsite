@@ -41,14 +41,14 @@ color: red;
                 <div class="form-group">
                   <label for="exampleInputPassword1">Image2</label>
                   <input id="image2-chosen" type="file" name="image2" accept="image/*">
-                  <button type="button" class="btn btn-danger" id="remove-image2" style="margin-top:10px;">Remove</button>
+                  <!-- <button type="button" class="btn btn-danger" id="remove-image2" style="margin-top:10px;">Remove</button> -->
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="exampleInputPassword1">Image3</label>
                   <input id="image3-chosen" type="file" name="image3" accept="image/*">
-                  <button type="button" class="btn btn-danger" id="remove-image3" style="margin-top:10px;">Remove</button>
+                  <!-- <button type="button" class="btn btn-danger" id="remove-image3" style="margin-top:10px;">Remove</button> -->
                 </div>
               </div>
             </div>
@@ -57,14 +57,14 @@ color: red;
                 <div class="form-group">
                   <label for="exampleInputEmail1">Image4 </label>
                   <input id="image4-chosen" type="file" name="image4" accept="image/*">
-                  <button type="button" class="btn btn-danger" id="remove-image4" style="margin-top:10px;">Remove</button>
+                  <!-- <button type="button" class="btn btn-danger" id="remove-image4" style="margin-top:10px;">Remove</button> -->
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="exampleInputPassword1">Image5</label>
                   <input id="image5-chosen" type="file" name="image5" accept="image/*">
-                  <button type="button" class="btn btn-danger" id="remove-image5" style="margin-top:10px;">Remove</button>
+                  <!-- <button type="button" class="btn btn-danger" id="remove-image5" style="margin-top:10px;">Remove</button> -->
                 </div>
               </div>
             </div>

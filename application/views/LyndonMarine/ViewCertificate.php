@@ -1,6 +1,11 @@
 <?php
 include'includes/header_login.php';
 ?>
+<style>
+  ul {
+    display: flex;
+  }
+</style>
 <section id="main-edit">
   <div class="container">
     <div class="row">
@@ -135,8 +140,9 @@ include'includes/header_login.php';
             <div class="row">
             	<div class="doc-img">
                 	<ul>
-                    	<li><img src="http://via.placeholder.com/100x100" class="img-responsive"><a href="<?php echo $certificate_data['document1']; ?>" target="_blank" class="btn btn-primary">View </a>&nbsp;
+                    	<li>
                       <?php if(!empty($certificate_data['document1'])) {?>
+                      <a href="<?php echo $certificate_data['document1']; ?>" target="_blank"><img src="http://via.placeholder.com/100x100" class="img-responsive"> </a><br>
                       <span><?php $value = explode("/",$certificate_data['document1']);echo substr($value[6],0,20); ?></span>
                       <?php } 
                       else { ?>
@@ -144,32 +150,35 @@ include'includes/header_login.php';
                       <?php } ?></li>
                       
                       <li>
-                      <a href="<?php echo $certificate_data['document2']; ?>" target="_blank" class="btn btn-primary"> View</a>&nbsp;
                       <?php if(!empty($certificate_data['document2'])) {?>
+                      <a href="<?php echo $certificate_data['document2']; ?>" target="_blank"><img src="http://via.placeholder.com/100x100" class="img-responsive"> </a><br>
                       <span><?php $value = explode("/",$certificate_data['document2']);echo substr($value[6],0,20); ?></span>
                       <?php } 
                       else { ?>
                      <!-- <span> No Document Available </span>-->
                       <?php } ?></li>
                       
-                      <li><a href="<?php echo $certificate_data['document3']; ?>" target="_blank" class="btn btn-primary"> View</a>&nbsp;
+                      <li>
                       <?php if(!empty($certificate_data['document3'])) {?>
+                      <a href="<?php echo $certificate_data['document3']; ?>" target="_blank"><img src="http://via.placeholder.com/100x100" class="img-responsive"> </a><br>
                       <span><?php $value = explode("/",$certificate_data['document3']);echo substr($value[6],0,10); ?></span>
                       <?php } 
                       else { ?>
                      <!-- <span> No Document Available </span>-->
                       <?php } ?></li>
                       
-                        <li><a href="<?php echo $certificate_data['document4']; ?>" target="_blank" class="btn btn-primary"> View</a>&nbsp;
+                        <li>
                       <?php if(!empty($certificate_data['document4'])) {?>
+                      <a href="<?php echo $certificate_data['document4']; ?>" target="_blank"><img src="http://via.placeholder.com/100x100" class="img-responsive">  </a><br>
                       <span><?php $value = explode("/",$certificate_data['document4']);echo substr($value[6],0,10); ?></span>
                       <?php } 
                       else { ?>
                     <!--  <span> No Document Available </span>-->
                       <?php } ?></li>
                       
-                        <li><a href="<?php echo $certificate_data['document5']; ?>" target="_blank" class="btn btn-primary"> View</a>&nbsp;
+                        <li>
                       <?php if(!empty($certificate_data['document5'])) {?>
+                      <a href="<?php echo $certificate_data['document5']; ?>" target="_blank"> <img src="http://via.placeholder.com/100x100" class="img-responsive"> </a><br>
                       <span><?php $value = explode("/",$certificate_data['document5']);echo substr($value[6],0,10); ?></span>
                       <?php } 
                       else { ?>
