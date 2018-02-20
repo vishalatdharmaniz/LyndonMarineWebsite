@@ -17,7 +17,7 @@ include'includes/header_login.php';
     <div class="row">
       <div class="col-md-8 col-md-offset-2">
         <div class="form-action">
-					<?php $id = $data->id;echo form_open(base_url()."/index.php/VesselSurvey/edit/$id"); ?>
+					<?php $id = $data->id;echo form_open(base_url()."/index.php/VesselSurvey/edit/$id/$vessel_id"); ?>
          <!-- <form action="<?php //echo base_url()."/index.php/AddSurveyScreen/index/"; ?>" method="post" enctype="multipart/form-data">-->
             <input type="hidden" name="id" value="<?php echo $id ?>" />
             <div class="row">

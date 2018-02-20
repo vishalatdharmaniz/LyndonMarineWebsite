@@ -47,6 +47,7 @@ class Survey_model extends CI_Model
                     $where .= $keys[0].' '.$compare_type .'"'.$match_values[$keys[0]].'" ';
                     break;
             }
+			
             $match_values = array_slice($match_values, 1);
             //print_r($match_values);die;
             foreach($match_values as $key => $value){                
@@ -90,23 +91,26 @@ class Survey_model extends CI_Model
 		return $query;
 	}
 	
-	public function delete($id){
+	public function delete($id,$vessel_id){
 		$this->db->where('id',$id);
+		$this->db->where('vessel_id',$vessel_id);
         $query = $this->db->delete($this->survey_table);            
         return $query;
 	}
 	
-	public function get_survey_info($id){
+	public function get_survey_info($id,$vessel_id){
 		$this->db->where("id",$id);
+		$this->db->where("vessel_id",$vessel_id);
 		 $this->db->from($this->survey_table);
 		 $query = $this->db->get();
         $result = $query->result();		
 		return $result;
 	}
 	
-	public function update_survey($data,$id)
+	public function update_survey($data,$id,$vessel_id)
     {
         $this->db->where('id',$id);
+		$this->db->where('vessel_id',$vessel_id);
         $query = $this->db->update($this->survey_table,$data); 
         //echo $this->db->last_query();exit;
         return $query;
@@ -199,17 +203,17 @@ class Survey_model extends CI_Model
 			}
 			if($custom_code == "green"){
 				if(empty($where)){
-					$where .=	"  WHERE IF( UNIX_TIMESTAMP(`range_to`) <>0 ,range_from >= CURRENT_DATE() + INTERVAL 1 MONTH,due_date >= CURRENT_DATE() + INTERVAL 1 MONTH )";	
+					$where .=	"  WHERE IF( UNIX_TIMESTAMP(`range_to`) <>0 ,range_from > CURRENT_DATE() + INTERVAL 30 DAY,due_date > CURRENT_DATE() + INTERVAL 30 DAY )";	
 				}else{
-					$where .=	" IF( UNIX_TIMESTAMP(`range_to`) <>0 ,range_from >= CURRENT_DATE() + INTERVAL 1 MONTH,due_date >= CURRENT_DATE() + INTERVAL 1 MONTH )";
+					$where .=	"  IF( UNIX_TIMESTAMP(`range_to`) <>0 ,range_from > CURRENT_DATE() + INTERVAL 30 DAY,due_date > CURRENT_DATE() + INTERVAL 30 DAY )";
 				}
 			}
 			 
 			if($custom_code == "yellow"){
 				if(empty($where)){
-					$where .=	" WHERE  IF( UNIX_TIMESTAMP(`range_to`) <>0 ,range_from <= CURRENT_DATE() + INTERVAL 1 MONTH AND range_to > CURDATE(),due_date <= CURRENT_DATE() + INTERVAL 1 MONTH AND due_date > CURDATE())";	
+					$where .=	" WHERE  IF( UNIX_TIMESTAMP(`range_to`) <>0 ,range_from < CURRENT_DATE() + INTERVAL 30 DAY AND range_to > CURDATE(),due_date <= CURRENT_DATE() + INTERVAL 30 DAY AND due_date > CURDATE())";	
 				}else{
-					$where .=	"  IF( UNIX_TIMESTAMP(`range_to`) <>0 ,range_from <= CURRENT_DATE() + INTERVAL 1 MONTH AND range_to > CURDATE(),due_date <= CURRENT_DATE() + INTERVAL 1 MONTH AND due_date > CURDATE())";
+					$where .=	"  IF( UNIX_TIMESTAMP(`range_to`) <>0 ,range_from < CURRENT_DATE() + INTERVAL 30 DAY AND range_to > CURDATE(),due_date <= CURRENT_DATE() + INTERVAL 30 DAY AND due_date > CURDATE())";
 				}
 			}
 			
@@ -239,6 +243,25 @@ class Survey_model extends CI_Model
 		//echo $this->db->last_query();exit;
 		return $query->result_array();
     }
+	
+	
+	public function red($vessel_id){
+		$query = "SELECT * FROM survey WHERE IF( UNIX_TIMESTAMP(`range_to`) <>0 ,range_to < CURDATE() and UNIX_TIMESTAMP(`range_to`) <>0,due_date < CURDATE() ) AND vessel_id = $vessel_id";
+		$query = $this->db->query($query);	
+		return $query->result_array();
+	}
+	
+	public function green($vessel_id){
+		$query = "SELECT * FROM survey WHERE IF( UNIX_TIMESTAMP(`range_to`) <>0 ,range_from > CURRENT_DATE() + INTERVAL 30 DAY,due_date > CURRENT_DATE() + INTERVAL 30 DAY ) AND vessel_id = $vessel_id";
+		$query = $this->db->query($query);	
+		return $query->result_array();
+	}
+	
+	public function yellow($vessel_id){
+		$query = "SELECT * FROM survey WHERE  IF( UNIX_TIMESTAMP(`range_to`) <>0 ,range_from <= CURRENT_DATE() + INTERVAL 30 DAY AND range_to >= CURDATE(),due_date <= CURRENT_DATE() + INTERVAL 30 DAY AND due_date >= CURDATE()) AND vessel_id = $vessel_id";
+		$query = $this->db->query($query);	
+		return $query->result_array();
+	}
 }
 
 ?>
