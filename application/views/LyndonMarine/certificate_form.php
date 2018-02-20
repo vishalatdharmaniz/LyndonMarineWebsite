@@ -74,7 +74,7 @@ include'includes/header_login.php';
               </div>
               <div class="form-group col-md-6">
                 <label class="control-label">Comments</label>
-                <input type="text" required name="comments" placeholder="Comments" class="form-control-text">
+                <input type="text" name="comments" placeholder="Comments" class="form-control-text">
               </div>
             </div>
             <div class="row">
