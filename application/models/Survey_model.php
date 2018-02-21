@@ -86,7 +86,8 @@ class Survey_model extends CI_Model
 		//echo $this->db->last_query();exit;
 		return $query->result_array();
     }
-	public function total(){
+	public function total($vessel_id){
+		$query = $this->db->where('vessel_id',$vessel_id);
 		$query = $this->db->count_all_results($this->survey_table);
 		return $query;
 	}

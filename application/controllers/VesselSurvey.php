@@ -64,7 +64,7 @@ class VesselSurvey extends CI_Controller {
 			//$fields = array('id','user_master_id','updated_by','field_name','field_old_value','field_new_value','modified');
 			$result = $this->Survey_model->get_data('', $match_values, '', '=', '', $config['per_page'], $uri_segment);
 			//echo $this->db->last_query();die;
-			$abc=$this->Survey_model->total();
+			$abc=$this->Survey_model->total($vessel_id);
 			$config["total_rows"] = $abc;
 			$this->pagination->initialize($config);
 			$data['all_survey_details'] = $result;
@@ -137,7 +137,7 @@ class VesselSurvey extends CI_Controller {
 			//					  'comments' =>$_REQUEST['Comments'],
 			//					  );
 			$this->Survey_model->update_survey($data_to_save,$id,$vessel_id);
-			redirect("VesselSurvey/index/$vessel_id");
+			redirect("index.php/VesselSurvey/index/$vessel_id");
 		}else{
 			if(!empty($id)){
 				
@@ -148,7 +148,7 @@ class VesselSurvey extends CI_Controller {
 					$data['vessel_id'] = $vessel_id;
 					$this->load->view('LyndonMarine/EditVesselSurvey',$data);
 				}else{
-					redirect("VesselSurvey/index/$vessel_id");
+					redirect("index.php/VesselSurvey/index/$vessel_id");
 				}
 			}	
 		}
@@ -159,7 +159,7 @@ class VesselSurvey extends CI_Controller {
 		if(!empty($id)){
 			$this->load->model('Survey_model');
 			$this->Survey_model->delete($id,$vessel_id);
-			redirect("VesselSurvey/index/$vessel_id");
+			redirect("index.php/VesselSurvey/index/$vessel_id");
 		}
 	}
 	
@@ -229,7 +229,7 @@ class VesselSurvey extends CI_Controller {
 			$data['all_survey_details'] = $result;
 			$data['ststus'] = $ststus;
 			$data['vessel_id'] = $vessel_id;
-		$this->load->view('LyndonMarine/VesselSurvey',$data);
+		$this->load->view('index.php/LyndonMarine/VesselSurvey',$data);
 	}
 	
 	public function search_dropdown($vessel_id){
