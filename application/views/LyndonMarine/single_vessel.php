@@ -4,7 +4,7 @@ include'includes/header_login.php';
 
 <section id="image-details">
   <div class="container">
-    <?php foreach($vessel_data as $vessel) { ?>
+    <?php  foreach($vessel_data as $vessel) { ?>
     <div class="row">
       <div class="button-right"> <a href="<?php echo base_url();?>index.php/AllVessels/view_vessel/<?php echo $vessel['vessel_id']; ?>" class="btn btn-view">View</a> <a href="<?php echo base_url();?>index.php/AllVessels/edit_vessel/<?php echo $vessel['vessel_id']; ?>" class="btn btn-edit">Edit</a> <a href="<?php echo base_url();?>index.php/DeleteVessel/index/<?php echo $vessel['vessel_id']; ?>" Onclick="return confirm('Are you sure?');" class="btn btn-del">Delete</a></div>
     </div>
@@ -74,7 +74,7 @@ include'includes/header_login.php';
           </div>
         </div>
 		<div class="col-md-3">
-          <div class="done-text"> <a href="<?php echo base_url(); ?>index.php/VesselSurvey/index"><img src="<?php echo base_url(); ?>img/icon/Survey.png" class="img-responsive"></a>
+          <div class="done-text"> <a href="<?php echo base_url(); ?>index.php/VesselSurvey/index/<?php echo $vessel['vessel_id'];?>"><img src="<?php echo base_url(); ?>img/icon/Survey.png" class="img-responsive"></a>
             <h3>Survey </h3>
           </div>
         </div>
