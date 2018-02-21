@@ -117,10 +117,10 @@ class Survey_model extends CI_Model
         return $query;
     }
 	
-	public function total_record($search){
+	public function total_record($search,$vessel_id){
 		$this->db->select("*");
 		$this->db->from($this->survey_table);
-		//$this->db->where('key',$key);
+		$this->db->where('vessel_id',$vessel_id);
 		$this->db->like('survey_no',$search,'both'); 
 		$query = $this->db->get();
 		$result = $query->num_rows(); 
@@ -164,9 +164,9 @@ class Survey_model extends CI_Model
 			//echo $custom_code;
 			if(!empty($custom_code)){
 				if(empty($where)){
-					$where .= "where".$custom_code;
+					//$where .= "where".$custom_code;
 				}else{
-					$where .= " and (".$custom_code.")";
+					//$where .= " and (".$custom_code.")";
 				}
 			}
             $match_values = array_slice($match_values, 1);
@@ -198,7 +198,7 @@ class Survey_model extends CI_Model
 				if(empty($where)){
 					$where .=	" WHERE IF( UNIX_TIMESTAMP(`range_to`) <>0 ,range_to < CURDATE() and UNIX_TIMESTAMP(`range_to`) <>0,due_date < CURDATE() )";	
 				}else{
-					$where .=	" IF( UNIX_TIMESTAMP(`range_to`) <>0 ,range_to < CURDATE() and UNIX_TIMESTAMP(`range_to`) <>0,due_date < CURDATE() )";
+					$where .=	"AND IF( UNIX_TIMESTAMP(`range_to`) <>0 ,range_to < CURDATE() and UNIX_TIMESTAMP(`range_to`) <>0,due_date < CURDATE() )";
 				}
 					
 			}
@@ -206,7 +206,7 @@ class Survey_model extends CI_Model
 				if(empty($where)){
 					$where .=	"  WHERE IF( UNIX_TIMESTAMP(`range_to`) <>0 ,range_from > CURRENT_DATE() + INTERVAL 30 DAY,due_date > CURRENT_DATE() + INTERVAL 30 DAY )";	
 				}else{
-					$where .=	"  IF( UNIX_TIMESTAMP(`range_to`) <>0 ,range_from > CURRENT_DATE() + INTERVAL 30 DAY,due_date > CURRENT_DATE() + INTERVAL 30 DAY )";
+					$where .=	"AND  IF( UNIX_TIMESTAMP(`range_to`) <>0 ,range_from > CURRENT_DATE() + INTERVAL 30 DAY,due_date > CURRENT_DATE() + INTERVAL 30 DAY )";
 				}
 			}
 			 
@@ -214,7 +214,15 @@ class Survey_model extends CI_Model
 				if(empty($where)){
 					$where .=	" WHERE  IF( UNIX_TIMESTAMP(`range_to`) <>0 ,range_from < CURRENT_DATE() + INTERVAL 30 DAY AND range_to > CURDATE(),due_date <= CURRENT_DATE() + INTERVAL 30 DAY AND due_date > CURDATE())";	
 				}else{
-					$where .=	"  IF( UNIX_TIMESTAMP(`range_to`) <>0 ,range_from < CURRENT_DATE() + INTERVAL 30 DAY AND range_to > CURDATE(),due_date <= CURRENT_DATE() + INTERVAL 30 DAY AND due_date > CURDATE())";
+					$where .=	"AND  IF( UNIX_TIMESTAMP(`range_to`) <>0 ,range_from < CURRENT_DATE() + INTERVAL 30 DAY AND range_to > CURDATE(),due_date <= CURRENT_DATE() + INTERVAL 30 DAY AND due_date > CURDATE())";
+				}
+			}
+			
+			if($custom_code == "brown"){
+				if(empty($where)){
+					$where .=	" WHERE  range_from < CURRENT_DATE()  AND range_to > CURDATE()";	
+				}else{
+					$where .=	"AND  range_from < CURRENT_DATE()  AND range_to > CURDATE()";
 				}
 			}
 			
@@ -238,7 +246,7 @@ class Survey_model extends CI_Model
             $sql .= ' '.$where.' '.$and_condition.' '.$orderby.' '.'limit '.$offset .','.$num;
         
         $query = ($count) ? 'SELECT count(*) FROM '.$this->survey_table.' '.$where.' '.$and_condition.$orderby : $sql;
-		//echo $query;echo "</br>";
+		//echo $query;echo "</br>";die;
         $query = $this->db->query($query);
 		
 		//echo $this->db->last_query();exit;
@@ -259,9 +267,27 @@ class Survey_model extends CI_Model
 	}
 	
 	public function yellow($vessel_id){
-		$query = "SELECT * FROM survey WHERE  IF( UNIX_TIMESTAMP(`range_to`) <>0 ,range_from <= CURRENT_DATE() + INTERVAL 30 DAY AND range_to >= CURDATE(),due_date <= CURRENT_DATE() + INTERVAL 30 DAY AND due_date >= CURDATE()) AND vessel_id = $vessel_id";
+		$query = "SELECT * FROM survey WHERE  IF( UNIX_TIMESTAMP(`range_to`) <>0 ,range_from <= CURRENT_DATE() + INTERVAL 30 DAY AND range_to > CURDATE() ,due_date <= CURRENT_DATE() + INTERVAL 30 DAY AND due_date >= CURDATE()) AND vessel_id = $vessel_id";
 		$query = $this->db->query($query);	
 		return $query->result_array();
+	}
+	
+	public function brown($vessel_id){
+		
+		$query = "SELECT * FROM survey WHERE  range_from <= CURRENT_DATE() AND range_to >= CURRENT_DATE() AND vessel_id = $vessel_id";
+		//echo $query;die;
+		$query = $this->db->query($query);
+		//echo "<pre>";print_r($query->result_array());die;
+		return $query->result_array();
+	}
+	
+	public function get_vessel_name($vessel_id){
+		$this->db->select('vessel_id,vessel_name');
+		$this->db->where("vessel_id",$vessel_id);
+		 $this->db->from("vessels");
+		 $query = $this->db->get();
+        $result = $query->result_array();		
+		return $result;	
 	}
 }
 

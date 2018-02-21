@@ -8,11 +8,22 @@ include'includes/header_login.php';
     <div class="row">
       <div class="col-md-offset-3 col-md-6">
         <div class="page-heading">
-          <h2>Vessel Survey</h2>
+					<div class="col-md-3">
+						<div class="main-edit-add">
+					<a class="btn-blue" href="<?php echo base_url();?>/index.php/FleetDetails/index/<?php echo $vessel_id;?>">GO BACK</a>
+						</div>
+					</div>
+          <h2><?php echo $vessel_name." ";?>Survey Status</h2>
         </div>
       </div>
+			
       <div class="col-md-3">
-        <div class="main-edit-add"> <a class="btn-blue" href="<?php echo base_url();?>index.php/AddSurveyScreen/index/<?php echo $vessel_id;?>">Add</a> </div>
+        <div class="main-edit-add"> <a class="btn-blue" href="<?php echo base_url();?>index.php/AddSurveyScreen/index/<?php echo $vessel_id;?>">Add Survey</a>
+				</div>
+				<div></div>
+				<div class="main-edit-add">
+					<a class="btn-blue" href="<?php echo base_url();?>index.php/VesselSurvey/index/<?php echo $vessel_id;?>">ALL Survey</a>
+						</div>
         <br>
         <!-- <div class="main-edit-add"> <a class="btn-blue" href="<?php echo base_url(); ?>index.php/VesselCertificate/index">All Certificate</a> </div>--> 
         <!-- <br><div class="main-edit-add"> <a class="btn-blue" onclick="<?php $all_checked; ?>" >Mail Document</a> </div> --> 
@@ -43,7 +54,7 @@ include'includes/header_login.php';
     <form action="<?php echo base_url()."index.php/VesselSurvey/search/$vessel_id" ?>" method="post">
     <div class="input-group">
     <input type="text" id="search_box" class="form-control-text" placeholder="Search" name="search">
-  <div class="input-group-btn"> <a class="btn btn-default text-muted" href="#" title="Clear" onclick="reset()"><i class="glyphicon glyphicon-remove"></i> </a>
+  <div class="input-group-btn"> <a class="btn btn-default text-muted" href="<?php echo base_url();?>index.php/VesselSurvey/index/<?php echo $vessel_id;?>" title="Clear" onclick="reset()"><i class="glyphicon glyphicon-remove"></i> </a>
     <button type="submit" class="btn btn-info"> <span class="glyphicon glyphicon-search" aria-hidden="true"></span> </button>
     </div>
     <?php
@@ -63,13 +74,19 @@ include'includes/header_login.php';
    
     <select name="range" style="width: 169px;" onchange="this.form.submit()">
 		<option selected value="">Select Status</option>
-      <option value="yellow" <?php if($range == "yellow"){echo "selected=selected";}?>>Within Range</option>
+      <option value="yellow" <?php if($range == "yellow"){echo "selected=selected";}?>>Within 30 days</option>
+			<option value="brown" <?php if($range == "brown"){echo "selected=selected";}?>>Due Soon</option>
       <option value="red" <?php if($range == "red"){echo "selected=selected";}?>>Due</option>
       <option value="green" <?php if($range == "green"){echo "selected=selected";}?>>Valid</option>
     </select>
    
      </form>
+		 
+		 
+		 
+		 
       </div>
+		
     </div>
    </div>
   </div>
@@ -96,12 +113,17 @@ include'includes/header_login.php';
         <input type="hidden" name="range" value="yellow" />
         <button type="submit" id="yellowclor" class="update text-center btn btn-yelow btn-sm"></button>
       </form>
-      &nbsp;<span>Within Range</span>&nbsp;&nbsp;
+      &nbsp;<span>Within 30 days</span>&nbsp;&nbsp;
       <form id="drop_down"action="<?php echo base_url()."index.php/VesselSurvey/search_dropdown/$vessel_id" ?>" method="get">
         <input type="hidden" name="range" value="red" />
         <button type="submit" id="redclor" class="update text-center btn btn-red btn-sm"></button>
       </form>
       &nbsp;<span>Due now or Overdue</span>&nbsp;&nbsp;
+			<form id="drop_down"action="<?php echo base_url()."index.php/VesselSurvey/search_dropdown/$vessel_id" ?>" method="get">
+        <input type="hidden" name="range" value="brown" />
+        <button type="submit" id="brownclr" class="update text-center btn btn-brwon btn-sm"></button>
+      </form>
+      &nbsp;<span>Due Soon</span>&nbsp;&nbsp;
       <form id="drop_down"action="<?php echo base_url()."index.php/VesselSurvey/search_dropdown/$vessel_id" ?>" method="get">
         <input type="hidden" name="range" value="green" />
         <button type="submit" id="greenclr" class="update text-center btn btn-green btn-sm"></button>
@@ -235,6 +257,8 @@ include'includes/header_login.php';
 								echo "<button type=button id=yellowclor class='update text-center btn btn-yelow btn-sm'></button>";
 							}elseif($ststus[$value['id']] == "green"){
 								echo "<button type=button id=greenclr class='update text-center btn btn-green btn-sm'></button>";
+							}elseif($ststus[$value['id']] == "brown"){
+								echo "<button type=button id=brownclr class='update text-center btn btn-brwon btn-sm'></button>";
 							}
 							
 							?></td>

@@ -6,6 +6,11 @@ include'includes/header_login.php';
     <div class="row">
       <div class="col-md-offset-3 col-md-6">
         <div class="page-heading">
+					<div class="col-md-3">
+						<div class="main-edit-add">
+					<a class="btn-blue" href="<?php echo base_url();?>/index.php/FleetDetails/index/<?php echo $vessel_id;?>">GO BACK</a>
+						</div>
+					</div>
           <h2>Survey Form</h2>
         </div>
       </div>
