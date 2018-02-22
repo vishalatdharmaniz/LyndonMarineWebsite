@@ -9,9 +9,19 @@ class VesselSurvey extends CI_Controller {
 		$this->load->library('pagination');
 		$this->load->model('Survey_model');
 		
+		$vesse_name_res = $this->Survey_model->get_vessel_name($vessel_id);
+		if(!empty($vesse_name_res)){
+			$vesse_name = $vesse_name_res[0]['vessel_name'];
+		}else{
+			$vesse_name = "";
+		}
 		$red = $this->Survey_model->red($vessel_id);
 		$green = $this->Survey_model->green($vessel_id);
 		$yellow = $this->Survey_model->yellow($vessel_id);
+		//die("--");
+		$brown = $this->Survey_model->brown($vessel_id);
+		//echo "<pre>";print_r($brown);die;
+		//echo "<pre>";print_r($brown);die;
 		$ststus = array();
 		foreach($red as $key => $value){
 			$ststus[$value['id']] = 'red';
@@ -24,12 +34,15 @@ class VesselSurvey extends CI_Controller {
 			$ststus[$value['id']] = 'yellow';
 		}
 		
+		foreach($brown as $key => $value){
+			$ststus[$value['id']] = 'brown';
+		}
 		//$all_vessel_details = $this->Survey_model->get_all_survey_details();
 		
 		$config = array();
 
 		$config["base_url"] = base_url() . "index.php/VesselSurvey/index/$vessel_id";
-		$config['per_page'] = '5';
+		$config['per_page'] = '10';
             $config['num_links'] = '5';
 			$config['full_tag_open'] = '<ul class="pagination">';
 			$config['full_tag_close'] = '</ul>';
@@ -70,6 +83,7 @@ class VesselSurvey extends CI_Controller {
 			$data['all_survey_details'] = $result;
 			$data['ststus'] =$ststus;
 			$data['vessel_id'] =$vessel_id;
+			$data['vessel_name'] =$vesse_name;
 		$this->load->view('LyndonMarine/VesselSurvey',$data);
 	}
 	
@@ -171,6 +185,7 @@ class VesselSurvey extends CI_Controller {
 		$red = $this->Survey_model->red($vessel_id);
 		$green = $this->Survey_model->green($vessel_id);
 		$yellow = $this->Survey_model->yellow($vessel_id);
+		$brown = $this->Survey_model->brown($vessel_id);
 		$ststus = array();
 		foreach($red as $key => $value){
 			$ststus[$value['id']] = 'red';
@@ -182,12 +197,15 @@ class VesselSurvey extends CI_Controller {
 		foreach($yellow as $key => $value){
 			$ststus[$value['id']] = 'yellow';
 		}
+		foreach($brown as $key => $value){
+			$ststus[$value['id']] = 'brown';
+		}
 		//$all_vessel_details = $this->Survey_model->get_all_survey_details();
 		
 		$config = array();
 
 		$config["base_url"] = base_url() . "index.php/VesselSurvey/search/$vessel_id";
-		$config['per_page'] = '5';
+		$config['per_page'] = '10';
             $config['num_links'] = '5';
 			$config['full_tag_open'] = '<ul class="pagination">';
 			$config['full_tag_close'] = '</ul>';
@@ -223,13 +241,13 @@ class VesselSurvey extends CI_Controller {
 			//$fields = array('id','user_master_id','updated_by','field_name','field_old_value','field_new_value','modified');
 			$result = $this->Survey_model->get_data('', $match, 'AND', 'like', '', $config['per_page'], $uri_segment,"","",$and_match_value);
 			//echo $this->db->last_query();die;
-			$abc=$this->Survey_model->total_record($search);
+			$abc=$this->Survey_model->total_record($search,$vessel_id);
 			$config["total_rows"] = $abc;
 			$this->pagination->initialize($config);
 			$data['all_survey_details'] = $result;
 			$data['ststus'] = $ststus;
 			$data['vessel_id'] = $vessel_id;
-		$this->load->view('index.php/LyndonMarine/VesselSurvey',$data);
+		$this->load->view("LyndonMarine/VesselSurvey",$data);
 	}
 	
 	public function search_dropdown($vessel_id){
@@ -240,6 +258,7 @@ class VesselSurvey extends CI_Controller {
 		$red = $this->Survey_model->red($vessel_id);
 		$green = $this->Survey_model->green($vessel_id);
 		$yellow = $this->Survey_model->yellow($vessel_id);
+		$brown = $this->Survey_model->brown($vessel_id);
 		$ststus = array();
 		foreach($red as $key => $value){
 			$ststus[$value['id']] = 'red';
@@ -252,12 +271,15 @@ class VesselSurvey extends CI_Controller {
 			$ststus[$value['id']] = 'yellow';
 		}
 		
+		foreach($brown as $key => $value){
+			$ststus[$value['id']] = 'brown';
+		}
 		//$all_vessel_details = $this->Survey_model->get_all_survey_details();
 		
 		$config = array();
 
 		$config["base_url"] = base_url() . "index.php/VesselSurvey/search_dropdown/$vessel_id?range=$range";
-		$config['per_page'] = '5';
+		$config['per_page'] = '10';
             $config['num_links'] = '5';
 			$config['full_tag_open'] = '<ul class="pagination">';
 			$config['full_tag_close'] = '</ul>';
@@ -292,11 +314,11 @@ class VesselSurvey extends CI_Controller {
 			//$match = array('survey_no' => $search);
 			//$fields = array('id','user_master_id','updated_by','field_name','field_old_value','field_new_value','modified');
 			
-			$result = $this->Survey_model->getSheetLog('','', '', '=', '', $config['per_page'], $uri_segment,null,null,$and_match_value,$range,'','');
-			
+			$result = $this->Survey_model->getSheetLog('',$and_match_value, '', '=', '', $config['per_page'], $uri_segment,null,null,null,$range,'','');
+			//echo $this->db->query;die;
 			//$result = $this->Survey_model->get_data('', $match, '', 'like', '', $config['per_page'], $uri_segment);
 			//$abc=$this->Survey_model->total_record($search);
-			$abc=count($this->Survey_model->getSheetLog('','', '', '=', '', '', '',null,null,$and_match_value,$range,'',''));
+			$abc=count($this->Survey_model->getSheetLog('',$and_match_value, '', '=', '', '', '',null,null,null,$range,'',''));
 			//die;
 			//echo $this->db->last_query();
 			//die;
