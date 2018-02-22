@@ -1,4 +1,5 @@
 <?php
+include'includes/CheckUserLogin.php';
 include'includes/header_login.php';
 ?>
 <style>
@@ -14,24 +15,38 @@ include'includes/header_login.php';
 <section id="main-edit">
   <div class="container">
     <div class="row">
-      <div class="col-md-offset-3 col-md-6">
+      <div class="col-md-offset-1 col-md-10">
         <div class="page-heading">
-          <h2>Vessel Certificates</h2>
+          <h2>Vessel Certificates for <?php foreach ($vessel_data as $vesselname) {
+            echo $vesselname['vessel_name'];
+          } ?> </h2> <br>
         </div>
       </div>
-      <div class="col-md-3">
-        <div class="main-edit-add"> <a class="btn-blue" href="<?php echo base_url();?>index.php/AddCertificateScreen/index/<?php echo $vessel_id; ?>">Add</a> </div>
-        <br>
-        <div class="main-edit-add"> <a class="btn-blue" href="<?php echo base_url(); ?>index.php/VesselCertificate/index/<?php echo $vessel_id; ?>">All Certificate</a> </div>
-         <br><div class="main-edit-add"> <a class="btn-blue" onclick="mail_selected_vessels()" >Mail Document</a> </div> 
-      </div>
     </div>
+    <div class="row"> 
+      <div class="top_main">
+       <div class="col-md-3">
+        <div class="main-edit-add-left"> <a class="btn-blue" href="<?php echo base_url();?>index.php/FleetDetails/index/<?php echo $vessel_id; ?>">Go Back</a> </div>       
+      </div>
+      
+      <div class="col-md-9">
+      	<div class="list_right">
+        <ul class="main-edit-add"> 
+        <li><a class="btn-blue" href="<?php echo base_url();?>index.php/AddCertificateScreen/index/<?php echo $vessel_id; ?>">Add Certificate</a></li>
+         <li> <a class="btn-blue" href="<?php echo base_url(); ?>index.php/VesselCertificate/index/<?php echo $vessel_id; ?>">All Certificate</a></li> 
+          <li><button class="btn-blue" onclick="mail_selected_vessels()" >Mail Document</button></li>
+          </ul>
+         </div>
+         </div>
+         </div>
+    </div> 
   </div>
 </section>
 <section id="work-done">
   <div class="container">
     <div class="row">
-      <div class="col-md-6 col-md-offset-3">
+    
+      <div class="col-md-8">
         <div class="input-group">
         <form onsubmit="searchEnter(document.getElementById('search_vessel').value); return false;">
           <input type="text" class="form-control-text" placeholder="Search" name="search" id="search_vessel">
@@ -44,7 +59,7 @@ include'includes/header_login.php';
           </span>
         </div>
       </div>
-      <div class="col-md-3">
+      <div class="col-md-2">
         <div class="input-group">
           <select class="form-control-text1" placeholder="Select" name="certificate_type" id="certificate_type">
             <option selected value="">Select Certificate Type</option>
@@ -61,9 +76,8 @@ include'includes/header_login.php';
           </span> -->
         </div>
      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-8">
+	 <div class="col-md-2">
+       <div class="input-group">
         <?php
           if(array_key_exists('range',$_REQUEST)){
              $range = $_REQUEST['range'];
@@ -72,16 +86,21 @@ include'includes/header_login.php';
           }
           ?>
 <form id="drop_down"action="<?php echo base_url(); ?>index.php/VesselCertificate/search_dropdown_status/<?php echo $vessel_id; ?>" method="get">
-          <span>
-            <select name="range" style="width: 169px;" onchange="this.form.submit()">
+         
+            <select class="form-control-text1" name="range" style="width: 169px;" onchange="this.form.submit()">
+              <option selected value="">Select Status</option>
               <option value="yellow" <?php if($range == "yellow"){echo "selected=selected";}?>>Due in 45 days</option>
               <option value="brown" <?php if($range == "brown"){echo "selected=selected";}?>> Due in 30 days </option>
               <option value="red" <?php if($range == "red"){echo "selected=selected";}?>>Due Now or Overdue</option>
               <option value="green" <?php if($range == "green"){echo "selected=selected";}?>>Valid More than 45 days</option>
             </select>
-          </span>
+          
       </form>
       </div>
+      </div>
+    </div>
+    <div class="row">
+      
     </div>
       <div class="row">
     <div class="col-md-8">

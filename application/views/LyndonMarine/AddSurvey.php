@@ -1,4 +1,5 @@
 <?php
+include'includes/CheckUserLogin.php';
 include'includes/header_login.php';
 ?>
 <section id="main-edit">
@@ -18,7 +19,7 @@ include'includes/header_login.php';
       <div class="col-md-8 col-md-offset-2">
         <div class="form-action">
 					<?php echo validation_errors(); ?>
-					<?php echo form_open(base_url()."/index.php/AddSurveyScreen/index/"); ?>
+					<?php echo form_open(base_url()."index.php/AddSurveyScreen/index/"); ?>
          <!-- <form action="<?php //echo base_url()."/index.php/AddSurveyScreen/index/"; ?>" method="post" enctype="multipart/form-data">-->
             
             <div class="row">

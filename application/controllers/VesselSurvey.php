@@ -192,6 +192,63 @@ class VesselSurvey extends CI_Controller {
 		$this->load->view('LyndonMarine/VesselSurvey',$data);
 	}
 	
+	public function search_dropdown(){
+		$range = $_REQUEST['range'];
+		$this->load->library('pagination');
+		$this->load->model('Survey_model');
+		//$all_vessel_details = $this->Survey_model->get_all_survey_details();
+		
+		$config = array();
+
+		$config["base_url"] = base_url() . "index.php/VesselSurvey/search_dropdown?range=$range";
+		$config['per_page'] = '5';
+            $config['num_links'] = '5';
+			$config['full_tag_open'] = '<ul class="pagination">';
+			$config['full_tag_close'] = '</ul>';
+			$config['first_link'] = 'First';
+			$config['first_tag_open'] = '<li>';
+			$config['first_tag_close'] = '</li>';
+			$config['num_tag_open'] = '<li>';
+			$config['num_tag_close'] = '</li>';
+			$config['prev_link'] = 'prev';
+			$config['prev_tag_open'] = '<li>';
+			$config['prev_tag_close'] = '</li>';
+			$config['next_link'] = 'Next';
+			$config['next_tag_open'] = '<li>';
+			$config['next_tag_close'] = '</li>';
+			$config['last_link'] = 'Last';
+			$config['last_tag_open'] = '<li>';
+			$config['last_tag_close'] = '</li>';
+			$config['cur_tag_open'] = '<li class="active"><a href="#">';
+			$config['cur_tag_close'] = '</a></li>';
+			$config['use_page_numbers'] = TRUE;
+            $config['page_query_string'] = TRUE;
+            $config['reuse_query_string'] = TRUE;
+			
+			$page = 1;
+			if($this->input->get('per_page')){
+                $page = ($this->input->get('per_page')) ;
+            }
+			
+            $uri_segment = ($page-1) * $config["per_page"];
+			$config['uri_segment'] = $uri_segment;
+			
+			//$match = array('survey_no' => $search);
+			//$fields = array('id','user_master_id','updated_by','field_name','field_old_value','field_new_value','modified');
+			
+			$result = $this->Survey_model->getSheetLog('','', '', '=', '', $config['per_page'], $uri_segment,null,null,null,$range,'','');
+			
+			//$result = $this->Survey_model->get_data('', $match, '', 'like', '', $config['per_page'], $uri_segment);
+			//$abc=$this->Survey_model->total_record($search);
+			$abc=count($this->Survey_model->getSheetLog('','', '', '=', '', '', '',null,null,null,$range,'',''));
+			//die;
+			//echo $this->db->last_query();
+			//die;
+			$config["total_rows"] = $abc;
+			$this->pagination->initialize($config);
+			$data['all_survey_details'] = $result;
+		$this->load->view('LyndonMarine/VesselSurvey',$data);
+	}
 	
 	
 }

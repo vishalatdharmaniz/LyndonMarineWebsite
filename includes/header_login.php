@@ -13,16 +13,16 @@
 <link rel="stylesheet" href="<?php echo base_url(); ?>bower_components/font-awesome/css/font-awesome.min.css">
 <link rel="stylesheet" href="<?php echo base_url(); ?>responsive.css">
 
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script type="text/javascript" src="//cdn.jsdelivr.net/jquery/1/jquery.min.js"></script>
-<script src="//cdn.ckeditor.com/4.5.9/standard/ckeditor.js"></script>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script type="text/javascript" src="http://cdn.jsdelivr.net/jquery/1/jquery.min.js"></script>
+<script src="http://cdn.ckeditor.com/4.5.9/standard/ckeditor.js"></script>
 </head> 
 <body>
 <nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span></button>
-      <a class="navbar-brand" href="<?php echo base_url();?>index.php/AllVessels/user_vessel/<?php $user_id = $this->session->userdata('user_id');echo $user_id; ?>"><img src="<?php echo base_url(); ?>img/logo.png" ></a> </div>
+      <a class="navbar-brand" href="<?php echo base_url();?>index.php/AllVessels/user_vessel/<?php $user_id = $this->session->userdata('user_id');echo $user_id; ?>"><img src="<?php echo base_url(); ?>img/logo@1x.png" ></a> </div>
    		 <ul class="nav navbar-nav navbar-right">
                 
                 

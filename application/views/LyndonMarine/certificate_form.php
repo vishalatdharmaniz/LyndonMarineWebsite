@@ -33,7 +33,7 @@ include'includes/header_login.php';
               <div class="form-group col-md-6">
                 <label class="control-label">Certificate Type</label>
                 <select  class="form-control-text" required name="certificate_type" id="certificate_type">
-                  <option></option>
+                  <option>Select Certificate Type</option>
                   <option value="class">Class</option>
                   <option value="flag">Flag</option>
                   <option value="safety">Safety</option>
@@ -141,7 +141,7 @@ include'includes/footer.php';
   } );
 </script>
 <script>
-  var dateToday = $('#date_expiry').val();
+  /*var dateToday = $('#date_expiry').val();
 var dates = $("#datepicker2,#datepicker3").datepicker({
     dateFormat: 'dd/mm/yy',
     minDate: dateToday,
@@ -151,5 +151,5 @@ var dates = $("#datepicker2,#datepicker3").datepicker({
             date = $.datepicker.parseDate(instance.settings.dateFormat || $.datepicker._defaults.dateFormat, selectedDate, instance.settings);
         dates.not(this).datepicker("option", option, date);
     }
-});
+}); */
 </script>

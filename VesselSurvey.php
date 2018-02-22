@@ -1,5 +1,4 @@
 <?php
-include'includes/CheckUserLogin.php';
 include'includes/header_login.php';
 ?>
 

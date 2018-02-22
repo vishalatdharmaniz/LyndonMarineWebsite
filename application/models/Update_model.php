@@ -34,7 +34,14 @@ class Update_model extends CI_Model
 		return true;
 	} 
 
-	
+	public function edit_plan($plans_id,$plan_no,$plan_name,$description,
+				 		$upload_plan1,$upload_plan2)
+	{
+		$this->db->query("UPDATE plans SET plan_no='$plan_no',plan_name='$plan_name',description='$description',
+					upload_plan1='$upload_plan1',upload_plan2='$upload_plan2'
+					WHERE plan_id='$plans_id'");
+		return true;
+	} 
 }
 
 ?>

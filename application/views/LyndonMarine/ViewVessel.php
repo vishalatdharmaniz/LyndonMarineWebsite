@@ -1,14 +1,20 @@
 <?php
+include'includes/CheckUserLogin.php';
 include'includes/header_login.php';
 ?>
 <section id="main-edit">
   <div class="container">
     <div class="row">
-      <div class="col-md-offset-3 col-md-6">
+    <?php foreach($vessel_details as $vessels) {  ?>
+        <div class="col-md-2">
+      <div class="main-edit-add"> <a class="btn-blue" href="<?php echo base_url();?>index.php/FleetDetails/index/<?php echo $vessels['vessel_id']; ?>">Go Back</a> </div>
+      </div>
+      <div class="col-md-offset-1 col-md-6">
         <div class="page-heading">
-          <h2>View Vessel</h2>
+          <h2><?php echo $vessels['vessel_name']; ?> Particular</h2>
         </div>
       </div>
+      <?php } ?>
     </div>
   </div>
 </section>

@@ -1,4 +1,5 @@
 <?php
+include'includes/CheckUserLogin.php';
 include'includes/header_login.php';
 ?>
 <section id="tab-bar-img">

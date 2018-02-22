@@ -1,4 +1,5 @@
 <?php
+include'includes/CheckUserLogin.php';
 include'includes/header_login.php';
 ?>
 <style>
@@ -9,7 +10,10 @@ include'includes/header_login.php';
 <section id="main-edit">
   <div class="container">
     <div class="row">
-      <div class="col-md-offset-3 col-md-6">
+      <div class="col-md-2">
+        <div class="main-edit-add"> <a class="btn-blue" href="<?php echo base_url();?>index.php/VesselCertificate/index/<?php echo $vessel_id; ?>">Go Back</a> </div>       
+      </div>
+      <div class="col-md-offset-1 col-md-6">
         <div class="page-heading">
           <h2>View Certificate</h2>
         </div>
