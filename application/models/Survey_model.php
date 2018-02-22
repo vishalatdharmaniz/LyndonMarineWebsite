@@ -196,9 +196,9 @@ class Survey_model extends CI_Model
 		if(!empty($custom_code)){
 			if($custom_code == "red"){
 				if(empty($where)){
-					$where .=	" WHERE IF( UNIX_TIMESTAMP(`range_to`) <>0 ,range_to < CURDATE() and UNIX_TIMESTAMP(`range_to`) <>0,due_date < CURDATE() )";	
+					$where .=	" WHERE IF( UNIX_TIMESTAMP(`range_to`) <>0 ,range_to <= CURDATE() and UNIX_TIMESTAMP(`range_to`) <>0,due_date <= CURDATE() )";	
 				}else{
-					$where .=	"AND IF( UNIX_TIMESTAMP(`range_to`) <>0 ,range_to < CURDATE() and UNIX_TIMESTAMP(`range_to`) <>0,due_date < CURDATE() )";
+					$where .=	"AND IF( UNIX_TIMESTAMP(`range_to`) <>0 ,range_to <= CURDATE() and UNIX_TIMESTAMP(`range_to`) <>0,due_date <= CURDATE() )";
 				}
 					
 			}
@@ -210,19 +210,20 @@ class Survey_model extends CI_Model
 				}
 			}
 			 
+			 
 			if($custom_code == "yellow"){
 				if(empty($where)){
-					$where .=	" WHERE  IF( UNIX_TIMESTAMP(`range_to`) <>0 ,range_from < CURRENT_DATE() + INTERVAL 30 DAY AND range_to > CURDATE(),due_date <= CURRENT_DATE() + INTERVAL 30 DAY AND due_date > CURDATE())";	
+					$where .=	" WHERE  IF( UNIX_TIMESTAMP(`range_to`) <>0 ,range_from > CURRENT_DATE() AND  range_from <= CURRENT_DATE() + INTERVAL 30 DAY AND range_to > CURDATE(),due_date <= CURRENT_DATE() + INTERVAL 30 DAY AND due_date > CURDATE())";	
 				}else{
-					$where .=	"AND  IF( UNIX_TIMESTAMP(`range_to`) <>0 ,range_from < CURRENT_DATE() + INTERVAL 30 DAY AND range_to > CURDATE(),due_date <= CURRENT_DATE() + INTERVAL 30 DAY AND due_date > CURDATE())";
+					$where .=	"AND  IF( UNIX_TIMESTAMP(`range_to`) <>0 ,range_from > CURRENT_DATE() AND range_from <= CURRENT_DATE() + INTERVAL 30 DAY AND range_to > CURDATE(),due_date <= CURRENT_DATE() + INTERVAL 30 DAY AND due_date > CURDATE())";
 				}
 			}
 			
 			if($custom_code == "brown"){
 				if(empty($where)){
-					$where .=	" WHERE  range_from < CURRENT_DATE()  AND range_to > CURDATE()";	
+					$where .=	" WHERE  range_from <= CURRENT_DATE()  AND range_to > CURDATE()";	
 				}else{
-					$where .=	"AND  range_from < CURRENT_DATE()  AND range_to > CURDATE()";
+					$where .=	"AND  range_from <= CURRENT_DATE()  AND range_to > CURDATE()";
 				}
 			}
 			
@@ -255,7 +256,7 @@ class Survey_model extends CI_Model
 	
 	
 	public function red($vessel_id){
-		$query = "SELECT * FROM survey WHERE IF( UNIX_TIMESTAMP(`range_to`) <>0 ,range_to < CURDATE() and UNIX_TIMESTAMP(`range_to`) <>0,due_date < CURDATE() ) AND vessel_id = $vessel_id";
+		$query = "SELECT * FROM survey WHERE IF( UNIX_TIMESTAMP(`range_to`) <>0 ,range_to <= CURDATE() and UNIX_TIMESTAMP(`range_to`) <>0,due_date <= CURDATE() ) AND vessel_id = $vessel_id";
 		$query = $this->db->query($query);	
 		return $query->result_array();
 	}
@@ -267,14 +268,14 @@ class Survey_model extends CI_Model
 	}
 	
 	public function yellow($vessel_id){
-		$query = "SELECT * FROM survey WHERE  IF( UNIX_TIMESTAMP(`range_to`) <>0 ,range_from <= CURRENT_DATE() + INTERVAL 30 DAY AND range_to > CURDATE() ,due_date <= CURRENT_DATE() + INTERVAL 30 DAY AND due_date >= CURDATE()) AND vessel_id = $vessel_id";
+		$query = "SELECT * FROM survey WHERE  IF( UNIX_TIMESTAMP(`range_to`) <>0 ,range_from <= CURRENT_DATE() + INTERVAL 30 DAY AND range_to > CURDATE() ,due_date <= CURRENT_DATE() + INTERVAL 30 DAY AND due_date > CURDATE()) AND vessel_id = $vessel_id";
 		$query = $this->db->query($query);	
 		return $query->result_array();
 	}
 	
 	public function brown($vessel_id){
 		
-		$query = "SELECT * FROM survey WHERE  range_from <= CURRENT_DATE() AND range_to >= CURRENT_DATE() AND vessel_id = $vessel_id";
+		$query = "SELECT * FROM survey WHERE  range_from <= CURRENT_DATE() AND range_to > CURRENT_DATE() AND vessel_id = $vessel_id";
 		//echo $query;die;
 		$query = $this->db->query($query);
 		//echo "<pre>";print_r($query->result_array());die;
