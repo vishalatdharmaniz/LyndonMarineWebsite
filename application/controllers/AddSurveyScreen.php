@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class AddSurveyScreen extends CI_Controller
 {
 
-	public function index()
+	public function index($vessel_id)
 	{
 		$this->load->helper(array('form', 'url'));
         $this->load->library('form_validation');
@@ -18,11 +18,13 @@ class AddSurveyScreen extends CI_Controller
 		//$this->form_validation->set_rules('Comments', 'Comments', 'required');
 		
 		if ($this->form_validation->run() == FALSE){
-				$this->load->view('LyndonMarine/AddSurvey');
+			$data['vessel_id'] = $vessel_id;
+				$this->load->view('LyndonMarine/AddSurvey',$data);
 		}else{
 			$this->load->model('Survey_model');
 			$Survey = $this->input->post('Survey');
 			$Lastsurvey = $this->input->post('Lastsurvey');
+			$vessel_id = $this->input->post('vessel_id');
 			if(!empty($Lastsurvey)){
 				$last_survey_date = date("Y-m-d",strtotime(str_replace('/', '-', $Lastsurvey)));
 			}else{
@@ -67,6 +69,7 @@ class AddSurveyScreen extends CI_Controller
                 'reminder_due' => $examption,
                 'comments' => $Comments,
 				'reminder_range' => $reminder_range,
+				'vessel_id' => $vessel_id,
                 //'price_idea' => $price_idea,
     			'created' => date("Y-m-d  h:i:s"),
                 'modified' => date("Y-m-d h:i:s"),
@@ -77,8 +80,9 @@ class AddSurveyScreen extends CI_Controller
 			$data['message']= $message;
     	       $base_url = BASE_URL;
 			   $user_id = $this->session->userdata('user_id');
-                //header("Location: $base_url/index.php/AllVessels/index"); 
-                header("Location: $base_url/index.php/VesselSurvey/index/"); 
+                //header("Location: $base_url/index.php/AllVessels/index");
+				$data['vessel_id'] = $vessel_id;
+                header("Location: $base_url/index.php/VesselSurvey/index/$vessel_id"); 
 		}
 	}
 

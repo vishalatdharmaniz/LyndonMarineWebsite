@@ -7,6 +7,11 @@ include'includes/header_login.php';
     <div class="row">
       <div class="col-md-offset-3 col-md-6">
         <div class="page-heading">
+					<div class="col-md-3">
+						<div class="main-edit-add">
+					<a class="btn-blue" href="<?php echo base_url();?>/index.php/FleetDetails/index/<?php echo $vessel_id;?>">GO BACK</a>
+						</div>
+					</div>
           <h2>Survey Form</h2>
         </div>
       </div>
@@ -19,7 +24,9 @@ include'includes/header_login.php';
       <div class="col-md-8 col-md-offset-2">
         <div class="form-action">
 					<?php echo validation_errors(); ?>
-					<?php echo form_open(base_url()."index.php/AddSurveyScreen/index/"); ?>
+
+					<?php echo form_open(base_url()."/index.php/AddSurveyScreen/index/$vessel_id"); ?>
+
          <!-- <form action="<?php //echo base_url()."/index.php/AddSurveyScreen/index/"; ?>" method="post" enctype="multipart/form-data">-->
             
             <div class="row">
@@ -31,6 +38,7 @@ include'includes/header_login.php';
               <div class="form-group col-md-6">
                 <label class="control-label">Last Survey</label>
                 <input type="text" name="Lastsurvey" id="datepicker1" required placeholder="Last Survey" class="form-control-text">
+								<input type="hidden" name="vessel_id" value = "<?php echo $vessel_id; ?>">
               </div>
             </div>
             
@@ -108,6 +116,11 @@ var dates = $("#datepicker4,#datepicker5").datepicker({
         var option = this.id == "datepicker4" ? "minDate" : "maxDate",
             instance = $(this).data("datepicker"),
             date = $.datepicker.parseDate(instance.settings.dateFormat || $.datepicker._defaults.dateFormat, selectedDate, instance.settings);
+						if(option == "minDate"){
+							//var selectedDate = new Date(date);
+							var msecsInADay = 86400000;
+							 date = new Date(date.getTime() + msecsInADay);
+						}
         dates.not(this).datepicker("option", option, date);
     }
 });

@@ -5,7 +5,7 @@ include'includes/header_login.php';
 
 <section id="image-details">
   <div class="container">
-    <?php foreach($vessel_data as $vessel) { ?>
+    <?php  foreach($vessel_data as $vessel) { ?>
     <div class="row">
 
         <div class="main-edit-add"> <a class="btn-blue" href="<?php echo base_url();?>index.php/AllVessels/user_vessel/<?php echo $vessel['user_id']; ?>">Go Back</a> </div>       
@@ -82,7 +82,7 @@ include'includes/header_login.php';
           </div>
         </div>
 		<div class="col-md-3">
-          <div class="done-text"> <a href="<?php echo base_url(); ?>index.php/VesselSurvey/index"><img src="<?php echo base_url(); ?>img/icon/Survey.png" class="img-responsive"></a>
+          <div class="done-text"> <a href="<?php echo base_url(); ?>index.php/VesselSurvey/index/<?php echo $vessel['vessel_id'];?>"><img src="<?php echo base_url(); ?>img/icon/Survey.png" class="img-responsive"></a>
             <h3>Survey </h3>
           </div>
         </div>

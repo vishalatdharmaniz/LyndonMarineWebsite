@@ -115,6 +115,7 @@ class MailCertificateDetail extends CI_Controller {
             for($i = 1; $i <= 5 ; $i++)
             {
                 $document[$i] = $certificate_data[0]['document'.$i];
+
                 $exploded_doc = explode("/", $document[$i]);
                 $name = isset($exploded_doc[6]) ? $exploded_doc[6] : NULL;
                 $document_name[$i] = empty($name) ? "" : $name;  
@@ -124,14 +125,13 @@ class MailCertificateDetail extends CI_Controller {
 
             /*  $txt .= "<h3>Certificate Name:".$certificate_name."</h3>";
             $txt .= "<h3>Certificate No:".$certificate_no."</h3><br>"; */
-            
-            // $txt .= "M/V &nbsp;".$vessel_name."<br>";
-            // $txt .= "IMO Number &nbsp;".$imo_number."<br><br>";
-            
+           
+         
             $txt .= $certificate_name."<br>";
         if ($certificate_data[0]["document1"] != NULL)
         {
             $txt .= "<a href=$document[1]>$document_name[1]</a><br>";
+
         }
         if ($certificate_data[0]["document2"] != NULL)
         {
@@ -150,9 +150,11 @@ class MailCertificateDetail extends CI_Controller {
             $txt .= "<a href=$document[5]>$document_name[5]</a><br>";
         }
             $txt .= "<hr>";
-
+            $txt .= "<hr>";
         }
+
         $txt .= "Best Regards<br>";
+
 
         $to = "$email_of_recepient";
         $subject = "$vessel_name, $imo_number, Documents";
