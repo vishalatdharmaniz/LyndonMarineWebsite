@@ -90,53 +90,9 @@ include'includes/header_login.php';
           </span>
         </div>
       </div>
-      
-      <div class="col-md-9">
-      	<div class="list_right">
-        <ul class="main-edit-add"> 
-        <li><a class="btn-blue" href="<?php echo base_url();?>index.php/AddCertificateScreen/index/<?php echo $vessel_id; ?>">Add Certificate</a></li>
-         <li> <a class="btn-blue" href="<?php echo base_url(); ?>index.php/VesselCertificate/index/<?php echo $vessel_id; ?>">All Certificate</a></li> 
-          <li><a class="btn-blue" onclick="mail_selected_vessels()" >Mail Document</a></li>
-          </ul>
-         </div>
-         </div>
-         
-         
-      </div>
-    </div>
-</section>-->
 
 
-<section id="work-done">
-  <div class="container">
-    <div class="row">
-     <div class="black_bg">
-     <div class="col-md-8">
-     	<div class="mar_box">
-      <form id="drop_down"action="<?php echo base_url(); ?>index.php/VesselCertificate/search_dropdown_status/<?php echo $vessel_id; ?>" method="get">
-      <input type="hidden" name="range" value="yellow" />
-      <button type="submit" id="yellowclor" class="update text-center btn btn-yelow btn-sm"></button>
-      </form>
-      &nbsp;<span>Due in 45 days</span>&nbsp;&nbsp;
-      <form id="drop_down"action="<?php echo base_url(); ?>index.php/VesselCertificate/search_dropdown_status/<?php echo $vessel_id; ?>" method="get">
-      <input type="hidden" name="range" value="brown" />
-      <button type="button" id="brownclr" class="update text-center btn btn-brwon btn-sm"></button>
-      </form>
-      &nbsp;<span>Due in 30 days</span>&nbsp;&nbsp;
-      <form id="drop_down"action="<?php echo base_url(); ?>index.php/VesselCertificate/search_dropdown_status/<?php echo $vessel_id; ?>" method="get">
-      <input type="hidden" name="range" value="red" />
-      <button type="submit" id="redclor" class="update text-center btn btn-red btn-sm"></button>
-      </form>
-      &nbsp;<span>Due Now or Overdue</span>&nbsp;&nbsp;
-      <form id="drop_down"action="<?php echo base_url(); ?>index.php/VesselCertificate/search_dropdown_status/<?php echo $vessel_id; ?>" method="get">
-      <input type="hidden" name="range" value="green" />
-      <button type="submit" id="greenclr" class="update text-center btn btn-green btn-sm"></button>
-      </form>
-      &nbsp;<span>Valid More than 45 days</span>&nbsp;&nbsp;
-      </div>
-    </div>
-     
-      <div class="col-md-2">
+      <div class="col-md-3">
         <div class="input-group">
           <select class="form-control-text1" placeholder="Select" name="certificate_type" id="certificate_type">
             <option selected value="">Select Certificate Type</option>
@@ -306,17 +262,6 @@ function searchEnter(search_vessel)
     else
     {
             window.location.href = "<?php echo base_url(); ?>index.php/VesselCertificate/searchdata/"+search_vessel+"/"+<?php echo $data['vessel_id'] ?>;
-    }
-}
- function searchtype(certificate_type)
-{
-    if(certificate_type == "")
-    {
-        alert("Please enter a value to be searched");
-    }
-    else
-    {
-            window.location.href = "<?php echo base_url(); ?>index.php/VesselCertificate/search_certificate_type/"+certificate_type+"/"+<?php echo $data['vessel_id'] ?>;
     }
 }
 
