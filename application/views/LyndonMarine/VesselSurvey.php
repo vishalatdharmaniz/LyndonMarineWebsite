@@ -20,6 +20,7 @@ include'includes/header_login.php';
       <div class="col-md-3">
         <div class="main-edit-add"> <a class="btn-blue" href="<?php echo base_url();?>index.php/AddSurveyScreen/index/<?php echo $vessel_id;?>">Add Survey</a>
 				</div>
+				</br>
 				<div></div>
 				<div class="main-edit-add">
 					<a class="btn-blue" href="<?php echo base_url();?>index.php/VesselSurvey/index/<?php echo $vessel_id;?>">ALL Survey</a>
