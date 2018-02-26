@@ -66,47 +66,6 @@ include'includes/header_login.php';
       </div>
     </div>
 </section>
-
-
-
-<!--<section id="top_mail">
-	<div class="container">
-    	<div class="row"> 
-        
-        <div class="col-md-3">
-        <div class="main-edit-add-left"> <a class="btn-blue" href="<?php echo base_url();?>index.php/FleetDetails/index/<?php echo $vessel_id; ?>">Go Back</a>				          </div>       
-      </div>
-      
-      <!--<div class="col-md-4">
-      <div class="input-group">
-        <form onsubmit="searchEnter(document.getElementById('search_vessel').value); return false;">
-          <input type="text" class="form-control-text" placeholder="Search" name="search" id="search_vessel">
-        </form>
-          <span class="input-group-btn">
-      			<a class="btn btn-default text-muted" href="#" title="Clear" onclick="reset()"><i class="glyphicon glyphicon-remove"></i> </a>
-      			<button onclick="search(document.getElementById('search_vessel').value)" type="button" class="btn btn-info">
-      				<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-      			</button>
-          </span>
-        </div>
-      </div>
-      
-      <div class="col-md-9">
-      	<div class="list_right">
-        <ul class="main-edit-add"> 
-        <li><a class="btn-blue" href="<?php echo base_url();?>index.php/AddCertificateScreen/index/<?php echo $vessel_id; ?>">Add Certificate</a></li>
-         <li> <a class="btn-blue" href="<?php echo base_url(); ?>index.php/VesselCertificate/index/<?php echo $vessel_id; ?>">All Certificate</a></li> 
-          <li><a class="btn-blue" onclick="mail_selected_vessels()" >Mail Document</a></li>
-          </ul>
-         </div>
-         </div>
-         
-         
-      </div>
-    </div>
-</section>-->
-
-
 <section id="work-done">
   <div class="container">
     <div class="row">
