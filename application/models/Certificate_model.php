@@ -58,7 +58,6 @@ class Certificate_model extends CI_Model
 	
 	function searchtable_total($searchname,$vessel_id)
     {
-
         $searchtable_total = $this->db->query("SELECT * FROM certificate WHERE ((certificate_no LIKE '%$searchname%') OR (certificate_name LIKE '%$searchname%')) AND (vessel_id='$vessel_id')");
 			return COUNT($searchtable_total->result_array());
 	}
@@ -75,10 +74,15 @@ class Certificate_model extends CI_Model
         return COUNT($count_certificate->result_array());
     }
 
-    function search_by_certificate_type($searchtype,$vessel_id)
+    function search_by_certificate_type($searchtype,$vessel_id,$offset)
+    {
+        $searchdata = $this->db->query("SELECT * FROM certificate WHERE (certificate_type LIKE '$searchtype') AND (vessel_id='$vessel_id') LIMIT 10 OFFSET $offset");
+			return $searchdata->result_array();
+	}
+	function search_total_certificate_type($searchtype,$vessel_id)
     {
         $searchdata = $this->db->query("SELECT * FROM certificate WHERE (certificate_type LIKE '$searchtype') AND (vessel_id='$vessel_id')");
-			return $searchdata->result_array();
+			return COUNT($searchdata->result_array());
 	}
 
 	public function getSheetLog($getfields='', $match_values = '',$condition ='', $compare_type = '', $count = '',$num = '',$offset='',$orderby='',$orderbyfield='',$and_match_value='', $custom_code = "", $start_date = "", $last_date = "", $vessel_id)

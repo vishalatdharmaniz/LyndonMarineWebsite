@@ -45,10 +45,17 @@ body {
 .navbar-inverse {
 	background-color: #222;
 	border-color: #080808;
-	padding: 15px 0;
+	height: 90px;
 }
+.navbar-inverse .navbar-form {
+    border-color: #101010;
+    padding: 15px 0 0;
+}
+
 a.navbar-brand {
 	padding: 10px;
+	 height: 0px; 
+	 line-height:none;
 }
 #main-head {
 	padding: 120px 0 30px;
@@ -297,18 +304,30 @@ footer .text-left p {
 	margin: 0 auto;
 }
 #image-details .image-test-text h2 {
-	font-size: 26px;
+	font-size: 24px;
 	line-height: 35px;
 	color: #000;
 	padding: 20px 0;
 	font-weight: 600;
 }
 #image-details .image-test-text ul li {
-	font-size: 17px;
-	line-height: 0px;
-	color: #333;
-	padding: 20px 0;
-	font-weight: 500;
+	    font-size: 13px;
+    
+    line-height: 0px;
+    color: #333;
+    padding: 14px;
+    font-weight: 500;
+    border: 1px solid #0000001a;
+   
+    margin: 2px;
+   
+}
+
+#image-details .image-test-text ul li span
+ {
+	font-weight:600;
+	text-align:left;
+	
 }
 #image-details .done-text {
 	width: 100%;
@@ -396,7 +415,7 @@ footer .text-left p {
 	padding: 20px 0;
 }
 #work-done {
-	padding: 30px 0 80px;
+	padding: 10px 0 80px;
 	background: #fff;
 }
 #work-done .work-done-text {
@@ -493,17 +512,18 @@ ul.dropdown-menu p {
 	padding: 20px 10px 5px;
 }
 #main-edit {
-	padding: 130px 0 50px;
-	background-color: #f1efeb;
+	    padding: 130px 0 20px;
+    background-color: #fbfbfb;
 }
 #main-edit .main-edit-add ul {
 	list-style-type: none;
 	float: right;
 }
 .page-heading h2 {
-	font-size: 30px;
+	font-size: 24px;
 	text-align: center;
 	color: #555;
+	font-weight: 600;
 }
 #main-edit .main-edit-add ul li {
 	display: inline;
@@ -515,9 +535,13 @@ ul.dropdown-menu p {
 	display: inline-block;
 	color: #fff;
 	text-decoration: none;
-	font-size: 18px;
-	padding: 10px 30px;
+	font-size: 13px;
+	padding: 10px;
+	font-weight:600;
 	background-color: #0096ff;
+}
+.page-heading {
+    padding: 20px 0;
 }
 .form-action {
 	width: 100%;
@@ -650,15 +674,17 @@ a.btn-bk .fa {
 	width: 100%;
 }
 #work-done .panel-body {
-	padding: 40px 0;
+	    padding: 10px;
+    background: #fff;
+    box-shadow: 1px 1px 5px #0000001c;
 }
 #work-done .input-group {
-	padding: 40px 0;
+	padding: 15px 0;
 }
 #work-done .form-control-text {
 	color: #444;
-	padding: 25px 15px;
-	font-size: 18px;
+    padding: 20px 15px;
+    font-size: 14px;
 }
 #work-done a.btn.btn-default.text-muted {
 	padding: 14px;
@@ -715,17 +741,30 @@ a.btn-bk .fa {
 #work-done .form-control-text1
 {
 	font-size:14px;
+	color: #444;
+    padding: 5px;
 }
-
+#work-done .input-group form#drop_down select {
+    padding: 5px 5px;
+}
 .main-edit-add-left .btn-blue
 {    /* display: inline-block; */
     color: #fff;
     text-decoration: none;
-    font-size: 18px;
-    padding: 10px 30px;
+    font-size: 13px;
+    padding: 10px;
+	font-weight:600;
     background-color: #0096ff;
 }
-
+.main-edit-add .btn-blue
+{    
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    padding: 10px;
+	font-weight:600;
+    background-color: #0096ff;
+}
 .top_main {
     padding: 10px 10px 40px;
     width: 100%;
@@ -748,3 +787,70 @@ a.btn-bk .fa {
     width: 100%;
     padding: 10px;
 }
+section#top_mail {
+    width: 100%;
+    padding: 20px 0;
+}
+section#top_mail .main-edit-add-left
+{
+	float: left;
+    width: 100%;
+}
+section#top_mail .main-edit-add-left .btn-blue
+{
+	color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    padding: 10px;
+	font-weight:600;
+    background-color: #0096ff;
+}
+section#top_mail .main-edit-add .a.btn-blue
+{
+	color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    padding: 10px;
+	font-weight:600;
+    background-color: #0096ff;
+}
+section#top_mail .list_right
+{
+	float:right;
+	padding:10px;
+}
+
+section#top_mail .list_right .main-edit-add li {
+    display: inline-block;
+}
+section#top_mail .list_right .main-edit-add li .btn-blue
+{
+	color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    padding: 10px;
+	font-weight:600;
+    background-color: #0096ff;
+}
+.input-group-btn:last-child>.btn, .input-group-btn:last-child>.btn-group {
+  
+    border-radius: 0px;
+}
+.input-group-btn .btn-info
+{
+	  background-color: #0096ff;
+}
+
+#work-done .black_bg {
+    background-color: #fbfbfb;
+    padding: 5px;
+    width: 100%;
+    float: left;
+	    box-shadow: 1px 1px 5px #0000001c;
+}
+#work-done .mar_box
+{
+	    width: 100%;
+    margin: 20px 0;
+}
+
