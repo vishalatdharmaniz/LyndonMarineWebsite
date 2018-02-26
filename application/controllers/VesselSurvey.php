@@ -280,6 +280,7 @@ class VesselSurvey extends CI_Controller {
 
 		$config["base_url"] = base_url() . "index.php/VesselSurvey/search_dropdown/$vessel_id?range=$range";
 		$config['per_page'] = '10';
+
             $config['num_links'] = '5';
 			$config['full_tag_open'] = '<ul class="pagination">';
 			$config['full_tag_close'] = '</ul>';
@@ -310,6 +311,7 @@ class VesselSurvey extends CI_Controller {
 			
             $uri_segment = ($page-1) * $config["per_page"];
 			$config['uri_segment'] = $uri_segment;
+
 			$and_match_value = array('vessel_id' => $vessel_id);
 			//$match = array('survey_no' => $search);
 			//$fields = array('id','user_master_id','updated_by','field_name','field_old_value','field_new_value','modified');
@@ -319,14 +321,17 @@ class VesselSurvey extends CI_Controller {
 			//$result = $this->Survey_model->get_data('', $match, '', 'like', '', $config['per_page'], $uri_segment);
 			//$abc=$this->Survey_model->total_record($search);
 			$abc=count($this->Survey_model->getSheetLog('',$and_match_value, '', '=', '', '', '',null,null,null,$range,'',''));
+
 			//die;
 			//echo $this->db->last_query();
 			//die;
 			$config["total_rows"] = $abc;
 			$this->pagination->initialize($config);
 			$data['all_survey_details'] = $result;
+
 			$data['ststus'] = $ststus;
 			$data['vessel_id'] = $vessel_id;
+
 		$this->load->view('LyndonMarine/VesselSurvey',$data);
 	}
 	

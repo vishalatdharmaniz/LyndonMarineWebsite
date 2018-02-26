@@ -11,27 +11,32 @@ class AddPlans extends CI_Controller
 			$plan_no = $this->input->post('plan_no');
 			$plan_name = $this->input->post('plan_name');
 			$description = $this->input->post('description');
-			$upload_plan1 = $this->input->post('upload_plan1');
-			$upload_plan2 = $this->input->post('upload_plan2');
 	
+	$directory_name = '../LyndonMarineImages/CertificateDocuments/'.$plan_name;
+			if(!is_dir($directory_name))
+			    {
+			        mkdir($directory_name);
+			    }	
+
+					 /* Upload Documents */
 			$target_dir = TARGET_DIR;
-    
-            $image_base_url = VESSEL_IMAGES_BASE_URL;
-           
-            
+			$base_url_website = DOCUMENT_BASE_URL.'/'.$plan_name.'/';
             for($i=1;$i<=2;$i++)
             {
-                $target_file[$i] = $target_dir .'uploads/'. basename($_FILES["upload_plan".$i]["name"]);
-                $imageFileType[$i]= pathinfo($target_file[$i],PATHINFO_EXTENSION);
-                move_uploaded_file($_FILES["upload_plan".$i]["tmp_name"], $target_file[$i]);
-                if ($_FILES["upload_plan".$i]["name"] != NULL)
-                {
-                    $upload_plan[$i] =$image_base_url. $_FILES["upload_plan".$i]["name"];
-                }
-                else
-                {
-                    $upload_plan[$i] = NULL;
-                }
+
+		            	if ($_FILES["upload_plan".$i]["name"] != NULL)
+		            {
+		            	
+		                $target_file = $directory_name.'/'. basename($_FILES["upload_plan".$i]["name"]);
+		                //print_r($target_file);die();
+		                move_uploaded_file($_FILES['upload_plan'. $i]['tmp_name'], $target_file);
+		                $upload_plan[$i] = $base_url_website. $_FILES["upload_plan".$i]["name"];   
+		            }
+		            else
+		            {
+		                $upload_plan[$i] = '';
+		            }
+	                
             }
 
                 $this->load->model('Plans_model');

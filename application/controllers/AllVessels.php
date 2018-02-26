@@ -17,9 +17,14 @@ class AllVessels extends CI_Controller
 
 	public function index()
 	{
+		$this->load->model('Home_model');
 		$this->load->model('Vessel_model');
-
+		$user_id = $this->session->userdata('user_id');
+$role_value= $this->Home_model->get_role_by_user_id($user_id); 
 		$all_vessels = $this->Vessel_model->get_all_vessel_details();
+		
+
+		$data['role'] = $role_value[0]['role']; 
 		$data['all_vessels'] = $all_vessels;
 		//print_r($all_vessels);
 		$this->load->view('LyndonMarine/all_vessel',$data);
@@ -27,9 +32,14 @@ class AllVessels extends CI_Controller
 
 	public function user_vessel($user_id)
 	{
+		$this->load->model('Home_model');
 		$this->load->model('Vessel_model');
+
+		$role_value= $this->Home_model->get_role_by_user_id($user_id); 
 		$all_vessels = $this->Vessel_model->get_vessel_data_by_userid($user_id);
 	
+		$data['role'] = $role_value[0]['role']; 
+		
 		$config = array();
 
        $config["base_url"] = base_url() . "index.php/AllVessels/user_vessel/$user_id";

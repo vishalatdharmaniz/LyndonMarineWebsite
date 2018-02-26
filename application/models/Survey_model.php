@@ -196,6 +196,7 @@ class Survey_model extends CI_Model
 		if(!empty($custom_code)){
 			if($custom_code == "red"){
 				if(empty($where)){
+
 					$where .=	" WHERE IF( UNIX_TIMESTAMP(`range_to`) <>0 ,range_to <= CURDATE() and UNIX_TIMESTAMP(`range_to`) <>0,due_date <= CURDATE() )";	
 				}else{
 					$where .=	"AND IF( UNIX_TIMESTAMP(`range_to`) <>0 ,range_to <= CURDATE() and UNIX_TIMESTAMP(`range_to`) <>0,due_date <= CURDATE() )";
@@ -247,7 +248,9 @@ class Survey_model extends CI_Model
             $sql .= ' '.$where.' '.$and_condition.' '.$orderby.' '.'limit '.$offset .','.$num;
         
         $query = ($count) ? 'SELECT count(*) FROM '.$this->survey_table.' '.$where.' '.$and_condition.$orderby : $sql;
+
 		//echo $query;echo "</br>";die;
+
         $query = $this->db->query($query);
 		
 		//echo $this->db->last_query();exit;

@@ -1,28 +1,84 @@
 <?php
+include'includes/CheckUserLogin.php';
 include'includes/header_login.php';
 ?>
+<style>
+ /* .form-control-text1{
+    color: #444;
+    
+ 
+ padding: 15px 10px;
+  font-size: 18px;
+
+  }*/
+</style>
 <section id="main-edit">
   <div class="container">
+  	
     <div class="row">
       <div class="col-md-offset-3 col-md-6">
         <div class="page-heading">
-          <h2>Vessel Certificates</h2>
+          <h2>Vessel Certificates for <?php foreach ($vessel_data as $vesselname) {
+            echo $vesselname['vessel_name'];
+          } ?> </h2> <br>
         </div>
-      </div>
-      <div class="col-md-3">
-        <div class="main-edit-add"> <a class="btn-blue" href="<?php echo base_url();?>index.php/AddCertificateScreen/index/<?php echo $vessel_id; ?>">Add</a> </div>
-        <br>
-        <div class="main-edit-add"> <a class="btn-blue" href="<?php echo base_url(); ?>index.php/VesselCertificate/index/<?php echo $vessel_id; ?>">All Certificate</a> </div>
-         <br><div class="main-edit-add"> <a class="btn-blue" onclick="mail_selected_vessels()" >Mail Document</a> </div> 
+        
+        
       </div>
     </div>
+     
   </div>
 </section>
-<section id="work-done">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6 col-md-offset-3">
-        <div class="input-group">
+
+<section id="top_mail">
+	<div class="container">
+    	<div class="row"> 
+        
+        <div class="col-md-3">
+        <div class="main-edit-add-left"> <a class="btn-blue" href="<?php echo base_url();?>index.php/FleetDetails/index/<?php echo $vessel_id; ?>">Go Back</a>				          </div>       
+      </div>
+      
+      <div class="col-md-4">
+      <div class="input-group">
+        <form onsubmit="searchEnter(document.getElementById('search_vessel').value); return ture;">
+          <input type="text" class="form-control-text" placeholder="Search" name="search" id="search_vessel">
+        </form>
+          <span class="input-group-btn">
+      			<a class="btn btn-default text-muted" href="#" title="Clear" onclick="reset()"><i class="glyphicon glyphicon-remove"></i> </a>
+      			<button onclick="search(document.getElementById('search_vessel').value)" type="button" class="btn btn-info">
+      				<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+      			</button>
+          </span>
+        </div>
+      </div>
+      
+      <div class="col-md-5">
+      	<div class="list_right">
+        <ul class="main-edit-add"> 
+        <li><a class="btn-blue" href="<?php echo base_url();?>index.php/AddCertificateScreen/index/<?php echo $vessel_id; ?>">Add Certificate</a></li>
+         <li> <a class="btn-blue" href="<?php echo base_url(); ?>index.php/VesselCertificate/index/<?php echo $vessel_id; ?>">All Certificate</a></li> 
+          <li><a class="btn-blue" onclick="mail_selected_vessels()" >Mail Document</a></li>
+          </ul>
+         </div>
+         </div>
+         
+         
+      </div>
+    </div>
+</section>
+
+
+
+<!--<section id="top_mail">
+	<div class="container">
+    	<div class="row"> 
+        
+        <div class="col-md-3">
+        <div class="main-edit-add-left"> <a class="btn-blue" href="<?php echo base_url();?>index.php/FleetDetails/index/<?php echo $vessel_id; ?>">Go Back</a>				          </div>       
+      </div>
+      
+      <!--<div class="col-md-4">
+      <div class="input-group">
         <form onsubmit="searchEnter(document.getElementById('search_vessel').value); return false;">
           <input type="text" class="form-control-text" placeholder="Search" name="search" id="search_vessel">
         </form>
@@ -35,35 +91,49 @@ include'includes/header_login.php';
         </div>
       </div>
 
+
       <div class="col-md-3">
         <div class="input-group">
-          <select class="form-control-text" placeholder="Select" name="certificate_type" id="certificate_type">
+          <select class="form-control-text1" placeholder="Select" name="certificate_type" id="certificate_type">
+            <option selected value="">Select Certificate Type</option>
             <option value="class">Class</option>
             <option value="flag">Flag</option>
             <option value="safety">Safety</option>
             <option value="management">Management</option>
             <option value="other">Other</option>
           </select>
-          <span class="input-group-btn">
+          <!-- <span class="input-group-btn">
             <button onclick="searchtype(document.getElementById('certificate_type').value)" type="button" class="btn btn-info">
               <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
             </button>
-          </span>
+          </span> -->
         </div>
      </div>
-    </div>
-    <div class="row">
-		<div class="col-md-8">
-			<button type="button" id="yellowclor" class="update text-center btn btn-yelow btn-sm"></button>
-			&nbsp;<span>Due in 45 days</span>&nbsp;&nbsp;
-			<button type="button" id="brownclr" class="update text-center btn btn-brwon btn-sm"></button>
-			&nbsp;<span>Due in 30 days</span>&nbsp;&nbsp;
-			<button type="button" id="redclor" class="update text-center btn btn-red btn-sm"></button>
-			&nbsp;<span>Due Now or Overdue</span>&nbsp;&nbsp;
-			<button type="button" id="greenclr" class="update text-center btn btn-green btn-sm"></button>
-			&nbsp;<span>Valid More than 45 days</span>&nbsp;&nbsp;
-		</div>
-    </div>
+	 <div class="col-md-2">
+       <div class="input-group">
+        <?php
+          if(array_key_exists('range',$_REQUEST)){
+             $range = $_REQUEST['range'];
+          }else{
+            $range ="";
+          }
+          ?>
+<form id="drop_down"action="<?php echo base_url(); ?>index.php/VesselCertificate/search_dropdown_status/<?php echo $vessel_id; ?>" method="get">
+         
+            <select class="form-control-text1" name="range" style="width: 169px;" onchange="this.form.submit()">
+              <option selected value="">Select Status</option>
+              <option value="yellow" <?php if($range == "yellow"){echo "selected=selected";}?>>Due in 45 days</option>
+              <option value="brown" <?php if($range == "brown"){echo "selected=selected";}?>> Due in 30 days </option>
+              <option value="red" <?php if($range == "red"){echo "selected=selected";}?>>Due Now or Overdue</option>
+              <option value="green" <?php if($range == "green"){echo "selected=selected";}?>>Valid More than 45 days</option>
+            </select>
+          
+      </form>
+      </div>
+      </div>
+      </div>
+       </div>
+   
     <div class="row">
       <div class="panel-body">
         <div class="table-responsive">
@@ -194,43 +264,44 @@ function searchEnter(search_vessel)
             window.location.href = "<?php echo base_url(); ?>index.php/VesselCertificate/searchdata/"+search_vessel+"/"+<?php echo $data['vessel_id'] ?>;
     }
 }
+
 function reset(search_vessel)
 {
   $('#search_vessel').val('');
   window.location.href = "<?php echo base_url(); ?>index.php/VesselCertificate/index/"+<?php echo $data['vessel_id'] ?>;
 }
-function mail_details(certificate_id) 
-{ 
-    var email = prompt("Please enter the Email of recepient:", "abc@gmail.com");
-    if (email != null) {
-        window.location.href = "<?php echo site_url(); ?>/MailCertificateDetail/index/"+certificate_id+"/"+email;
-    }
-}
-$("#yellowclor").click(function() {
-$("tbody tr#yellow").each(function() {       
-    $('tbody tr#yellow').show();
-  $('#green,#red,#brown').hide();
-});
-});
-$("#redclor").click(function() {
-$("tbody tr#red").each(function() {       
-   $('tbody tr#red').show();
-  $('#green,#yellow,#brown').hide();
-});
-});
-$("#brownclr").click(function() {
-$("tbody tr#brown").each(function() {       
-   $('tbody tr#brown').show();
-  $('#green,#yellow,#red').hide();
-});
-});
+// function mail_details(certificate_id) 
+// { 
+//     var email = prompt("Please enter the Email of recepient:", "abc@gmail.com");
+//     if (email != null) {
+//         window.location.href = "<?php echo site_url(); ?>/MailCertificateDetail/index/"+certificate_id+"/"+email;
+//     }
+// }
+// $("#yellowclor").click(function() {
+// $("tbody tr#yellow").each(function() {       
+//     $('tbody tr#yellow').show();
+//   $('#green,#red,#brown').hide();
+// });
+// });
+// $("#redclor").click(function() {
+// $("tbody tr#red").each(function() {       
+//    $('tbody tr#red').show();
+//   $('#green,#yellow,#brown').hide();
+// });
+// });
+// $("#brownclr").click(function() {
+// $("tbody tr#brown").each(function() {       
+//    $('tbody tr#brown').show();
+//   $('#green,#yellow,#red').hide();
+// });
+// });
 
-$("#greenclr").click(function() {
-$("tbody tr#green").each(function() {       
-   $('tbody tr#green').show();
-  $('#brown,#yellow,#red').hide();
-});
-});
+// $("#greenclr").click(function() {
+// $("tbody tr#green").each(function() {       
+//    $('tbody tr#green').show();
+//   $('#brown,#yellow,#red').hide();
+// });
+// });
 
 function getCheckedBoxes(chkboxName) {
                                     var checkboxes = document.getElementsByName(chkboxName);
@@ -263,5 +334,8 @@ function mail_selected_vessels()
     }
 
 }
-
+$('#certificate_type').change(function(){
+      $selected_value=$('#certificate_type option:selected').text();
+      window.location.href = "<?php echo base_url(); ?>index.php/VesselCertificate/search_certificate_type/"+$selected_value+"/"+<?php echo $data['vessel_id'] ?>;
+    });
 </script>

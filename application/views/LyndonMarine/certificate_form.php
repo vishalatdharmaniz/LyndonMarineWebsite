@@ -33,7 +33,7 @@ include'includes/header_login.php';
               <div class="form-group col-md-6">
                 <label class="control-label">Certificate Type</label>
                 <select  class="form-control-text" required name="certificate_type" id="certificate_type">
-                  <option></option>
+                  <option>Select Certificate Type</option>
                   <option value="class">Class</option>
                   <option value="flag">Flag</option>
                   <option value="safety">Safety</option>
@@ -87,21 +87,21 @@ include'includes/header_login.php';
                 <div class="form-group">
                   <label for="exampleInputEmail1">Upload Doc1 </label>
                   <input type="file" name="document1" accept="pdf/*">
-                  <button type="button"  class="btn btn-danger" id="remove-document1" style="margin-top:10px;">Remove</button>
+                  <!-- <button type="button"  class="btn btn-danger" id="remove-document1" style="margin-top:10px;">Remove</button> -->
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="exampleInputPassword1">Upload Doc2</label>
                   <input type="file" name="document2" accept="pdf/*">
-                  <button type="button" class="btn btn-danger" id="remove-document2" style="margin-top:10px;">Remove</button>
+                  <!-- <button type="button" class="btn btn-danger" id="remove-document2" style="margin-top:10px;">Remove</button> -->
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="exampleInputPassword1">Upload Doc3</label>
                   <input type="file" name="document3" accept="pdf/*">
-                  <button type="button" class="btn btn-danger" id="remove-document3" style="margin-top:10px;">Remove</button>
+                  <!-- <button type="button" class="btn btn-danger" id="remove-document3" style="margin-top:10px;">Remove</button> -->
                 </div>
               </div>
             </div>
@@ -110,14 +110,14 @@ include'includes/header_login.php';
                 <div class="form-group">
                   <label for="exampleInputEmail1">Upload Doc4 </label>
                   <input type="file" name="document4" accept="pdf /*">
-                  <button type="button" class="btn btn-danger" id="remove-document4" style="margin-top:10px;">Remove</button>
+                  <!-- <button type="button" class="btn btn-danger" id="remove-document4" style="margin-top:10px;">Remove</button> -->
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="exampleInputPassword1">Upload Doc5</label>
                   <input type="file" name="document5" accept="pdf/*">
-                  <button type="button" class="btn btn-danger" id="remove-document5" style="margin-top:10px;">Remove</button>
+                  <!-- <button type="button" class="btn btn-danger" id="remove-document5" style="margin-top:10px;">Remove</button> -->
                 </div>
               </div>
             </div>
@@ -141,7 +141,7 @@ include'includes/footer.php';
   } );
 </script>
 <script>
-  var dateToday = $('#date_expiry').val();
+  /*var dateToday = $('#date_expiry').val();
 var dates = $("#datepicker2,#datepicker3").datepicker({
     dateFormat: 'dd/mm/yy',
     minDate: dateToday,
@@ -151,5 +151,5 @@ var dates = $("#datepicker2,#datepicker3").datepicker({
             date = $.datepicker.parseDate(instance.settings.dateFormat || $.datepicker._defaults.dateFormat, selectedDate, instance.settings);
         dates.not(this).datepicker("option", option, date);
     }
-});
+}); */
 </script>

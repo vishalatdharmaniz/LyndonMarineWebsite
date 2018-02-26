@@ -1,15 +1,21 @@
 <?php
+include'includes/CheckUserLogin.php';
 include'includes/header_login.php';
 ?>
 <section id="tab-bar-img">
   <div class="container">
     <div class="row"> <!-- Nav tabs -->
       <div class="card">
+          <?php if($role=="user2" || $role=="user1") {
+          }
+          else{ ?>
+
         <div class="row">
         <div class="col-md-12 gur">
           <a class="btn-blue" href="<?php echo base_url(); ?>index.php/AddVesselScreen/index">Add</a>
         </div>
         </div>
+        <?php  } ?>
         <div class="col-md-12" style="margin-bottom: 20px;">
           <ul class="nav nav-tabs" role="tablist">
             <li role="presentation" class="active"><a href="#AssignedVessels" aria-controls="home" role="tab" data-toggle="tab">Assigned Vessels</a></li>
@@ -24,7 +30,7 @@ include'includes/header_login.php';
             <div class="container">
               <div class="row">
                 <div class="main-tab">
-                <?php foreach($all_vessels as $vessel_data) {  ?>
+                <?php foreach($all_vessels as $vessel_data) {?>
                   <div class="col-md-3">
                  
                     <div class="thumbnail-img"><a href="<?php echo base_url(); ?>index.php/FleetDetails/index/<?php echo $vessel_data['vessel_id']; ?>"> <img src="<?php if(!empty($vessel_data['image1'])) { echo $vessel_data['image1']; } else { echo base_url(); ?>img/no_image.png <?php }?>" style="width:290px; height:250px;" alt="" class="img-responsive"></a>

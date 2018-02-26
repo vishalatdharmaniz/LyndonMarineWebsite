@@ -1,4 +1,5 @@
 <?php
+include'includes/CheckUserLogin.php';
 include'includes/header_login.php';
 ?>
 
@@ -6,7 +7,14 @@ include'includes/header_login.php';
   <div class="container">
     <?php  foreach($vessel_data as $vessel) { ?>
     <div class="row">
-      <div class="button-right"> <a href="<?php echo base_url();?>index.php/AllVessels/view_vessel/<?php echo $vessel['vessel_id']; ?>" class="btn btn-view">View</a> <a href="<?php echo base_url();?>index.php/AllVessels/edit_vessel/<?php echo $vessel['vessel_id']; ?>" class="btn btn-edit">Edit</a> <a href="<?php echo base_url();?>index.php/DeleteVessel/index/<?php echo $vessel['vessel_id']; ?>" Onclick="return confirm('Are you sure?');" class="btn btn-del">Delete</a></div>
+
+        <div class="main-edit-add"> <a class="btn-blue" href="<?php echo base_url();?>index.php/AllVessels/user_vessel/<?php echo $vessel['user_id']; ?>">Go Back</a> </div>       
+<?php if($role=="user2" || $role=="user1") { }
+          else{ ?>
+      <div class="button-right"> <a href="<?php echo base_url();?>index.php/AllVessels/view_vessel/<?php echo $vessel['vessel_id']; ?>" class="btn btn-view">View</a> <a href="<?php echo base_url();?>index.php/AllVessels/edit_vessel/<?php echo $vessel['vessel_id']; ?>" class="btn btn-edit">Edit</a> <a href="<?php echo base_url();?>index.php/DeleteVessel/index/<?php echo $vessel['vessel_id']; ?>" Onclick="return confirm('Are you sure?');" class="btn btn-del">Delete</a>
+
+      </div>
+    <?php  } ?>
     </div>
     <div class="row">
       <div class="col-md-6 col-md-push-6">
@@ -41,12 +49,12 @@ include'includes/header_login.php';
           <h2><?php echo $vessel['vessel_name']; ?></h2>
           <ul>
             <li>IMO No. : <span><?php echo $vessel['imo_number'];?></span></li>
-            <li>Class No.: <span><?php echo $vessel['class_no'];?></span></li>
-            <li>Flag: <span><?php echo $vessel['flag'];?></span></li>
-            <li>Agency: <span><?php echo $vessel['agency'];?></span></li>
-            <li>Owner: <span><?php echo $vessel['owner_name'];?></span></li>
-            <li>Manager: <span><?php echo $vessel['manager_name'];?></span></li>
-            <li>Status: <span><?php echo $vessel['status'];?></span></li>
+            <li>Class No. : <span><?php echo $vessel['class_no'];?></span></li>
+            <li>Flag : <span><?php echo $vessel['flag'];?></span></li>
+            <li>Agency : <span><?php echo $vessel['agency'];?></span></li>
+            <li>Owner : <span><?php echo $vessel['owner_name'];?></span></li>
+            <li>Manager : <span><?php echo $vessel['manager_name'];?></span></li>
+            <li>Status : <span><?php echo $vessel['status'];?></span></li>
           </ul>
         </div>
       </div>

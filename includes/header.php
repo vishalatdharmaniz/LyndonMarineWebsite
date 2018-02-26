@@ -12,14 +12,14 @@
 <link rel="stylesheet" href="<?php echo base_url(); ?>bower_components/font-awesome/css/font-awesome.min.css">
 
 <link rel="stylesheet" href="<?php echo base_url(); ?>responsive.css">
-
+<link rel="icon" href="<?php echo base_url(); ?>img/favicon.ico" type="image/x-icon" />
 </head>	
 <body>
 <nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span></button>
-      <a class="navbar-brand" href="<?php echo base_url();?>"><img src="<?php echo base_url(); ?>img/logo.png" ></a> </div>
+      <a class="navbar-brand" style="margin-top:7px" href="<?php echo base_url();?>"><img src="<?php echo base_url(); ?>img/logo@1x.png" ></a> </div>
     <div id="navbar" class="navbar-collapse collapse text-right">
     
       <form class="navbar-form navbar-right" method="post" action="<?php echo base_url(); ?>index.php/Login/index" enctype="multipart/form-data">
