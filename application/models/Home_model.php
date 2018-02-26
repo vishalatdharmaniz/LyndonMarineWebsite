@@ -64,6 +64,16 @@ class Home_model extends CI_Model
         }
  	}
 
+ 	public function get_enable_by_user_id($user_id)
+    {
+         $enabled_query = $this->db->query("SELECT `enabled` FROM user_details WHERE id = '$user_id'");
+        return $enabled_query->result_array()[0]["enabled"];
+ 	}
+ 	public function get_role_by_user_id($user_id)
+ 	{
+ 		$role_value = $this->db->query("SELECT * FROM user_details WHERE id='$user_id'");
+ 		return $role_value->result_array();
+ 	}
 }
 
 ?>

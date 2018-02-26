@@ -9,11 +9,12 @@ include'includes/header_login.php';
     <div class="row">
 
         <div class="main-edit-add"> <a class="btn-blue" href="<?php echo base_url();?>index.php/AllVessels/user_vessel/<?php echo $vessel['user_id']; ?>">Go Back</a> </div>       
-
+<?php if($role=="user2" || $role=="user1") { }
+          else{ ?>
       <div class="button-right"> <a href="<?php echo base_url();?>index.php/AllVessels/view_vessel/<?php echo $vessel['vessel_id']; ?>" class="btn btn-view">View</a> <a href="<?php echo base_url();?>index.php/AllVessels/edit_vessel/<?php echo $vessel['vessel_id']; ?>" class="btn btn-edit">Edit</a> <a href="<?php echo base_url();?>index.php/DeleteVessel/index/<?php echo $vessel['vessel_id']; ?>" Onclick="return confirm('Are you sure?');" class="btn btn-del">Delete</a>
 
       </div>
-    
+    <?php  } ?>
     </div>
     <div class="row">
       <div class="col-md-6 col-md-push-6">
