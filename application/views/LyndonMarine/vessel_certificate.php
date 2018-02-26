@@ -40,7 +40,7 @@ include'includes/header_login.php';
       
       <div class="col-md-4">
       <div class="input-group">
-        <form onsubmit="searchEnter(document.getElementById('search_vessel').value); return ture;">
+        <form onsubmit="searchEnter(document.getElementById('search_vessel').value); return false;">
           <input type="text" class="form-control-text" placeholder="Search" name="search" id="search_vessel">
         </form>
           <span class="input-group-btn">
@@ -57,7 +57,7 @@ include'includes/header_login.php';
         <ul class="main-edit-add"> 
         <li><a class="btn-blue" href="<?php echo base_url();?>index.php/AddCertificateScreen/index/<?php echo $vessel_id; ?>">Add Certificate</a></li>
          <li> <a class="btn-blue" href="<?php echo base_url(); ?>index.php/VesselCertificate/index/<?php echo $vessel_id; ?>">All Certificate</a></li> 
-          <li><a class="btn-blue" onclick="mail_selected_vessels()" >Mail Document</a></li>
+          <li><button class="btn-blue" onclick="mail_selected_vessels()" >Mail Document</button></li>
           </ul>
          </div>
          </div>
@@ -305,7 +305,9 @@ function searchEnter(search_vessel)
     }
     else
     {
-            window.location.href = "<?php echo base_url(); ?>index.php/VesselCertificate/searchdata/"+search_vessel+"/"+<?php echo $data['vessel_id'] ?>;
+      var value1 = $('#search_vessel').val();
+
+      window.location.href = "<?php echo base_url(); ?>index.php/VesselCertificate/searchdata/"+search_vessel+"/"+<?php echo $data['vessel_id'] ?>;
     }
 }
  function searchtype(certificate_type)
