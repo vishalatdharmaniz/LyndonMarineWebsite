@@ -55,12 +55,19 @@ class SignUp extends CI_Controller
 			
 			$email_check= $this->Home_model->check_email($data['email']);
 			if($email_check){
+				if (filter_var($data['email'], FILTER_VALIDATE_EMAIL))
+				{
 				$this->Home_model->insert_user($data);
 
 				$message = "Your request for signup has been sent to admin, We will contact you soon";
 				$data["message"] = $message;
 				$this->load->view('LyndonMarine/home',$data);
-
+			}
+			else{
+				$message= 'Please enter valid email address';
+				$data['message']= $message;
+				$this->load->view('LyndonMarine/home',$data);
+			}
 			}
 			else
 			{

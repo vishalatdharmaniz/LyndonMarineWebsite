@@ -5,110 +5,101 @@ include'includes/header_login.php';
 
 <section id="main-edit">
   <div class="container">
+  	
     <div class="row">
       <div class="col-md-offset-3 col-md-6">
         <div class="page-heading">
-					<div class="col-md-3">
-						<div class="main-edit-add">
-					<a class="btn-blue" href="<?php echo base_url();?>/index.php/FleetDetails/index/<?php echo $vessel_id;?>">GO BACK</a>
-						</div>
-					</div>
-          <h2><?php echo $vessel_name." ";?>Survey Status</h2>
+          <h2>Survey Status for <?php echo $vessel_name." ";?></h2>
         </div>
-      </div>
-      <div class="col-md-3">
-        <div class="main-edit-add"> <a class="btn-blue" href="<?php echo base_url();?>index.php/AddSurveyScreen/index/<?php echo $vessel_id;?>">Add Survey</a>
-				</div>
-				</br>
-				<div></div>
-				<div class="main-edit-add">
-					<a class="btn-blue" href="<?php echo base_url();?>index.php/VesselSurvey/index/<?php echo $vessel_id;?>">ALL Survey</a>
-						</div>
-        <br>
-        <!-- <div class="main-edit-add"> <a class="btn-blue" href="<?php echo base_url(); ?>index.php/VesselCertificate/index">All Certificate</a> </div>--> 
-        <!-- <br><div class="main-edit-add"> <a class="btn-blue" onclick="<?php $all_checked; ?>" >Mail Document</a> </div> --> 
+        
+        
       </div>
     </div>
+     
   </div>
 </section>
-<?php
-							if($this->uri->segment(4) == 'msg'){
-?>
-<div id="msg" style="display: none;">
-  <?php 
-								$msg = $this->uri->segment(5);
-								if(isset($msg)){    ?>
-  <div class="alert alert-success"><?php echo urldecode($msg); ?></div>
-  <?php
-								}
-								?>
-</div>
-<?php
-							}	 ?>
-<section id="work-done">
-  <div class="container">
-  <div class="row">
-  	<div class="col-md-8 col-md-offset-2">
-     <div class="row">
-    <div class="col-md-8">
+
+<section id="top_mail">
+	<div class="container">
+    	<div class="row"> 
+        
+        <div class="col-md-3">
+        <div class="main-edit-add-left"> <a class="btn-blue" href="<?php echo base_url();?>index.php/FleetDetails/index/<?php echo $vessel_id; ?>">Go Back</a>				          </div>       
+      </div>
+      
+      <div class="col-md-4">
+
     <form action="<?php echo base_url()."index.php/VesselSurvey/search/$vessel_id" ?>" method="post">
     <div class="input-group">
     <input type="text" id="search_box" class="form-control-text" placeholder="Search" name="search">
   <div class="input-group-btn"> <a class="btn btn-default text-muted" href="<?php echo base_url();?>index.php/VesselSurvey/index/<?php echo $vessel_id;?>" title="Clear" onclick="reset()"><i class="glyphicon glyphicon-remove"></i> </a>
     <button type="submit" class="btn btn-info"> <span class="glyphicon glyphicon-search" aria-hidden="true"></span> </button>
     </div>
-    <?php
-		if(array_key_exists('range',$_REQUEST)){
-		 $range = $_REQUEST['range'];
-			}else{
-		$range ="";
-		}
-			?>
      </div>		
   </form>
       </div>
       
-    <div class="col-md-4">
-    <div class="input-group">   
-  <form id="drop_down"  action="<?php echo base_url()."index.php/VesselSurvey/search_dropdown/$vessel_id" ?>" method="get">
-   
-    <select name="range" style="width: 169px;" onchange="this.form.submit()">
-		<option selected value="">Select Status</option>
-      <option value="yellow" <?php if($range == "yellow"){echo "selected=selected";}?>>Within 30 days</option>
-			<option value="brown" <?php if($range == "brown"){echo "selected=selected";}?>>Due Soon</option>
-      <option value="red" <?php if($range == "red"){echo "selected=selected";}?>>Due</option>
-      <option value="green" <?php if($range == "green"){echo "selected=selected";}?>>Valid</option>
-    </select>
-   
-     </form>
-		 
-		 
-		 
+      <div class="col-md-5">
+      	<div class="list_right">
+         <ul class="main-edit-add"> 
+        <li><a class="btn-blue" href="<?php echo base_url();?>index.php/AddSurveyScreen/index/<?php echo $vessel_id;?>">Add Survey</a></li>
+         <li> <a class="btn-blue" href="<?php echo base_url();?>index.php/VesselSurvey/index/<?php echo $vessel_id;?>">ALL Survey</a></li> 
+          <!--li><button class="btn-blue" onclick="mail_selected_vessels()" >Mail Document</button></li-->
+          </ul>
+         </div>
+         </div>
+         
+         
       </div>
-		
-
     </div>
-   </div>
-  </div>
-  </div>
-  
-  
-  
-  <!--<div class="col-md-8">
-			<button type="button" id="yellowclor" class="update text-center btn btn-yelow btn-sm"></button>
-			&nbsp;<span>Within Range</span>&nbsp;&nbsp;
-			<button type="button" id="redclor" class="update text-center btn btn-red btn-sm"></button>
-			&nbsp;<span>Due now or Overdue</span>&nbsp;&nbsp;
-			<button type="button" id="greenclr" class="update text-center btn btn btn-green btn-sm"></button>
-			&nbsp;<span>Valid</span>&nbsp;&nbsp;
-			<button type="button" id="greenclr" class="update text-center btn btn-green btn-sm"></button>
-			&nbsp;<span>Valid More than 45 days</span>&nbsp;&nbsp;
-		</div>-->
- 
-  
-  
-  <div class="row">
-    <div class="col-md-8">
+</section>
+
+
+
+<!--<section id="top_mail">
+	<div class="container">
+    	<div class="row"> 
+        
+        <div class="col-md-3">
+        <div class="main-edit-add-left"> <a class="btn-blue" href="<?php echo base_url();?>index.php/FleetDetails/index/<?php echo $vessel_id; ?>">Go Back</a>				          </div>       
+      </div>
+      
+      <!--<div class="col-md-4">
+      <div class="input-group">
+        <form onsubmit="searchEnter(document.getElementById('search_vessel').value); return false;">
+          <input type="text" class="form-control-text" placeholder="Search" name="search" id="search_vessel">
+        </form>
+          <span class="input-group-btn">
+      			<a class="btn btn-default text-muted" href="#" title="Clear" onclick="reset()"><i class="glyphicon glyphicon-remove"></i> </a>
+      			<button onclick="search(document.getElementById('search_vessel').value)" type="button" class="btn btn-info">
+      				<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+      			</button>
+          </span>
+        </div>
+      </div>
+      
+      <div class="col-md-9">
+      	<div class="list_right">
+        <ul class="main-edit-add"> 
+        <li><a class="btn-blue" href="<?php echo base_url();?>index.php/AddCertificateScreen/index/<?php echo $vessel_id; ?>">Add Certificate</a></li>
+         <li> <a class="btn-blue" href="<?php echo base_url(); ?>index.php/VesselCertificate/index/<?php echo $vessel_id; ?>">All Certificate</a></li> 
+          <li><a class="btn-blue" onclick="mail_selected_vessels()" >Mail Document</a></li>
+          </ul>
+         </div>
+         </div>
+         
+         
+      </div>
+    </div>
+</section>-->
+
+
+<section id="work-done">
+  <div class="container">
+    <div class="row">
+     <div class="black_bg">
+     <div class="col-md-8">
+     	<div class="mar_box">
       <form id="drop_down"action="<?php echo base_url()."index.php/VesselSurvey/search_dropdown/$vessel_id" ?>" method="get">
         <input type="hidden" name="range" value="yellow" />
         <button type="submit" id="yellowclor" class="update text-center btn btn-yelow btn-sm"></button>
@@ -128,8 +119,38 @@ include'includes/header_login.php';
         <input type="hidden" name="range" value="green" />
         <button type="submit" id="greenclr" class="update text-center btn btn-green btn-sm"></button>
       </form>
-      &nbsp;<span>Valid </span>&nbsp;&nbsp; </div>
-  </div>
+      &nbsp;<span>Valid </span>&nbsp;&nbsp; 
+      </div>
+    </div>
+	
+	 <div class="col-md-2">
+       <div class="input-group"> 
+	<?php
+		if(array_key_exists('range',$_REQUEST)){
+		 $range = $_REQUEST['range'];
+			}else{
+		$range ="";
+		}
+			?>	   
+  <form id="drop_down"  action="<?php echo base_url()."index.php/VesselSurvey/search_dropdown/$vessel_id" ?>" method="get">
+   
+    <select name="range" style="width: 169px;" onchange="this.form.submit()">
+		<option selected value="">Select Status</option>
+      <option value="yellow" <?php if($range == "yellow"){echo "selected=selected";}?>>Within 30 days</option>
+			<option value="brown" <?php if($range == "brown"){echo "selected=selected";}?>>Due Soon</option>
+      <option value="red" <?php if($range == "red"){echo "selected=selected";}?>>Due</option>
+      <option value="green" <?php if($range == "green"){echo "selected=selected";}?>>Valid</option>
+    </select>
+   
+     </form>
+		 
+		 
+		 
+      </div>
+      </div>
+      </div>
+       </div>
+   
   <div class="row">
     <div class="panel-body">
       <div class="table-responsive">
@@ -267,14 +288,15 @@ include'includes/header_login.php';
             <?php } ?>
           </tbody>
         </table>
-        <div class="row">
+      </div>
+    </div>
+  </div>
+		<div class="row">
           <div class="col-md-12">
             <div class="text-center"> <?php echo $this->pagination->create_links(); ?> </div>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
+            
   </div>
 </section>
 <?php

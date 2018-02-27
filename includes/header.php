@@ -24,7 +24,7 @@
     
       <form class="navbar-form navbar-right" method="post" action="<?php echo base_url(); ?>index.php/Login/index" enctype="multipart/form-data">
         <div class="form-group">
-          <input type="text" placeholder="Email" name="email" id="email" class="form-control-text-on" value="<?php echo set_value('email'); ?>" required>
+          <input type="text" placeholder="Email" name="email" id="email" class="form-control-text-on" required>
         </div> 
         <div class="form-group">
           <input type="password" placeholder="Password" class="form-control-text-on" name="password" required>
@@ -35,7 +35,6 @@
    
     </div> 	<div id="navbar" class="text-right forget"><a href="<?php echo base_url(); ?>index.php/Forgot/index" > Forgot your Password?</a></div>
       
-   
     <!--/.navbar-collapse --> 
   </div>
 </nav>
