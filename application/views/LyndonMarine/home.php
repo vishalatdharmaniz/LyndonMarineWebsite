@@ -2,7 +2,7 @@
 include'includes/header.php';
 ?>
 <section id="main-head">
-<h3 style="color:#8B0000;margin-left:68%;margin-bottom:10px"><?php echo $message; ?></h3>
+<h3 style="color:#8B0000;margin-left:60%;margin-bottom:10px"><?php echo $message; ?></h3>
   <div class="container">
     <div class="row">
       <div class="col-md-6">
@@ -73,7 +73,7 @@ include'includes/header.php';
               <div class="col-sm-6 col-xs-12">
                 <div class="form-group">
                   <div class="ajax_response_result"></div>
-                  <input type="email" placeholder="Email" onblur="check_email_exists();" value="<?php echo set_value('email'); ?>" id="email" class="form-control" name="email" required>
+                  <input type="email" placeholder="name@example.com" onblur="" id="email" class="form-control" name="email" required pattern="^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$" data-error="Please enter your valid email">
                   <span id="emailmsg"></span>
                 </div>
               </div>
@@ -95,7 +95,7 @@ include'includes/header.php';
             <div class="row">
               <div class="col-sm-12">
               	<div class="btn-box">
-                <button type="submit" class="btn btn-black">Apply</button>
+                <button id="register-button" type="submit" class="btn btn-black" onsubmit="return email_validation()">Apply</button>
                 </div>
               </div>
             </div>
@@ -108,32 +108,32 @@ include'includes/header.php';
 <?php
 include'includes/footer.php';
 ?>
+
 <!--script>
-
-function check_email_exists()
+function check_email_exists() 
 {
+    var email = $('#email').val();
 
-  var email = $('#email').val();
-  $.ajax({
-      type:"POST",
-      url: "<?php //echo site_url('SignUp/check_email_exist') ?>" ,
-      data: {email:email},
-      success: function(response)
-      {
-        if(response==true)
+    $.ajax(
         {
-          $('#emailmsg').style.color = 'Red';
-          $('#emailmsg').html='Email already exists';
-          $('#emailmsg').disabled=true;
-        }
-        else
-        {
-          $('#emailmsg').style.color = 'green';
-          $('#emailmsg').html='';
-          $('#emailmsg').disabled=true;
-        }
-      }
-  });
-
+            type:"post",
+            url: "<?php echo base_url(); ?>index.php/SignUp/check_email_exist",
+            data:{email:email},
+            success:function(response)
+            {
+                if (response == true) 
+                {
+                  document.getElementsByClassName('emailmsg')[0].style.color = 'Red';
+                  document.getElementsByClassName('emailmsg')[0].innerHTML = 'Email already exists';
+                  document.getElementById("register-button").disabled = true;
+                }
+                else 
+                {
+                  document.getElementsByClassName('emailmsg')[0].style.color = 'green';
+                  document.getElementsByClassName('emailmsg')[0].innerHTML = '';
+                  document.getElementById("register-button").disabled = false;
+                }  
+            }
+        });
 }
 </script-->

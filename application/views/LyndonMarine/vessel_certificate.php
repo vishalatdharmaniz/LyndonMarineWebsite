@@ -305,8 +305,6 @@ function searchEnter(search_vessel)
     }
     else
     {
-      var value1 = $('#search_vessel').val();
-
       window.location.href = "<?php echo base_url(); ?>index.php/VesselCertificate/searchdata/"+search_vessel+"/"+<?php echo $data['vessel_id'] ?>;
     }
 }
