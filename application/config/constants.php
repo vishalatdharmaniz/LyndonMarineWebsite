@@ -145,12 +145,27 @@ else
     define('DOCUMENT_BASE_URL', 'http://root.lyndonmarine.com/LyndonMarineImages/CertificateDocuments');
 }
 
+/* Recommendation Base Url */
+
+if (ENVIRONMENT == 'development')
+{
+    define('RECOMMENDATION_BASE_URL', 'http://localhost/LyndonMarineWebsite/LyndonMarineImages/VesselRecommendation');
+}
+elseif(ENVIRONMENT == 'production')
+{
+    define('RECOMMENDATION_BASE_URL', 'http://dharmani.com/LyndonMarineImages/VesselRecommendation');
+}
+else
+{
+    define('RECOMMENDATION_BASE_URL', 'http://root.lyndonmarine.com/LyndonMarineImages/VesselRecommendation');
+}
+
 /* Target Dir */
 
 
 if (ENVIRONMENT == 'development')
 {
-    define('TARGET_DIR', '/xampp/htdocs/LyndonMarineImages/');
+    define('TARGET_DIR', 'LyndonMarineWebsite/LyndonMarineImages');
 }
 else
 {

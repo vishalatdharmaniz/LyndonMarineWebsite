@@ -42,6 +42,13 @@ class Update_model extends CI_Model
 					WHERE plan_id='$plans_id'");
 		return true;
 	} 
+	public function Edit_Recommendation($recommendation_id,$recommendation_type,$recommendation_date,$due_date,$description,$rectified_status,$rectified_date,$rectified_by,$reminder,$image1,$image2,$image3)
+	{
+              $this->db->query("UPDATE recommendation SET recommendation_type='$recommendation_type'                    ,recommendation_date='$recommendation_date',due_date='$due_date',
+              	                      description='$description',rectified_status='$rectified_status',
+									rectified_date='$rectified_date',rectified_by='$rectified_by',reminder='$reminder',image1='$image1',image2='$image2',image3='$image3'	WHERE recommendation_id='$recommendation_id' ");
+             return true;
+	}
 }
 
 ?>
