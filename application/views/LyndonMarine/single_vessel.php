@@ -101,7 +101,7 @@ include'includes/header_login.php';
           </div>
         </div>
 		<div class="col-md-3">
-          <div class="done-text"> <a href="#"><img src="<?php echo base_url(); ?>img/icon/directory.png" class="img-responsive"></a>
+          <div class="done-text"> <a href="<?php echo base_url(); ?>index.php/VesselInventory/index/<?php echo $vessel['vessel_id']; ?>"><img src="<?php echo base_url(); ?>img/icon/directory.png" class="img-responsive"></a>
             <h3>Inventory </h3>
           </div>
         </div>

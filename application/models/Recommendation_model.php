@@ -13,7 +13,7 @@ class Recommendation_model extends CI_Model
 	
 	function get_certificate_data($recommendation_id)
 	{
-		var_dump($recommendation_id);
+		/*var_dump($recommendation_id);*/
 		$recommendation_data = $this->db->query("SELECT * FROM recommendation WHERE recommendation_id='$recommendation_id'");
 		return $recommendation_data->result_array();
 	}
@@ -28,6 +28,11 @@ class Recommendation_model extends CI_Model
 	{
 		$details_by_vessel_id = $this->db->query("SELECT * FROM recommendation WHERE vessel_id='$vessel_id'");
 		return $details_by_vessel_id->result_array();
+	}
+
+	function delete_recommendation_by_recommendation_id($recommendation_id)
+	{
+		$delete_recommendation=$this->db->query("DELETE FROM recommendation WHERE recommendation_id='$recommendation_id' ");
 	}
 }
 
