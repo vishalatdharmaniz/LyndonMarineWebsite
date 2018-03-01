@@ -8,5 +8,11 @@ class BunkerSupply_model extends CI_Model
 		$details_by_vessel_id = $this->db->query("SELECT * FROM bunker_supply WHERE vessel_id='$vessel_id'");
 		return $details_by_vessel_id->result_array();
 	}
+	function get_vessel_details_by_vessel_id($vessel_id)
+	{
+		$details_by_vessel_id = $this->db->query("SELECT * FROM vessels WHERE vessel_id='$vessel_id'");
+		return $details_by_vessel_id->result_array();
+	}
+
 }
 ?>

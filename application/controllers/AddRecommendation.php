@@ -22,23 +22,7 @@ class AddRecommendation extends CI_Controller
 			
 			$due_date = date("d/m/Y", strtotime($due_date));
 			
-			/*$target_dir = TARGET_DIR;
-    
-            $image_base_url = VESSEL_IMAGES_BASE_URL;
-           	for($i=1;$i<=3;$i++)
-            {
-                $target_file[$i] = $target_dir .'/uploads/'. basename($_FILES["image".$i]["name"]);
-                $imageFileType[$i]= pathinfo($target_file[$i],PATHINFO_EXTENSION);
-                move_uploaded_file($_FILES["image".$i]["tmp_name"], $target_file[$i]);
-                if ($_FILES["image".$i]["name"] != NULL)
-                {
-                    $image[$i] =$image_base_url. $_FILES["image".$i]["name"];
-                }
-                else
-                {
-                    $image[$i] = NULL;
-                }
-            }*/
+			
               $directory_name = '../LyndonMarineImages/VesselImages/'.$vessel_name;
 
         if(!is_dir($directory_name))

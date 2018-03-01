@@ -120,7 +120,7 @@ include'includes/header_login.php';
     <div class="row">
       <div class="work-done-text">
         <div class="col-md-3">
-          <div class="done-text"> <a href="<?php echo base_url(); ?>index.php/AddBunkerSupply/index/<?php echo $vessel['vessel_id']; ?>"><img src="<?php echo base_url(); ?>img/icon/Bunker.png" class="img-responsive"></a>
+          <div class="done-text"> <a href="<?php echo base_url(); ?>index.php/VesselBunkerSupply/index/<?php echo $vessel['vessel_id']; ?>"><img src="<?php echo base_url(); ?>img/icon/Bunker.png" class="img-responsive"></a>
             <h3>Bunker </h3>
           </div>
         </div>
