@@ -150,7 +150,8 @@ else
 if (ENVIRONMENT == 'development')
 {
 
-    define('VESSEL_RECOMMENDATION_BASE_URL', 'http://localhost/LyndonMarineWebsite/LyndonMarineImages/VesselImages');
+    define('VESSEL_RECOMMENDATION_BASE_URL', 'http://localhost/LyndonMarineImages/VesselImages');
+
 }
 elseif(ENVIRONMENT == 'production')
 {
