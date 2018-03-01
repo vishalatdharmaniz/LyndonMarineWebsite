@@ -6,7 +6,11 @@ class AddCertificate extends CI_Controller
 
 	
 	public function index($vessel_id)
-	{
+	{	
+		$this->load->model('Vessel_model');
+		$vessel_detail_folder = $this->Vessel_model->get_vessel_details_by_id($vessel_id);
+$vessel_name = $vessel_detail_folder[0]['vessel_name'];
+
 			$certificate_no = $this->input->post('certificate_no');
 			$certificate_name = $this->input->post('certificate_name');
 			$certificate_type = $this->input->post('certificate_type');
@@ -21,9 +25,15 @@ class AddCertificate extends CI_Controller
 			$date_issue = str_replace('/', '-', $date_issue);
             $date_issue = date("Y-m-d", strtotime($date_issue));
 
-			$date_expiry = str_replace('/', '-', $date_expiry);
-            $date_expiry = date("Y-m-d", strtotime($date_expiry));
-
+            if($date_expiry=='')
+			{
+				$date_expiry = '';
+			}
+			else
+			{
+				$date_expiry = str_replace('/', '-', $date_expiry);
+	            $date_expiry = date("Y-m-d", strtotime($date_expiry));
+        	}
 			if($extention_until=='')
 			{
 				$extention_until = '';
@@ -34,15 +44,21 @@ class AddCertificate extends CI_Controller
 	            $extention_until = date("Y-m-d", strtotime($extention_until));
             }
 
-            $directory_name = '../LyndonMarineImages/CertificateDocuments/'.$certificate_name;//print_r($directory_name);die();
+			$certificatefolder = '/Certificates/';
+            $directory_name = '../LyndonMarineImages/LyndonMarineVessels/'.$vessel_name.$certificatefolder;
 			if(!is_dir($directory_name))
 			    {
 			        mkdir($directory_name);
 			    }	
-
+			
+			$certificate_directory = $directory_name.$certificate_name; 
+			if(!is_dir($certificate_directory))
+			    {
+			        mkdir($certificate_directory);
+			    }
 					 /* Upload Documents */
 			$target_dir = TARGET_DIR;
-			$base_url_website = DOCUMENT_BASE_URL.'/'.$certificate_name.'/';
+			$base_url_website = DOCUMENT_BASE_URL.$vessel_name.$certificatefolder.$certificate_name.'/';
 
             for($i=1;$i<=5;$i++)
             {
@@ -55,7 +71,7 @@ class AddCertificate extends CI_Controller
 		            	if ($_FILES["document".$i]["name"] != NULL)
 		            {
 		            	
-		                $target_file = $directory_name.'/'. basename($_FILES["document".$i]["name"]);
+		                $target_file = $certificate_directory.'/'. basename($_FILES["document".$i]["name"]);
 		                //print_r($target_file);die();
 		                move_uploaded_file($_FILES['document'. $i]['tmp_name'], $target_file);
 		                $document[$i] = $base_url_website. $_FILES["document".$i]["name"];   

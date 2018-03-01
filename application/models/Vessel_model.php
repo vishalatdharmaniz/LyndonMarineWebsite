@@ -29,6 +29,12 @@ class Vessel_model extends CI_Model
         $this->db->query("DELETE FROM vessels WHERE vessel_id = '$vessel_id' AND user_id='$user_id'");
     }
 
+    function search_vessel($searchname,$user_id)
+    {
+        $searchdata = $this->db->query("SELECT * FROM vessels WHERE ((vessel_name LIKE '%$searchname%') OR (imo_number LIKE '%$searchname%')) AND (user_id='$user_id')");
+			return $searchdata->result_array();
+	}
+
 }
 
 ?>

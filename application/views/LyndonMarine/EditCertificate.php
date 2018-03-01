@@ -50,7 +50,7 @@ include'includes/header_login.php';
             <div class="row">
               <div class="form-group col-md-6">
                 <label class="control-label">Date of Expiry</label>
-                <input type="text" name="date_expiry" id="datepicker2" required placeholder="Date of Expiry" class="form-control-text" value="<?php echo date("d/m/Y",strtotime($certificate_data['date_expiry'])); ?>">
+                <input type="text" name="date_expiry" id="datepicker2" placeholder="Date of Expiry" class="form-control-text" value="<?php echo (($certificate_data['date_expiry']) ? date("d/m/Y",strtotime($certificate_data['date_expiry'])) : '');?>">
               </div>
               <div class="form-group col-md-6">
                 <label class="control-label">Extention until</label>
