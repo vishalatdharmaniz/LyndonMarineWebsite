@@ -119,36 +119,37 @@ else
 
 if (ENVIRONMENT == 'development')
 {
-    define('VESSEL_IMAGES_BASE_URL', 'http://localhost/LyndonMarineImages/LyndonMarineVessels');
+    define('VESSEL_IMAGES_BASE_URL', 'http://localhost/LyndonMarineImages/LyndonMarineVessels/');
 }
 elseif(ENVIRONMENT == 'production')
 {
-    define('VESSEL_IMAGES_BASE_URL', 'http://dharmani.com/LyndonMarineImages/LyndonMarineVessels');
+    define('VESSEL_IMAGES_BASE_URL', 'http://dharmani.com/LyndonMarineImages/LyndonMarineVessels/');
 }
 else
 {
-    define('VESSEL_IMAGES_BASE_URL', 'http://root.lyndonmarine.com/LyndonMarineImages/LyndonMarineVessels');
+    define('VESSEL_IMAGES_BASE_URL', 'http://root.lyndonmarine.com/LyndonMarineImages/LyndonMarineVessels/');
 }
 
 /* Documents Base Url */
 
 if (ENVIRONMENT == 'development')
 {
-    define('DOCUMENT_BASE_URL', 'http://localhost/LyndonMarineImages/LyndonMarineVessels');
+    define('DOCUMENT_BASE_URL', 'http://localhost/LyndonMarineImages/LyndonMarineVessels/');
 }
 elseif(ENVIRONMENT == 'production')
 {
-    define('DOCUMENT_BASE_URL', 'http://dharmani.com/LyndonMarineImages/LyndonMarineVessels');
+    define('DOCUMENT_BASE_URL', 'http://dharmani.com/LyndonMarineImages/LyndonMarineVessels/');
 }
 else
 {
-    define('DOCUMENT_BASE_URL', 'http://root.lyndonmarine.com/LyndonMarineImages/LyndonMarineVessels');
+    define('DOCUMENT_BASE_URL', 'http://root.lyndonmarine.com/LyndonMarineImages/LyndonMarineVessels/');
 }
 
 /* Recommendation Base Url */
 
 if (ENVIRONMENT == 'development')
 {
+
     define('VESSEL_RECOMMENDATION_BASE_URL', 'http://localhost/LyndonMarineWebsite/LyndonMarineImages/VesselImages');
 }
 elseif(ENVIRONMENT == 'production')
@@ -158,6 +159,7 @@ elseif(ENVIRONMENT == 'production')
 else
 {
     define('VESSEL_RECOMMENDATION_BASE_URL', 'http://root.lyndonmarine.com/LyndonMarineImages/VesselImages');
+
 }
 
 /* Target Dir */
