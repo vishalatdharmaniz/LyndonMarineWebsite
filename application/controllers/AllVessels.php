@@ -111,4 +111,19 @@ $config['full_tag_open'] = '<ul class="pagination">';
 
 		$this->load->view('LyndonMarine/ViewFullVessels',$data);
 	}
+	public function searchdata($searchname)
+	{
+		$this->load->model('Home_model');
+		$this->load->model('Vessel_model');
+		$user_id = $this->session->userdata('user_id');
+		$role_value= $this->Home_model->get_role_by_user_id($user_id); 
+		$all_vessels = $this->Vessel_model->search_vessel($searchname,$user_id);
+		
+
+		$data['role'] = $role_value[0]['role']; 
+		$data['user_id'] = $user_id; print_r($data['user_id']);
+		$data['all_vessels'] = $all_vessels;
+		// print_r($all_vessels);die();
+		$this->load->view('LyndonMarine/all_vessel',$data);
+	}
 }

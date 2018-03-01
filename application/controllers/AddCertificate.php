@@ -45,7 +45,7 @@ $vessel_name = $vessel_detail_folder[0]['vessel_name'];
             }
 
 			$certificatefolder = '/Certificates/';
-            $directory_name = '../LyndonMarineImages/VesselImages/'.$vessel_name.$certificatefolder;
+            $directory_name = '../LyndonMarineImages/LyndonMarineVessels/'.$vessel_name.$certificatefolder;
 			if(!is_dir($directory_name))
 			    {
 			        mkdir($directory_name);

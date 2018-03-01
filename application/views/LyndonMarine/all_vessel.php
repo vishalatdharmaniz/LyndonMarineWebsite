@@ -13,9 +13,25 @@ include'includes/header_login.php';
         <div class="row">
         <div class="col-md-12 gur">
           <a class="btn-blue" href="<?php echo base_url(); ?>index.php/AddVesselScreen/index">Add</a>
+          <a class="btn-blue" href="<?php echo base_url(); ?>index.php/AllVessels/user_vessel/<?php $user_id= $this->session->userdata['user_id']; echo $user_id; ?>">All Vessels</a>
         </div>
         </div>
         <?php  } ?>
+        <div class="row">
+          <div class="col-md-4" style="margin-bottom: 10px;">
+            <div class="input-group">
+        <form onsubmit="searchEnter(document.getElementById('search_vessel').value); return false;">
+          <input type="text" class="form-control-text" placeholder="Search For" name="search" id="search_vessel">
+        </form>
+          <!-- <span class="input-group-btn">
+            <a class="btn btn-default text-muted" href="#" title="Clear" onclick="reset()"><i class="glyphicon glyphicon-remove"></i> </a>
+            <button onclick="searchIcon(document.getElementById('search_vessel').value)" type="button" class="btn btn-info">
+              <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+            </button>
+          </span> -->
+        </div>
+          </div>
+        </div>
         <div class="col-md-12" style="margin-bottom: 20px;">
           <ul class="nav nav-tabs" role="tablist">
             <li role="presentation" class="active"><a href="#AssignedVessels" aria-controls="home" role="tab" data-toggle="tab">Assigned Vessels</a></li>
@@ -131,3 +147,32 @@ include'includes/header_login.php';
 <?php
 include'includes/footer.php';
 ?>
+<script>
+function searchEnter(search_vessel)
+{
+    if(search_vessel == "")
+    {
+        alert("Please enter a value to be searched");
+    }
+    else
+    {
+      window.location.href = "<?php echo base_url(); ?>index.php/AllVessels/searchdata/"+search_vessel+"/"+<?php echo $vessel_data['user_id'] ?>;
+    }
+}
+function searchIcon(search_vessel)
+{
+    if(search_vessel == "")
+    {
+        alert("Please enter a value to be searched");
+    }
+    else
+    {
+            window.location.href = "<?php echo base_url(); ?>index.php/AllVessels/searchdata/"+search_vessel+"/"+<?php echo $vessel_data['user_id']?>;
+    }
+}
+function reset(search_vessel)
+{
+  $('#search_vessel').val('');
+  window.location.href = "<?php echo base_url(); ?>index.php/AllVessels/user_vessel/"+<?php echo $vessel_data['user_id'] ?>;
+}
+</script>
