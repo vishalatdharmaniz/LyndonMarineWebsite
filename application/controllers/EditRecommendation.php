@@ -18,21 +18,23 @@ public function index($recommendation_id)
 
     { 	
     	$this->load->Model('Recommendation_model');
-        $recommendation_data=$this->Recommendation_model->get_certificate_data($recommendation_id);
-        
-        $data['recommendation_id']=$recommendation_id;
-        $vessel_id = $recommendation_data[0]['vessel_id'];
+         $vessel_data=$this->Recommendation_model->get_vessel_details_by_vessel_id($vessel_id);
+            $vessel_name=$vessel_data[0]['vessel_name'];
 
-    	$recommendation_date=$_REQUEST['recommendation_date']; 
+        $recommendation_data=$this->Recommendation_model->get_certificate_data($recommendation_id);
+         $data['recommendation_id']=$recommendation_id;
+        
+        $vessel_id = $recommendation_data[0]['vessel_id'];
+        $recommendation_type = $recommendation_data[0]['recommendation_type'];
+       	$recommendation_date=$_REQUEST['recommendation_date']; 
         $due_date=$_REQUEST['due_date'];
     	$description=$_REQUEST['description'];                  
     	$rectified_status=$_REQUEST['rectified_status'];
     	$rectified_date=$_REQUEST['rectified_date'];            
-    	$rectified_by=$_REQUEST['rectified_by'];
-        $recommendation_type=$_REQUEST['recommendation_type'];  
+    	$rectified_by=$_REQUEST['rectified_by']; 
         $reminder=$_REQUEST['reminder'];
 
-         $directory_name = '../LyndonMarineImages/VesselRecommendation/'.$recommendation_type;
+         $directory_name = '../LyndonMarineImages/VesselRecommendation/'.$vessel_name;
         
       
         if(!is_dir($directory_name))
@@ -46,7 +48,7 @@ public function index($recommendation_id)
  
                  /* Upload Recommendation Images */
 
-        $base_url_website = RECOMMENDATION_BASE_URL.'/'.$recommendation_type.'/';
+        $base_url_website = VESSEL_IMAGES_BASE_URL.$vessel_name.'/';
         /*print_r($base_url_website);
         die();*/
         
@@ -67,7 +69,7 @@ public function index($recommendation_id)
                          }
                      else
                          {
-                             $image[$i] = $recommendation_type[0]["image".$i];
+                             $image[$i] = $recommendation_data[0]["image".$i];
                          }
                 }
 

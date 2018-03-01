@@ -31,13 +31,13 @@ include'includes/header_login.php';
               </div>
               <div class="form-group col-md-6">
                 <label class="control-label">Recommendation Date</label>
-                <input type="text" name="recommendation_date" placeholder="Recommendation Date" class="form-control-text">
+                <input type="text" id="datepicker1" name="recommendation_date" placeholder="Recommendation Date" class="form-control-text">
               </div>
             </div>
             <div class="row">
               <div class="form-group col-md-6">
                 <label class="control-label">Due Date</label>
-                <input type="text" name="due_date" placeholder="Due Date" class="form-control-text">
+                <input type="text" id="datepicker2" name="due_date" placeholder="Due Date" class="form-control-text">
               </div>
               <div class="form-group col-md-6">
                 <label class="control-label">Description</label>
@@ -58,7 +58,7 @@ include'includes/header_login.php';
             <div class="row">
               <div class="form-group col-md-6">
                 <label class="control-label">Rectifed  Date</label>
-                <input type="text" name="rectified_date" placeholder="Rectifed  Date" class="form-control-text">
+                <input type="text" id="datepicker3" name="rectified_date" placeholder="Rectifed  Date" class="form-control-text">
               </div>
               <div class="form-group col-md-6">
                 <label class="control-label">Rectifed  By </label>
@@ -73,23 +73,24 @@ include'includes/header_login.php';
              
             </div>
             <div class="row">
-              <div class="form-group col-md-12">
-                <label for="exampleInputEmail1">Upload Doc</label>
-                <input required type="file" name="image1" accept="pdf, rtf, excel/*">
+              <div class="col-md-12">
+                <label class="control-label">Upload Doc</label>
+                <input type="file" name="image1" accept="png, jpg ,pdf/*">
               </div>
             </div>
             <div class="row">
-              <div class="form-group col-md-12">
-                <label for="exampleInputEmail1">Upload Doc</label>
-                <input required type="file" name="image2" accept="pdf, rtf, excel/*">
+               <div class="col-md-12">
+                <label class="control-label">Upload Doc</label>
+                <input type="file" name="image2" accept="png, jpg ,pdf/*">
               </div>
             </div>
             <div class="row">
-              <div class="form-group col-md-12">
-                <label for="exampleInputEmail1">Upload Doc</label>
-                <input required type="file" name="image3" accept="pdf, rtf, excel/*">
+              <div class="col-md-12">
+                <label class="control-label">Upload Doc</label>
+                <input type="file" name="image3" accept="png, jpg,pdf/*">
               </div>
             </div>
+            <br>
             <button type="submit" class="btn btn-black">Save </button>
           </form>
         </div>
@@ -100,3 +101,10 @@ include'includes/header_login.php';
 <?php
 include'includes/footer.php';
 ?>
+<script>
+  $( function() {
+    $( "#datepicker1" ).datepicker({ dateFormat: 'dd/mm/yy' }).val();
+    $( "#datepicker2" ).datepicker({ dateFormat: 'dd/mm/yy' }).val();
+     $( "#datepicker3" ).datepicker({ dateFormat: 'dd/mm/yy' }).val();
+  } );
+</script>

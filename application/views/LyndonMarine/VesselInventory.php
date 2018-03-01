@@ -51,6 +51,7 @@ include'includes/header_login.php';
       </div>
     </div>
   </div>
+
 </section>
 <?php 
 include'includes/footer.php';
