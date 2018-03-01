@@ -16,6 +16,7 @@ include'includes/header_login.php';
                   <?php foreach($recommendation_data as $data) 
                                 { 
                                   $recommendation_id=$data['recommendation_id'] ;  
+                                  $vessel_id=$data['vessel_id'] ; 
                                   $recommendation_type=$data['recommendation_type'] ;  
                                   $recommendation_date=$data['recommendation_date'] ; 
                                   $due_date=$data['due_date'] ; 
@@ -98,12 +99,12 @@ include'includes/header_login.php';
                   </div>
                   <div class="col-md-8">
                     <br>
-                    <?php if(!empty($data['image1'] )) {?>
+                    <?php if(!empty($image1 )) {?>
                     
                       <span id = "show-document1">
                       <a href="<?php echo $image1 ;  ?>" class="btn btn-primary"> View</a>&nbsp;
                       <?php $value = explode("/",$image1 );
-                       echo substr($value[7],0,25); ?>
+                       echo substr($value[6],0,25); ?>
                        <button type="button"  class="btn btn-danger" id="remove-document1" style="margin-left:10px;">Remove</button>
                       </span>
                       
@@ -128,7 +129,7 @@ include'includes/header_login.php';
                       <span id = "show-document2">
                       <a href="<?php echo $image2 ; ?>" class="btn btn-primary"> View</a>&nbsp;
                        <?php $value = explode("/",$image2);
-                        echo substr($value[7],0,25); ?>   
+                        echo substr($value[6],0,25); ?>   
                         <button type="button"  class="btn btn-danger" id="remove-document2" style="margin-left:10px;">Remove</button>
                       </span>
                       
@@ -152,7 +153,7 @@ include'includes/header_login.php';
                       <span id = "show-document3">
                       <a href="<?php echo $image3 ; ?>" class="btn btn-primary"> View</a>&nbsp;
                        <?php $value = explode("/",$image3);
-                        echo substr($value[7],0,25); ?>   
+                        echo substr($value[6],0,25); ?>   
                         <button type="button"  class="btn btn-danger" id="remove-document3" style="margin-left:10px;">Remove</button>
                       </span>
                       <?php } 
