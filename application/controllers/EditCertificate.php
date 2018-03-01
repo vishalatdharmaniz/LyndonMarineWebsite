@@ -27,9 +27,15 @@ class EditCertificate extends CI_Controller
 		$date_issue = str_replace('/', '-', $date_issue);
         $date_issue = date("Y-m-d", strtotime($date_issue));			
 
-		$date_expiry = str_replace('/', '-', $date_expiry);
-        $date_expiry = date("Y-m-d", strtotime($date_expiry));			
-
+        if($date_expiry=='')
+		{
+			$date_expiry = '';
+		}
+		else
+		{
+			$date_expiry = str_replace('/', '-', $date_expiry);
+	        $date_expiry = date("Y-m-d", strtotime($date_expiry));			
+	    }
        if($extention_until=='')
 		{
 			$extention_until = '';
@@ -41,18 +47,21 @@ class EditCertificate extends CI_Controller
         }
 
 
-        $directory_name = '../LyndonMarineImages/CertificateDocuments/'.$certificate_name;//print_r($directory_name);die();
-		if(!is_dir($directory_name))
-		    {
-		        mkdir($directory_name);
-		    }	
-
-		$target_dir = TARGET_DIR;
-  
-                    /* Upload Documents */
-
-        $base_url_website = DOCUMENT_BASE_URL.'/'.$certificate_name.'/';
-
+        $certificatefolder = '/Certificates/';
+            $directory_name = '../LyndonMarineImages/LyndonMarineVessels/'.$vessel_name.$certificatefolder;
+			if(!is_dir($directory_name))
+			    {
+			        mkdir($directory_name);
+			    }	
+			
+			$certificate_directory = $directory_name.$certificate_name; 
+			if(!is_dir($certificate_directory))
+			    {
+			        mkdir($certificate_directory);
+			    }
+					 /* Upload Documents */
+			$target_dir = TARGET_DIR;
+			$base_url_website = DOCUMENT_BASE_URL.$vessel_name.$certificatefolder.$certificate_name.'/';
             for($i=1;$i<=5;$i++)
             {
             	if ($_REQUEST['document'.$i.'-removed'] == '1')
@@ -63,7 +72,7 @@ class EditCertificate extends CI_Controller
 		            {
 		            	if ($_FILES["document".$i]["name"] != NULL)
 		             {
-		                 $target_file = $directory_name.'/'.  basename($_FILES['document'.$i]['name']);
+		                 $target_file = $certificate_directory.'/'.  basename($_FILES['document'.$i]['name']);
 		                 move_uploaded_file($_FILES['document'. $i]['tmp_name'], $target_file);
 		                 $document[$i] = $base_url_website. $_FILES["document".$i]["name"];     
 		             }

@@ -53,7 +53,7 @@ include'includes/header_login.php';
                 </tr>
                 <tr>
                   <th scope="row">Date of Expiry</th>
-                  <td><?php echo date("d/m/Y",strtotime($certificate_data['date_expiry'])); ?></td> 
+                  <td><?php echo (($certificate_data['date_expiry']) ? date("d/m/Y",strtotime($certificate_data['date_expiry'])) : 'N/A');?></td> 
                 </tr>
                  <tr>
                    <th scope="row">Extention until</th>
