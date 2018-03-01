@@ -230,7 +230,7 @@ include'includes/header_login.php';
 							<td><?php echo ucwords($data['certificate_type']); ?></td>
 							<td><?php echo $data['certificate_name']; ?></td>
 							<td><?php echo date("d/m/Y",strtotime($data['date_issue']));?></td>
-							<td><?php echo date("d/m/Y",strtotime($data['date_expiry']));?></td>
+							<td><?php echo (($data['date_expiry']) ? date("d/m/Y",strtotime($data['date_expiry'])) : 'N/A');?></td>
 							<td><?php echo (($data['extention_until']) ? date("d/m/Y",strtotime($data['extention_until'])) : 'N/A');?></td>
 							<td><?php echo ($data['examption'] ? $data['examption'] : 'N/A'); ?></td>
 							<td class="text-center">
