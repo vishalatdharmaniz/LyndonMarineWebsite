@@ -854,3 +854,11 @@ section#top_mail .list_right .main-edit-add li .btn-blue
     margin: 20px 0;
 }
 
+a.btn.btn-xcode {
+    background-color: #555;
+    color: #fff;
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 16px;
+    margin:20px 10px 20px 10px;
+}

@@ -36,7 +36,8 @@ include'includes/header_login.php'
       <div class="row"> 
         
         <div class="col-md-3">
-        <div class="main-edit-add-left"> <a class="btn-blue" href="<?php echo base_url();?>index.php/FleetDetails/index/<?php echo $vessel_id; ?>">Go Back</a>                  </div>       
+        <div class="main-edit-add-left"> <a class="btn-blue" href="<?php echo base_url();?>index.php/FleetDetails/index/<?php echo $vessel_id; ?>">Go Back</a>                
+          </div>       
       </div>
       
       <div class="col-md-4">

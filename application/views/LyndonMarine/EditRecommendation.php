@@ -24,6 +24,9 @@ include'includes/header_login.php';
                                   $rectified_date=$data['rectified_date'] ; 
                                   $rectified_by=$data['rectified_by'] ; 
                                   $reminder=$data['reminder'] ; 
+                                  $image1=$data['image1'] ; 
+                                  $image2=$data['image2'] ; 
+                                  $image3=$data['image3'] ; 
 
                                 }
                               ?>
@@ -46,13 +49,13 @@ include'includes/header_login.php';
               </div>
               <div class="form-group col-md-6">
                 <label class="control-label">Recommendation Date</label>
-                <input type="text" name="recommendation_date" value="<?Php echo $recommendation_date; ?>" class="form-control-text">
+                <input type="text" id="datepicker1" name="recommendation_date" value="<?Php echo $recommendation_date; ?>" class="form-control-text">
               </div>
             </div>
             <div class="row">
               <div class="form-group col-md-6">
                 <label class="control-label">Due Date</label>
-                <input type="text" name="due_date" value="<?Php echo $due_date; ?>" class="form-control-text">
+                <input type="text" id="datepicker2" name="due_date" value="<?Php echo $due_date; ?>" class="form-control-text">
               </div>
               <div class="form-group col-md-6">
                 <label class="control-label">Description</label>
@@ -73,7 +76,7 @@ include'includes/header_login.php';
             <div class="row">
               <div class="form-group col-md-6">
                 <label class="control-label">Rectifed  Date</label>
-                <input type="text" name="rectified_date" value="<?Php echo $rectified_date; ?>" class="form-control-text">
+                <input type="text" id="datepicker3" name="rectified_date" value="<?Php echo $rectified_date; ?>" class="form-control-text">
               </div>
               <div class="form-group col-md-6">
                 <label class="control-label">Rectifed  By </label>
@@ -91,15 +94,15 @@ include'includes/header_login.php';
                 <div class="form-group">
                   <div class="col-md-4">
                     <label class="control-label">Upload Image </label>
-                    <input type="file" required id="document1-chosen" name="image1"  accept="jpg/*"><br>
+                    <input type="file" id="document1-chosen" name="image1"  accept="png, jpg/*"><br>
                   </div>
                   <div class="col-md-8">
                     <br>
                     <?php if(!empty($data['image1'] )) {?>
                     
                       <span id = "show-document1">
-                      <a href="<?php echo $data['image1']; ?>" class="btn btn-primary"> View</a>&nbsp;
-                      <?php $value = explode("/",$data['image1']);
+                      <a href="<?php echo $image1 ;  ?>" class="btn btn-primary"> View</a>&nbsp;
+                      <?php $value = explode("/",$image1 );
                        echo substr($value[7],0,25); ?>
                        <button type="button"  class="btn btn-danger" id="remove-document1" style="margin-left:10px;">Remove</button>
                       </span>
@@ -116,15 +119,15 @@ include'includes/header_login.php';
                 <div class="form-group">
                   <div class="col-md-4">
                     <label class="control-label">Upload Image </label>
-                    <input type="file" required id="document2-chosen"  name="image2" accept="jpg/*"><br>
+                    <input type="file" id="document2-chosen"  name="image2" accept="png, jpg/*"><br>
                   </div>
                   <div class="col-md-8">
                     <br>
-                    <?php if(!empty($data['image2'])) {?>
+                    <?php if(!empty($image2)) {?>
                     
                       <span id = "show-document2">
-                      <a href="<?php echo $data['image2']; ?>" class="btn btn-primary"> View</a>&nbsp;
-                       <?php $value = explode("/",$data['image2']);
+                      <a href="<?php echo $image2 ; ?>" class="btn btn-primary"> View</a>&nbsp;
+                       <?php $value = explode("/",$image2);
                         echo substr($value[7],0,25); ?>   
                         <button type="button"  class="btn btn-danger" id="remove-document2" style="margin-left:10px;">Remove</button>
                       </span>
@@ -140,19 +143,18 @@ include'includes/header_login.php';
                 <div class="form-group">
                   <div class="col-md-4">
                     <label class="control-label">Upload Image </label>
-                    <input type="file" required id="document3-chosen" name="image3" accept="jpg/*"><br>
+                    <input type="file" id="document3-chosen" name="image3" accept="png, jpg/*"><br>
                   </div>
                   <div class="col-md-8">
                     <br>
-                    <?php if(!empty($data['image3'])) {?>
+                    <?php if(!empty($image3)) {?>
                     
                       <span id = "show-document3">
-                      <a href="<?php echo $data['image3'] ; ?>" class="btn btn-primary"> View</a>&nbsp;
-                       <?php $value = explode("/",$data['image3']);
+                      <a href="<?php echo $image3 ; ?>" class="btn btn-primary"> View</a>&nbsp;
+                       <?php $value = explode("/",$image3);
                         echo substr($value[7],0,25); ?>   
                         <button type="button"  class="btn btn-danger" id="remove-document3" style="margin-left:10px;">Remove</button>
                       </span>
-                      
                       <?php } 
                       else { ?>
                       <span> No Document Available </span>
@@ -173,6 +175,13 @@ include'includes/header_login.php';
 <?php
 include'includes/footer.php';
 ?>
+<script>
+  $( function() {
+    $( "#datepicker1" ).datepicker({ dateFormat: 'dd/mm/yy' }).val();
+    $( "#datepicker2" ).datepicker({ dateFormat: 'dd/mm/yy' }).val();
+     $( "#datepicker3" ).datepicker({ dateFormat: 'dd/mm/yy' }).val();
+  } );
+</script>
 <script>
   $("#remove-document1").click(function(){
       document.getElementById("document1-removed").value = '1';
