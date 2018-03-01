@@ -60,18 +60,25 @@ class AddVessel extends CI_Controller
             $bale = str_replace(',','',$bale);
             $dwt = str_replace(',','',$dwt);
 
-            $directory_name = '../LyndonMarineImages/VesselImages/'.$vessel_name;//print_r($directory_name);die();
-if(!is_dir($directory_name))
-    {
-        mkdir($directory_name);
-    }
-    		$target_dir = TARGET_DIR;
-    
-            $image_base_url = VESSEL_IMAGES_BASE_URL.'/'.$vessel_name.'/';
+           $vesselfolder = '/VesselImages/';
+            $directory_name = '../LyndonMarineImages/LyndonMarineVessels/'.$vessel_name;
+            if(!is_dir($directory_name))
+                {
+                    mkdir($directory_name);
+                }   
+            
+            $image_directory = $directory_name.$vesselfolder; //print_r($image_directory);die();
+            if(!is_dir($image_directory))
+                {
+                    mkdir($image_directory);
+                }
+                     /* Upload Documents */
+            $target_dir = TARGET_DIR;
+            $image_base_url = VESSEL_IMAGES_BASE_URL.$vessel_name.$vesselfolder;
            
             for($i=1;$i<=5;$i++)
             {
-                $target_file[$i] = $directory_name.'/'. basename($_FILES["image".$i]["name"]);
+                $target_file[$i] = $image_directory.'/'. basename($_FILES["image".$i]["name"]);
                 $imageFileType[$i]= pathinfo($target_file[$i],PATHINFO_EXTENSION);
                 move_uploaded_file($_FILES["image".$i]["tmp_name"], $target_file[$i]);
                 if ($_REQUEST['image'.$i.'-removed'] == '1')
