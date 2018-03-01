@@ -1,20 +1,8 @@
 <?php
-include'includes/header_login.php'
+include'includes/header_login.php';
+include'includes/CheckUserLogin.php';
 ?>
-<!-- <section id="main-edit">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-2">
-        <div class="main-edit-add"> <a class="btn-blue" href="<?php echo base_url();?>index.php/VesselRecommendation/index/<?php echo $vessel_id ; ?>">Go Back </a> 
-        </div>   
-      </div>
-     
-      <div class="col-md-3">
-        <div class="main-edit-add"> <a class="btn-blue" href="<?php echo base_url();?>index.php/AddRecommendationScreen/index/<?php echo $vessel_id;?>">Add</a> </div>
-      </div>
-    </div>
-  </div>
-</section> -->
+
 <section id="main-edit">
   <div class="container">
     
@@ -34,14 +22,13 @@ include'includes/header_login.php'
 <section id="top_mail">
   <div class="container">
       <div class="row"> 
-        
         <div class="col-md-3">
         <div class="main-edit-add-left"> <a class="btn-blue" href="<?php echo base_url();?>index.php/FleetDetails/index/<?php echo $vessel_id; ?>">Go Back</a>                
           </div>       
       </div>
       
       <div class="col-md-4">
-      
+      <!-- for alignment of add button towards right . -->
       </div>
       
       <div class="col-md-5">
@@ -103,7 +90,7 @@ include'includes/header_login.php'
                   <a href="<?php echo base_url();?>index.php/DeleteRecommendation/index/<?php echo $data['recommendation_id']; ?>/<?php echo $data['vessel_id']; ?>" Onclick="return confirm('Are you Sure?');" class="btn-bk">
                     <i class="fa fa-trash" aria-hidden="true"></i>
                   </a>
-                  <a href="<?php echo base_url();?>index.php/EditRecommendation/index/<?php echo $data['recommendation_id']; ?>" class="btn-bk">
+                  <a href="<?php echo base_url();?>index.php/EditRecommendation/index/<?php echo $data['recommendation_id']; ?>/<?php echo $data['vessel_id']; ?>" class="btn-bk">
                     <i class="fa fa-pencil" aria-hidden="true"></i>
                   </a>
                </td>
