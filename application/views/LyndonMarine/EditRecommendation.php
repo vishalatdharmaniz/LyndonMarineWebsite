@@ -21,7 +21,7 @@ include'includes/header_login.php';
                                   $recommendation_date=$data['recommendation_date'] ; 
                                   $due_date=$data['due_date'] ; 
                                   $description=$data['description'] ; 
-                                  $rectified_status=$data['rectified_status'] ; 
+                                  $rectified_status=$data['rectified_status'] ;
                                   $rectified_date=$data['rectified_date'] ; 
                                   $rectified_by=$data['rectified_by'] ; 
                                   $reminder=$data['reminder'] ; 
@@ -66,10 +66,10 @@ include'includes/header_login.php';
             <div class="row">
               <div class="form-group col-md-12">
                   <p>Is it get rectified</p>
-                <label class="control-label">Yes
-                <input type="radio" name="rectified_status" value="Yes"></label>
+                <label class="control-label">Yes 
+                <input type="radio" name="rectified_status" value=" Yes"<?php echo ($rectified_status== 'Yes') ?  "checked" : "" ;  ?>"></label>
                  <label class="control-label">No
-                <input type="radio" name="rectified_status" value="No"></label>
+                <input type="radio" name="rectified_status" value="No"<?php echo ($rectified_status== 'No') ?  "checked" : "" ;  ?>"></label>
                 Show Rectified Date and Rectified by only when it gets rectified.
               </div>
               

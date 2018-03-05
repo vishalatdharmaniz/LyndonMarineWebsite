@@ -145,6 +145,7 @@ else
     define('DOCUMENT_BASE_URL', 'http://root.lyndonmarine.com/LyndonMarineImages/LyndonMarineVessels/');
 }
 
+
 /* Recommendation Base Url */
 
 if (ENVIRONMENT == 'development')
@@ -182,7 +183,7 @@ else
 
 if (ENVIRONMENT == 'development')
 {
-    define('TARGET_DIR', '/LyndonMarineImages');
+    define('TARGET_DIR', '../LyndonMarineImages');
 }
 else
 {
