@@ -19,9 +19,7 @@ class AddRecommendation extends CI_Controller
 			$rectified_date = $this->input->post('rectified_date');
 			$rectified_by = $this->input->post('rectified_by');
 			$reminder = $this->input->post('reminder');
-			
-			$due_date = date("d/m/Y", strtotime($due_date));
-			
+
 			
               $directory_name = '../LyndonMarineImages/VesselImages/'.$vessel_name;
 

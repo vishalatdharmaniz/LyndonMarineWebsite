@@ -51,7 +51,7 @@ include'includes/header_login.php';
             <div class="row">
             	<div class="doc-img">
                 	<ul>
-                    	<li>
+                    	<li> 
                       <?php if(!empty($vessel_plans['upload_plan1'])) {?>
                       <a href="<?php echo $vessel_plans['upload_plan1']; ?>" target="_blank"><img src="http://via.placeholder.com/100x100" class="img-responsive"> </a><br>
                       <span><?php $value = explode("/",$vessel_plans['upload_plan1']);echo substr($value[6],0,20); ?></span>

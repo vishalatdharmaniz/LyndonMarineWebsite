@@ -11,7 +11,7 @@ class MailCertificateDetail extends CI_Controller {
         
         $certificate_data = $this->Certificate_model->get_certificate_details_by_certificate_id($certificate_id);
 
-        $data['certificate_data'] = $certificate_data[0];
+        $data['certificate_data'] = $certificate_data[0]; 
 
         $certificate_no = $certificate_data[0]["certificate_no"];
         $certificate_name = $certificate_data[0]["certificate_name"];
@@ -68,8 +68,8 @@ class MailCertificateDetail extends CI_Controller {
     public function multiple_vessels($checkbox_ids, $email_of_recepient)
     {
         $return_url_after_search_and_mail = $this->agent->referrer();
-        $checkbox_ids_array = explode("@", $checkbox_ids);
-        $checkbox_ids = array();
+        $checkbox_ids_array = explode("@", $checkbox_ids);  
+        $checkbox_ids = array(); 
         foreach ($checkbox_ids_array as $checkbox_id)
         {
             $checkbox_id = str_replace("checkbox","", $checkbox_id);
@@ -80,7 +80,7 @@ class MailCertificateDetail extends CI_Controller {
         $this->load->model('Vessel_model');
 
         $txt = "Good Day <br><br> Please find here list of certificates requested:<br><br><br>";
- $certificate_id= $checkbox_ids[0];
+        $certificate_id= $checkbox_ids[0];
         $certificate_data = $this->Certificate_model->get_certificate_details_by_certificate_id($certificate_id);
            $vessel_id = $certificate_data[0]["vessel_id"];
             $vessel_data = $this->Vessel_model->get_vessel_details_by_id($vessel_id); 

@@ -12,7 +12,8 @@ class AddPlans extends CI_Controller
 			$plan_name = $this->input->post('plan_name');
 			$description = $this->input->post('description');
 	
-	$directory_name = '../LyndonMarineImages/CertificateDocuments/'.$plan_name;
+	$directory_name = '../LyndonMarineImages/LyndonMarineVessels/'.$plan_name;
+
 			if(!is_dir($directory_name))
 			    {
 			        mkdir($directory_name);
@@ -20,17 +21,16 @@ class AddPlans extends CI_Controller
 
 					 /* Upload Documents */
 			$target_dir = TARGET_DIR;
-			$base_url_website = DOCUMENT_BASE_URL.'/'.$plan_name.'/';
+			$base_url_website = DOCUMENT_BASE_URL.$plan_name.'/';
             for($i=1;$i<=2;$i++)
             {
 
 		            	if ($_FILES["upload_plan".$i]["name"] != NULL)
 		            {
 		            	
-		                $target_file = $directory_name.'/'. basename($_FILES["upload_plan".$i]["name"]);
-		                //print_r($target_file);die();
+		                $target_file = $directory_name.'/'. basename($_FILES["upload_plan".$i]["name"]); 
 		                move_uploaded_file($_FILES['upload_plan'. $i]['tmp_name'], $target_file);
-		                $upload_plan[$i] = $base_url_website. $_FILES["upload_plan".$i]["name"];   
+		                $upload_plan[$i] = $base_url_website. $_FILES["upload_plan".$i]["name"];  
 		            }
 		            else
 		            {
