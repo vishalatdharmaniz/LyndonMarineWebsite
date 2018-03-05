@@ -86,7 +86,7 @@ include'includes/CheckUserLogin.php';
             $due_date = strtotime($data['due_date']);
             $date_of_supply = strtotime($data['date_of_supply']);
             $caldays = $due_date - $now;
-          
+
             if($date_of_supply>$now && $date_of_supply>$due_date)
             {
             $caldays = $date_of_supply - $due_date;  
@@ -115,17 +115,11 @@ include'includes/CheckUserLogin.php';
                 <td><?php echo $currency; ?></td>
                 <td class="text-center"><a href="<?php echo $document1; ?>" class="btn btn-primary">View</td>
                 <td>
-                  <?php if($calday>30 && $calday<=45) { ?>
-                  <button type="button" class="update text-center btn btn-yelow btn-sm"></button>
-                  <?php }
-                  elseif($calday>=1 && $calday<=30) { ?>
-                  <button type="button" class="update text-center btn btn-brwon btn-sm"></button>
-                  <span id="text"></span>
-                  <?php } 
-                  elseif($calday<=0) { ?>
+                 <?php 
+                 if($calday<=0) { ?>
                   <button type="button" class="update text-center btn btn-red btn-sm"></button>
                   <?php }
-                  elseif($calday>45) { ?>
+                  elseif($calday>15) { ?>
                   <button type="button" class="update text-center btn btn-green btn-sm"></button>
                   <?php } ?>
               </td>
