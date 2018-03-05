@@ -84,11 +84,12 @@ include'includes/CheckUserLogin.php';
                     $now = time(); 
 
             $due_date = strtotime($data['due_date']);
-            $extention_date = strtotime($data['extention_until']);
-            $caldays = $expiry_date - $now;
-            if($extention_date>$now && $extention_date>$expiry_date)
+            $date_of_supply = strtotime($data['date_of_supply']);
+            $caldays = $due_date - $now;
+          
+            if($date_of_supply>$now && $date_of_supply>$due_date)
             {
-            $caldays = $extention_date - $expiry_date; 
+            $caldays = $date_of_supply - $due_date;  
             $calday =  round($caldays / (60 * 60 * 24));
             }
             $calday =  round($caldays / (60 * 60 * 24));
