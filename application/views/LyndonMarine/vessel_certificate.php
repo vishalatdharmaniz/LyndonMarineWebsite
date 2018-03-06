@@ -36,7 +36,7 @@ include'includes/header_login.php';
         
         <div class="col-md-3">
         <div class="main-edit-add-left"> <a class="btn-blue" href="<?php echo base_url();?>index.php/FleetDetails/index/<?php echo $vessel_id; ?>">Go Back</a>				          </div>       
-      </div>
+         </div>
       
       <div class="col-md-4">
       <div class="input-group">
@@ -199,8 +199,7 @@ include'includes/header_login.php';
             </thead>
             <tbody>
 		<?php foreach($certificate_data as $data)
-				{ ?>
-				  <?php
+				{ 
 					  $now = time(); 
 
 					  $expiry_date = strtotime($data['date_expiry']);

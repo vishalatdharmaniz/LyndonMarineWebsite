@@ -111,7 +111,7 @@ include'includes/header_login.php';
           </div>
         </div>
 		<div class="col-md-3">
-          <div class="done-text"> <a href="#"><img src="<?php echo base_url(); ?>img/icon/crew.png" class="img-responsive"></a>
+          <div class="done-text"> <a href="<?php echo base_url() ;?>index.php/CrewDetails/index/<?php echo $vessel['vessel_id']; ?>"><img src="<?php echo base_url(); ?>img/icon/crew.png" class="img-responsive"></a>
             <h3>Crew </h3>
           </div>
         </div>  

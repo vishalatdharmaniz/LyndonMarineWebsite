@@ -41,8 +41,7 @@ class EditBunkerSupply extends CI_Controller
 			$currency = $_REQUEST['currency'];
 			$paid = $_REQUEST['paid'];
 			$paid_date = $_REQUEST['paid_date'];
-			
-			$due_date = date("d/m/Y", strtotime($due_date));
+		
 
 			 $directory_name = '../LyndonMarineImages/BunkerSupplyDocuments/'.$vessel_name; 
 

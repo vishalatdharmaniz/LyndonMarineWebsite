@@ -82,18 +82,20 @@ include'includes/CheckUserLogin.php';
                 foreach ($bunker_supply_data as $data) 
                 {
                     $now = time(); 
+            $due_date =strtotime($data['due_date']) ;  
+            $date_of_supply =strtotime($data['date_of_supply']);  
 
-            $due_date = strtotime($data['due_date']);
-            $extention_date = strtotime($data['extention_until']);
-            $caldays = $expiry_date - $now;
-            if($extention_date>$now && $extention_date>$expiry_date)
+            $caldays = $due_date - $now; 
+
+            if($due_date>$now && $due_date>$date_of_supply)
             {
-            $caldays = $extention_date - $expiry_date; 
-            $calday =  round($caldays / (60 * 60 * 24));
+            $caldays = $due_date - $date_of_supply;   
+            $calday =  round($caldays / (60 * 60 * 24));  
             }
-            $calday =  round($caldays / (60 * 60 * 24));
-
-          
+    
+            $calday =  round($caldays / (60 * 60 * 24));  
+             
+            
                   $bunker_id=$data['bunker_id'];
                   $date_of_supply=$data['date_of_supply']; 
                   $suppliers=$data['suppliers'];
@@ -114,17 +116,11 @@ include'includes/CheckUserLogin.php';
                 <td><?php echo $currency; ?></td>
                 <td class="text-center"><a href="<?php echo $document1; ?>" class="btn btn-primary">View</td>
                 <td>
-                  <?php if($calday>30 && $calday<=45) { ?>
-                  <button type="button" class="update text-center btn btn-yelow btn-sm"></button>
-                  <?php }
-                  elseif($calday>=1 && $calday<=30) { ?>
-                  <button type="button" class="update text-center btn btn-brwon btn-sm"></button>
-                  <span id="text"></span>
-                  <?php } 
-                  elseif($calday<=0) { ?>
+                 <?php 
+                 if($calday<=0) { ?>
                   <button type="button" class="update text-center btn btn-red btn-sm"></button>
                   <?php }
-                  elseif($calday>45) { ?>
+                  elseif($calday>7) { ?>
                   <button type="button" class="update text-center btn btn-green btn-sm"></button>
                   <?php } ?>
               </td>
@@ -170,11 +166,9 @@ include'includes/CheckUserLogin.php';
                
               </tr>
                 <tr>
-                <td><button type="button" class="update text-center btn btn-default btn-sm"></button></td>
-                <td>Paid</td>
-               
-              </tr>
-              
+                  <td><button type="button" class="update text-center btn btn-default btn-sm"></button></td>
+                  <td>Paid</td>
+                </tr>   
             </tbody>
           </table>
         </div>

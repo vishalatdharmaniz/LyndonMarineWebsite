@@ -13,7 +13,7 @@ class AddBunkerSupply extends CI_Controller
     	$vessel_data=$this->BunkerSupply_model->get_vessel_details_by_vessel_id($vessel_id);
     	$vessel_name=$vessel_data[0]['vessel_name'];  
 
-       $date_of_supply = $this->input->post('date_of_supply');  
+          $date_of_supply = $this->input->post('date_of_supply');  
 			$port_of_supply = $this->input->post('port_of_supply');  
 			$suppliers = $this->input->post('suppliers');
 			$due_date = $this->input->post('due_date');

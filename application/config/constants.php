@@ -177,6 +177,20 @@ else
 {
     define('BUNKER_SUPPLY_BASE_URL', 'http://root.lyndonmarine.com/LyndonMarineImages/BunkerSupplyDocuments');
 }
+/* Crew Details Base Url */
+
+if (ENVIRONMENT == 'development')
+{
+    define('CREW_DETAILS_BASE_URL', 'http://localhost/LyndonMarineImages/CrewDetailsDocuments');
+}
+elseif(ENVIRONMENT == 'production')
+{
+    define('CREW_DETAILS_BASE_URL', 'http://dharmani.com/LyndonMarineImages/CrewDetailsDocuments');
+}
+else
+{
+    define('CREW_DETAILS_BASE_URL', 'http://root.lyndonmarine.com/LyndonMarineImages/CrewDetailsDocuments');
+}
 
 /* Target Dir */
 
