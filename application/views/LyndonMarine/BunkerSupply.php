@@ -82,19 +82,20 @@ include'includes/CheckUserLogin.php';
                 foreach ($bunker_supply_data as $data) 
                 {
                     $now = time(); 
+            $due_date =strtotime($data['due_date']) ;  
+            $date_of_supply =strtotime($data['date_of_supply']);  
 
-            $due_date = strtotime($data['due_date']);
-            $date_of_supply = strtotime($data['date_of_supply']);
-            $caldays = $due_date - $now;
+            $caldays = $due_date - $now; 
 
-            if($date_of_supply>$now && $date_of_supply>$due_date)
+            if($due_date>$now && $due_date>$date_of_supply)
             {
-            $caldays = $date_of_supply - $due_date;  
-            $calday =  round($caldays / (60 * 60 * 24));
+            $caldays = $due_date - $date_of_supply;   
+            $calday =  round($caldays / (60 * 60 * 24));  
             }
-            $calday =  round($caldays / (60 * 60 * 24));
-
-          
+    
+            $calday =  round($caldays / (60 * 60 * 24));  
+             
+            
                   $bunker_id=$data['bunker_id'];
                   $date_of_supply=$data['date_of_supply']; 
                   $suppliers=$data['suppliers'];
@@ -119,7 +120,7 @@ include'includes/CheckUserLogin.php';
                  if($calday<=0) { ?>
                   <button type="button" class="update text-center btn btn-red btn-sm"></button>
                   <?php }
-                  elseif($calday>15) { ?>
+                  elseif($calday>7) { ?>
                   <button type="button" class="update text-center btn btn-green btn-sm"></button>
                   <?php } ?>
               </td>
@@ -165,11 +166,9 @@ include'includes/CheckUserLogin.php';
                
               </tr>
                 <tr>
-                <td><button type="button" class="update text-center btn btn-default btn-sm"></button></td>
-                <td>Paid</td>
-               
-              </tr>
-              
+                  <td><button type="button" class="update text-center btn btn-default btn-sm"></button></td>
+                  <td>Paid</td>
+                </tr>   
             </tbody>
           </table>
         </div>

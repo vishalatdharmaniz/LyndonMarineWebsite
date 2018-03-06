@@ -72,7 +72,20 @@ include'includes/CheckUserLogin.php';
               </tr>
             </thead>
             <tbody>
-            <?php foreach($recommendation_data as $data) { ?>
+            <?php foreach($recommendation_data as $data) {
+              $now=time();
+            $due_date = strtotime($data['due_date']);
+            $recommendation_date = strtotime($data['recommendation_date']);
+            $caldays = $due_date - $now;
+
+            if($recommendation_date>$now && $recommendation_date>$due_date)
+            {
+            $caldays = $recommendation_date - $due_date;  
+            $calday =  round($caldays / (60 * 60 * 24));
+            }
+            $calday =  round($caldays / (60 * 60 * 24));
+             ?>
+
               <tr>
                 <td><?php echo $data['recommendation_type']; ?></td>
                 <td><?php echo $data['recommendation_date']; ?></td>
@@ -80,8 +93,15 @@ include'includes/CheckUserLogin.php';
                 <td><?php echo $data['description']; ?></td>
                 <td><?php echo $data['rectified_status']; ?></td>
                  <td><?php echo $data['rectified_by']; ?></td>
-                <td><?php echo $data['rectified_date']; ?></td>
-                <td><button type="button" class="update text-center btn btn-danger btn-sm"></button></td>
+                <td><?php echo $data['rectified_date']; ?></td> <td>
+                 <?php 
+                 if($calday<=0) { ?>
+                  <button type="button" class="update text-center btn btn-red btn-sm"></button>
+                  <?php }
+                  elseif($calday>15) { ?>
+                  <button type="button" class="update text-center btn btn-green btn-sm"></button>
+                  <?php } ?>
+              </td>
                  <td class="text-center"><a href="<?php echo base_url(); ?>index.php/ViewRecommendation/index/<?php echo $vessel_id;?>" class="btn btn-primary">View</td>
                 <td>
                     <input type="checkbox" name="checkbox" id="checkbox<?php echo $data['vessel_id']; ?>">
