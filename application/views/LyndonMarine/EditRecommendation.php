@@ -50,13 +50,13 @@ include'includes/header_login.php';
               </div>
               <div class="form-group col-md-6">
                 <label class="control-label">Recommendation Date</label>
-                <input type="text" id="datepicker1" name="recommendation_date" value="<?Php echo $recommendation_date; ?>" class="form-control-text">
+                <input type="text" id="datepicker1" name="recommendation_date" value="<?Php echo date("d-m-Y",strtotime($recommendation_date)); ?>" class="form-control-text">
               </div>
             </div>
             <div class="row">
               <div class="form-group col-md-6">
                 <label class="control-label">Due Date</label>
-                <input type="text" id="datepicker2" name="due_date" value="<?Php echo $due_date; ?>" class="form-control-text">
+                <input type="text" id="datepicker2" name="due_date" value="<?Php echo date("d-m-Y",strtotime($due_date)); ?>" class="form-control-text">
               </div>
               <div class="form-group col-md-6">
                 <label class="control-label">Description</label>

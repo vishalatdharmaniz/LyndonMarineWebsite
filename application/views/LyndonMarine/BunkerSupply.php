@@ -64,9 +64,9 @@ include'includes/CheckUserLogin.php';
           <table class="table table-bordered table-hover">
             <thead>
               <tr>
-                <th>Supply Date</th>
                 <th>Supplier Name</th>
                 <th>Supply Port</th>
+                <th>Supply Date</th>
                 <th>Due Date</th>
                 <th>Invocie Amount</th>
                 <th>Currency</th>
@@ -93,31 +93,29 @@ include'includes/CheckUserLogin.php';
             $calday =  round($caldays / (60 * 60 * 24));  
             }
     
-            $calday =  round($caldays / (60 * 60 * 24));  
+            $calday =  round($caldays / (60 * 60 * 24)); 
              
             
                   $bunker_id=$data['bunker_id'];
-                  $date_of_supply=$data['date_of_supply']; 
                   $suppliers=$data['suppliers'];
                   $port_of_supply=$data['port_of_supply'];
-                  $due_date=$data['due_date'];
                   $invoice_amount=$data['invoice_amount'];
                   $currency=$data['currency'];
-                  $document1=$data['document1'];
-                  
-                
+                  $document1=$data['document1'];    
+                  $supply_date=$data['date_of_supply'];
+                  $date_due=$data['due_date'];
               ?>          
               <tr>
-                <td><?php echo $date_of_supply; ?></td>
                 <td><?php echo $suppliers; ?></td>
                 <td><?php echo $port_of_supply; ?></td>
-                <td><?php echo $due_date; ?></td>
+                <td><?php echo date("d-m-Y",strtotime($supply_date)); ?></td>
+                <td><?php echo date("d-m-Y",strtotime($date_due)); ?></td>
                 <td><?php echo $invoice_amount; ?></td>
                 <td><?php echo $currency; ?></td>
                 <td class="text-center"><a href="<?php echo $document1; ?>" class="btn btn-primary">View</td>
                 <td>
                  <?php 
-                 if($calday<=0) { ?>
+                 if($calday<=7) { ?>
                   <button type="button" class="update text-center btn btn-red btn-sm"></button>
                   <?php }
                   elseif($calday>7) { ?>

@@ -22,7 +22,7 @@ include'includes/header_login.php';
             <div class="row">
               <div class="form-group col-md-6">
                 <label class="control-label">Type of Recommendation</label>
-                <select required class="form-control-text" id="sel1" name="recommendation_type">
+                <select required class="form-control-text" required id="sel1" name="recommendation_type">
                   <option>Type of Recommendation</option>
                   <option value="management">Management</option>
                   <option value="text2">dummy text</option>
@@ -31,13 +31,13 @@ include'includes/header_login.php';
               </div>
               <div class="form-group col-md-6">
                 <label class="control-label">Recommendation Date</label>
-                <input type="text" id="datepicker1" name="recommendation_date" placeholder="Recommendation Date" class="form-control-text">
+                <input type="text" id="datepicker1" name="recommendation_date" required placeholder="Recommendation Date" class="form-control-text">
               </div>
             </div>
             <div class="row">
               <div class="form-group col-md-6">
                 <label class="control-label">Due Date</label>
-                <input type="text" id="datepicker2" name="due_date" placeholder="Due Date" class="form-control-text">
+                <input type="text" id="datepicker2" name="due_date" required placeholder="Due Date" class="form-control-text">
               </div>
               <div class="form-group col-md-6">
                 <label class="control-label">Description</label>
@@ -47,10 +47,10 @@ include'includes/header_login.php';
             <div class="row">
               <div class="form-group col-md-12">
                   <p>Is it get rectified</p>
-                <label class="control-label">Yes
-                <input type="radio" name="rectified_status" value="Yes"></label>
+                <label class="control-label" >Yes
+                <input type="radio" name="rectified_status" value="Yes" required></label>
                  <label class="control-label">No
-                <input type="radio" name="rectified_status" value="No"></label>
+                <input type="radio" name="rectified_status" value="No" required></label>
                 Show Rectified Date and Rectified by only when it gets rectified.
               </div>
               

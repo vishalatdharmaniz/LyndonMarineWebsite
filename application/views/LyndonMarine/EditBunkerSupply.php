@@ -52,7 +52,7 @@ include'includes/CheckUserLogin.php';
             <div class="row">
               <div class="form-group col-md-6">
                 <label class="control-label">Date Of Supply</label>
-                <input type="text" id="datepicker1" placeholder="Date of Supply" name="date_of_supply" required="Date Of Supply" value="<?php echo $date_of_supply; ?>" class="form-control-text">
+                <input type="text" id="datepicker1" placeholder="Date of Supply" name="date_of_supply" required="Date Of Supply" value="<?php echo date("d-m-Y",strtotime($date_of_supply)); ?>" class="form-control-text">
               </div>
               <div class="form-group col-md-6">
                 <label class="control-label">Port of Supply</label>
@@ -66,7 +66,7 @@ include'includes/CheckUserLogin.php';
               </div>
                 <div class="form-group col-md-6">
                 <label class="control-label">Due Date</label>
-                <input type="text" id="datepicker2" placeholder="Due Date" value="<?php echo $due_date ; ?>" name="due_date" class="form-control-text">
+                <input type="text" id="datepicker2" placeholder="Due Date" value="<?php echo date("d-m-Y",strtotime($due_date)); ?>" name="due_date" class="form-control-text">
               </div>
             </div>
             

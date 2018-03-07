@@ -20,7 +20,13 @@ class AddRecommendation extends CI_Controller
 			$rectified_by = $this->input->post('rectified_by');
 			$reminder = $this->input->post('reminder');
 
-			
+
+		       $rec_date=str_replace("/", "-", $recommendation_date); 
+		       $rec_date=date("Y-m-d",strtotime($rec_date)); 
+		       
+		       $date_due=str_replace("/", "-", $due_date);
+		       $date_due=date("Y-m-d",strtotime($date_due));
+		
               $directory_name = '../LyndonMarineImages/VesselImages/'.$vessel_name;
 
         if(!is_dir($directory_name))
@@ -57,8 +63,8 @@ class AddRecommendation extends CI_Controller
 
 				$data = array(
 					'recommendation_type' => $recommendation_type,
-					'recommendation_date' => $recommendation_date,
-					'due_date' => $due_date,
+					'recommendation_date' => $rec_date,
+					'due_date' => $date_due,
 					'description' => $description,
 					'rectified_status' => $rectified_status,
 					'rectified_date' => $rectified_date,

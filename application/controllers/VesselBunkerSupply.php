@@ -63,7 +63,7 @@ class VesselBunkerSupply extends CI_Controller
 	 
 	
   }
-
+/*public function view_bunker_invoice()*/
 
 }
 ?>
