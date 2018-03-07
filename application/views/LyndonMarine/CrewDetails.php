@@ -12,8 +12,7 @@ include'includes/CheckUserLogin.php';
           <h2>Crew Details </h2> <br>
         </div> 
       </div>
-    </div>
-     
+    </div>  
   </div>
 </section>
 
@@ -32,8 +31,10 @@ include'includes/CheckUserLogin.php';
       <div class="col-md-5">
         <div class="list_right">
         <ul class="main-edit-add"> 
-        <li><a class="btn-blue" href="<?php echo base_url();?>index.php/CrewDetails/AddCrewDetailsScreen/<?php echo $vessel_id; ?>">Add </a></li>
-        
+            <li>
+              <a class="btn-blue" href="<?php echo base_url();?>index.php/CrewDetails/AddCrewDetailsScreen/<?php echo $vessel_id; ?>">Add </a>
+            </li>
+        <li><a class="btn-blue" onclick="mail_selected_vessels()" >Mail Selected Document</a></li>
           </ul>
          </div>
          </div>
@@ -60,7 +61,7 @@ include'includes/CheckUserLogin.php';
                 <th>Seaman Passport No.</th>
                 <th>Rank</th>
                 <th>Salary</th>
-                <th class="text-center">Documents</th>
+                <th class="text-center">Document</th>
                 <th>Select</th>
               </tr>
             </thead>
@@ -74,7 +75,7 @@ include'includes/CheckUserLogin.php';
                 $seaman_p_number=$data['seaman_p_num'];
                 $rank=$data['rank'];
                 $salary=$data['salary'];
-                $document=$data['document'];
+                
 
                 ?>
                 <tr>
@@ -84,11 +85,11 @@ include'includes/CheckUserLogin.php';
                   <td><?php echo $rank; ?></td>
                   <td><?php echo $salary; ?></td>
                   <td class="text-center">
-                 <!-- <a href="<?php echo base_url(); ?>index.php/CrewDetails/view_crew_details/<?php echo $crew_id; ?>" class="btn btn-primary">View
-                  -->view </td>
-                  <td>
-                    <input type="checkbox" name="checkbox" id="checkbox<?php echo $data['vessel_id']; ?>">
+                 <a href="<?php echo base_url(); ?>index.php/CrewDetails/view_crew_details/<?php echo $crew_id; ?>" class="btn btn-primary">View
                   </td>
+                  <td>
+                    <input type="checkbox" name="checkbox" id="checkbox<?php echo $data['crew_id']; ?>">
+                </td>
                 </tr>
                 <?php
                      }
@@ -106,3 +107,37 @@ include'includes/CheckUserLogin.php';
 <?php
 include'includes/footer.php';
 ?>
+<script >
+  
+function getCheckedBoxes(chkboxName) 
+     {
+      var checkboxes = document.getElementsByName(chkboxName);
+      var checkboxesChecked = [];
+      // loop over them all
+      for (var i=0; i<checkboxes.length; i++) {
+          // And stick the checked ones onto an array...
+          if (checkboxes[i].checked) {
+              checkboxesChecked.push(checkboxes[i]);
+          }
+      }
+      // Return the array if it is non-empty, or null
+      return checkboxesChecked.length > 0 ? checkboxesChecked : null;
+      }
+
+function mail_selected_vessels()
+{
+    var checkedBoxes = getCheckedBoxes("checkbox");
+    var checkbox_ids = ''; 
+    for (var index = 0; index < checkedBoxes.length; index++) 
+    {
+        var checkbox_id = checkedBoxes[index].getAttribute("id");
+        checkbox_ids+=checkbox_id+"&";
+    }
+    var email = prompt("Please enter the Email of recepient:", "abc@gmail.com");
+    if (email != null) {
+        checkbox_ids = checkbox_ids.slice(0,-1)
+        window.location.href = "<?php echo site_url(); ?>/MailCrewDocuments/index/"+checkbox_ids+"/"+email;
+    }
+
+}
+</script>

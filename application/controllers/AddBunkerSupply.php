@@ -30,6 +30,13 @@ class AddBunkerSupply extends CI_Controller
 			$currency = $this->input->post('currency');
 			$paid = $this->input->post('paid');
 			$paid_date = $this->input->post('paid_date');
+
+
+               $supply_date=str_replace("/", "-", $date_of_supply); 
+               $supply_date=date("Y-m-d",strtotime($supply_date)); 
+               
+               $date_due=str_replace("/", "-", $due_date);
+               $date_due=date("Y-m-d",strtotime($date_due));
 			
 			 $directory_name = '../LyndonMarineImages/BunkerSupplyDocuments/'.$vessel_name; 
 
@@ -64,7 +71,7 @@ class AddBunkerSupply extends CI_Controller
                 $this->load->model('BunkerSupply_model');
                 $data = array(
                 	'vessel_id' => $vessel_id,
-					'date_of_supply' => $date_of_supply,
+					'date_of_supply' => $supply_date,
 					'suppliers' => $suppliers,
 					'port_of_supply' => $port_of_supply,
 					'mdo' => $mdo,
@@ -76,7 +83,7 @@ class AddBunkerSupply extends CI_Controller
 					'others' => $others,
 					'remarks' => $remarks,
 					'reminder' => $reminder,
-					'due_date' => $due_date,
+					'due_date' => $date_due,
 					'invoice_amount' => $invoice_amount,
 					'currency' => $currency,
 					'document1' => $document[1],

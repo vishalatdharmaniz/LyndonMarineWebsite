@@ -74,28 +74,33 @@ include'includes/CheckUserLogin.php';
             <tbody>
             <?php foreach($recommendation_data as $data) {
               $now=time();
-            $due_date = strtotime($data['due_date']);
-            $recommendation_date = strtotime($data['recommendation_date']);
+            
+            $due_date=strtotime($data['due_date']); 
+            $rec_date =strtotime($data['recommendation_date']); 
             $caldays = $due_date - $now;
 
-            if($recommendation_date>$now && $recommendation_date>$due_date)
+            if($due_date>$now && $due_date>$rec_date)
             {
-            $caldays = $recommendation_date - $due_date;  
+            $caldays = $due_date - $rec_date;  
             $calday =  round($caldays / (60 * 60 * 24));
             }
-            $calday =  round($caldays / (60 * 60 * 24));
+            $calday =  round($caldays / (60 * 60 * 24)); 
+
+            $rec_date=$data['recommendation_date'];
+            $date_due=$data['due_date'];
              ?>
 
               <tr>
                 <td><?php echo $data['recommendation_type']; ?></td>
-                <td><?php echo $data['recommendation_date']; ?></td>
-                <td><?php echo $data['due_date']; ?></td>
-                <td><?php echo $data['description']; ?></td>
-                <td><?php echo $data['rectified_status']; ?></td>
-                 <td><?php echo $data['rectified_by']; ?></td>
-                <td><?php echo $data['rectified_date']; ?></td> <td>
+                <td><?php echo date("d-m-Y",strtotime($rec_date)); ?></td>
+                <td><?php echo date("d-m-Y",strtotime($date_due)); ?></td>
+                <td><?php echo ($data['description'] ? $data['description'] : 'N/A'); ?></td>
+                <td><?php echo ($data['rectified_status'] ? $data['rectified_status'] : 'N/A'); ?></td>
+                 <td><?php echo ($data['rectified_by'] ? $data['rectified_by'] : 'N/A'); ?></td>
+                 <td><?php echo ($data['rectified_date'] ? $data['rectified_date'] : 'N/A'); ?></td>
+                <td>
                  <?php 
-                 if($calday<=0) { ?>
+                 if($calday<15) { ?>
                   <button type="button" class="update text-center btn btn-red btn-sm"></button>
                   <?php }
                   elseif($calday>15) { ?>

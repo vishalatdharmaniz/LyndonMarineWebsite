@@ -201,13 +201,13 @@ include'includes/header_login.php';
 		<?php foreach($certificate_data as $data)
 				{ 
 					  $now = time(); 
-
+            $date_of_issue=strtotime($data['date_issue']);
 					  $expiry_date = strtotime($data['date_expiry']);
-					  $extention_date = strtotime($data['extention_until']);
-					  $caldays = $expiry_date - $now;
-					  if($extention_date>$now && $extention_date>$expiry_date)
+					  $extention_date = strtotime($data['extention_until']); 
+					  $caldays = $expiry_date - $date_of_issue;
+					  if($expiry_date>$date_of_issue && $extention_date>$now)
 					  {
-						$caldays = $extention_date - $expiry_date; 
+						$caldays = $expiry_date - $date_of_issue; 
 						$calday =  round($caldays / (60 * 60 * 24));
 					  }
 					  $calday =  round($caldays / (60 * 60 * 24));
@@ -243,7 +243,7 @@ include'includes/header_login.php';
 									<button type="button" class="update text-center btn btn-brwon btn-sm"></button>
 									<span id="text"></span>
 								  <?php } 
-								  elseif($calday<=0) { ?>
+								  elseif($calday<=0){ ?>
 									<button type="button" class="update text-center btn btn-red btn-sm"></button>
 								  <?php }
 								  elseif($calday>45) { ?>

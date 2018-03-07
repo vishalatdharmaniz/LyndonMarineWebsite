@@ -14,7 +14,6 @@ class MailBunkerSupply extends CI_Controller
             $checkbox_id = str_replace("checkbox","", $checkbox_id);
             array_push($checkbox_ids, $checkbox_id);
         }
-// var_dump($checkbox_ids);die();
         $this->load->model('BunkerSupply_model');
       
         $txt = "Good Day <br><br> Please find here list of bunker supply requested:<br><br><br>";
@@ -22,18 +21,13 @@ class MailBunkerSupply extends CI_Controller
         $bunker_supply_data = $this->BunkerSupply_model->get_bunker_supply_data($bunker_id);
            $vessel_id = $bunker_supply_data[0]["vessel_id"];
             $vessel_data = $this->BunkerSupply_model->get_vessel_details_by_vessel_id($vessel_id); 
-/*
-            $txt .= "M/V &nbsp;".$vessel_data[0]['vessel_name']."<br>";
-            $txt .= "IMO Number &nbsp;".$vessel_data[0]['imo_number']."<br><br>";*/
+
 
         foreach ($checkbox_ids as $bunker_id)
         {
 
             $bunker_supply_data = $this->BunkerSupply_model->get_bunker_supply_data($bunker_id);   
-// print_r($bunker_supply_data);die();
-            /* $vessel_id = $bunker_supply_data[0]["vessel_id"];
-            $vessel_data = $this->BunkerSupply_model->get_vessel_details_by_vessel_id($vessel_id);
-           */
+
             $data['bunker_supply_data'] = $bunker_supply_data[0];
             $bunker_supply_name=$bunker_supply_data[0]['suppliers'];
 

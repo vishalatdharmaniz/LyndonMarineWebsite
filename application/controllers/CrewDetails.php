@@ -21,15 +21,21 @@ class CrewDetails extends CI_Controller
 		$this->load->view('LyndonMarine/AddCrewDetails',$data); 
 	}
 
-	/*public function view_crew_details($crew_id)
+	public function view_crew_details($crew_id)
 	{
 		$this->load->model('CrewDetails_model');
 		$crew_details=$this->CrewDetails_model->get_crew_details_by_crew_id($crew_id);
 		$data['crew_details']=$crew_details;
 		$vessel_id=$crew_details[0]['vessel_id'] ; 
 		$data['vessel_id'] = $vessel_id;
-        $this->load->view('LyndonMarine/ViewCertificate',$data);
+        $this->load->view('LyndonMarine/ViewCrewDetails',$data);
 	}
-	*/
+
+	public function mail_crew_details($vessel_id)
+	{
+		$this->load->model('CrewDetails_model');
+		$crew_data=$this->CrewDetails_model->get_crew_details_by_vessel_id($vessel_id);
+
+	}
 }
 ?>

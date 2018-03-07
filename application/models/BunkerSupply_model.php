@@ -46,9 +46,9 @@ class BunkerSupply_model extends CI_Model
 			return COUNT($searchtable_total->result_array());
 	}
 	
-	public function update_bunker_supply($bunker_id,$date_of_supply,$suppliers,$port_of_supply,$mdo,$hfo,$luboil_1_type,$luboil_1_quantity,$luboil_2_type,$luboil_2_quantity,$others,$remarks,$reminder,$due_date,$invoice_amount,$currency,$document1,$document2,$paid,$paid_date)
+	public function update_bunker_supply($bunker_id,$supply_date,$suppliers,$port_of_supply,$mdo,$hfo,$luboil_1_type,$luboil_1_quantity,$luboil_2_type,$luboil_2_quantity,$others,$remarks,$reminder,$date_due,$invoice_amount,$currency,$document1,$document2,$paid,$paid_date)
 	{
-              $this->db->query("UPDATE bunker_supply SET date_of_supply='$date_of_supply' ,suppliers='$suppliers'                                      ,due_date='$due_date',port_of_supply='$port_of_supply',mdo='$mdo',
+              $this->db->query("UPDATE bunker_supply SET date_of_supply='$supply_date' ,suppliers='$suppliers'                                      ,due_date='$date_due',port_of_supply='$port_of_supply',mdo='$mdo',
 									                     hfo='$hfo',luboil_1_type='$luboil_1_type',reminder='$reminder',
 									                     luboil_1_quantity='$luboil_1_quantity',luboil_2_type='$luboil_2_type',
 									                     luboil_2_quantity='$luboil_2_quantity',others='$others',remarks='$remarks',

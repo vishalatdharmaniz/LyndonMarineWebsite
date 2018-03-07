@@ -41,7 +41,14 @@ class EditBunkerSupply extends CI_Controller
 			$currency = $_REQUEST['currency'];
 			$paid = $_REQUEST['paid'];
 			$paid_date = $_REQUEST['paid_date'];
-		
+		          
+
+
+               $supply_date=str_replace("/", "-", $date_of_supply); 
+               $supply_date=date("Y-m-d",strtotime($supply_date)); 
+               
+               $date_due=str_replace("/", "-", $due_date);
+               $date_due=date("Y-m-d",strtotime($date_due));
 
 			 $directory_name = '../LyndonMarineImages/BunkerSupplyDocuments/'.$vessel_name; 
 
@@ -73,7 +80,7 @@ class EditBunkerSupply extends CI_Controller
             }
 
 
- 				$update=$this->BunkerSupply_model->update_bunker_supply($bunker_id,$date_of_supply,$suppliers,$port_of_supply,$mdo,$hfo,$luboil_1_type,$luboil_2_quantity,$luboil_2_type,$luboil_2_quantity,$others,$remarks,$reminder,$due_date,$invoice_amount,$currency,$document[1],$document[2],$paid,$paid_date);
+ 				$update=$this->BunkerSupply_model->update_bunker_supply($bunker_id,$supply_date,$suppliers,$port_of_supply,$mdo,$hfo,$luboil_1_type,$luboil_2_quantity,$luboil_2_type,$luboil_2_quantity,$others,$remarks,$reminder,$date_due,$invoice_amount,$currency,$document[1],$document[2],$paid,$paid_date);
  				
 			$base_url = BASE_URL;
             //header("Location: $base_url/index.php/VesselRecommendation/index");
