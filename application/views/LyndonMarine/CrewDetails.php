@@ -23,9 +23,19 @@ include'includes/CheckUserLogin.php';
         <div class="main-edit-add-left"> <a class="btn-blue" href="<?php echo base_url();?>index.php/FleetDetails/index/<?php echo $vessel_id; ?>">Go Back</a>                
           </div>       
       </div>
-      
+     
       <div class="col-md-4">
-      <!-- for alignment of add button towards right . -->
+      <div class="input-group">
+        <form onsubmit="searchEnter(document.getElementById('search_crew').value); return false;">
+          <input type="text" class="form-control-text" placeholder="Search" name="search" id="search_crew">
+        </form>
+          <span class="input-group-btn">
+            <a class="btn btn-default text-muted" href="" title="Clear" onclick="reset()"><i class="glyphicon glyphicon-remove"></i> </a>
+            <button onclick="search(document.getElementById('search_crew').value)" type="button" class="btn btn-info">
+              <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+            </button>
+          </span>
+        </div>
       </div>
       
       <div class="col-md-5">
@@ -45,11 +55,7 @@ include'includes/CheckUserLogin.php';
 </section>
 <section id="work-done">
   <div class="container">
-    <!--<div class="row">
-      <div class="col-md-8 col-md-offset-2">
-        <div class="img-upload"> <img src="img/image01.jpg" class="img-responsive"> </div>
-      </div>
-    </div>-->
+    
    <div class="row">
       <div class="panel-body">
         <div class="table-responsive">
@@ -108,7 +114,35 @@ include'includes/CheckUserLogin.php';
 include'includes/footer.php';
 ?>
 <script >
-  
+   function search(search_crew)
+{
+    if(search_crew == "")
+    {
+        alert("Please enter a value to be searched");
+    }
+    else
+    {
+            window.location.href = "<?php echo base_url(); ?>index.php/CrewDetails/searchdata/"+search_crew+"/"+<?php echo $data['vessel_id'] ?>;
+    }
+}
+function searchEnter(search_crew)
+{
+    if(search_crew == "")
+    {
+        alert("Please enter a value to be searched");
+    }
+    else
+    {
+      window.location.href = "<?php echo base_url(); ?>index.php/CrewDetails/searchdata/"+search_crew+"/"+<?php echo $data['vessel_id'] ?>;
+    }
+}
+
+function reset(search_crew)
+{
+  $('#search_crew').val('');
+  window.location.href = "<?php echo base_url(); ?>index.php/CrewDetails/index/"+<?php echo $data['vessel_id'] ?>;
+}
+
 function getCheckedBoxes(chkboxName) 
      {
       var checkboxes = document.getElementsByName(chkboxName);

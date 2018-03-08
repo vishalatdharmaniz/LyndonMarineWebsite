@@ -191,6 +191,20 @@ else
 {
     define('CREW_DETAILS_BASE_URL', 'http://root.lyndonmarine.com/LyndonMarineImages/CrewDetailsDocuments');
 }
+/* Soa Details Base Url */
+
+if (ENVIRONMENT == 'development')
+{
+    define('SOA_DETAILS_BASE_URL', 'http://localhost/LyndonMarineImages/SoaDocuments');
+}
+elseif(ENVIRONMENT == 'production')
+{
+    define('SOA_DETAILS_BASE_URL', 'http://dharmani.com/LyndonMarineImages/SoaDocuments');
+}
+else
+{
+    define('SOA_DETAILS_BASE_URL', 'http://root.lyndonmarine.com/LyndonMarineImages/SoaDocuments');
+}
 
 /* Target Dir */
 

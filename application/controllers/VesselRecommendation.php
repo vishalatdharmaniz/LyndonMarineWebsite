@@ -5,6 +5,7 @@ class VesselRecommendation extends CI_Controller
 {
 	public function index($vessel_id)
 	{
+		
 		$this->load->model('Recommendation_model');
     	$recommendation_data = $this->Recommendation_model->get_recommendation_details_by_vessel_id($vessel_id);
     	//var_dump($certificate_data);
