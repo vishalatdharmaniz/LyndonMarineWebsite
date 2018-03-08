@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class CrewDetails extends CI_Controller
 {
-	public function index($vessel_id)
+	public function index($vessel_id,$offset=0)
 	{
         $this->load->library('pagination');
 	 $this->load->model('CrewDetails_model');

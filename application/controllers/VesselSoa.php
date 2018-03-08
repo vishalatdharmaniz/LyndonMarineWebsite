@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class VesselSoa extends CI_Controller
 {
         
-	public function index($vessel_id)
+	public function index($vessel_id,$offset=0)
 	{
 		$this->load->library('pagination');
 	 $this->load->model('Soa_model');
