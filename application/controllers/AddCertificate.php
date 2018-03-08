@@ -34,7 +34,7 @@ class AddCertificate extends CI_Controller
 	            $extention_until = date("Y-m-d", strtotime($extention_until));
             }
 
-            $directory_name = '../LyndonMarineImages/CertificateDocuments/'.$certificate_name;//print_r($directory_name);die();
+            $directory_name = '../LyndonMarineImages/CertificateDocuments/'.$certificate_name;print_r($directory_name);die();
 			if(!is_dir($directory_name))
 			    {
 			        mkdir($directory_name);

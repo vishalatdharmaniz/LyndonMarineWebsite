@@ -25,7 +25,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 if(ENVIRONMENT == 'development')
 {
-	$config['base_url'] = 'http://localhost/LyndonMarineWebsite/';
+	$config['base_url'] = 'http://localhost/dharmani/LyndonMarineWebsite/';
 }
 elseif(ENVIRONMENT == 'production')
 {
