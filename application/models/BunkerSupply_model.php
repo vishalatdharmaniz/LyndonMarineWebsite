@@ -56,5 +56,16 @@ class BunkerSupply_model extends CI_Model
 									                     WHERE bunker_id='$bunker_id' ");
              return true;
 	}
+	public function get_all_bunker_data_for_pagination($vessel_id,$offset)
+    {
+        $all_items = $this->db->query("SELECT * FROM bunker_supply WHERE vessel_id='$vessel_id' LIMIT 10 OFFSET $offset");
+        return $all_items->result_array();
+    }
+
+	public function get_total_bunker($vessel_id)
+    {
+        $count_bunker = $this->db->query("SELECT * FROM bunker_supply WHERE vessel_id = '$vessel_id'");
+        return COUNT($count_bunker->result_array());
+    }
 }
 ?>

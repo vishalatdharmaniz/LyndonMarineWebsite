@@ -31,9 +31,21 @@ class Soa_model extends CI_Model
 		$update_soa=$this->db->query("UPDATE soa_details SET soa_num='$soa_num',soa_date='$date',currency='$currency',document='$document' WHERE soa_id='$soa_id' ");
 		return true;
 	}
-	function delete_soa_details($soa_id)
+	/*function delete_soa_details($soa_id)
 	{
-		$delete_recommendation=$this->db->query("DELETE FROM soa_details WHERE soa_id='$soa_id' ");
-	}
+		$delete_soa=$this->db->query("DELETE FROM soa_details WHERE soa_id='$soa_id' ");
+	}*/
+	public function get_all_soa_data_for_pagination($vessel_id,$offset)
+    {
+        $all_items = $this->db->query("SELECT * FROM soa_details WHERE vessel_id='$vessel_id' LIMIT 10 OFFSET $offset");
+        return $all_items->result_array();
+    }
+
+	public function get_total_soa($vessel_id)
+    {
+        $count_soa = $this->db->query("SELECT * FROM soa_details WHERE vessel_id = '$vessel_id'");
+        return COUNT($count_soa->result_array());
+    }
+
 }
 ?>

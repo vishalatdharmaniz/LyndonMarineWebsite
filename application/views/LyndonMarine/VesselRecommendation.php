@@ -120,39 +120,7 @@ include'includes/CheckUserLogin.php';
                   </a>
                </td>
               </tr>
-               <!--tr>
-                <td>Management</td>
-                <td>11/21/2017</td>
-                <td>11/16/2017</td>
-                <td>MLC has been approved and dispatched form DBS H.O, </td>
-               <td><button type="button" class="update text-center btn btn-danger btn-sm"></button></td>
-                <td class="text-center"><a href="#" class="btn btn-primary">Click to View</td>
-                <td>No</td>
-                 <td>N/A</td>
-                <td>N/A</td>
-              </tr>
-               <tr>
-                <td>Management</td>
-                <td>11/21/2017</td>
-                <td>11/16/2017</td>
-                <td>MLC has been approved and dispatched form DBS H.O, </td>
-               <td><button type="button" class="update text-center btn btn-success btn-sm"></button></td>
-                <td class="text-center"><a href="#" class="btn btn-primary">Click to View</td>
-                <td>No</td>
-                 <td>N/A</td>
-                <td>N/A</td>
-              </tr>
-             <tr>
-                <td>Management</td>
-                <td>11/21/2017</td>
-                <td>11/16/2017</td>
-                <td>MLC has been approved and dispatched form DBS H.O, </td>
-                <td><button type="button" class="update text-center btn btn-danger btn-sm"></button></td>
-                <td class="text-center"><a href="#" class="btn btn-primary">Click to View</td>
-                <td>No</td>
-                 <td>N/A</td>
-                <td>N/A</td>
-              </tr-->
+              
               <?php } ?>
             </tbody>
           </table>
@@ -185,14 +153,21 @@ include'includes/CheckUserLogin.php';
                 <td>Rectified</td>
                
               </tr>
-                
-              
             </tbody>
           </table>
         </div>
       </div>
     </div>
   </div>
+  <div class="row">
+      <div class="col-md-12">
+        <div class="text-center">
+          
+            <?php echo $links; ?>
+          
+        </div>
+      </div>
+    </div>
 </section>
 <?php
 include'includes/footer.php';
