@@ -83,7 +83,7 @@ include'includes/CheckUserLogin.php';
                 {
                     $now = time(); 
             $due_date =strtotime($data['due_date']) ;  
-            $date_of_supply =strtotime($data['date_of_supply']);  
+            $date_of_supply =strtotime($data['date_of_supply']);
 
             $caldays = $due_date - $now; 
 
@@ -120,6 +120,9 @@ include'includes/CheckUserLogin.php';
                   <?php }
                   elseif($calday>7) { ?>
                   <button type="button" class="update text-center btn btn-green btn-sm"></button>
+                  <?php } 
+                  elseif($calday) { ?>
+                  <button type="button" class="update text-center btn btn-default btn-sm"></button>
                   <?php } ?>
               </td>
                 <td>
@@ -173,6 +176,15 @@ include'includes/CheckUserLogin.php';
       </div>
     </div>
   </div>
+  <div class="row">
+      <div class="col-md-12">
+        <div class="text-center">
+          
+            <?php echo $links; ?>
+          
+        </div>
+      </div>
+    </div>
 </section>
 <?php
 include'includes/footer.php';

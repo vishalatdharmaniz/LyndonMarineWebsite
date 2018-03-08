@@ -27,6 +27,32 @@ class CrewDetails_model extends CI_Model
 		$details_by_vessel_id = $this->db->query("SELECT * FROM vessels WHERE vessel_id='$vessel_id'");
 		return $details_by_vessel_id->result_array();
 	}
+	function searchtable($searchname,$vessel_id,$offset)
+    {
+
+        $searchdata = $this->db->query("SELECT * FROM crew_details WHERE ((name LIKE '%$searchname%') OR (tourist_p_num LIKE '%$searchname%')  OR (seaman_p_num LIKE '%$searchname%') OR (join_date LIKE '%$searchname%')) AND (vessel_id='$vessel_id') LIMIT 10 OFFSET $offset");
+			return $searchdata->result_array();
+	}
+
+	function searchtable_total($searchname,$vessel_id)
+    {
+
+        $searchtable_total = $this->db->query("SELECT * FROM crew_details WHERE ((name LIKE '%$searchname%') OR (tourist_p_num LIKE '%$searchname%')  OR (seaman_p_num LIKE '%$searchname%') OR (join_date LIKE '%$searchname%')) AND (vessel_id='$vessel_id')");
+			return COUNT($searchtable_total->result_array());
+	}
+	public function get_all_crew_data_for_pagination($vessel_id,$offset)
+    {
+        $all_items = $this->db->query("SELECT * FROM crew_details WHERE vessel_id='$vessel_id' LIMIT 10 OFFSET $offset");
+        return $all_items->result_array();
+    }
+
+	public function get_total_crew($vessel_id)
+    {
+        $count_crew = $this->db->query("SELECT * FROM crew_details WHERE vessel_id = '$vessel_id'");
+        return COUNT($count_crew->result_array());
+    }
+
+	
 
 }
 ?>
