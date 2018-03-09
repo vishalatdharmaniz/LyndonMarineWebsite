@@ -6,6 +6,8 @@ class EditCertificate extends CI_Controller
 	
 	function index($certificate_id)
 	{
+		
+		$this->load->model('Vessel_model');
 		$this->load->model('Certificate_model');
 		$certificate_data = $this->Certificate_model->get_certificate_details_by_certificate_id($certificate_id);
         //var_dump($certificate_data);die();
@@ -46,6 +48,8 @@ class EditCertificate extends CI_Controller
             $extention_until = date("Y-m-d", strtotime($extention_until));
         }
 
+$vessel_detail_folder = $this->Vessel_model->get_vessel_details_by_id($vessel_id);
+$vessel_name = $vessel_detail_folder[0]['vessel_name'];
 
         $certificatefolder = '/Certificates/';
             $directory_name = '../LyndonMarineImages/LyndonMarineVessels/'.$vessel_name.$certificatefolder;
