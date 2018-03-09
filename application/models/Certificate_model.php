@@ -152,7 +152,7 @@ class Certificate_model extends CI_Model
 		if(!empty($custom_code)){
 			if($custom_code == "red"){
 				if(empty($where)){
-					$where .=	" WHERE (date_expiry <= CURDATE() AND extention_until <= CURDATE() ) AND vessel_id= '$vessel_id'";	
+					$where .=	" WHERE (date_expiry <= CURDATE()+ INTERVAL 10 day AND extention_until <= CURDATE() ) AND vessel_id= '$vessel_id'";	
 				}else{
 					$where .=	" IF( UNIX_TIMESTAMP(`date_expiry`) <>0 ,date_expiry < CURDATE() and UNIX_TIMESTAMP(`date_expiry`) <>0,extention_until < CURDATE() ) AND vessel_id= '$vessel_id'";
 				}

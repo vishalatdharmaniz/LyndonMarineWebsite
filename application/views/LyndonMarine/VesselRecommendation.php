@@ -175,7 +175,7 @@ include'includes/CheckUserLogin.php';
                  if($rectified_status=="Yes") { ?>
                   <button type="button" class="update text-center btn btn-blue-status btn-sm"></button>
                   <?php }
-                  elseif($calday<10) { ?>
+                  elseif($calday<=10) { ?>
                   <button type="button" class="update text-center btn btn-red btn-sm"></button>
                   <?php } 
                   elseif($calday>10) { ?>
