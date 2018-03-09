@@ -51,7 +51,7 @@ include'includes/header_login.php';
                 <input type="radio" name="rectified_status" value="Yes" required></label>
                  <label class="control-label">No
                 <input type="radio" name="rectified_status" value="No" required></label>
-                Show Rectified Date and Rectified by only when it gets rectified.
+               <!--  Show Rectified Date and Rectified by only when it gets rectified. -->
               </div>
               
             </div>

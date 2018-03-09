@@ -650,6 +650,12 @@ input.form-control-text-on {
 	height: 20px;
 	border-radius: 50px;
 }
+.btn-blue-status {
+	background-color: #2e5af7;
+	width: 20px;
+	height: 20px;
+	border-radius: 50px;
+}
 .btn-green {
 	background-color: #538135;
 	width: 20px;

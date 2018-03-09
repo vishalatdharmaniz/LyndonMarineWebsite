@@ -73,7 +73,7 @@ include'includes/header_login.php';
       <div class="work-done-text">
 		<div class="col-md-3">
           <div class="done-text"> <a href="<?php echo base_url();?>index.php/AllVessels/view_fullvessel/<?php echo $vessel['vessel_id']; ?>"><img src="<?php echo base_url(); ?>img/icon/ship.png" class="img-responsive"></a>
-            <h3>Vessel </h3>
+            <h3>Vessel Particular</h3>
           </div>
         </div>
         <div class="col-md-3">
@@ -108,7 +108,7 @@ include'includes/header_login.php';
           </div>
         </div>
 		<div class="col-md-3">
-          <div class="done-text"> <a href="#"><img src="<?php echo base_url(); ?>img/icon/Fixture.png" class="img-responsive"></a>
+          <div class="done-text"> <a href="<?php echo base_url(); ?>index.php/VesselFixture/index/<?php echo $vessel['vessel_id']; ?>"><img src="<?php echo base_url(); ?>img/icon/Fixture.png" class="img-responsive"></a>
             <h3>Fixture </h3>
           </div>
         </div>

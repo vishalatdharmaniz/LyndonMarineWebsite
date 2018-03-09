@@ -23,8 +23,9 @@ include'includes/CheckUserLogin.php';
   <div class="container">
       <div class="row"> 
         <div class="col-md-3">
-        <div class="main-edit-add-left"> <a class="btn-blue" href="<?php echo base_url();?>index.php/FleetDetails/index/<?php echo $vessel_id; ?>">Go Back</a>                
-          </div>       
+        <div class="main-edit-add-left"> 
+          <a class="btn-blue" href="<?php echo base_url();?>index.php/FleetDetails/index/<?php echo $vessel_id; ?>">Go Back</a>                
+        </div>       
       </div>
       
       <div class="col-md-4">
@@ -35,6 +36,9 @@ include'includes/CheckUserLogin.php';
         <div class="list_right">
         <ul class="main-edit-add"> 
         <li><a class="btn-blue" href="<?php echo base_url();?>index.php/AddRecommendationScreen/index/<?php echo $vessel_id; ?>">Add Recommendation</a></li>
+         <li> 
+          <a class="btn-blue" href="<?php echo base_url(); ?>index.php/VesselRecommendation/index/<?php echo $vessel_id; ?>">All Recommendations</a>
+         </li>
           <!-- <li><a class="btn-blue" onclick="mail_selected_vessels()" >Mail Document</a></li> -->
           </ul>
          </div>
@@ -46,11 +50,62 @@ include'includes/CheckUserLogin.php';
 </section>
 <section id="work-done">
   <div class="container">
-    <!--<div class="row">
-      <div class="col-md-8 col-md-offset-2">
-        <div class="img-upload"> <img src="img/image01.jpg" class="img-responsive"> </div>
+   <div class="row">
+     <div class="black_bg">
+     <div class="col-md-8">
+      <div class="mar_box">
+      <form id="drop_down"action="<?php echo base_url(); ?>index.php/VesselRecommendation/search_dropdown_status/<?php echo $vessel_id; ?>" method="get">
+      <input type="hidden" name="range" value="red" />
+      <button type="submit" id="redclor" class="update text-center btn btn-red btn-sm"></button>
+      </form>
+      &nbsp;<span>Due in 10 days</span>&nbsp;&nbsp;
+      <form id="drop_down"action="<?php echo base_url(); ?>index.php/VesselRecommendation/search_dropdown_status/<?php echo $vessel_id; ?>" method="get">
+      <input type="hidden" name="range" value="green" />
+      <button type="button" id="greenclr" class="update text-center btn btn-green btn-sm"></button>
+      </form>
+      &nbsp;<span>Valid more than 10 days</span>&nbsp;&nbsp;
+      <form id="drop_down"action="<?php echo base_url(); ?>index.php/VesselRecommendation/search_dropdown_status/<?php echo $vessel_id; ?>" method="get">
+      <input type="hidden" name="range" value="blue" />
+      <button type="submit" id="blueclr" class="update text-center btn btn-blue-status btn-sm"></button>
+      </form>
+      &nbsp;<span>Rectified</span>&nbsp;&nbsp;
+      
       </div>
-    </div>-->
+    </div>
+     
+      <div class="col-md-2">
+        <div class="input-group">
+          <select class="form-control-text1" placeholder="Select" name="recommendation_type" id="recommendation_type">
+            <option selected value="">Recommendation Type</option>
+            <option value="management">management</option>
+            <option value="text2">text2</option>
+            <option value="text3">text3</option>
+          </select>
+        </div>
+     </div>
+   <div class="col-md-2">
+       <div class="input-group">
+        <?php
+          if(array_key_exists('range',$_REQUEST)){
+             $range = $_REQUEST['range'];
+          }else{
+            $range ="";
+          }
+          ?>
+           <form id="drop_down" action="<?php echo base_url(); ?>index.php/VesselRecommendation/search_dropdown_status/<?php echo $vessel_id; ?>" method="get">
+         
+            <select class="form-control-text1" name="range" style="width: 169px;" onchange="this.form.submit()">
+              <option selected value="">Select Status</option>
+              <option value="red" <?php if($range == "red"){echo "selected=selected";}?>>Due in 10 days</option>
+              <option value="blue" <?php if($range == "blue"){echo "selected=selected";}?>> Rectified</option>
+              <option value="green" <?php if($range == "green"){echo "selected=selected";}?>>Valid More than 10 days</option>
+            </select>
+          
+          </form>
+   </div>
+  </div>
+      </div>
+       </div>
     <div class="row">
       <div class="panel-body">
         <div class="table-responsive">
@@ -88,27 +143,47 @@ include'includes/CheckUserLogin.php';
 
             $rec_date=$data['recommendation_date'];
             $date_due=$data['due_date'];
+            $rec_type=$data['recommendation_type'];
+            $description=$data['description'];
+            $rectified_status=$data['rectified_status'];
+            $rectified_date=$data['rectified_date'];
+            $rectified_by=$data['rectified_by'];
              ?>
 
               <tr>
-                <td><?php echo $data['recommendation_type']; ?></td>
-                <td><?php echo date("d-m-Y",strtotime($rec_date)); ?></td>
-                <td><?php echo date("d-m-Y",strtotime($date_due)); ?></td>
-                <td><?php echo ($data['description'] ? $data['description'] : 'N/A'); ?></td>
-                <td><?php echo ($data['rectified_status'] ? $data['rectified_status'] : 'N/A'); ?></td>
-                 <td><?php  echo ($data['rectified_by'] ? $data['rectified_by'] : 'N/A'); ?></td>
-                 <td><?php if($data['rectified_status']!=='%Yes%'){echo "N/A";}else{echo $data['rectified_date'];} ?></td>
-                <td>
+                <td><?php echo $rec_type; ?></td>
+                <td class="text-center"><?php echo date("d-m-Y",strtotime($rec_date)); ?></td>
+                <td class="text-center"><?php echo date("d-m-Y",strtotime($date_due)); ?></td>
+                <td class="text-center"><?php echo ($description ? $description : 'N/A'); ?></td>
+                <td class="text-center"><?php echo ($rectified_status ? $rectified_status : 'N/A'); ?></td>
+                 <td class="text-center"><?php  if($rectified_status!="Yes")
+                              {echo "N/A"; } 
+                            else
+                              {echo $rectified_by; } 
+                            
+                               ?></td>
+                  <td>
+                       <?php if($rectified_status!="Yes")
+                              {echo "N/A"; } 
+                            else
+                              {echo $rectified_date; } 
+                            ?>
+                              
+                  </td>
+                <td class="text-center">
                  <?php 
-                 if($calday<5) { ?>
-                  <button type="button" class="update text-center btn btn-red btn-sm"></button>
+                 if($rectified_status=="Yes") { ?>
+                  <button type="button" class="update text-center btn btn-blue-status btn-sm"></button>
                   <?php }
-                  elseif($calday>5) { ?>
-                  <button type="button" class="update text-center btn btn-blue btn-sm"></button>
+                  elseif($calday<10) { ?>
+                  <button type="button" class="update text-center btn btn-red btn-sm"></button>
+                  <?php } 
+                  elseif($calday>10) { ?>
+                  <button type="button" class="update text-center btn btn-green btn-sm"></button>
                   <?php } ?>
               </td>
                  <td class="text-center"><a href="<?php echo base_url(); ?>index.php/ViewRecommendation/index/<?php echo $vessel_id;?>" class="btn btn-primary">View</td>
-                <td>
+                <td class="text-center">
                     <input type="checkbox" name="checkbox" id="checkbox<?php echo $data['vessel_id']; ?>">
                 </td>
                <td class="text-center">
@@ -120,7 +195,6 @@ include'includes/CheckUserLogin.php';
                   </a>
                </td>
               </tr>
-              
               <?php } ?>
             </tbody>
           </table>
@@ -132,11 +206,6 @@ include'includes/CheckUserLogin.php';
 
 <section id="work-done">
   <div class="container">
-    <!--<div class="row">
-      <div class="col-md-8 col-md-offset-2">
-        <div class="img-upload"> <img src="img/image01.jpg" class="img-responsive"> </div>
-      </div>
-    </div>-->
     
   <div class="row">
       <div class="col-md-12">
@@ -151,3 +220,22 @@ include'includes/CheckUserLogin.php';
 <?php
 include'includes/footer.php';
 ?>
+<script>
+   function searchtype(recommendation_type)
+{
+    if(recommendation_type == "")
+    {
+        alert("Please enter a value to be searched");
+    }
+    else
+    {
+            window.location.href = "<?php echo base_url(); ?>index.php/VesselRecommendation/search_recommendation_type/"+recommendation_type+"/"+<?php echo $data['vessel_id'] ?>;
+    }
+}
+
+$('#recommendation_type').change(function(){
+      $selected_value=$('#recommendation_type option:selected').text();
+      window.location.href = "<?php echo base_url(); ?>index.php/VesselRecommendation/search_recommendation_type/"+$selected_value+"/"+<?php echo $data['vessel_id'] ?>;
+    });
+
+</script>
