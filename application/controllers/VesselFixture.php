@@ -178,7 +178,7 @@ class VesselFixture extends CI_Controller
 					$user_id = $this->session->userdata('user_id');
 					//header("Location: $base_url/index.php/AllVessels/index");
 					$data['vessel_id'] = $vessel_id;
-					redirect("vessel_fixture/index/$vessel_id");
+					redirect("VesselFixture/index/$vessel_id");
 				}
 			}else{
 				$data = array();
@@ -192,7 +192,7 @@ class VesselFixture extends CI_Controller
 			
 		}else{
 			$data = array();
-			redirect("vessel_fixture/index/$vessel_id");	
+			redirect("VesselFixture/index/$vessel_id");	
 		}
 		
 	}
@@ -312,7 +312,7 @@ class VesselFixture extends CI_Controller
 				$user_id = $this->session->userdata('user_id');
 				//header("Location: $base_url/index.php/AllVessels/index");
 				$data['vessel_id'] = $vessel_id;
-				redirect("vessel_fixture/index/$vessel_id");
+				redirect("VesselFixture/index/$vessel_id");
 			//}
 		}
 		
@@ -329,9 +329,9 @@ class VesselFixture extends CI_Controller
 		if(!empty($id) && !empty($vessel_id)){
 			$this->load->model('Fixture_model');
 			$this->Fixture_model->delete($id,$vessel_id);
-			redirect("vessel_fixture/index/$vessel_id");
+			redirect("VesselFixture/index/$vessel_id");
 		}else{
-			redirect("vessel_fixture/index/$vessel_id");
+			redirect("VesselFixture/index/$vessel_id");
 		}
 	}
 	

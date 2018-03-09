@@ -27,7 +27,7 @@ include'includes/header_login.php';
 					if(!empty($error)){
 						echo $error['error'];
 					}
-					echo form_open_multipart(base_url()."/index.php/VesselFixture/add/$vessel_id"); ?>
+					echo form_open_multipart(base_url()."index.php/VesselFixture/add/$vessel_id"); ?>
             
             <div class="row">
               <div class="form-group col-md-6">
