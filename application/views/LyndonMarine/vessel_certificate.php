@@ -36,7 +36,7 @@ include'includes/header_login.php';
         
         <div class="col-md-3">
         <div class="main-edit-add-left"> <a class="btn-blue" href="<?php echo base_url();?>index.php/FleetDetails/index/<?php echo $vessel_id; ?>">Go Back</a>				          </div>       
-      </div>
+         </div>
       
       <div class="col-md-4">
       <div class="input-group">
@@ -199,16 +199,15 @@ include'includes/header_login.php';
             </thead>
             <tbody>
 		<?php foreach($certificate_data as $data)
-				{ ?>
-				  <?php
+				{ 
 					  $now = time(); 
-
+            $date_of_issue=strtotime($data['date_issue']);
 					  $expiry_date = strtotime($data['date_expiry']);
-					  $extention_date = strtotime($data['extention_until']);
-					  $caldays = $expiry_date - $now;
-					  if($extention_date>$now && $extention_date>$expiry_date)
+					  $extention_date = strtotime($data['extention_until']); 
+					  $caldays = $expiry_date - $date_of_issue;
+					  if($expiry_date>$date_of_issue && $extention_date>$now)
 					  {
-						$caldays = $extention_date - $expiry_date; 
+						$caldays = $expiry_date - $date_of_issue; 
 						$calday =  round($caldays / (60 * 60 * 24));
 					  }
 					  $calday =  round($caldays / (60 * 60 * 24));
@@ -244,7 +243,7 @@ include'includes/header_login.php';
 									<button type="button" class="update text-center btn btn-brwon btn-sm"></button>
 									<span id="text"></span>
 								  <?php } 
-								  elseif($calday<=0) { ?>
+								  elseif($calday<=0){ ?>
 									<button type="button" class="update text-center btn btn-red btn-sm"></button>
 								  <?php }
 								  elseif($calday>45) { ?>

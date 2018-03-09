@@ -1,14 +1,14 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class VesselRecommendation extends CI_Controller 
+class VesselSoa extends CI_Controller
 {
+        
 	public function index($vessel_id,$offset=0)
 	{
-		 $this->load->library('pagination');
-		 $this->load->model('Recommendation_model');
-
-		   $config['full_tag_open'] = '<ul class="pagination">';
+		$this->load->library('pagination');
+	 $this->load->model('Soa_model');
+	$config['full_tag_open'] = '<ul class="pagination">';
                 $config['full_tag_close'] = '</ul>';
                 $config['first_link'] = 'First';
                 $config['first_tag_open'] = '<li>';
@@ -27,16 +27,16 @@ class VesselRecommendation extends CI_Controller
                 $config['cur_tag_open'] = '<li class="active"><a href="#">';
                 $config['cur_tag_close'] = '</a></li>';
 
- $offset = ($this->uri->segment(4)) ? $this->uri->segment(4) : $offset;
-		
-    	$recommendation_data = $this->Recommendation_model->get_recommendation_details_by_vessel_id($vessel_id);
-$data['recommendation_data'] = $this->Recommendation_model->get_all_recommendation_data_for_pagination($vessel_id,$offset);
+          $offset = ($this->uri->segment(4)) ? $this->uri->segment(4) : $offset;
+        
+           $soa_data = $this->soa_model->get_soa_details_by_vessel_id($vessel_id);
+           $data['soa_data'] = $this->soa_model->get_all_soa_data_for_pagination($vessel_id,$offset);
 
-$total_recommendation = $this->Recommendation_model->get_total_recommendation($vessel_id);
+            $total_soa = $this->soa_model->get_total_soa($vessel_id);
             
 
-                $config['base_url'] = base_url().'index.php/VesselRecommendation/index/'.$vessel_id;
-                    $config['total_rows'] = $total_recommendation; 
+                $config['base_url'] = base_url().'index.php/VesselSoa/index/'.$vessel_id;
+                    $config['total_rows'] = $total_soa; 
                     $config['per_page'] = 8;
                     $config['uri_segment'] = 4;
                     
@@ -46,8 +46,28 @@ $total_recommendation = $this->Recommendation_model->get_total_recommendation($v
 
                     $data['offset'] = $offset;
 
-    	$data['recommendation_data'] = $recommendation_data;
-    	$data['vessel_id'] = $vessel_id;
-		$this->load->view('LyndonMarine/VesselRecommendation',$data);
-	}	
+	 $data['soa_data']=$soa_data ;
+	 $data['vessel_id']=$vessel_id ;
+	 $this->load->view('LyndonMarine/VesselSoa',$data);
+
+	}
+	public function AddSoaScreen($vessel_id)
+	{
+		$message= '';
+		$data['message']= $message;
+		$data['vessel_id'] = $vessel_id;
+		$this->load->view('LyndonMarine/AddSoa',$data); 
+	}
+	
+	public function ViewSoa($soa_id)
+	{
+       $this->load->model('Soa_model');
+	 $soa_data=$this->Soa_model->get_soa_details_by_soa_id($soa_id);
+	 $data['soa_data']=$soa_data;
+	 $vessel_id=$soa_data[0]['vessel_id'];
+	 $data['vessel_id']=$vessel_id;
+	 $this->load->view('LyndonMarine/ViewSoa',$data);
+
+	}
 }
+?>

@@ -19,26 +19,14 @@ class AddRecommendation extends CI_Controller
 			$rectified_date = $this->input->post('rectified_date');
 			$rectified_by = $this->input->post('rectified_by');
 			$reminder = $this->input->post('reminder');
-			
-			$due_date = date("d/m/Y", strtotime($due_date));
-			
-			/*$target_dir = TARGET_DIR;
-    
-            $image_base_url = VESSEL_IMAGES_BASE_URL;
-           	for($i=1;$i<=3;$i++)
-            {
-                $target_file[$i] = $target_dir .'/uploads/'. basename($_FILES["image".$i]["name"]);
-                $imageFileType[$i]= pathinfo($target_file[$i],PATHINFO_EXTENSION);
-                move_uploaded_file($_FILES["image".$i]["tmp_name"], $target_file[$i]);
-                if ($_FILES["image".$i]["name"] != NULL)
-                {
-                    $image[$i] =$image_base_url. $_FILES["image".$i]["name"];
-                }
-                else
-                {
-                    $image[$i] = NULL;
-                }
-            }*/
+
+
+		       $rec_date=str_replace("/", "-", $recommendation_date); 
+		       $rec_date=date("Y-m-d",strtotime($rec_date)); 
+		       
+		       $date_due=str_replace("/", "-", $due_date);
+		       $date_due=date("Y-m-d",strtotime($date_due));
+		
               $directory_name = '../LyndonMarineImages/VesselImages/'.$vessel_name;
 
         if(!is_dir($directory_name))
@@ -75,8 +63,8 @@ class AddRecommendation extends CI_Controller
 
 				$data = array(
 					'recommendation_type' => $recommendation_type,
-					'recommendation_date' => $recommendation_date,
-					'due_date' => $due_date,
+					'recommendation_date' => $rec_date,
+					'due_date' => $date_due,
 					'description' => $description,
 					'rectified_status' => $rectified_status,
 					'rectified_date' => $rectified_date,

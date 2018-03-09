@@ -41,7 +41,7 @@ include'includes/header_login.php';
                   $rectified_date=$data['rectified_date'] ; 
                   $rectified_by=$data['rectified_by'] ; 
                   $reminder=$data['reminder'] ; 
-                  $image1=$data['image1'] ; 
+                  $image1=$data['image1'] ;
                   $image2=$data['image2'] ; 
                   $image3=$data['image3'] ; 
 
@@ -85,37 +85,40 @@ include'includes/header_login.php';
                
               </table>
             </div>
-                 <!-- <div class="row">
-                  <div class="doc-img">
-                      <ul>
-                          <li>
-                          <?php if(!empty($image1)) {?>
-                          <a href="<?php echo $$image1; ?>" target="_blank"><img src="http://via.placeholder.com/100x100" class="img-responsive"> </a><br>
-                          <span><?php $value = explode("/",$$image1);echo substr($value[4],0,25); ?></span>
-                          <?php } 
-                          else { ?>
-                         
-                          <?php } ?></li>
-                          
-                          <li>
-                          <?php if(!empty($image2)) {?>
-                          <a href="<?php echo $image2; ?>" target="_blank"><img src="http://via.placeholder.com/100x100" class="img-responsive"> </a><br>
-                          <span><?php $value = explode("/",$image2);echo substr($value[4],0,25); ?></span>
-                          <?php } 
-                          else { ?>
-                         
-                          <?php } ?></li> 
-                          <li>
-                          <?php if(!empty($image3)) {?>
-                          <a href="<?php echo $image3; ?>" target="_blank"><img src="http://via.placeholder.com/100x100" class="img-responsive"> </a><br>
-                          <span><?php $value = explode("/",$image3);echo substr($value[4],0,25); ?></span>
-                          <?php } 
-                          else { ?>
-                         
-                          <?php } ?></li> 
-                      </ul>
-                  </div>  
-                </div> -->
+                 <div class="row">
+              <div class="doc-img">
+                  <ul>
+                      <li>
+                        <?php if(!empty($image1)) {?>
+                        <a href="<?php echo $image1; ?>" target="_blank"><img src="http://via.placeholder.com/100x100" class="img-responsive"> </a><br>
+                        <span><?php $value = explode("/",$image1);echo substr($value[6],0,20); ?></span>
+                        <?php } 
+                        else { ?>
+                       <!-- <span> No Document Available </span>-->
+                        <?php } ?>
+                      </li>
+                       <li>
+                        <?php if(!empty($image2)) {?>
+                        <a href="<?php echo $image2; ?>" target="_blank"><img src="http://via.placeholder.com/100x100" class="img-responsive"> </a><br>
+                        <span><?php $value = explode("/",$image2);echo substr($value[6],0,20); ?></span>
+                        <?php } 
+                        else { ?>
+                       <!-- <span> No Document Available </span>-->
+                        <?php } ?>
+                      </li>
+                       <li>
+                        <?php if(!empty($image3)) {?>
+                        <a href="<?php echo $image3; ?>" target="_blank"><img src="http://via.placeholder.com/100x100" class="img-responsive"> </a><br>
+                        <span><?php $value = explode("/",$image3);echo substr($value[6],0,20); ?></span>
+                        <?php } 
+                        else { ?>
+                       <!-- <span> No Document Available </span>-->
+                        <?php } ?>
+                      </li>
+                      
+                  </ul>
+              </div>  
+            </div>
             
             </div>
     </div>

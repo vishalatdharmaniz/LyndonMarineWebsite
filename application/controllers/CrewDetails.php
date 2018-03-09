@@ -1,16 +1,13 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class VesselBunkerSupply extends CI_Controller 
+class CrewDetails extends CI_Controller
 {
-
 	public function index($vessel_id,$offset=0)
 	{
         $this->load->library('pagination');
-
-		$this->load->model('BunkerSupply_model');
-
-         $config['full_tag_open'] = '<ul class="pagination">';
+	 $this->load->model('CrewDetails_model');
+	 $config['full_tag_open'] = '<ul class="pagination">';
                 $config['full_tag_close'] = '</ul>';
                 $config['first_link'] = 'First';
                 $config['first_tag_open'] = '<li>';
@@ -31,15 +28,15 @@ class VesselBunkerSupply extends CI_Controller
 
  $offset = ($this->uri->segment(4)) ? $this->uri->segment(4) : $offset;
         
-        $bunker_supply_data = $this->BunkerSupply_model->get_bunker_supply_details_by_vessel_id($vessel_id);
-$data['bunker_supply_data'] = $this->BunkerSupply_model->get_all_bunker_data_for_pagination($vessel_id,$offset);
+        $crew_data = $this->CrewDetails_model->get_crew_details_by_vessel_id($vessel_id);
+$data['crew_data'] = $this->CrewDetails_model->get_all_crew_data_for_pagination($vessel_id,$offset);
 
-$total_bunker = $this->BunkerSupply_model->get_total_bunker($vessel_id);
+$total_crew = $this->CrewDetails_model->get_total_crew($vessel_id);
             
 
-                $config['base_url'] = base_url().'index.php/VesselBunkerSupply/index/'.$vessel_id;
-                    $config['total_rows'] = $total_bunker; 
-                    $config['per_page'] = 3;
+                $config['base_url'] = base_url().'index.php/CrewDetails/index/'.$vessel_id;
+                    $config['total_rows'] = $total_crew; 
+                    $config['per_page'] = 8;
                     $config['uri_segment'] = 4;
                     
                     $this->pagination->initialize($config);
@@ -48,16 +45,40 @@ $total_bunker = $this->BunkerSupply_model->get_total_bunker($vessel_id);
 
                     $data['offset'] = $offset;
 
+	 $data['crew_data']=$crew_data ;
+	 $data['vessel_id']=$vessel_id ;
+	 $this->load->view('LyndonMarine/CrewDetails',$data);
 
-    	$data['bunker_supply_data'] = $bunker_supply_data;
-    	$data['vessel_id'] = $vessel_id;
-		$this->load->view('LyndonMarine/BunkerSupply',$data);
 	}
 
+	public function AddCrewDetailsScreen($vessel_id)
+	{
+		$message= '';
+		$data['message']= $message;
+		$data['vessel_id'] = $vessel_id;
+		$this->load->view('LyndonMarine/AddCrewDetails',$data); 
+	}
+
+	public function view_crew_details($crew_id)
+	{
+		$this->load->model('CrewDetails_model');
+		$crew_details=$this->CrewDetails_model->get_crew_details_by_crew_id($crew_id);
+		$data['crew_details']=$crew_details;
+		$vessel_id=$crew_details[0]['vessel_id'] ; 
+		$data['vessel_id'] = $vessel_id;
+        $this->load->view('LyndonMarine/ViewCrewDetails',$data);
+	}
+
+	public function mail_crew_details($vessel_id)
+	{
+		$this->load->model('CrewDetails_model');
+		$crew_data=$this->CrewDetails_model->get_crew_details_by_vessel_id($vessel_id);
+
+	}
 	public function searchdata($searchname,$vessel_id,$offset=0)
     {
          $this->load->library('pagination');
-        $this->load->model('BunkerSupply_model');
+        $this->load->model('CrewDetails_model');
 
         $config['full_tag_open'] = '<ul class="pagination">';
             $config['full_tag_close'] = '</ul>';
@@ -79,16 +100,16 @@ $total_bunker = $this->BunkerSupply_model->get_total_bunker($vessel_id);
             $config['cur_tag_close'] = '</a></li>';
             
            $offset = ($this->uri->segment(5)) ? $this->uri->segment(5) : 0;
-        $bunker_supply_data = $this->BunkerSupply_model->searchtable($searchname,$vessel_id,$offset); 
-        $data['bunker_supply_data'] = $bunker_supply_data; 
+        $crew_data= $this->CrewDetails_model->searchtable($searchname,$vessel_id,$offset); 
+        $data['crew_data'] = $crew_data; 
        
-        $vessel_data = $this->BunkerSupply_model->get_vessel_details_by_vessel_id($vessel_id);
+        $vessel_data = $this->CrewDetails_model->get_vessel_details_by_vessel_id($vessel_id);
         $data['vessel_data']= $vessel_data;
 
-        $total_search_bunker_supply = $this->BunkerSupply_model->searchtable_total($searchname,$vessel_id);
+        $total_search_crew_supply = $this->CrewDetails_model->searchtable_total($searchname,$vessel_id);
      
-            $config['base_url'] = base_url().'index.php/VesselBunkerSupply/searchdata/'.$searchname.'/'.$vessel_id;
-            $config['total_rows'] = $total_search_bunker_supply;
+            $config['base_url'] = base_url().'index.php/CrewDetails/searchdata/'.$searchname.'/'.$vessel_id;
+            $config['total_rows'] = $total_search_crew_supply;
             $config['per_page'] = 10;
             $config['uri_segment'] = 5;
                     
@@ -100,11 +121,9 @@ $total_bunker = $this->BunkerSupply_model->get_total_bunker($vessel_id);
 
         // $vessel_id = $certificate_data['vessel_id'];
         $data['vessel_id'] = $vessel_id;  
-        $this->load->view('LyndonMarine/BunkerSupply',$data);
+        $this->load->view('LyndonMarine/CrewDetails',$data);
 	 
 	
   }
-/*public function view_bunker_invoice()*/
-
 }
 ?>

@@ -40,6 +40,18 @@ class Recommendation_model extends CI_Model
 	{
 		$delete_recommendation=$this->db->query("DELETE FROM recommendation WHERE recommendation_id='$recommendation_id' ");
 	}
+	public function get_all_recommendation_data_for_pagination($vessel_id,$offset)
+    {
+        $all_items = $this->db->query("SELECT * FROM recommendation WHERE vessel_id='$vessel_id' LIMIT 10 OFFSET $offset");
+        return $all_items->result_array();
+    }
+
+	public function get_total_recommendation($vessel_id)
+    {
+        $count_recommendation = $this->db->query("SELECT * FROM recommendation WHERE vessel_id = '$vessel_id'");
+        return COUNT($count_recommendation->result_array());
+    }
+
 
 }
 

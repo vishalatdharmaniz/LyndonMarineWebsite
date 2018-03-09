@@ -72,16 +72,41 @@ include'includes/CheckUserLogin.php';
               </tr>
             </thead>
             <tbody>
-            <?php foreach($recommendation_data as $data) { ?>
+            <?php foreach($recommendation_data as $data) {
+              $now=time();
+            
+            $due_date=strtotime($data['due_date']); 
+            $rec_date =strtotime($data['recommendation_date']); 
+            $caldays = $due_date - $now;
+
+            if($due_date>$now && $due_date>$rec_date)
+            {
+            $caldays = $due_date - $rec_date;  
+            $calday =  round($caldays / (60 * 60 * 24));
+            }
+            $calday =  round($caldays / (60 * 60 * 24)); 
+
+            $rec_date=$data['recommendation_date'];
+            $date_due=$data['due_date'];
+             ?>
+
               <tr>
                 <td><?php echo $data['recommendation_type']; ?></td>
-                <td><?php echo $data['recommendation_date']; ?></td>
-                <td><?php echo $data['due_date']; ?></td>
-                <td><?php echo $data['description']; ?></td>
-                <td><?php echo $data['rectified_status']; ?></td>
-                 <td><?php echo $data['rectified_by']; ?></td>
-                <td><?php echo $data['rectified_date']; ?></td>
-                <td><button type="button" class="update text-center btn btn-danger btn-sm"></button></td>
+                <td><?php echo date("d-m-Y",strtotime($rec_date)); ?></td>
+                <td><?php echo date("d-m-Y",strtotime($date_due)); ?></td>
+                <td><?php echo ($data['description'] ? $data['description'] : 'N/A'); ?></td>
+                <td><?php echo ($data['rectified_status'] ? $data['rectified_status'] : 'N/A'); ?></td>
+                 <td><?php echo ($data['rectified_by'] ? $data['rectified_by'] : 'N/A'); ?></td>
+                 <td><?php echo ($data['rectified_date'] ? $data['rectified_date'] : 'N/A'); ?></td>
+                <td>
+                 <?php 
+                 if($calday<15) { ?>
+                  <button type="button" class="update text-center btn btn-red btn-sm"></button>
+                  <?php }
+                  elseif($calday>15) { ?>
+                  <button type="button" class="update text-center btn btn-green btn-sm"></button>
+                  <?php } ?>
+              </td>
                  <td class="text-center"><a href="<?php echo base_url(); ?>index.php/ViewRecommendation/index/<?php echo $vessel_id;?>" class="btn btn-primary">View</td>
                 <td>
                     <input type="checkbox" name="checkbox" id="checkbox<?php echo $data['vessel_id']; ?>">
@@ -95,39 +120,7 @@ include'includes/CheckUserLogin.php';
                   </a>
                </td>
               </tr>
-               <!--tr>
-                <td>Management</td>
-                <td>11/21/2017</td>
-                <td>11/16/2017</td>
-                <td>MLC has been approved and dispatched form DBS H.O, </td>
-               <td><button type="button" class="update text-center btn btn-danger btn-sm"></button></td>
-                <td class="text-center"><a href="#" class="btn btn-primary">Click to View</td>
-                <td>No</td>
-                 <td>N/A</td>
-                <td>N/A</td>
-              </tr>
-               <tr>
-                <td>Management</td>
-                <td>11/21/2017</td>
-                <td>11/16/2017</td>
-                <td>MLC has been approved and dispatched form DBS H.O, </td>
-               <td><button type="button" class="update text-center btn btn-success btn-sm"></button></td>
-                <td class="text-center"><a href="#" class="btn btn-primary">Click to View</td>
-                <td>No</td>
-                 <td>N/A</td>
-                <td>N/A</td>
-              </tr>
-             <tr>
-                <td>Management</td>
-                <td>11/21/2017</td>
-                <td>11/16/2017</td>
-                <td>MLC has been approved and dispatched form DBS H.O, </td>
-                <td><button type="button" class="update text-center btn btn-danger btn-sm"></button></td>
-                <td class="text-center"><a href="#" class="btn btn-primary">Click to View</td>
-                <td>No</td>
-                 <td>N/A</td>
-                <td>N/A</td>
-              </tr-->
+              
               <?php } ?>
             </tbody>
           </table>
@@ -160,14 +153,21 @@ include'includes/CheckUserLogin.php';
                 <td>Rectified</td>
                
               </tr>
-                
-              
             </tbody>
           </table>
         </div>
       </div>
     </div>
   </div>
+  <div class="row">
+      <div class="col-md-12">
+        <div class="text-center">
+          
+            <?php echo $links; ?>
+          
+        </div>
+      </div>
+    </div>
 </section>
 <?php
 include'includes/footer.php';

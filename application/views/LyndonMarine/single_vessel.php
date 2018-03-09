@@ -96,12 +96,14 @@ include'includes/header_login.php';
     <div class="row">
       <div class="work-done-text">
 		<div class="col-md-3">
-          <div class="done-text"> <a href="<?php echo base_url(); ?>index.php/VesselRecommendation/index/<?php echo $vessel['vessel_id'];?>"><img src="<?php echo base_url(); ?>img/icon/Recommendation.png" class="img-responsive"></a>
+          <div class="done-text"> <a href="<?php echo base_url(); ?>index.php/VesselRecommendation/index/<?php echo $vessel['vessel_id'];?>">
+            <img src="<?php echo base_url(); ?>img/icon/Recommendation.png" class="img-responsive"></a>
             <h3>Recommendations </h3>
           </div>
         </div>
 		<div class="col-md-3">
-          <div class="done-text"> <a href="<?php echo base_url(); ?>index.php/VesselInventory/index/<?php echo $vessel['vessel_id']; ?>"><img src="<?php echo base_url(); ?>img/icon/directory.png" class="img-responsive"></a>
+          <div class="done-text"> <a href="<?php echo base_url(); ?>index.php/VesselInventory/index/<?php echo $vessel['vessel_id']; ?>">
+            <img src="<?php echo base_url(); ?>img/icon/directory.png" class="img-responsive"></a>
             <h3>Inventory </h3>
           </div>
         </div>
@@ -111,7 +113,8 @@ include'includes/header_login.php';
           </div>
         </div>
 		<div class="col-md-3">
-          <div class="done-text"> <a href="#"><img src="<?php echo base_url(); ?>img/icon/crew.png" class="img-responsive"></a>
+          <div class="done-text"> <a href="<?php echo base_url() ;?>index.php/CrewDetails/index/<?php echo $vessel['vessel_id']; ?>">
+            <img src="<?php echo base_url(); ?>img/icon/crew.png" class="img-responsive"></a>
             <h3>Crew </h3>
           </div>
         </div>  
@@ -120,12 +123,14 @@ include'includes/header_login.php';
     <div class="row">
       <div class="work-done-text">
         <div class="col-md-3">
-          <div class="done-text"> <a href="<?php echo base_url(); ?>index.php/AddBunkerSupply/index/<?php echo $vessel['vessel_id']; ?>"><img src="<?php echo base_url(); ?>img/icon/Bunker.png" class="img-responsive"></a>
+          <div class="done-text"> <a href="<?php echo base_url(); ?>index.php/VesselBunkerSupply/index/<?php echo $vessel['vessel_id']; ?>">
+            <img src="<?php echo base_url(); ?>img/icon/Bunker.png" class="img-responsive"></a>
             <h3>Bunker </h3>
           </div>
         </div>
         <div class="col-md-3">
-          <div class="done-text"> <a href="#"><img src="<?php echo base_url(); ?>img/icon/Soa.png" class="img-responsive"></a>
+          <div class="done-text"> <a href="<?php echo base_url(); ?>index.php/VesselSoa/index/<?php echo $vessel['vessel_id']; ?>">
+            <img src="<?php echo base_url(); ?>img/icon/Soa.png" class="img-responsive"></a>
             <h3>Soa </h3>
           </div>
         </div>
