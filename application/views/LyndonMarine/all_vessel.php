@@ -23,12 +23,12 @@ include'includes/header_login.php';
         <form onsubmit="searchEnter(document.getElementById('search_vessel').value); return false;">
           <input type="text" class="form-control-text" placeholder="Search For" name="search" id="search_vessel">
         </form>
-          <!-- <span class="input-group-btn">
+          <span class="input-group-btn">
             <a class="btn btn-default text-muted" href="#" title="Clear" onclick="reset()"><i class="glyphicon glyphicon-remove"></i> </a>
             <button onclick="searchIcon(document.getElementById('search_vessel').value)" type="button" class="btn btn-info">
               <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
             </button>
-          </span> -->
+          </span>
         </div>
           </div>
         </div>

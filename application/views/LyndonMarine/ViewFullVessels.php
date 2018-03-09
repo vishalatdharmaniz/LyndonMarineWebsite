@@ -15,7 +15,7 @@ include'includes/header_login.php';
         </div>
       </div>
       <div class="main-edit-add">
-        <button class="btn-blue" onclick="mail_vessel_details(<?php echo $vessels["vessel_id"];?>)" >Mail Document</button>
+        <button class="btn-blue" onclick="mail_vessel_details(<?php echo $vessels["vessel_id"];?>)" >Mail Vessel Particular</button>
       </div>
       <?php } ?>
     </div>
