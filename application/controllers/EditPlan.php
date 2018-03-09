@@ -26,7 +26,7 @@ class EditPlan extends CI_Controller
 
 					 /* Upload Documents */
 			$target_dir = TARGET_DIR;
-			$base_url_website = DOCUMENT_BASE_URL.'/'.$plan_name.'/';
+			$base_url_website = DOCUMENT_BASE_URL.'/'.$plan_name.'/'; 
             for($i=1;$i<=2;$i++)
             {
             	if ($_REQUEST['document'.$i.'-removed'] == '1')

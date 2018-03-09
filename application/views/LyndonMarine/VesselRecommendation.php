@@ -96,15 +96,15 @@ include'includes/CheckUserLogin.php';
                 <td><?php echo date("d-m-Y",strtotime($date_due)); ?></td>
                 <td><?php echo ($data['description'] ? $data['description'] : 'N/A'); ?></td>
                 <td><?php echo ($data['rectified_status'] ? $data['rectified_status'] : 'N/A'); ?></td>
-                 <td><?php echo ($data['rectified_by'] ? $data['rectified_by'] : 'N/A'); ?></td>
-                 <td><?php echo ($data['rectified_date'] ? $data['rectified_date'] : 'N/A'); ?></td>
+                 <td><?php  echo ($data['rectified_by'] ? $data['rectified_by'] : 'N/A'); ?></td>
+                 <td><?php if($data['rectified_status']!=='%Yes%'){echo "N/A";}else{echo $data['rectified_date'];} ?></td>
                 <td>
                  <?php 
-                 if($calday<15) { ?>
+                 if($calday<5) { ?>
                   <button type="button" class="update text-center btn btn-red btn-sm"></button>
                   <?php }
-                  elseif($calday>15) { ?>
-                  <button type="button" class="update text-center btn btn-green btn-sm"></button>
+                  elseif($calday>5) { ?>
+                  <button type="button" class="update text-center btn btn-blue btn-sm"></button>
                   <?php } ?>
               </td>
                  <td class="text-center"><a href="<?php echo base_url(); ?>index.php/ViewRecommendation/index/<?php echo $vessel_id;?>" class="btn btn-primary">View</td>
@@ -137,28 +137,7 @@ include'includes/CheckUserLogin.php';
         <div class="img-upload"> <img src="img/image01.jpg" class="img-responsive"> </div>
       </div>
     </div>-->
-    <div class="row">
-      <div class="panel-body">
-        <div class="table-responsive">
-          <table class="table table-bordered table-hover">
-           
-            <tbody>
-              <tr>
-                <td><button type="button" class="update text-center btn btn-danger btn-sm"></button></td>
-                <td>Due Now or Overdue within 15day</td>
-               
-              </tr>
-                <tr>
-                <td><button type="button" class="update text-center btn btn-success btn-sm"></button></td>
-                <td>Rectified</td>
-               
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </div>
+    
   <div class="row">
       <div class="col-md-12">
         <div class="text-center">
