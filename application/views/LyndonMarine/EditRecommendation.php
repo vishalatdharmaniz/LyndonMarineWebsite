@@ -21,7 +21,7 @@ include'includes/header_login.php';
                                   $recommendation_date=$data['recommendation_date'] ; 
                                   $due_date=$data['due_date'] ; 
                                   $description=$data['description'] ; 
-                                  $rectified_status=$data['rectified_status'] ; 
+                                  $rectified_status=$data['rectified_status'] ;
                                   $rectified_date=$data['rectified_date'] ; 
                                   $rectified_by=$data['rectified_by'] ; 
                                   $reminder=$data['reminder'] ; 
@@ -50,13 +50,13 @@ include'includes/header_login.php';
               </div>
               <div class="form-group col-md-6">
                 <label class="control-label">Recommendation Date</label>
-                <input type="text" id="datepicker1" name="recommendation_date" value="<?Php echo $recommendation_date; ?>" class="form-control-text">
+                <input type="text" id="datepicker1" name="recommendation_date" value="<?Php echo date("d-m-Y",strtotime($recommendation_date)); ?>" class="form-control-text">
               </div>
             </div>
             <div class="row">
               <div class="form-group col-md-6">
                 <label class="control-label">Due Date</label>
-                <input type="text" id="datepicker2" name="due_date" value="<?Php echo $due_date; ?>" class="form-control-text">
+                <input type="text" id="datepicker2" name="due_date" value="<?Php echo date("d-m-Y",strtotime($due_date)); ?>" class="form-control-text">
               </div>
               <div class="form-group col-md-6">
                 <label class="control-label">Description</label>
@@ -66,10 +66,10 @@ include'includes/header_login.php';
             <div class="row">
               <div class="form-group col-md-12">
                   <p>Is it get rectified</p>
-                <label class="control-label">Yes
-                <input type="radio" name="rectified_status" value="Yes"></label>
+                <label class="control-label">Yes 
+                <input type="radio" name="rectified_status" value=" Yes"<?php echo ($rectified_status== 'Yes') ?  "checked" : "" ;  ?>"></label>
                  <label class="control-label">No
-                <input type="radio" name="rectified_status" value="No"></label>
+                <input type="radio" name="rectified_status" value="No"<?php echo ($rectified_status== 'No') ?  "checked" : "" ;  ?>"></label>
                 Show Rectified Date and Rectified by only when it gets rectified.
               </div>
               

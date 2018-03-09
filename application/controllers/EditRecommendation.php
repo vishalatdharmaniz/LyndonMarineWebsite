@@ -34,6 +34,12 @@ public function index($recommendation_id)
     	$rectified_date=$_REQUEST['rectified_date'];            
     	$rectified_by=$_REQUEST['rectified_by']; 
         $reminder=$_REQUEST['reminder'];
+       
+       $rec_date=str_replace("/", "-", $recommendation_date); 
+       $rec_date=date("Y-m-d",strtotime($rec_date)); 
+       
+       $date_due=str_replace("/", "-", $due_date);
+       $date_due=date("Y-m-d",strtotime($date_due));
 
          $directory_name = '../LyndonMarineImages/VesselImages/'.$vessel_name;
        
@@ -74,7 +80,7 @@ public function index($recommendation_id)
             }
     	
       $this->load->Model('Update_model');
-      $this->Update_model->Edit_Recommendation($recommendation_id,$recommendation_type,$recommendation_date,$due_date,$description,$rectified_status,$rectified_date,$rectified_by,$reminder,$image[1],$image[2],$image[3]) ;
+      $this->Update_model->Edit_Recommendation($recommendation_id,$recommendation_type,$rec_date,$date_due,$description,$rectified_status,$rectified_date,$rectified_by,$reminder,$image[1],$image[2],$image[3]) ;
 
       $base_url = BASE_URL;
                 header("Location: $base_url/index.php/VesselRecommendation/index/$vessel_id"); 
