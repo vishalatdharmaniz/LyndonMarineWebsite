@@ -54,7 +54,7 @@ include'includes/header_login.php';
                     
                       <span id = "show-document1">
                       <a href="<?php echo $vessel_plans['upload_plan1']; ?>" class="btn btn-primary"> View</a>&nbsp;
-                      <?php $value = explode("/",$vessel_plans['upload_plan1']);echo substr($value[6],0,20); ?>
+                      <?php $value = explode("/",$vessel_plans['upload_plan1']);echo substr($value[8],0,20); ?>
                         
                         <button type="button"  class="btn btn-danger" id="remove-document1" style="margin-left:10px;">Remove</button>
                       </span>
@@ -77,7 +77,7 @@ include'includes/header_login.php';
                      <?php if(!empty($vessel_plans['upload_plan2'])) {?>
                       <span  id = "show-document2">
                         <a href="<?php echo $vessel_plans['upload_plan2']; ?>" class="btn btn-primary"> View</a>&nbsp;
-                      <?php $value = explode("/",$vessel_plans['upload_plan2']);echo substr($value[6],0,20); ?>
+                      <?php $value = explode("/",$vessel_plans['upload_plan2']);echo substr($value[8],0,20); ?>
                           
                           <button type="button"  class="btn btn-danger" id="remove-document2" style="margin-left:10px;">Remove</button>
                       </span>

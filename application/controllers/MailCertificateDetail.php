@@ -117,7 +117,7 @@ class MailCertificateDetail extends CI_Controller {
                 $document[$i] = $certificate_data[0]['document'.$i];
 
                 $exploded_doc = explode("/", $document[$i]);
-                $name = isset($exploded_doc[6]) ? $exploded_doc[6] : NULL;
+                $name = isset($exploded_doc[8]) ? $exploded_doc[8] : NULL;
                 $document_name[$i] = empty($name) ? "" : $name;  
                 $document[$i] = str_replace(" ","%20","$document[$i]");
             }
