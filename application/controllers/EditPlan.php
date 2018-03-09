@@ -35,6 +35,7 @@ $vessel_detail_folder = $this->Vessel_model->get_vessel_details_by_id($vessel_id
 			    }
 					 /* Upload Documents */
 			$target_dir = TARGET_DIR;
+
 			$base_url_website = DOCUMENT_BASE_URL.$vessel_name.$planfolder.$plan_name.'/';
 
             for($i=1;$i<=2;$i++)
