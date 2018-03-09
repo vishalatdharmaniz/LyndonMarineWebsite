@@ -6,6 +6,8 @@ class EditPlan extends CI_Controller
 	
 	function index($plans_id)
 	{
+		$this->load->model('Vessel_model');
+
 		$this->load->model('Plans_model');
 		$vessel_plans = $this->Plans_model->get_vessel_plan_data($plans_id);
         // var_dump($vessel_plans);die();
@@ -16,17 +18,26 @@ class EditPlan extends CI_Controller
 		$plan_no = $_REQUEST['plan_no'];
 		$plan_name = $_REQUEST['plan_name'];
 		$description = $_REQUEST['description'];
-
 		
-        $directory_name = '../LyndonMarineImages/CertificateDocuments/'.$plan_name;
+$vessel_detail_folder = $this->Vessel_model->get_vessel_details_by_id($vessel_id);
+		$vessel_name = $vessel_detail_folder[0]['vessel_name'];
+		$planfolder = '/Plans/';
+            $directory_name = '../LyndonMarineImages/LyndonMarineVessels/'.$vessel_name.$planfolder;
 			if(!is_dir($directory_name))
 			    {
 			        mkdir($directory_name);
 			    }	
-
+			
+			$plan_directory = $directory_name.$plan_name; 
+			if(!is_dir($plan_directory))
+			    {
+			        mkdir($plan_directory);
+			    }
 					 /* Upload Documents */
 			$target_dir = TARGET_DIR;
-			$base_url_website = DOCUMENT_BASE_URL.'/'.$plan_name.'/'; 
+
+			$base_url_website = DOCUMENT_BASE_URL.$vessel_name.$planfolder.$plan_name.'/';
+
             for($i=1;$i<=2;$i++)
             {
             	if ($_REQUEST['document'.$i.'-removed'] == '1')

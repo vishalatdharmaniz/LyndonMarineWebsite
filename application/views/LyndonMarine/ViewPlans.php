@@ -54,7 +54,7 @@ include'includes/header_login.php';
                     	<li> 
                       <?php if(!empty($vessel_plans['upload_plan1'])) {?>
                       <a href="<?php echo $vessel_plans['upload_plan1']; ?>" target="_blank"><img src="http://via.placeholder.com/100x100" class="img-responsive"> </a><br>
-                      <span><?php $value = explode("/",$vessel_plans['upload_plan1']);echo substr($value[6],0,20); ?></span>
+                      <span><?php $value = explode("/",$vessel_plans['upload_plan1']);echo substr($value[8],0,20); ?></span>
                       <?php } 
                       else { ?>
                      <!-- <span> No Document Available </span>-->
@@ -63,7 +63,7 @@ include'includes/header_login.php';
                       <li>
                       <?php if(!empty($vessel_plans['upload_plan2'])) {?>
                       <a href="<?php echo $vessel_plans['upload_plan2']; ?>" target="_blank"><img src="http://via.placeholder.com/100x100" class="img-responsive"> </a><br>
-                      <span><?php $value = explode("/",$vessel_plans['upload_plan2']);echo substr($value[6],0,20); ?></span>
+                      <span><?php $value = explode("/",$vessel_plans['upload_plan2']);echo substr($value[8],0,20); ?></span>
                       <?php } 
                       else { ?>
                      <!-- <span> No Document Available </span>-->
