@@ -67,21 +67,23 @@ include'includes/header_login.php';
               <div class="form-group col-md-12">
                   <p>Is it get rectified</p>
                 <label class="control-label">Yes 
-                <input type="radio" name="rectified_status" value=" Yes"<?php echo ($rectified_status== 'Yes') ?  "checked" : "" ;  ?>"></label>
+                <input type="radio" name="rectified_status" value="Yes" <?php  echo (($rectified_status == 'Yes') ? "checked" : ""); ?> >
+               </label>
                  <label class="control-label">No
-                <input type="radio" name="rectified_status" value="No"<?php echo ($rectified_status== 'No') ?  "checked" : "" ;  ?>"></label>
-                Show Rectified Date and Rectified by only when it gets rectified.
+                <input type="radio" name="rectified_status" value="No" <?php echo (($rectified_status == 'No') ? "checked" : ""); ?> >
+              </label>
+               <!--  Show Rectified Date and Rectified by only when it gets rectified. -->
               </div>
               
             </div>
             <div class="row">
               <div class="form-group col-md-6">
                 <label class="control-label">Rectifed  Date</label>
-                <input type="text" id="datepicker3" name="rectified_date" value="<?Php echo $rectified_date; ?>" class="form-control-text">
+                <input type="text" id="datepicker3" name="rectified_date" value="<?php echo $rectified_date; ?>" class="form-control-text">
               </div>
               <div class="form-group col-md-6">
                 <label class="control-label">Rectifed  By </label>
-                <input type="text" name="rectified_by" value="<?Php echo $rectified_by; ?>" class="form-control-text">
+                <input type="text" name="rectified_by" value="<?php echo $rectified_by; ?>" class="form-control-text">
               </div>
             </div>
             <div class="row">
