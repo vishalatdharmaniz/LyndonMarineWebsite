@@ -51,7 +51,6 @@ class AddPlans extends CI_Controller
 		            	if ($_FILES["upload_plan".$i]["name"] != NULL)
 		            {
 		            	
-
 		                $target_file = $plan_directory.'/'. basename($_FILES["upload_plan".$i]["name"]);
 		                //print_r($target_file);die();
 
