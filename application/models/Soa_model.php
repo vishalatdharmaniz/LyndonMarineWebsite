@@ -10,6 +10,11 @@ class Soa_model extends CI_Model
 		return true;
 	}
 
+	function delete_soa_details($soa_id)
+	{
+		$delete_soa= $this->db->query("DELETE FROM soa_details WHERE soa_id='$soa_id' ") ;
+	}
+
 	function get_soa_details_by_vessel_id($vessel_id)
 	{
 		$soa_data = $this->db->query("SELECT * FROM soa_details WHERE vessel_id='$vessel_id'");

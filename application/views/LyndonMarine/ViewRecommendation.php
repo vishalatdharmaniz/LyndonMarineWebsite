@@ -81,10 +81,9 @@ include'includes/header_login.php';
                  <th width="42">Status</th>
                  <td><?php echo $rectified_status ; ?> </td>  
                 </tr>
-              </tbody>
-               
-              </table>
-            </div>
+              </tbody>  
+            </table>
+       </div>
                  <div class="row">
               <div class="doc-img">
                   <ul>
