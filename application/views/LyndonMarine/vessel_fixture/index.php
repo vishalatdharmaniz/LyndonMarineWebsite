@@ -109,6 +109,7 @@ if(!isset($search_critria)){
                 <th class="text-center">Frieght Invoice</th>
                 <th>Select</th>
                 <th>Action</th>
+
               </tr>
             </thead>
             <tbody>
