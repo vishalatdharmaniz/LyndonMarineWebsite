@@ -7,7 +7,9 @@ include'includes/header_login.php';
     <div class="row">
 			
 			<!--<div class="col-md-3">-->
-        <div class="main-edit-add-left"> <a class="btn-blue" href="<?php echo base_url();?>index.php/FleetDetails/index/<?php echo $vessel_id; ?>">Go Back</a>                  </div>       
+        <div class="main-edit-add-left">
+         <a class="btn-blue" href="<?php echo base_url();?>index.php/VesselFixture/index/<?php echo $vessel_id; ?>">Go Back
+         </a>                  </div>       
       <!--</div>-->
 			
       <div class="col-md-offset-3 col-md-6">
@@ -51,7 +53,7 @@ include'includes/header_login.php';
             </div>
 			<div class="row">
               <div class="form-group col-md-6">
-                <label class="control-label">Fright</label>
+                <label class="control-label">Frieght</label>
                 <input type="text" name="fright" required placeholder="Fright"  value="<?php echo set_value('fright'); ?>" class="form-control-text">
               </div>
               <div class="form-group col-md-6">

@@ -52,7 +52,7 @@ include'includes/header_login.php';
             </div>
 			<div class="row">
               <div class="form-group col-md-6">
-                <label class="control-label">Fright</label>
+                <label class="control-label">Frieght</label>
                 <input type="text" name="fright" required placeholder="Fright"  value="<?php echo $result['fright']; ?>" class="form-control-text">
               </div>
               <div class="form-group col-md-6">

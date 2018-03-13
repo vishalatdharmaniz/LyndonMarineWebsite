@@ -103,12 +103,12 @@ if(!isset($search_critria)){
                 <th>Date</th>
                 <th>Loading port(s)</th>
                 <th>Discharging Port(s)</th>
-                <th>Freight</th>
+                <th>Frieght</th>
                 <th>Currency</th>
                 <th class="text-center">Contract</th>
-                <th class="text-center">Fright Invoice</th>
+                <th class="text-center">Frieght Invoice</th>
                 <th>Select</th>
-                
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>

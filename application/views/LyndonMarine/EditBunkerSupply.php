@@ -20,7 +20,7 @@ include'includes/CheckUserLogin.php';
     <div class="row">
       <div class="col-md-8 col-md-offset-2">
         <div class="form-action">
-          <form method="post" action="<?php echo base_url(); ?>index.php/EditBunkerSupply/edit_bunker_supply/<?php echo $bunker_id; ?>" enctype="multipart/form-data"  >
+          <form method="post" action="<?php echo base_url(); ?>index.php/EditBunkerSupply/edit/<?php echo $bunker_id; ?>" enctype="multipart/form-data"  >
               <?php  
                 foreach ($bunker_supply_data as $data) 
                 {
@@ -154,7 +154,7 @@ include'includes/CheckUserLogin.php';
             <div class="row">
                 <div class="form-group">
                   <div class="col-md-4">
-                    <label class="control-label">Upload Invoice </label>
+                    <label class="control-label">Upload Document </label>
                     <input type="file" id="document1-chosen" name="document1"  accept="png, jpg/*"><br>
                   </div>
                   <div class="col-md-8">
@@ -179,7 +179,7 @@ include'includes/CheckUserLogin.php';
                 <div class="form-group">
                   <div class="col-md-4">
                     <label class="control-label">Other Document </label>
-                    <input type="file" id="document2-chosen" name="document2"  accept="png, jpg/*"><br>
+                    <input type="file" id="document2-chosen" value="<?php echo $document2; ?>" name="document2"  accept="png, jpg/*"><br>
                   </div>
                   <div class="col-md-8">
                     <br>
@@ -220,7 +220,6 @@ include'includes/footer.php';
     $( "#datepicker2" ).datepicker({ dateFormat: 'dd/mm/yy' }).val();
      $( "#datepicker3" ).datepicker({ dateFormat: 'dd/mm/yy' }).val();
   } );
-  $('#selectedvalue').hide();
  $("#remove-document1").click(function(){
       document.getElementById("document1-removed").value = '1';
       document.getElementById("show-document1").style.display = 'none';

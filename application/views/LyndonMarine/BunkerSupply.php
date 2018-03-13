@@ -167,7 +167,7 @@ include'includes/CheckUserLogin.php';
                 <td><?php if($paid_status=="Yes"){echo $paid_status; } else{echo "N/A" ;} ?></td>
                 <td><?php if($paid_status=="Yes"){echo $invoice_amount; } else{echo "N/A" ;} ?></td>
                 <td><?php if($paid_status=="Yes"){echo $currency; } else{echo "N/A" ;}  ?></td>
-                <td class="text-center"><a href="<?php echo base_url(); ?>/index.php/ViewBunkerSupply/index/<?php echo $vessel_id ; ?>" class="btn btn-primary">View</td>
+                <td class="text-center"><a href="<?php echo base_url(); ?>index.php/ViewBunkerSupply/index/<?php echo $vessel_id ; ?>" class="btn btn-primary">View</td>
                 <td>
                  <?php 
                  if($paid_status=="Yes") { ?>
