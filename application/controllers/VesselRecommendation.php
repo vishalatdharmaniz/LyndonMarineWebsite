@@ -27,7 +27,7 @@ class VesselRecommendation extends CI_Controller
                 $config['cur_tag_open'] = '<li class="active"><a href="#">';
                 $config['cur_tag_close'] = '</a></li>';
 
- $offset = ($this->uri->segment(4)) ? $this->uri->segment(4) : $offset;
+ $offset = ($this->uri->segment(5)) ? $this->uri->segment(5) : $offset;
 		
     	$recommendation_data = $this->Recommendation_model->get_recommendation_details_by_vessel_id($vessel_id);
 $data['recommendation_data'] = $this->Recommendation_model->get_all_recommendation_data_for_pagination($vessel_id,$offset);
@@ -37,8 +37,8 @@ $total_recommendation = $this->Recommendation_model->get_total_recommendation($v
 
                 $config['base_url'] = base_url().'index.php/VesselRecommendation/index/'.$vessel_id;
                     $config['total_rows'] = $total_recommendation; 
-                    $config['per_page'] = 8;
-                    $config['uri_segment'] = 4;
+                    $config['per_page'] = 10;
+                    $config['uri_segment'] = 5;
                     
                     $this->pagination->initialize($config);
                     

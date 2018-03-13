@@ -87,93 +87,12 @@ class VesselSurvey extends CI_Controller {
 		$this->load->view('LyndonMarine/VesselSurvey',$data);
 	}
 	
-	public function edit($id,$vessel_id){
-		$this->load->model('Survey_model');
-		if(array_key_exists('id',$_REQUEST)){
-			$id = $_REQUEST['id'];
-			$Survey = $this->input->post('Survey');
-			$Lastsurvey = $this->input->post('Lastsurvey');
-			if(!empty($Lastsurvey)){
-				$last_survey_date = date("Y-m-d",strtotime(str_replace('/', '-', $Lastsurvey)));
-			}else{
-				$last_survey_date = "";
-			}
-			$postponed_date = $this->input->post('postponed_date');
-			if(!empty($postponed_date)){
-				$postponed_date = date("Y-m-d",strtotime(str_replace('/', '-', $postponed_date)));
-			}else{
-				$postponed_date = 'NULL';
-			}
-			$Due = $this->input->post('Due');
-			if(!empty($Due)){
-				$due_date = date("Y-m-d",strtotime(str_replace('/', '-', $Due)));
-			}else{
-				$due_date = 'NULL';
-			}
-			$range_from = $this->input->post('range_from');
-			if(!empty($range_from)){
-				$range_from = date("Y-m-d",strtotime(str_replace('/', '-', $range_from)));
-			}else{
-				$range_from ='NULL';
-			}
-			$range_to = $this->input->post('range_to');
-			if(!empty($range_to)){
-				$range_to = date("Y-m-d",strtotime(str_replace('/', '-', $range_to)));
-			}else{
-				$range_to ='NULL';
-			}
-			$examption = $this->input->post('examption');
-			$reminder_range = $this->input->post('reminder_range');
-			$Comments = $this->input->post('Comments');
-			$data_to_save = array(
-                'survey_no' => $Survey,
-    			'last_survey_date' => $last_survey_date,
-    			'postponed_date' => $postponed_date,
-                'due_date' => $due_date,
-                'range_from' => $range_from,
-                'range_to' => $range_to,
-                'reminder_due' => $examption,
-                'comments' => $Comments,
-				'reminder_range' => $reminder_range,
-                //'price_idea' => $price_idea,
-    			//'created' => date("Y-m-d  h:i:s"),
-                //'modified' => date("Y-m-d h:i:s"),
-    		);
-			//$data_to_save = array(  
-			//					  'survey_no' =>$_REQUEST['Survey'],
-			//					  'last_survey_date' =>date("Y-m-d",strtotime(str_replace('/', '-', $_REQUEST['Lastsurvey']))),
-			//					  'postponed_date' =>date("Y-m-d",strtotime(str_replace('/', '-', $_REQUEST['postponed_date']))),
-			//					  'due_date' =>date("Y-m-d",strtotime(str_replace('/', '-', $_REQUEST['Due']))),
-			//					  'range_from' =>date("Y-m-d",strtotime(str_replace('/', '-', $_REQUEST['range_from']))),
-			//					  'range_to' =>date("Y-m-d",strtotime(str_replace('/', '-', $_REQUEST['range_to']))),
-			//					  'reminder_due' =>$_REQUEST['examption'],
-			//					  'reminder_range' =>$_REQUEST['reminder_range'],
-			//					  'comments' =>$_REQUEST['Comments'],
-			//					  );
-			$this->Survey_model->update_survey($data_to_save,$id,$vessel_id);
-			redirect("index.php/VesselSurvey/index/$vessel_id");
-		}else{
-			if(!empty($id)){
-				
-				$id_info = $this->Survey_model->get_survey_info($id,$vessel_id);
-				if(!empty($id_info)){
-					$data['data'] = $id_info[0];
-					$data['id'] = $id_info[0];
-					$data['vessel_id'] = $vessel_id;
-					$this->load->view('LyndonMarine/EditVesselSurvey',$data);
-				}else{
-					redirect("index.php/VesselSurvey/index/$vessel_id");
-				}
-			}	
-		}
-		
-	}
 	
 	public function delete($id,$vessel_id){
 		if(!empty($id)){
 			$this->load->model('Survey_model');
 			$this->Survey_model->delete($id,$vessel_id);
-			redirect("index.php/VesselSurvey/index/$vessel_id");
+			redirect("VesselSurvey/index/$vessel_id");
 		}
 	}
 	

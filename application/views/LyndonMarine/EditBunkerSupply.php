@@ -150,17 +150,7 @@ include'includes/CheckUserLogin.php';
               </div>
             </div>
             <br>
-            <!-- <div class="row">
-              <div class="form-group col-md-6">
-                <label class="control-label">Upload Invoice</label>
-                <input type="File" placeholder="Upload Invoice" name="document1" required="Upload Invoice" class="form-control-text">
-              </div>
-              <div class="form-group col-md-6">
-                <label class="control-label">Other Doc.</label>
-                <input type="file" placeholder="Other Doc." name="document2" class="form-control-text">
-              </div>
-              
-            </div> -->
+          
             <div class="row">
                 <div class="form-group">
                   <div class="col-md-4">
@@ -208,6 +198,8 @@ include'includes/CheckUserLogin.php';
                       <?php } ?>
                   </div>
                 </div>
+                   <input type="hidden" name="document1-removed" id="document1-removed">
+           <input type="hidden" name="document2-removed" id="document2-removed">
             </div>
             
             
@@ -228,4 +220,23 @@ include'includes/footer.php';
     $( "#datepicker2" ).datepicker({ dateFormat: 'dd/mm/yy' }).val();
      $( "#datepicker3" ).datepicker({ dateFormat: 'dd/mm/yy' }).val();
   } );
+  $('#selectedvalue').hide();
+ $("#remove-document1").click(function(){
+      document.getElementById("document1-removed").value = '1';
+      document.getElementById("show-document1").style.display = 'none';
+    });
+ $("#remove-document2").click(function(){
+      document.getElementById("document2-removed").value = '1';
+      document.getElementById("show-document2").style.display = 'none';
+    });
+
+$("#document1-chosen").click(function(){
+      document.getElementById("document1-removed").value = '0';
+      // document.getElementById("show-document1").style.display = 'none';
+    });
+$("#document2-chosen").click(function(){
+      document.getElementById("document2-removed").value = '0';
+      // document.getElementById("show-document2").style.display = 'none';
+    });
+
 </script>

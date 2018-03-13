@@ -95,7 +95,7 @@ include'includes/header_login.php';
                     
                       <span id = "show-document1">
                       <a href="<?php echo $certificate_data['document1']; ?>" class="btn btn-primary"> View</a>&nbsp;
-                      <?php $value = explode("/",$certificate_data['document1']);echo substr($value[8],0,20); ?>
+                      <?php $value = explode("/",$certificate_data['document1']);echo substr($value[6],0,20); ?>
                         
                         <button type="button"  class="btn btn-danger" id="remove-document1" style="margin-left:10px;">Remove</button>
                       </span>
@@ -118,7 +118,7 @@ include'includes/header_login.php';
                      <?php if(!empty($certificate_data['document2'])) {?>
                       <span  id = "show-document2">
                         <a href="<?php echo $certificate_data['document2']; ?>" class="btn btn-primary"> View</a>&nbsp;
-                      <?php $value = explode("/",$certificate_data['document2']);echo substr($value[8],0,20); ?>
+                      <?php $value = explode("/",$certificate_data['document2']);echo substr($value[6],0,20); ?>
                           
                           <button type="button"  class="btn btn-danger" id="remove-document2" style="margin-left:10px;">Remove</button>
                       </span>
