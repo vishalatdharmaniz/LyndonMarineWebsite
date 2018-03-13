@@ -51,7 +51,8 @@ class BunkerSupply_model extends CI_Model
 									                     hfo='$hfo',luboil_1_type='$luboil_1_type',reminder='$reminder',
 									                     luboil_1_quantity='$luboil_1_quantity',luboil_2_type='$luboil_2_type',
 									                     luboil_2_quantity='$luboil_2_quantity',others='$others',remarks='$remarks',
-									                     invoice_amount='$invoice_amount',currency='$currency',document1='$document1',document2='$document2',paid='$paid',paid_date='$paid_date'	
+									                     invoice_amount='$invoice_amount',currency='$currency',document1='$document1',
+									                     document2='$document2',paid='$paid',paid_date='$paid_date'	
 									                     WHERE bunker_id='$bunker_id' ");
              return true;
 	}

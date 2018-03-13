@@ -13,7 +13,7 @@ class EditBunkerSupply extends CI_Controller
     	$this->load->view('LyndonMarine/EditBunkerSupply',$data);
 	}
 
-	public function edit_bunker_supply($bunker_id)
+	public function edit($bunker_id)
 
     { 	
     	$this->load->Model('BunkerSupply_model');
@@ -74,7 +74,7 @@ class EditBunkerSupply extends CI_Controller
                          }
                      else
                          {
-                             $document[$i] ="";
+                             $document[$i] ='';
                          }
 
             }
