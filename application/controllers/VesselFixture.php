@@ -356,20 +356,25 @@ class VesselFixture extends CI_Controller
 		$this->load->library('pagination');
 		
 		$match = array();
+
 		if(trim($_REQUEST['discharge_port'])=='false'){
+
+	
 			$discharge_port = trim($_REQUEST['discharge_port']);
 			$match['discharging_port'] = $discharge_port;
 		}else{
 			$discharge_port = "";
 		}
-		
+
 		if(trim($_REQUEST['fixture_no'])=='false'){
+
 			$fixture_no = trim($_REQUEST['fixture_no']);
 			$match['fixture_no'] = $fixture_no;
 		}else{
 			$fixture_no = "";
 		}
 		
+
 		if(trim($_REQUEST['loading_port'])=='false'){
 			$loading_port = trim($_REQUEST['loading_port']);
 			$match['loading_port'] = $loading_port;

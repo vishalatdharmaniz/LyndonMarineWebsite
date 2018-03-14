@@ -52,8 +52,14 @@ include'includes/header_login.php';
             </div>
 			     <div class="row">
               <div class="form-group col-md-6">
+<<<<<<< HEAD
                 <label class="control-label">Freight </label>
                 <input type="text" name="fright" required placeholder="Freight"  value="<?php echo $result['fright']; ?>" class="form-control-text">
+=======
+                <label class="control-label">Frieght</label>
+
+                <input type="text" name="fright" required placeholder="Fright"  value="<?php echo $result['fright']; ?>" class="form-control-text">
+>>>>>>> 338f6804e5b5f382bbdf180c2cc472c609b0b4ea
               </div>
               <div class="form-group col-md-6">
                 <label class="control-label">Currency</label>
