@@ -42,10 +42,11 @@ include'includes/header_login.php';
               <div class="form-group col-md-6">
                 <label class="control-label">Type of Recommendation</label>
                 <select required class="form-control-text" id="sel1" name="recommendation_type" >
-                  <option ><?php echo $recommendation_type ; ?></option>
+                  <option><?php echo $recommendation_type; ?></option>
                   <option value="management">Management</option>
-                  <option value="text2">dummy text</option>
-                  <option value="text3">dummy text</option>
+                  <option value="class">Class</option>
+                  <option value="port_state">Port State</option>
+                  <option value="captain">Captain</option>
                 </select>
               </div>
               <div class="form-group col-md-6">
@@ -97,14 +98,14 @@ include'includes/header_login.php';
                 <div class="form-group">
                   <div class="col-md-4">
                     <label class="control-label">Upload Image </label>
-                    <input type="file" id="document1-chosen" name="image1"  accept="png, jpg/*"><br>
+                    <input type="file" id="document1-chosen" name="image1" accept="png, jpg/*"><br>
                   </div>
                   <div class="col-md-8">
                     <br>
                     <?php if(!empty($image1 )) {?>
                     
                       <span id = "show-document1">
-                      <a href="<?php echo $image1 ;  ?>" class="btn btn-primary"> View</a>&nbsp;
+                      <a href="<?php echo $image1; ?>" class="btn btn-primary"> View</a>&nbsp;
                       <?php $value = explode("/",$image1 );
                        echo substr($value[6],0,25); ?>
                        <button type="button"  class="btn btn-danger" id="remove-document1" style="margin-left:10px;">Remove</button>

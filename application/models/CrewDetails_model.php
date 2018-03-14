@@ -13,10 +13,15 @@ class CrewDetails_model extends CI_Model
 	{
 		$this->db->query("DELETE FROM crew_details WHERE crew_id='$crew_id' ");
 	}
+	function get_all_crew_details()
+	{
+        $crew_details=$this->db->query("SELECT * FROM crew_details");
+        return $crew_details->result_array();
+	}
 	
 	function get_crew_details_by_vessel_id($vessel_id)
 	{
-		$crew_data = $this->db->query("SELECT * FROM crew_details WHERE vessel_id='$vessel_id'");
+		$crew_data = $this->db->query("SELECT * FROM crew_details WHERE vessel_id='$vessel_id' ORDER BY name ASC ");
 		return $crew_data->result_array();
 	}
 

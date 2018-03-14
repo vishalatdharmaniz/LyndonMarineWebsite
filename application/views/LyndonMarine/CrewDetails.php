@@ -86,11 +86,11 @@ include'includes/CheckUserLogin.php';
 
                 ?>
                 <tr>
-                  <td><?php echo $name; ?></td>
-                  <td><?php echo $tourist_p_number; ?></td>
-                  <td><?php echo $seaman_p_number; ?></td>
-                  <td><?php echo $rank; ?></td>
-                  <td><?php echo $salary; ?></td>
+                  <td class="text-center"><?php echo $name; ?></td>
+                  <td class="text-center"><?php echo $tourist_p_number; ?></td>
+                  <td class="text-center"><?php echo $seaman_p_number; ?></td>
+                  <td class="text-center"><?php echo $rank; ?></td>
+                  <td class="text-center"><?php echo $salary; ?></td>
                   <td class="text-center">
                  <a href="<?php echo base_url(); ?>index.php/CrewDetails/view_crew_details/<?php echo $crew_id; ?>" class="btn btn-primary">View
                   </td>

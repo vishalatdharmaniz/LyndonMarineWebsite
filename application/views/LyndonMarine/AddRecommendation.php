@@ -23,10 +23,11 @@ include'includes/header_login.php';
               <div class="form-group col-md-6">
                 <label class="control-label">Type of Recommendation</label>
                 <select required class="form-control-text" required id="sel1" name="recommendation_type">
-                  <option>Type of Recommendation</option>
+                  <option>Recommendation Type</option>
                   <option value="management">Management</option>
-                  <option value="text2">dummy text</option>
-                  <option value="text3">dummy text</option>
+                  <option value="class">Class</option>
+                  <option value="port_state">Port State</option>
+                  <option value="captain">Captain</option>
                 </select>
               </div>
               <div class="form-group col-md-6">

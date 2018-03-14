@@ -18,7 +18,7 @@ include'includes/CheckUserLogin.php';
     <div class="row">
       <div class="col-md-8 col-md-offset-2">
         <div class="form-action">
-          <form method="post" action="<?php echo base_url(); ?>index.php/AddCrewDetails/index/<?php echo $vessel_id; ?>" enctype="multipart/form-data">
+          <form method="post" name="crewForm" action="<?php echo base_url(); ?>index.php/AddCrewDetails/index/<?php echo $vessel_id; ?>" enctype="multipart/form-data">
             
             <div class="row">
               <div class="form-group col-md-6">
@@ -64,8 +64,8 @@ include'includes/CheckUserLogin.php';
             
             <div class="row">
               <div class="form-group col-md-6">
-                <label class="control-label">Upload Freight Invoice:</label>
-                <input type="file" placeholder="Upload Freight Invoice:" name="document" class="form-control-text">
+                <label class="control-label">Upload Document:</label>
+                <input type="file" name="document" class="form-control-text">
               </div>
             </div>
             
@@ -86,4 +86,5 @@ include'includes/footer.php';
     $( "#datepicker2" ).datepicker({ dateFormat: 'dd/mm/yy' }).val();
      $( "#datepicker3" ).datepicker({ dateFormat: 'dd/mm/yy' }).val();
   } );
+  
 </script>

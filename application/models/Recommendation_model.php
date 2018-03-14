@@ -26,7 +26,7 @@ class Recommendation_model extends CI_Model
 
 	function get_recommendation_details_by_vessel_id($vessel_id)
 	{
-		$details_by_vessel_id = $this->db->query("SELECT * FROM recommendation WHERE vessel_id='$vessel_id'");
+		$details_by_vessel_id = $this->db->query("SELECT * FROM recommendation WHERE vessel_id='$vessel_id' ORDER BY recommendation_type ASC ");
 		return $details_by_vessel_id->result_array();
 	}
 

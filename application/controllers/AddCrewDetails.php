@@ -8,6 +8,9 @@ public function index($vessel_id)
 		$this->load->model('CrewDetails_model');
 		$vessel_data=$this->CrewDetails_model->get_vessel_details_by_vessel_id($vessel_id);
 		$vessel_name=$vessel_data[0]['vessel_name'];
+    /*  $crew_data = $this->CrewDetails_model->get_all_crew_details();
+      $document=$crew_data[0]['document'];
+      echo $document."<br>";*/
 
 		$name=$_REQUEST['name'];
 		$tourist_p_num=$_REQUEST['tourist_p_num'];

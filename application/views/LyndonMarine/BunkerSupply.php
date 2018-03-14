@@ -116,17 +116,17 @@ include'includes/CheckUserLogin.php';
           <table class="table table-bordered table-hover">
             <thead>
               <tr>
-                <th>Supplier Name</th>
-                <th>Supply Port</th>
-                <th>Supply Date</th>
-                <th>Due Date</th>
-                <th>Paid</th>
-                <th>Invocie Amount</th>
-                <th>Currency</th>
-                <th>View Invoice </th>
-                <th>Status</th>
-                <th>Select</th>
-                <th>Action</th>
+                <th class="text-center">Supplier Name</th>
+                <th class="text-center">Supply Port</th>
+                <th class="text-center">Supply Date</th>
+                <th class="text-center">Due Date</th>
+                <th class="text-center">Paid</th>
+                <th class="text-center">Invocie Amount</th>
+                <th class="text-center">Currency</th>
+                <th class="text-center">View Invoice </th>
+                <th class="text-center">Status</th>
+                <th class="text-center">Select</th>
+                <th class="text-center">Action</th>
                 
               </tr>
             </thead>
@@ -160,13 +160,13 @@ include'includes/CheckUserLogin.php';
                   $date_due=$data['due_date'];
               ?>          
               <tr>
-                <td><?php echo $suppliers; ?></td>
-                <td><?php echo $port_of_supply; ?></td>
-                <td><?php echo date("d-m-Y",strtotime($supply_date)); ?></td>
-                <td><?php echo date("d-m-Y",strtotime($date_due)); ?></td>
-                <td><?php if($paid_status=="Yes"){echo $paid_status; } else{echo "N/A" ;} ?></td>
-                <td><?php if($paid_status=="Yes"){echo $invoice_amount; } else{echo "N/A" ;} ?></td>
-                <td><?php if($paid_status=="Yes"){echo $currency; } else{echo "N/A" ;}  ?></td>
+                <td class="text-center"><?php echo $suppliers; ?></td>
+                <td class="text-center"><?php echo $port_of_supply; ?></td>
+                <td class="text-center"><?php echo date("d-m-Y",strtotime($supply_date)); ?></td>
+                <td class="text-center"><?php echo date("d-m-Y",strtotime($date_due)); ?></td>
+                <td class="text-center"><?php if($paid_status=="Yes"){echo $paid_status; } else{echo "N/A" ;} ?></td>
+                <td class="text-center"><?php if($paid_status=="Yes"){echo $invoice_amount; } else{echo "N/A" ;} ?></td>
+                <td class="text-center"><?php if($paid_status=="Yes"){echo $currency; } else{echo "N/A" ;}  ?></td>
                 <td class="text-center"><a href="<?php echo base_url(); ?>index.php/ViewBunkerSupply/index/<?php echo $vessel_id ; ?>" class="btn btn-primary">View</td>
                 <td>
                  <?php 
@@ -183,14 +183,14 @@ include'includes/CheckUserLogin.php';
                   <button type="button" class="update text-center btn btn-default btn-sm"></button>
                   <?php } ?>
               </td>
-                <td>
+                <td class="text-center">
                     <input type="checkbox" name="checkbox" id="checkbox<?php echo $data['bunker_id']; ?>">
                 </td>
                <td class="text-center">
                   <a href="<?php echo base_url();?>index.php/DeleteBunkerSupply/index/<?php echo $bunker_id; ?>/<?php echo $vessel_id ; ?>" Onclick="return confirm('Are you Sure?');" class="btn-bk">
                     <i class="fa fa-trash" aria-hidden="true"></i>
                   </a>
-                  <a href="<?php echo base_url();?>index.php/EditBunkerSupply/index/<?php echo $bunker_id; ?>/<?php echo $vessel_id; ?>" class="btn-bk">
+                  <a href="<?php echo base_url();?>index.php/EditBunkerSupply/index/<?php echo $bunker_id; ?>" class="btn-bk">
                     <i class="fa fa-pencil" aria-hidden="true"></i>
                   </a>
                </td>

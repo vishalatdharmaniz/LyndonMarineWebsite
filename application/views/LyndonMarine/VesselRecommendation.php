@@ -77,9 +77,10 @@ include'includes/CheckUserLogin.php';
         <div class="input-group">
           <select class="form-control-text1" placeholder="Select" name="recommendation_type" id="recommendation_type">
             <option selected value="">Recommendation Type</option>
-            <option value="management">management</option>
-            <option value="text2">text2</option>
-            <option value="text3">text3</option>
+            <option value="management">Management</option>
+            <option value="class">Class</option>
+            <option value="port_state">Port_State</option>
+            <option value="captain">Captain</option>
           </select>
         </div>
      </div>
@@ -143,23 +144,25 @@ include'includes/CheckUserLogin.php';
 
             $rec_date=$data['recommendation_date'];
             $date_due=$data['due_date'];
-            $rec_type=$data['recommendation_type'];
+            $rec_type=$data['recommendation_type']; 
+            $rec_type=str_replace("_", " ", $rec_type); 
             $description=$data['description'];
             $rectified_status=$data['rectified_status'];
             $rectified_date=$data['rectified_date'];
             $rectified_by=$data['rectified_by'];
+            $recommendation_id=$data['recommendation_id'];
              ?>
 
               <tr>
-                <td><?php echo $rec_type; ?></td>
+                <td><?php echo ucwords($rec_type); ?></td>
                 <td class="text-center"><?php echo date("d-m-Y",strtotime($rec_date)); ?></td>
                 <td class="text-center"><?php echo date("d-m-Y",strtotime($date_due)); ?></td>
-                <td class="text-center"><?php echo ($description ? $description : 'N/A'); ?></td>
+                <td class="text-center"><?php echo ($description ? ucwords($description) : 'N/A'); ?></td>
                 <td class="text-center"><?php echo ($rectified_status ? $rectified_status : 'N/A'); ?></td>
                  <td class="text-center"><?php  if($rectified_status!="Yes")
                               {echo "N/A"; } 
                             else
-                              {echo $rectified_by; } 
+                              {echo ucwords($rectified_by); } 
                             
                                ?></td>
                   <td>
@@ -182,7 +185,7 @@ include'includes/CheckUserLogin.php';
                   <button type="button" class="update text-center btn btn-green btn-sm"></button>
                   <?php } ?>
               </td>
-                 <td class="text-center"><a href="<?php echo base_url(); ?>index.php/ViewRecommendation/index/<?php echo $vessel_id;?>" class="btn btn-primary">View</td>
+                 <td class="text-center"><a href="<?php echo base_url(); ?>index.php/ViewRecommendation/index/<?php echo $recommendation_id;?>" class="btn btn-primary">View</td>
                 <td class="text-center">
                     <input type="checkbox" name="checkbox" id="checkbox<?php echo $data['vessel_id']; ?>">
                 </td>

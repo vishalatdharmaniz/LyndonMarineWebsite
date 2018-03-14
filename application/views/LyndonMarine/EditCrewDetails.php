@@ -82,7 +82,7 @@ include'includes/CheckUserLogin.php';
              <div class="row">
                 <div class="form-group">
                   <div class="col-md-4">
-                    <label class="control-label">Upload Freight Invoice </label>
+                    <label class="control-label">Upload Document: </label>
                     <input type="file" id="document-chosen" name="document"  accept="png, jpg/*"><br>
                   </div>
                   <div class="col-md-8">
