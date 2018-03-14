@@ -31,7 +31,7 @@ include'includes/header_login.php';
                   <label for="exampleInputEmail1">Image1 </label>
                   <input type="file" id="image1-chosen" name="image1" accept="image/*">
                  <span id="show-image1"><img src="<?php echo $vessels['image1']; ?>" style="width:100px; height:100px;" alt="" class="img-responsive">
-                  <?php if(!empty($vessels['image1'])) { ?><button type="button" class="btn btn-danger" id="remove-image1" style="margin-top:10px;">Remove</button> <?php $value = explode("/",$vessels['image1']);echo substr($value[5],0,10); } else { echo "";}?>
+                  <?php if(!empty($vessels['image1'])) { ?><button type="button" class="btn btn-danger" id="remove-image1" style="margin-top:10px;">Remove</button> <?php $value = explode("/",$vessels['image1']);echo substr($value[7],0,10); } else { echo "";}?>
                   </span>
                   <?php if(!empty($vessels['image1'])) {  }?>
                   
@@ -42,7 +42,7 @@ include'includes/header_login.php';
                   <label for="exampleInputPassword1">Image2</label>
                   <input type="file" id="image2-chosen" name="image2" accept="image/*">
                   <span id="show-image2"><img src="<?php echo $vessels['image2']; ?>" style="width:100px; height:100px;" alt="" class="img-responsive">
-                     <?php if(!empty($vessels['image2'])) { ?><button type="button" class="btn btn-danger" id="remove-image2" style="margin-top:10px;">Remove</button> <?php $value = explode("/",$vessels['image2']);echo substr($value[6],0,10); } else { echo "";}?>
+                     <?php if(!empty($vessels['image2'])) { ?><button type="button" class="btn btn-danger" id="remove-image2" style="margin-top:10px;">Remove</button> <?php $value = explode("/",$vessels['image2']);echo substr($value[7],0,10); } else { echo "";}?>
                   </span>
                  
                 </div>
@@ -52,7 +52,7 @@ include'includes/header_login.php';
                   <label for="exampleInputPassword1">Image3</label>
                   <input type="file" id="image3-chosen" name="image3" accept="image/*">
                   <span id="show-image3"><img src="<?php echo $vessels['image3']; ?>" style="width:100px; height:100px;" alt="" class="img-responsive">
-                  <?php if(!empty($vessels['image3'])) { ?><button type="button" class="btn btn-danger" id="remove-image3" style="margin-top:10px;">Remove</button> <?php $value = explode("/",$vessels['image3']);echo substr($value[6],0,10); } else { echo "";}?>
+                  <?php if(!empty($vessels['image3'])) { ?><button type="button" class="btn btn-danger" id="remove-image3" style="margin-top:10px;">Remove</button> <?php $value = explode("/",$vessels['image3']);echo substr($value[7],0,10); } else { echo "";}?>
                    </span>
                  
                 </div>
@@ -64,7 +64,7 @@ include'includes/header_login.php';
                   <label for="exampleInputEmail1">Image4 </label>
                   <input type="file" id="image4-chosen" name="image4" accept="image/*">
                   <span id="show-image4"><img src="<?php echo $vessels['image4']; ?>" style="width:100px; height:100px;" alt="" class="img-responsive">
-                  <?php if(!empty($vessels['image4'])) { ?><button type="button" class="btn btn-danger" id="remove-image4" style="margin-top:10px;">Remove</button> <?php $value = explode("/",$vessels['image4']);echo substr($value[6],0,10); } else { echo "";}?>
+                  <?php if(!empty($vessels['image4'])) { ?><button type="button" class="btn btn-danger" id="remove-image4" style="margin-top:10px;">Remove</button> <?php $value = explode("/",$vessels['image4']);echo substr($value[7],0,10); } else { echo "";}?>
                   </span>
                   
                 </div>
@@ -74,7 +74,7 @@ include'includes/header_login.php';
                   <label for="exampleInputPassword1">Image5</label>
                   <input type="file" id="image5-chosen" name="image5" accept="image/*">
                   <span id="show-image5"><img src="<?php echo $vessels['image5']; ?>" style="width:100px; height:100px;" alt="" class="img-responsive">
-                  <?php if(!empty($vessels['image5'])) { ?><button type="button" class="btn btn-danger" id="remove-image5" style="margin-top:10px;">Remove</button> <?php $value = explode("/",$vessels['image5']);echo substr($value[6],0,10); } else { echo "";}?>
+                  <?php if(!empty($vessels['image5'])) { ?><button type="button" class="btn btn-danger" id="remove-image5" style="margin-top:10px;">Remove</button> <?php $value = explode("/",$vessels['image5']);echo substr($value[7],0,10); } else { echo "";}?>
                   </span>
                   
                 </div>
