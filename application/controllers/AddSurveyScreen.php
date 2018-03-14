@@ -23,10 +23,10 @@ class AddSurveyScreen extends CI_Controller
 		}else{
 			$this->load->model('Survey_model');
 			$Survey = $this->input->post('Survey');
-			$Lastsurvey = $this->input->post('Lastsurvey');
+			$last_survey_date = $this->input->post('Lastsurvey');
 			$vessel_id = $this->input->post('vessel_id');
-			if(!empty($Lastsurvey)){
-				$last_survey_date = date("Y-m-d",strtotime(str_replace('/', '-', $Lastsurvey)));
+			if(!empty($last_survey_date)){
+				$last_survey_date = date("Y-m-d",strtotime(str_replace('/', '-', $last_survey_date)));
 			}else{
 				$last_survey_date = "";
 			}

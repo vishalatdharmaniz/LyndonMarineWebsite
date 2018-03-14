@@ -51,40 +51,39 @@ include'includes/header_login.php';
               ?>
                 <tr>
                   <th width="40%">Type of Rec.</th>
-                  <th width="60%"><?php echo $recommendation_type ; ?></th> 
+                  <th width="60%"><?php if($recommendation_type!=""){echo ucwords($recommendation_type);}else{echo "N/A";} ?></th> 
                 </tr>
                 <tr>
                   <th scope="row">Date of Rec.</th>
-                  <td> <?php echo $recommendation_date ; ?> </td>
+                  <td> <?php if($recommendation_date!=""){echo $recommendation_date;}else{echo "N/A";} ?> </td>
                 </tr>
                 <tr>
                   <th scope="row">Due Date</th>
-                  <td><?php echo $due_date ; ?> </td>  
+                  <td><?php if($due_date!=""){echo $due_date;}else{echo "N/A";} ?> </td>  
                 </tr>
                 <tr>
                   <th scope="row">Description</th>
-                  <td><?php echo $description ; ?> </td>  
+                  <td><?php if($description!=""){echo ucwords($description);}else{echo "N/A";} ?> </td>  
                 </tr>
                 <tr>
                   <th scope="row">Rectified Date</th>
-                  <td><?php echo $rectified_date ; ?> </td>  
+                  <td><?php if($rectified_date!=""){echo $rectified_date;}else{echo "N/A";}  ?> </td>  
                 </tr>
                 <tr>
                   <th scope="row">Rectified By</th>
-                  <td><?php echo $rectified_by ; ?> </td>  
+                  <td><?php if($rectified_by!=""){echo ucwords($rectified_by);}else{echo "N/A";} ?> </td>  
                 </tr>
                 <tr>
                   <th scope="row">Reminder</th>
-                  <td><?php echo $reminder ; ?> </td>  
+                  <td><?php if($reminder!=""){echo $reminder;}else{echo "N/A";}  ?> </td>  
                 </tr> 
                 <tr>
                  <th width="42">Status</th>
-                 <td><?php echo $rectified_status ; ?> </td>  
+                 <td><?php if($rectified_status!=""){echo $rectified_status;}else{echo "N/A";}  ?> </td>  
                 </tr>
-              </tbody>
-               
-              </table>
-            </div>
+              </tbody>  
+            </table>
+       </div>
                  <div class="row">
               <div class="doc-img">
                   <ul>

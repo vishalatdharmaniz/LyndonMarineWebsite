@@ -26,7 +26,7 @@ class Recommendation_model extends CI_Model
 
 	function get_recommendation_details_by_vessel_id($vessel_id)
 	{
-		$details_by_vessel_id = $this->db->query("SELECT * FROM recommendation WHERE vessel_id='$vessel_id'");
+		$details_by_vessel_id = $this->db->query("SELECT * FROM recommendation WHERE vessel_id='$vessel_id' ORDER BY recommendation_type ASC ");
 		return $details_by_vessel_id->result_array();
 	}
 
@@ -125,36 +125,43 @@ class Recommendation_model extends CI_Model
 			} 
 		}  
 	
-		if(!empty($custom_code)){
-			if($custom_code == "green"){
+			if(!empty($custom_code))
+			{
+			  if($custom_code == "red")
+			  {
 				if(empty($where)){
-					$where .=	" WHERE (due_date > CURDATE() AND due_date > recommendation_date AND rectified_status='No') AND vessel_id= '$vessel_id'";	
+					$where .=	" WHERE ( due_date <= CURDATE()+ INTERVAL 10 day  AND rectified_status='No') AND vessel_id= '$vessel_id'";	
 				}else{
-					$where .=	" IF( UNIX_TIMESTAMP(`due_date`) <>0 ,due_date < CURDATE() AND UNIX_TIMESTAMP(`recommendation_date`) <>0,due_date < recommendation_date AND rectified_status='No' ) AND vessel_id= '$vessel_id'"; 
+					$where .=	" IF( UNIX_TIMESTAMP(`due_date`) <>0 ,due_date < CURDATE()+ INTERVAL 10 day ) AND vessel_id= '$vessel_id'";
+			  }
+					
+		    }
+		   
+		     if($custom_code == "green")
+			  {
+				if(empty($where))
+				{
+					$where .=	" WHERE (due_date > CURDATE()+ INTERVAL 10 day AND due_date > recommendation_date AND rectified_status='No') AND vessel_id= '$vessel_id'";	
+				}
+				else
+				{
+					$where .=	" IF( UNIX_TIMESTAMP(`due_date`) <>0 ,due_date > CURDATE()+ INTERVAL 10 day AND UNIX_TIMESTAMP(`recommendation_date`) <>0,due_date > recommendation_date AND rectified_status='No' ) AND vessel_id= '$vessel_id'"; 
 				}
 					
 			}
-			
-			if($custom_code == "red")
-			         {
-						if(empty($where)){
-							$where .=	"WHERE ( due_date <= CURDATE()  AND recommendation_date <= CURDATE() AND rectified_status='No' ) AND vessel_id='$vessel_id'";	
-						}else{
-							$where .=	" IF( UNIX_TIMESTAMP(`due_date`) <>0 ,due_date <= recommendation_date + INTERVAL 10 day ) AND vessel_id='$vessel_id'";
-						}
-							
-			         }
 
 			
-			if($custom_code == "blue"){
-				if(empty($where)){
+			if($custom_code == "blue")
+			{
+				if(empty($where))
+				{
 					$where .=	"  WHERE rectified_status ='Yes' AND vessel_id= '$vessel_id' ";	
 				}else{
 					$where .=	" rectified_status ='Yes' AND vessel_id= '$vessel_id'";
 				}
 			 }
 			
-			}
+	   }
 		
         $orderby = ($orderby !='')?' order by '.$orderbyfield.' '.$orderby.'':'order by recommendation_id desc ';
         if($offset=="" && $num=="")

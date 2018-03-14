@@ -162,7 +162,7 @@ include'includes/header_login.php';
             $range ="";
           }
           ?>
-<form id="drop_down"action="<?php echo base_url(); ?>index.php/VesselCertificate/search_dropdown_status/<?php echo $vessel_id; ?>" method="get">
+<form id="drop_down" action="<?php echo base_url(); ?>index.php/VesselCertificate/search_dropdown_status/<?php echo $vessel_id; ?>" method="get">
          
             <select class="form-control-text1" name="range" style="width: 169px;" onchange="this.form.submit()">
               <option selected value="">Select Status</option>
@@ -204,10 +204,10 @@ include'includes/header_login.php';
             $date_of_issue=strtotime($data['date_issue']);
 					  $expiry_date = strtotime($data['date_expiry']);
 					  $extention_date = strtotime($data['extention_until']); 
-					  $caldays = $expiry_date - $date_of_issue;
+					  $caldays = $expiry_date - $now;
 					  if($expiry_date>$date_of_issue && $extention_date>$now)
 					  {
-						$caldays = $expiry_date - $date_of_issue; 
+						$caldays = $expiry_date - $now; 
 						$calday =  round($caldays / (60 * 60 * 24));
 					  }
 					  $calday =  round($caldays / (60 * 60 * 24));
@@ -236,7 +236,11 @@ include'includes/header_login.php';
 								<a href="<?php echo base_url(); ?>index.php/VesselCertificate/view_certificate/<?php echo $data['certificate_id']; ?>" class="btn btn-primary"> View</a>
 							</td>
 							<td>
-								  <?php if($calday>30 && $calday<=45) { ?>
+								  <?php 
+                  if($data['date_expiry']=="") { ?>
+                  <button type="button" class="update text-center btn btn-green btn-sm"></button>
+                  <?php }
+                  elseif($calday>30 && $calday<=45) { ?>
 									<button type="button" class="update text-center btn btn-yelow btn-sm"></button>
 								  <?php }
 								  elseif($calday>=1 && $calday<=30) { ?>

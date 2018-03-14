@@ -15,6 +15,16 @@ class Survey_model extends CI_Model
 
 		return true;
 	}
+	function get_survey_details_by_vessel_id($vessel_id)
+	{
+		$survey_details=$this->db->query("SELECT * FROM survey WHERE vessel_id='$vessel_id' ORDER BY soa_num ASC  ");
+		return $survey_details->result_array();
+	}
+	function get_survey_details_by_id($id)
+	{
+		$survey_details=$this->db->query("SELECT * FROM survey WHERE id='$id' ");
+		return $survey_details->result_array();
+	}
 	
 	public function get_data($getfields='', $match_values = '',$condition ='', $compare_type = '', $count = '', $num = '', $offset='', $orderby='', $orderbyfield='', $and_match_value=''){
 	    $fields =  $getfields ? implode(',', $getfields) : '';
@@ -108,13 +118,10 @@ class Survey_model extends CI_Model
 		return $result;
 	}
 	
-	public function update_survey($data,$id,$vessel_id)
+	public function update_survey($id,$Survey,$last_survey_date,$postponed_date,$due_date,$range_from,$range_to,$examption,$Comments,$reminder_range)
     {
-        $this->db->where('id',$id);
-		$this->db->where('vessel_id',$vessel_id);
-        $query = $this->db->update($this->survey_table,$data); 
-        //echo $this->db->last_query();exit;
-        return $query;
+        $this->db->query("UPDATE survey SET survey_no='$Survey',last_survey_date='$last_survey_date',postponed_date='$postponed_date',due_date='$due_date',range_from='$range_from',range_to='$range_to',comments='$Comments',reminder_due='$examption',reminder_range='$reminder_range' WHERE id='$id' ");
+        return true;
     }
 	
 	public function total_record($search,$vessel_id){

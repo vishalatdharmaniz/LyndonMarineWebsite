@@ -98,29 +98,37 @@ class VesselFixture extends CI_Controller
 					$boker = $this->input->post('boker');
 					$commission = $this->input->post('commission');
 					$remarks = $this->input->post('remarks');
-					if(array_key_exists("upload_invoice",$_FILES)){
-						if($_FILES['upload_invoice']['error'] == 4){
+
+				if(array_key_exists("upload_invoice",$_FILES))
+				{
+					if($_FILES['upload_invoice']['error'] == 4)
+						{
 							
 							$error[] = array('error' => "Please Select Invoice File to Upload");
-						}else{
-							$config['upload_path']          = './uploads/';
-							 $config['allowed_types']        = 'doc|docx|pdf|rtf';
-							 $config['max_size']             = 100;
-							 $config['max_width']            = 1024;
-							 $config['max_height']           = 768;
-							 
-							 $this->load->library('upload',$config);
-							  if (  ! $this->upload->do_upload('upload_invoice'))
-							 {
-								$invoice_upload_data['full_path'] = "";
-										$error = array('error' => $this->upload->display_errors());
-										//echo "<pre>";print_r($error);
-							 }else{
-								$invoice_upload_data = $this->upload->data();
-								//$invoice_upload_data['full_path']
-							 }
 						}
-					}
+						else
+						{
+							 function do_upload() 
+                             { 
+								$config['upload_path']          = './uploads/';
+								 $config['allowed_types']        = 'doc|docx|pdf|rtf';
+								 $config['max_size']             = 100;
+								 $config['max_width']            = 1024;
+								 $config['max_height']           = 768;
+								 
+								 $this->load->library('upload',$config);
+								  if (  ! $this->upload->do_upload('upload_invoice'))
+								 {
+									$invoice_upload_data['full_path'] = "";
+											$error = array('error' => $this->upload->display_errors());
+											//echo "<pre>";print_r($error);
+								 }else{
+									$invoice_upload_data = $this->upload->data();
+									//$invoice_upload_data['full_path']
+								 }
+						     }
+					    }
+				}
 					//echo "<pre>";print_r($_FILES);die;
 					if(array_key_exists("upload_contract",$_FILES)){
 						if($_FILES['upload_contract']['error'] == 4){
@@ -128,7 +136,8 @@ class VesselFixture extends CI_Controller
 							
 							$error[] = array('error' => "Please Select contract File to Upload");
 						}else{
-							
+							function do_upload() 
+                             { 
 							$config['upload_path']          = './uploads/';
 							 $config['allowed_types']        = 'doc|docx|pdf|rtf';
 							 $config['max_size']             = 100;
@@ -147,6 +156,7 @@ class VesselFixture extends CI_Controller
 							 }
 						}
 					}
+				}
 					$data = array(
 								'vessel_id' => $vessel_id,
 								'fixture_no' => $fixture_no,
@@ -233,24 +243,30 @@ class VesselFixture extends CI_Controller
 			
 			//----------------- file upload code--------------------------
 			$error = array();
-			if(array_key_exists("upload_invoice",$_FILES)){
-				if($_FILES['upload_invoice']['error'] == 4){
+			if(array_key_exists("upload_invoice",$_FILES))
+			{
+				if($_FILES['upload_invoice']['error'] == 4)
+				{
 					$invoice_upload_data['full_path'] = "";
 					$error[] = array('error' => "Please Select Invoice File to Upload");
-				}else{
+				}
+				else
+				{
 					$config['upload_path']          = './uploads/';
-                $config['allowed_types']        = 'doc|docx|pdf|rtf';
-                $config['max_size']             = 100;
-                $config['max_width']            = 1024;
-                $config['max_height']           = 768;
+	                $config['allowed_types']        = 'doc|docx|pdf|rtf';
+	                $config['max_size']             = 100;
+	                $config['max_width']            = 1024;
+	                $config['max_height']           = 768;
 					 
 					 $this->load->library('upload',$config);
-					  if (  ! $this->upload->do_upload('upload_invoice'))
-                {
-						$invoice_upload_data['full_path'] = "";
+					  if(!$this->upload->do_upload('upload_invoice'))
+                   {
+				  		$invoice_upload_data['full_path'] = "";
                         $error = array('error' => $this->upload->display_errors());
 								//echo "<pre>";print_r($error);
-                }else{
+                    }
+                       else
+                    {
 						$invoice_upload_data = $this->upload->data();
 						//$invoice_upload_data['full_path']
 					 }
@@ -263,13 +279,13 @@ class VesselFixture extends CI_Controller
 					$error[] = array('error' => "Please Select contract File to Upload");
 				}else{
 					$config['upload_path']          = './uploads/';
-                $config['allowed_types']        = 'doc|docx|pdf|rtf';
-                $config['max_size']             = 100;
-                $config['max_width']            = 1024;
-                $config['max_height']           = 768;
+	                $config['allowed_types']        = 'doc|docx|pdf|rtf';
+	                $config['max_size']             = 100;
+	                $config['max_width']            = 1024;
+	                $config['max_height']           = 768;
 					 
 					 $this->load->library('upload',$config);
-					  if (  ! $this->upload->do_upload('upload_contract'))
+					  if(!$this->upload->do_upload('upload_contract'))
                 {
 						$contract_upload_data['file_name'] = "";
                         $error = array('error' => $this->upload->display_errors());
@@ -340,21 +356,26 @@ class VesselFixture extends CI_Controller
 		$this->load->library('pagination');
 		
 		$match = array();
-		if(!empty(trim($_REQUEST['discharge_port']))){
+
+		if(trim($_REQUEST['discharge_port'])=='false'){
+
+	
 			$discharge_port = trim($_REQUEST['discharge_port']);
 			$match['discharging_port'] = $discharge_port;
 		}else{
 			$discharge_port = "";
 		}
-		
-		if(!empty(trim($_REQUEST['fixture_no']))){
+
+		if(trim($_REQUEST['fixture_no'])=='false'){
+
 			$fixture_no = trim($_REQUEST['fixture_no']);
 			$match['fixture_no'] = $fixture_no;
 		}else{
 			$fixture_no = "";
 		}
 		
-		if(!empty(trim($_REQUEST['loading_port']))){
+
+		if(trim($_REQUEST['loading_port'])=='false'){
 			$loading_port = trim($_REQUEST['loading_port']);
 			$match['loading_port'] = $loading_port;
 		}else{

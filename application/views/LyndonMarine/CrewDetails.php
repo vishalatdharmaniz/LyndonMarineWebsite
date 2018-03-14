@@ -44,31 +44,32 @@ include'includes/CheckUserLogin.php';
             <li>
               <a class="btn-blue" href="<?php echo base_url();?>index.php/CrewDetails/AddCrewDetailsScreen/<?php echo $vessel_id; ?>">Add </a>
             </li>
-        <li><a class="btn-blue" onclick="mail_selected_vessels()" >Mail Selected Document</a></li>
-          </ul>
-         </div>
-         </div>
-         
-         
-      </div>
-    </div>
+            <li>
+              <a class="btn-blue" onclick="mail_selected_vessels()" >Mail Selected Document</a>
+            </li>
+        </ul>
+       </div>
+     </div>
+   </div>
+</div>
 </section>
+
 <section id="work-done">
-  <div class="container">
-    
-   <div class="row">
+  <div class="container"> 
+    <div class="row">
       <div class="panel-body">
         <div class="table-responsive">
           <table class="table table-bordered table-hover">
             <thead>
               <tr>
-                <th>Name</th>
-                <th>Tourist Passport No.</th>
-                <th>Seaman Passport No.</th>
-                <th>Rank</th>
-                <th>Salary</th>
+                <th class="text-center">Name</th>
+                <th class="text-center">Tourist Passport No.</th>
+                <th class="text-center">Seaman Passport No.</th>
+                <th class="text-center">Rank</th>
+                <th class="text-center">Salary</th>
                 <th class="text-center">Document</th>
-                <th>Select</th>
+                <th class="text-center">Select</th>
+                <th class="text-center">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -85,17 +86,25 @@ include'includes/CheckUserLogin.php';
 
                 ?>
                 <tr>
-                  <td><?php echo $name; ?></td>
-                  <td><?php echo $tourist_p_number; ?></td>
-                  <td><?php echo $seaman_p_number; ?></td>
-                  <td><?php echo $rank; ?></td>
-                  <td><?php echo $salary; ?></td>
+                  <td class="text-center"><?php echo $name; ?></td>
+                  <td class="text-center"><?php echo $tourist_p_number; ?></td>
+                  <td class="text-center"><?php echo $seaman_p_number; ?></td>
+                  <td class="text-center"><?php echo $rank; ?></td>
+                  <td class="text-center"><?php echo $salary; ?></td>
                   <td class="text-center">
                  <a href="<?php echo base_url(); ?>index.php/CrewDetails/view_crew_details/<?php echo $crew_id; ?>" class="btn btn-primary">View
                   </td>
                   <td>
                     <input type="checkbox" name="checkbox" id="checkbox<?php echo $data['crew_id']; ?>">
                 </td>
+                <td class="text-center">
+                  <a href="<?php echo base_url();?>index.php/DeleteCrew/index/<?php echo $data['crew_id']; ?>/<?php echo $data['vessel_id']; ?>" Onclick="return confirm('Are you Sure?');" class="btn-bk">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                  </a>
+                  <a href="<?php echo base_url();?>index.php/CrewDetails/EditCrew/<?php echo $data['crew_id']; ?> " class="btn-bk">
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                  </a>
+               </td>
                 </tr>
                 <?php
                      }

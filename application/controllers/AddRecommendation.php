@@ -45,7 +45,7 @@ class AddRecommendation extends CI_Controller
             for($i=1;$i<=3;$i++)
             {
                 
-                    if ($_FILES["image".$i]["name"] != NULL)
+                    if($_FILES["image".$i]["name"] != NULL)
                          {
                              $target_file = $directory_name.'/'.  basename($_FILES['image'.$i]['name']);
                              move_uploaded_file($_FILES['image'. $i]['tmp_name'], $target_file);

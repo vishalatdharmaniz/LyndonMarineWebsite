@@ -29,10 +29,10 @@ class VesselSoa extends CI_Controller
 
           $offset = ($this->uri->segment(4)) ? $this->uri->segment(4) : $offset;
         
-           $soa_data = $this->soa_model->get_soa_details_by_vessel_id($vessel_id);
-           $data['soa_data'] = $this->soa_model->get_all_soa_data_for_pagination($vessel_id,$offset);
+           $soa_data = $this->Soa_model->get_soa_details_by_vessel_id($vessel_id);
+           $data['soa_data'] = $this->Soa_model->get_all_soa_data_for_pagination($vessel_id,$offset);
 
-            $total_soa = $this->soa_model->get_total_soa($vessel_id);
+            $total_soa = $this->Soa_model->get_total_soa($vessel_id);
             
 
                 $config['base_url'] = base_url().'index.php/VesselSoa/index/'.$vessel_id;

@@ -9,7 +9,7 @@ include'includes/header_login.php';
     <div class="row">
       <div class="col-md-offset-3 col-md-6">
         <div class="page-heading">
-          <h2>Survey Status for <?php echo $vessel_name." ";?></h2>
+          <h2>Survey Status </h2>
         </div>
         
         
@@ -24,7 +24,9 @@ include'includes/header_login.php';
     	<div class="row"> 
         
         <div class="col-md-3">
-        <div class="main-edit-add-left"> <a class="btn-blue" href="<?php echo base_url();?>index.php/FleetDetails/index/<?php echo $vessel_id; ?>">Go Back</a>				          </div>       
+        <div class="main-edit-add-left">
+         <a class="btn-blue" href="<?php echo base_url();?>index.php/FleetDetails/index/<?php echo $vessel_id; ?>">Go Back</a>				     
+        </div>       
       </div>
       
       <div class="col-md-4">
@@ -53,45 +55,6 @@ include'includes/header_login.php';
       </div>
     </div>
 </section>
-
-
-
-<!--<section id="top_mail">
-	<div class="container">
-    	<div class="row"> 
-        
-        <div class="col-md-3">
-        <div class="main-edit-add-left"> <a class="btn-blue" href="<?php echo base_url();?>index.php/FleetDetails/index/<?php echo $vessel_id; ?>">Go Back</a>				          </div>       
-      </div>
-      
-      <!--<div class="col-md-4">
-      <div class="input-group">
-        <form onsubmit="searchEnter(document.getElementById('search_vessel').value); return false;">
-          <input type="text" class="form-control-text" placeholder="Search" name="search" id="search_vessel">
-        </form>
-          <span class="input-group-btn">
-      			<a class="btn btn-default text-muted" href="#" title="Clear" onclick="reset()"><i class="glyphicon glyphicon-remove"></i> </a>
-      			<button onclick="search(document.getElementById('search_vessel').value)" type="button" class="btn btn-info">
-      				<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-      			</button>
-          </span>
-        </div>
-      </div>
-      
-      <div class="col-md-9">
-      	<div class="list_right">
-        <ul class="main-edit-add"> 
-        <li><a class="btn-blue" href="<?php echo base_url();?>index.php/AddCertificateScreen/index/<?php echo $vessel_id; ?>">Add Certificate</a></li>
-         <li> <a class="btn-blue" href="<?php echo base_url(); ?>index.php/VesselCertificate/index/<?php echo $vessel_id; ?>">All Certificate</a></li> 
-          <li><a class="btn-blue" onclick="mail_selected_vessels()" >Mail Document</a></li>
-          </ul>
-         </div>
-         </div>
-         
-         
-      </div>
-    </div>
-</section>-->
 
 
 <section id="work-done">
@@ -170,76 +133,65 @@ include'includes/header_login.php';
             <?php
 				//echo $date = date("y-m-d");
 				foreach($all_survey_details as $key=> $value){
-								$res = "";
-								if($value['range_from'] != "0000-00-00 00:00:00" && $value['range_to'] != "0000-00-00 00:00:00"){
-									$range_from = strtotime($value['range_from']);
-									$range_to =  strtotime($value['range_to']);
-									$date = date("y-m-d");
-									$current_date = strtotime($date);
-									
-									if($current_date >= $range_to){
-										$res = "<button type=button id=redclor class='update text-center btn btn-red btn-sm'></button>";	
-									}else{
-										$range_from_plus_thirty_date = date("y-m-d",strtotime($value['range_from']."+30 days"));
-										
-										$range_from_plus_thirty = strtotime($range_from_plus_thirty_date);
-										if($current_date<=$range_from_plus_thirty){
-											$res =	"<button type=button id=greenclr class='update text-center btn btn-green btn-sm'></button>";
-										}
-										
-										
-										$plus_thirty_date = date("y-m-d",strtotime("+30 days"));
-										if($plus_thirty_date<= $range_from){
-											$res =	"<button type=button id=greenclr class='update text-center btn btn-green btn-sm'></button>";
-											if($current_date>=$range_from && $current_date<=$range_to){
-												$res ="<button type=button id=yellowclor class='update text-center btn btn-yelow btn-sm'></button>";
-											}
-										}
-										
-										$range_from_minus_thirty_date = date("y-m-d",strtotime($value['range_from']."-30 days"));
-										$range_from_minus_thirty = strtotime($range_from_minus_thirty_date);
-										if($current_date>$range_from_minus_thirty && $current_date < $range_from){
-											$res ="<button type=button id=yellowclor class='update text-center btn btn-yelow btn-sm'></button>";
-										}
-										
-										//if($current_date>=$range_from && $current_date<=$range_to){
-										//	$res ="<button type=button id=yellowclor class='update text-center btn btn-yelow btn-sm'></button>";
-										//}										
-									}
-									
-								}else{
-									$due_date =  strtotime($value['due_date']);
-									$date = date("y-m-d");
-									$current_date = strtotime($date);
-									if($current_date >= $due_date){
-										$res = "<button type=button id=redclor class='update text-center btn btn-red btn-sm'></button>";
-									}else{
-											$date_plus_thirty = date("y-m-d",strtotime("+30 days"));
-											$current_date_plus_thirty = strtotime($date_plus_thirty);
-											if($current_date_plus_thirty < $due_date){
-												$res =	"<button type=button id=greenclr class='update text-center btn btn-green btn-sm'></button>";
-											}
-											
-											
-											if($current_date_plus_thirty >= $due_date){
-												$res ="<button type=button id=yellowclor class='update text-center btn btn-yelow btn-sm'></button>";
-											}
-									
-									}
-								}
-								
-								//$postponed_date = strtotime($value['postponed_date']);
-								//
-								//if($current_date < $range_from){
-								//		$res =	"<button type=button id=greenclr class='update text-center btn btn-green btn-sm'></button>";
-								//}
-								//if($current_date >= $range_from && $current_date <= $range_to){
-								//	$res = "<button type=button id=yellowclor class='update text-center btn btn-yelow btn-sm'></button>";
-								//}
-								//if($current_date > $range_to){
-								//	
-								//}
-								
+				$res = "";
+				if($value['range_from'] != "0000-00-00 00:00:00" && $value['range_to'] != "0000-00-00 00:00:00"){
+					$range_from = strtotime($value['range_from']);
+					$range_to =  strtotime($value['range_to']);
+					$date = date("y-m-d");
+					$current_date = strtotime($date);
+					
+					if($current_date >= $range_to){
+						$res = "<button type=button id=redclor class='update text-center btn btn-red btn-sm'></button>";	
+					}else{
+						$range_from_plus_thirty_date = date("y-m-d",strtotime($value['range_from']."+30 days"));
+						
+						$range_from_plus_thirty = strtotime($range_from_plus_thirty_date);
+						if($current_date<=$range_from_plus_thirty){
+							$res =	"<button type=button id=greenclr class='update text-center btn btn-green btn-sm'></button>";
+						}
+						
+						
+						$plus_thirty_date = date("y-m-d",strtotime("+30 days"));
+						if($plus_thirty_date<= $range_from){
+							$res =	"<button type=button id=greenclr class='update text-center btn btn-green btn-sm'></button>";
+							if($current_date>=$range_from && $current_date<=$range_to){
+								$res ="<button type=button id=yellowclor class='update text-center btn btn-yelow btn-sm'></button>";
+							}
+						}
+						
+						$range_from_minus_thirty_date = date("y-m-d",strtotime($value['range_from']."-30 days"));
+						$range_from_minus_thirty = strtotime($range_from_minus_thirty_date);
+						if($current_date>$range_from_minus_thirty && $current_date < $range_from){
+							$res ="<button type=button id=yellowclor class='update text-center btn btn-yelow btn-sm'></button>";
+						}
+						
+						//if($current_date>=$range_from && $current_date<=$range_to){
+						//	$res ="<button type=button id=yellowclor class='update text-center btn btn-yelow btn-sm'></button>";
+						//}										
+					}
+					
+				}else{
+					$due_date =  strtotime($value['due_date']);
+					$date = date("y-m-d");
+					$current_date = strtotime($date);
+					if($current_date >= $due_date){
+						$res = "<button type=button id=redclor class='update text-center btn btn-red btn-sm'></button>";
+					}else{
+							$date_plus_thirty = date("y-m-d",strtotime("+30 days"));
+							$current_date_plus_thirty = strtotime($date_plus_thirty);
+							if($current_date_plus_thirty < $due_date){
+								$res =	"<button type=button id=greenclr class='update text-center btn btn-green btn-sm'></button>";
+							}
+							
+							
+							if($current_date_plus_thirty >= $due_date){
+								$res ="<button type=button id=yellowclor class='update text-center btn btn-yelow btn-sm'></button>";
+							}
+					
+					}
+				}
+				
+							
 					?>
             <tr>
               <td><?php echo $value['survey_no']; ?></td>
@@ -283,7 +235,7 @@ include'includes/header_login.php';
 							}
 							
 							?></td>
-              <td><a href="<?php echo base_url();?>index.php/VesselSurvey/edit/<?php echo $value['id']; ?>/<?php echo $value['vessel_id'];?>" class="btn-bk"> <i class="fa fa-pencil" aria-hidden="true"></i></a> <a href="<?php echo base_url();?>index.php/VesselSurvey/delete/<?php echo $value['id']; ?>/<?php echo $value['vessel_id'];?>" Onclick="return confirm('Are you Sure?');" class="btn-bk"> <i class="fa fa-trash" aria-hidden="true"></i></a></td>
+              <td><a href="<?php echo base_url();?>index.php/EditSurvey/index/<?php echo $value['id']; ?>/<?php echo $value['vessel_id'];?>" class="btn-bk"> <i class="fa fa-pencil" aria-hidden="true"></i></a> <a href="<?php echo base_url();?>index.php/VesselSurvey/delete/<?php echo $value['id']; ?>/<?php echo $value['vessel_id'];?>" Onclick="return confirm('Are you Sure?');" class="btn-bk"> <i class="fa fa-trash" aria-hidden="true"></i></a></td>
             </tr>
             <?php } ?>
           </tbody>

@@ -35,15 +35,15 @@ $total_crew = $this->CrewDetails_model->get_total_crew($vessel_id);
             
 
                 $config['base_url'] = base_url().'index.php/CrewDetails/index/'.$vessel_id;
-                    $config['total_rows'] = $total_crew; 
-                    $config['per_page'] = 8;
-                    $config['uri_segment'] = 4;
+                $config['total_rows'] = $total_crew; 
+                $config['per_page'] = 8;
+                $config['uri_segment'] = 4;
                     
-                    $this->pagination->initialize($config);
+                $this->pagination->initialize($config);
                     
-                    $data['links'] = $this->pagination->create_links();
+                $data['links'] = $this->pagination->create_links();
 
-                    $data['offset'] = $offset;
+                $data['offset'] = $offset;
 
 	 $data['crew_data']=$crew_data ;
 	 $data['vessel_id']=$vessel_id ;
@@ -58,6 +58,15 @@ $total_crew = $this->CrewDetails_model->get_total_crew($vessel_id);
 		$data['vessel_id'] = $vessel_id;
 		$this->load->view('LyndonMarine/AddCrewDetails',$data); 
 	}
+    public function EditCrew($crew_id)
+    {
+        $this->load->model('CrewDetails_model');
+        $crew_details=$this->CrewDetails_model->get_crew_details_by_crew_id($crew_id);
+        $data['crew_details']=$crew_details;
+        $vessel_id=$crew_details[0]['vessel_id'];
+        $data['vessel_id']= $vessel_id;
+        $this->load->view('LyndonMarine/EditCrewDetails',$data);
+    }
 
 	public function view_crew_details($crew_id)
 	{

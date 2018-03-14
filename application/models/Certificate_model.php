@@ -29,7 +29,7 @@ class Certificate_model extends CI_Model
 
 	function get_certificate_details_by_vessel_id($vessel_id)
 	{
-		$details_by_vessel_id = $this->db->query("SELECT * FROM certificate WHERE vessel_id='$vessel_id'");
+		$details_by_vessel_id = $this->db->query("SELECT * FROM certificate WHERE vessel_id='$vessel_id' ORDER BY certificate_name ASC ");
 		return $details_by_vessel_id->result_array();
 	}
 
@@ -64,7 +64,7 @@ class Certificate_model extends CI_Model
 
 	public function get_all_certificate_data_for_pagination($vessel_id,$offset)
     {
-        $all_items = $this->db->query("SELECT * FROM certificate WHERE vessel_id='$vessel_id' LIMIT 10 OFFSET $offset");
+        $all_items = $this->db->query("SELECT * FROM certificate WHERE vessel_id='$vessel_id' ORDER BY certificate_name ASC LIMIT 10 OFFSET $offset");
         return $all_items->result_array();
     }
 
@@ -152,7 +152,7 @@ class Certificate_model extends CI_Model
 		if(!empty($custom_code)){
 			if($custom_code == "red"){
 				if(empty($where)){
-					$where .=	" WHERE (date_expiry <= CURDATE() AND extention_until <= CURDATE() ) AND vessel_id= '$vessel_id'";	
+					$where .=	" WHERE (date_expiry <= CURDATE()+ INTERVAL 10 day AND extention_until <= CURDATE() ) AND vessel_id= '$vessel_id'";	
 				}else{
 					$where .=	" IF( UNIX_TIMESTAMP(`date_expiry`) <>0 ,date_expiry < CURDATE() and UNIX_TIMESTAMP(`date_expiry`) <>0,extention_until < CURDATE() ) AND vessel_id= '$vessel_id'";
 				}

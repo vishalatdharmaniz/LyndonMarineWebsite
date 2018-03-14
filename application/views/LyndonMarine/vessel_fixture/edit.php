@@ -29,7 +29,7 @@ include'includes/header_login.php';
 					}
 					$id = $result['id'];
 					echo form_open_multipart(base_url()."index.php/VesselFixture/edit/$id/$vessel_id/"); ?>
-            
+          <!--     <form method="post" enctype="multipart/form-data" action="<?php echo base_url(); ?>index.php/VesselFixture/edit/<?php echo $id; ?>/<?php echo $vessel_id; ?>"> -->
             <div class="row">
               <div class="form-group col-md-6">
                 <label class="control-label">Fixture No.</label>
@@ -40,7 +40,7 @@ include'includes/header_login.php';
                 <input type="text" name="fixture_date" id="datepicker1" required placeholder="Fixture Date:" value="<?php echo date("d/m/Y",strtotime($result['fixture_date'])); ?>" class="form-control-text">
               </div>
             </div>
-			<div class="row">
+			     <div class="row">
               <div class="form-group col-md-6">
                 <label class="control-label">Loading Port(s)</label>
                 <input type="text" name="loading_port" required placeholder="Loading Port(s)"  value="<?php echo $result['loading_port']; ?>" class="form-control-text">
@@ -50,10 +50,16 @@ include'includes/header_login.php';
                 <input type="text" name="discharging_port" required placeholder="Discharging Port(s)"  value="<?php echo $result['discharging_port']; ?>" class="form-control-text">
               </div>
             </div>
-			<div class="row">
+			     <div class="row">
               <div class="form-group col-md-6">
-                <label class="control-label">Fright</label>
+<<<<<<< HEAD
+                <label class="control-label">Freight </label>
+                <input type="text" name="fright" required placeholder="Freight"  value="<?php echo $result['fright']; ?>" class="form-control-text">
+=======
+                <label class="control-label">Frieght</label>
+
                 <input type="text" name="fright" required placeholder="Fright"  value="<?php echo $result['fright']; ?>" class="form-control-text">
+>>>>>>> 338f6804e5b5f382bbdf180c2cc472c609b0b4ea
               </div>
               <div class="form-group col-md-6">
                 <label class="control-label">Currency</label>
@@ -64,8 +70,8 @@ include'includes/header_login.php';
                   <option <?php if($result['currency'] == "Euro"){ echo "selected=selected";} ?> value="Euro">Euro</option>
                 </select>
               </div>
-            </div>
-			<div class="row">
+             </div>
+		       	<div class="row">
               <div class="form-group col-md-6">
                 <label class="control-label">Bokers Involved</label>
                 <input type="text" name="boker" required placeholder="Bokers Involved"  value="<?php echo $result['bokers']; ?>" class="form-control-text">
@@ -86,10 +92,10 @@ include'includes/header_login.php';
               <div class="form-group col-md-6">
                 <label class="control-label">Upload contract</label>
                 <input type="file" name="upload_contract" accept="pdf, rtf, excel/*">
-				<input type="hidden" name="document1-removed" id="document1-removed">
+				      <input type="hidden" name="document1-removed" id="document1-removed">
             
               </div>
-			  <div class="col-md-8">
+			        <div class="col-md-8">
                     <br>
                     <?php if(!empty($result['contract'])) {?>
                     
@@ -105,12 +111,12 @@ include'includes/header_login.php';
                       <span> No Document Available </span>
                       <?php } ?>
                   </div>
-              <div class="form-group col-md-6">
+                <div class="form-group col-md-6">
                <label class="control-label">Upload Invoice</label>
                 <input type="file" name="upload_invoice" accept="pdf, rtf, excel/*">
-				<input type="hidden" name="document2-removed"  id="document2-removed">
+			           	<input type="hidden" name="document2-removed"  id="document2-removed">
               </div>
-			  <div class="col-md-8">
+			         <div class="col-md-8">
                     <br>
                     <?php if(!empty($result['invoice'])) {?>
                     

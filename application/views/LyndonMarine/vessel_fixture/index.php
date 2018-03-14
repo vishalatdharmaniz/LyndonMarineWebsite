@@ -106,9 +106,10 @@ if(!isset($search_critria)){
                 <th>Freight</th>
                 <th>Currency</th>
                 <th class="text-center">Contract</th>
-                <th class="text-center">Fright Invoice</th>
+                <th class="text-center">Freight Invoice</th>
                 <th>Select</th>
-                
+                <th>Action</th>
+
               </tr>
             </thead>
             <tbody>

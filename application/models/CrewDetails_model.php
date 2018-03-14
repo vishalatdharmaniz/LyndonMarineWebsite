@@ -9,10 +9,19 @@ class CrewDetails_model extends CI_Model
 
 		return true;
 	}
-
+	function delete_crew_by_crew_id($crew_id)
+	{
+		$this->db->query("DELETE FROM crew_details WHERE crew_id='$crew_id' ");
+	}
+	function get_all_crew_details()
+	{
+        $crew_details=$this->db->query("SELECT * FROM crew_details");
+        return $crew_details->result_array();
+	}
+	
 	function get_crew_details_by_vessel_id($vessel_id)
 	{
-		$crew_data = $this->db->query("SELECT * FROM crew_details WHERE vessel_id='$vessel_id'");
+		$crew_data = $this->db->query("SELECT * FROM crew_details WHERE vessel_id='$vessel_id' ORDER BY name ASC ");
 		return $crew_data->result_array();
 	}
 
@@ -52,7 +61,11 @@ class CrewDetails_model extends CI_Model
         return COUNT($count_crew->result_array());
     }
 
-	
+	function update_crew_details($crew_id,$name,$tourist_p_num,$seaman_p_num,$remark,$rank,$salary,$join_date,$nationality,$document)
+	{
+		$update_crew=$this->db->query("UPDATE crew_details SET name='$name',tourist_p_num='$tourist_p_num',seaman_p_num='$seaman_p_num',remark='$remark',rank='$rank',salary='$salary',join_date='$join_date',nationality='$nationality',document='$document' WHERE crew_id='$crew_id' ");
+		return true;
+	}
 
 }
 ?>

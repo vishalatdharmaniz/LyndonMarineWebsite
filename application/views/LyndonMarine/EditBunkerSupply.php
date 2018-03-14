@@ -20,7 +20,7 @@ include'includes/CheckUserLogin.php';
     <div class="row">
       <div class="col-md-8 col-md-offset-2">
         <div class="form-action">
-          <form method="post" action="<?php echo base_url(); ?>index.php/EditBunkerSupply/edit_bunker_supply/<?php echo $bunker_id; ?>" enctype="multipart/form-data"  >
+          <form method="post" action="<?php echo base_url(); ?>index.php/EditBunkerSupply/Edit/<?php echo $bunker_id; ?>" enctype="multipart/form-data"  >
               <?php  
                 foreach ($bunker_supply_data as $data) 
                 {
@@ -150,24 +150,14 @@ include'includes/CheckUserLogin.php';
               </div>
             </div>
             <br>
-            <!-- <div class="row">
-              <div class="form-group col-md-6">
-                <label class="control-label">Upload Invoice</label>
-                <input type="File" placeholder="Upload Invoice" name="document1" required="Upload Invoice" class="form-control-text">
-              </div>
-              <div class="form-group col-md-6">
-                <label class="control-label">Other Doc.</label>
-                <input type="file" placeholder="Other Doc." name="document2" class="form-control-text">
-              </div>
-              
-            </div> -->
+          
             <div class="row">
                 <div class="form-group">
                   <div class="col-md-4">
-                    <label class="control-label">Upload Invoice </label>
+                    <label class="control-label">Upload Document </label>
                     <input type="file" id="document1-chosen" name="document1"  accept="png, jpg/*"><br>
                   </div>
-                  <div class="col-md-8">
+                   <div class="col-md-8">
                     <br>
                     <?php if(!empty($document1 )) {?>
                     
@@ -182,14 +172,14 @@ include'includes/CheckUserLogin.php';
                       else { ?>
                       <span> No Document Available </span>
                       <?php } ?>
-                  </div>
+                  </div> 
                 </div>
             </div>
              <div class="row">
                 <div class="form-group">
                   <div class="col-md-4">
                     <label class="control-label">Other Document </label>
-                    <input type="file" id="document2-chosen" name="document2"  accept="png, jpg/*"><br>
+                    <input type="file" id="document2-chosen" value="<?php echo $document2; ?>" name="document2"  accept="png, jpg/*"><br>
                   </div>
                   <div class="col-md-8">
                     <br>
@@ -208,6 +198,8 @@ include'includes/CheckUserLogin.php';
                       <?php } ?>
                   </div>
                 </div>
+                   <input type="hidden" name="document1-removed" id="document1-removed">
+           <input type="hidden" name="document2-removed" id="document2-removed">
             </div>
             
             
@@ -228,4 +220,22 @@ include'includes/footer.php';
     $( "#datepicker2" ).datepicker({ dateFormat: 'dd/mm/yy' }).val();
      $( "#datepicker3" ).datepicker({ dateFormat: 'dd/mm/yy' }).val();
   } );
+ $("#remove-document1").click(function(){
+      document.getElementById("document1-removed").value = '1';
+      document.getElementById("show-document1").style.display = 'none';
+    });
+ $("#remove-document2").click(function(){
+      document.getElementById("document2-removed").value = '1';
+      document.getElementById("show-document2").style.display = 'none';
+    });
+
+$("#document1-chosen").click(function(){
+      document.getElementById("document1-removed").value = '0';
+      // document.getElementById("show-document1").style.display = 'none';
+    });
+$("#document2-chosen").click(function(){
+      document.getElementById("document2-removed").value = '0';
+      // document.getElementById("show-document2").style.display = 'none';
+    });
+
 </script>
