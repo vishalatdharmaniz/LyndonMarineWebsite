@@ -29,7 +29,9 @@ include'includes/header_login.php';
 					if(!empty($error)){
 						echo $error['error'];
 					}
-					echo form_open_multipart(base_url()."index.php/VesselFixture/add/$vessel_id"); ?>
+          echo form_open_multipart(base_url()."index.php/VesselFixture/add/$vessel_id/");
+          ?>
+					<form method="post" enctype="multipart/form-data" action="<?php echo base_url(); ?>index.php/VesselFixture/add/<?php echo $vessel_id; ?>">
             
             <div class="row">
               <div class="form-group col-md-6">
@@ -53,8 +55,8 @@ include'includes/header_login.php';
             </div>
 			<div class="row">
               <div class="form-group col-md-6">
-                <label class="control-label">Frieght</label>
-                <input type="text" name="fright" required placeholder="Fright"  value="<?php echo set_value('fright'); ?>" class="form-control-text">
+                <label class="control-label">Freight</label>
+                <input type="text" name="fright" required placeholder="Freight "  value="<?php echo set_value('fright'); ?>" class="form-control-text">
               </div>
               <div class="form-group col-md-6">
                 <label class="control-label">Currency</label>

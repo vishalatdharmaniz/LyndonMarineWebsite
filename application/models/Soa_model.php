@@ -17,7 +17,7 @@ class Soa_model extends CI_Model
 
 	function get_soa_details_by_vessel_id($vessel_id)
 	{
-		$soa_data = $this->db->query("SELECT * FROM soa_details WHERE vessel_id='$vessel_id'");
+		$soa_data = $this->db->query("SELECT * FROM soa_details WHERE vessel_id='$vessel_id' ORDER BY soa_num ASC ");
 		return $soa_data->result_array();
 	}
     function get_soa_details_by_soa_id($soa_id)
@@ -42,7 +42,7 @@ class Soa_model extends CI_Model
 	}*/
 	public function get_all_soa_data_for_pagination($vessel_id,$offset)
     {
-        $all_items = $this->db->query("SELECT * FROM soa_details WHERE vessel_id='$vessel_id' LIMIT 10 OFFSET $offset");
+        $all_items = $this->db->query("SELECT * FROM soa_details WHERE vessel_id='$vessel_id' ORDER BY soa_num ASC LIMIT 10 OFFSET $offset");
         return $all_items->result_array();
     }
 

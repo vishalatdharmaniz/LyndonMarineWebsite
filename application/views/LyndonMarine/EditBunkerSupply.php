@@ -20,7 +20,7 @@ include'includes/CheckUserLogin.php';
     <div class="row">
       <div class="col-md-8 col-md-offset-2">
         <div class="form-action">
-          <form method="post" action="<?php echo base_url(); ?>index.php/EditBunkerSupply/edit/<?php echo $bunker_id; ?>" enctype="multipart/form-data"  >
+          <form method="post" action="<?php echo base_url(); ?>index.php/EditBunkerSupply/Edit/<?php echo $bunker_id; ?>" enctype="multipart/form-data"  >
               <?php  
                 foreach ($bunker_supply_data as $data) 
                 {
@@ -157,7 +157,7 @@ include'includes/CheckUserLogin.php';
                     <label class="control-label">Upload Document </label>
                     <input type="file" id="document1-chosen" name="document1"  accept="png, jpg/*"><br>
                   </div>
-                  <div class="col-md-8">
+                   <div class="col-md-8">
                     <br>
                     <?php if(!empty($document1 )) {?>
                     
@@ -172,7 +172,7 @@ include'includes/CheckUserLogin.php';
                       else { ?>
                       <span> No Document Available </span>
                       <?php } ?>
-                  </div>
+                  </div> 
                 </div>
             </div>
              <div class="row">

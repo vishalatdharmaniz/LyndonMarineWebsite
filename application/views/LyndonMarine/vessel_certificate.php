@@ -162,7 +162,7 @@ include'includes/header_login.php';
             $range ="";
           }
           ?>
-<form id="drop_down"action="<?php echo base_url(); ?>index.php/VesselCertificate/search_dropdown_status/<?php echo $vessel_id; ?>" method="get">
+<form id="drop_down" action="<?php echo base_url(); ?>index.php/VesselCertificate/search_dropdown_status/<?php echo $vessel_id; ?>" method="get">
          
             <select class="form-control-text1" name="range" style="width: 169px;" onchange="this.form.submit()">
               <option selected value="">Select Status</option>

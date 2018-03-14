@@ -42,7 +42,7 @@ public function index($crew_id)
                      }
                     else
                      {
-                         $document=""; 
+                         $document=$crew_data[0]["document"]; 
                      }
              
          $var= $this->CrewDetails_model->update_crew_details($crew_id,$name,$tourist_p_num,$seaman_p_num,$remark,$rank,$salary,$join_date,$nationality,$document); 

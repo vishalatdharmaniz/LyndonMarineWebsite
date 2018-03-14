@@ -18,7 +18,7 @@ class BunkerSupply_model extends CI_Model
 	
 	function get_bunker_supply_details_by_vessel_id($vessel_id)
 	{
-		$details_by_vessel_id = $this->db->query("SELECT * FROM bunker_supply WHERE vessel_id='$vessel_id'");
+		$details_by_vessel_id = $this->db->query("SELECT * FROM bunker_supply WHERE vessel_id='$vessel_id' ORDER BY suppliers ASC");
 		return $details_by_vessel_id->result_array();
 	}
 	function get_vessel_details_by_vessel_id($vessel_id)
@@ -58,7 +58,7 @@ class BunkerSupply_model extends CI_Model
 	}
 	public function get_all_bunker_supply_data_for_pagination($vessel_id,$offset)
     {
-        $all_items = $this->db->query("SELECT * FROM bunker_supply WHERE vessel_id='$vessel_id' LIMIT 10 OFFSET $offset");
+        $all_items = $this->db->query("SELECT * FROM bunker_supply WHERE vessel_id='$vessel_id' ORDER BY suppliers ASC LIMIT 10 OFFSET $offset");
         return $all_items->result_array();
     }
 

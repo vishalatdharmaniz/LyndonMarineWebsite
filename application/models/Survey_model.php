@@ -17,7 +17,7 @@ class Survey_model extends CI_Model
 	}
 	function get_survey_details_by_vessel_id($vessel_id)
 	{
-		$survey_details=$this->db->query("SELECT * FROM survey WHERE vessel_id='$vessel_id' ");
+		$survey_details=$this->db->query("SELECT * FROM survey WHERE vessel_id='$vessel_id' ORDER BY soa_num ASC  ");
 		return $survey_details->result_array();
 	}
 	function get_survey_details_by_id($id)

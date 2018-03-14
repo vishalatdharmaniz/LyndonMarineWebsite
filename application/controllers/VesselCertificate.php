@@ -34,7 +34,7 @@ class VesselCertificate extends CI_Controller
         $certificate_data = $this->Certificate_model->get_certificate_details_by_vessel_id($vessel_id);
              $vessel_data = $this->Vessel_model->get_vessel_details_by_id($vessel_id);
         $data['vessel_data']= $vessel_data;
-        $offset = ($this->uri->segment(4)) ? $this->uri->segment(4) : $offset;
+        $offset = ($this->uri->segment(5)) ? $this->uri->segment(5) : $offset;
         $data['certificate_data'] = $this->Certificate_model->get_all_certificate_data_for_pagination($vessel_id,$offset);
 
 $total_certificate = $this->Certificate_model->get_total_certificate($vessel_id);
@@ -42,7 +42,7 @@ $total_certificate = $this->Certificate_model->get_total_certificate($vessel_id)
                     $config['base_url'] = base_url().'index.php/VesselCertificate/index/'.$vessel_id;
                     $config['total_rows'] = $total_certificate;
                     $config['per_page'] = 10;
-                    $config['uri_segment'] = 4;
+                    $config['uri_segment'] = 5;
                     
                     $this->pagination->initialize($config);
                     

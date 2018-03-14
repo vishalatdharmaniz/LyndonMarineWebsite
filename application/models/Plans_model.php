@@ -26,7 +26,7 @@ class Plans_model extends CI_Model
 
 	function get_plans_details_by_vessel_id($vessel_id)
 	{
-		$details_by_vessel_id = $this->db->query("SELECT * FROM plans WHERE vessel_id='$vessel_id'");
+		$details_by_vessel_id = $this->db->query("SELECT * FROM plans WHERE vessel_id='$vessel_id' ORDER BY plan_name ASC");
 		return $details_by_vessel_id->result_array();
 	}
 	public function delete_plan_data_by_plan_id($plan_id)
@@ -36,7 +36,7 @@ class Plans_model extends CI_Model
 
     function get_plans_details_by_pagination($vessel_id,$offset)
 	{
-		$details_by_vessel_id = $this->db->query("SELECT * FROM plans WHERE vessel_id='$vessel_id' LIMIT 10 OFFSET $offset");
+		$details_by_vessel_id = $this->db->query("SELECT * FROM plans WHERE vessel_id='$vessel_id' ORDER BY plan_name ASC LIMIT 10 OFFSET $offset");
 		return $details_by_vessel_id->result_array();
 	}
 	function search_by_plan($searchplan,$vessel_id,$offset)
