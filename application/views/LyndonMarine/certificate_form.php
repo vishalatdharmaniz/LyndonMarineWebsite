@@ -17,7 +17,7 @@ include'includes/header_login.php';
     <div class="row">
       <div class="col-md-8 col-md-offset-2">
         <div class="form-action">
-          <form action="<?php echo base_url(); ?>index.php/AddCertificate/index/<?php echo $vessel_id; ?>" method="post" enctype="multipart/form-data">
+          <form name="certificate_form" action="<?php echo base_url(); ?>index.php/AddCertificate/index/<?php echo $vessel_id; ?>" method="post" enctype="multipart/form-data">
             
             <div class="row">
               <div class="form-group col-md-6">
@@ -53,7 +53,7 @@ include'includes/header_login.php';
               </div>
               <div class="form-group col-md-6">
                 <label class="control-label">Extention until</label>
-                <input type="text" name="extention_until" id="datepicker3" placeholder="Extention until" class="form-control-text">
+                <input type="text" name="extention_until" id="datepicker3"  placeholder="Extention until" class="form-control-text">
               </div>
             </div>
             
@@ -130,8 +130,10 @@ include'includes/header_login.php';
 </section>
 <?php
 include'includes/footer.php';
+
 ?>
 <script>
+
   $( function() {
     $( "#datepicker1" ).datepicker({ dateFormat: 'dd/mm/yy' }).val();
     $( "#datepicker2" ).datepicker({ dateFormat: 'dd/mm/yy' }).val();
@@ -139,9 +141,8 @@ include'includes/footer.php';
       dateFormat: 'dd/mm/yy'
     });
   } );
-</script>
-<script>
-  /*var dateToday = $('#date_expiry').val();
+
+  var dateToday = $('#date_expiry').val();
 var dates = $("#datepicker2,#datepicker3").datepicker({
     dateFormat: 'dd/mm/yy',
     minDate: dateToday,
@@ -151,5 +152,5 @@ var dates = $("#datepicker2,#datepicker3").datepicker({
             date = $.datepicker.parseDate(instance.settings.dateFormat || $.datepicker._defaults.dateFormat, selectedDate, instance.settings);
         dates.not(this).datepicker("option", option, date);
     }
-}); */
+}); 
 </script>

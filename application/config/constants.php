@@ -163,6 +163,23 @@ else
     define('VESSEL_RECOMMENDATION_BASE_URL', 'http://root.lyndonmarine.com/LyndonMarineImages/VesselImages');
 
 }
+/* Fixture Base Url */
+
+if (ENVIRONMENT == 'development')
+{
+
+    define('FIXTURE_BASE_URL', 'http://localhost/LyndonMarineImages/FixtureDocuments');
+
+}
+elseif(ENVIRONMENT == 'production')
+{
+    define('FIXTURE_BASE_URL', 'http://dharmani.com/LyndonMarineImages/FixtureDocuments');
+}
+else
+{
+    define('FIXTURE_BASE_URL', 'http://root.lyndonmarine.com/LyndonMarineImages/FixtureDocuments');
+
+}
 /* Bunker Supply Base Url */
 
 if (ENVIRONMENT == 'development')

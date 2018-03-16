@@ -115,7 +115,7 @@ input.form-control-text-one {
 	font-weight: 400;
 }
 input.form-control {
-	height: 35px;
+	height: 45px;
 	border-radius: 0px;
 }
 label {
@@ -173,17 +173,9 @@ input[type="checkbox"] {
 	-o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 }
-
-.clearfix {
-    overflow: auto;
-}
 footer {
 	background-color: #000;
 	padding: 30px 0;
-	margin-top:180px;
-	left: 0;
-    bottom: 0;
-	width:100%;
 }
 footer .text-left {
 	width: 100%;
@@ -520,7 +512,7 @@ ul.dropdown-menu p {
 	padding: 20px 10px 5px;
 }
 #main-edit {
-	    padding: 100px 0 20px;
+	    padding: 130px 0 20px;
     background-color: #fbfbfb;
 }
 #main-edit .main-edit-add ul {
@@ -587,7 +579,7 @@ input.form-control-text::placeholder {
 }
 #tab-bar-img .card .gur {
 	width: 100%;
-	padding: 0px 0px 20px 0;
+	padding: 0 18px 30px 0;
 	text-align: right;
 }
 #tab-bar-img .card .gur .btn-blue {
@@ -604,7 +596,7 @@ input.form-control-text::placeholder {
 /*edited by pragya */
 .button-right {
 	float: right;
-	padding: 15px;
+	padding: 10px;
 }
 .img-size {
 	width: 35px;
@@ -799,9 +791,7 @@ a.btn-bk .fa {
 .main-edit-add-left {
     float: left;
     width: 100%;
-    padding-top: 10px;
-	padding-bottom:20px;
-	padding-left:7px;
+    padding: 10px;
 }
 section#top_mail {
     width: 100%;
@@ -833,7 +823,7 @@ section#top_mail .main-edit-add .a.btn-blue
 section#top_mail .list_right
 {
 	float:right;
-	padding-top:10px;
+	padding:10px;
 }
 
 section#top_mail .list_right .main-edit-add li {
@@ -877,46 +867,4 @@ a.btn.btn-xcode {
     text-align: center;
     font-size: 16px;
     margin:20px 10px 20px 10px;
-}
-
-
-.dropdown-menu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    z-index: 1000;
-    display: none;
-    float: left;
-    min-width: 330px;
-   padding:15px 15px 15px 15px;
-    margin: 2px 0%;
-    font-size: 14px;
-    text-align: left;
-    list-style: none;
-    background-color:#fff;
-    -webkit-background-clip: padding-box;
-    background-clip: padding-box;
-    border: 1px solid #ccc;
-    border: 1px solid rgba(0,0,0,.15);
-    border-radius: 4px;
-    -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
-    box-shadow: 0 6px 12px rgba(0,0,0,.175);
-}
-.font-class {
-	margin-top:15px;
-	margin-bottom:15px;
-	color:black;
-}
-hr {
-    margin-top: 0px;
-    margin-bottom: 4px;
-    border: 0;
-    border-top: 1px solid #eee;
-}
-#adv-search .btn.btn-primary {
-    float: left;
-    position: absolute;
-    width: 50px;
-    height: 40px;
-    border-radius: 0px;
 }

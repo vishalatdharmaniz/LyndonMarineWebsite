@@ -7,7 +7,7 @@ include'includes/header_login.php';
     <div class="row">
 			
 			<!--<div class="col-md-3">-->
-        <div class="main-edit-add-left"> <a class="btn-blue" href="<?php echo base_url();?>index.php/FleetDetails/index/<?php echo $vessel_id; ?>">Go Back</a>                  </div>       
+      <!--   <div class="main-edit-add-left"> <a class="btn-blue" href="<?php echo base_url();?>index.php/VesselFixture/index/<?php echo $vessel_id; ?>">Go Back</a>                  </div>    -->    
       <!--</div>-->
 			
       <div class="col-md-offset-3 col-md-6">
@@ -28,8 +28,8 @@ include'includes/header_login.php';
 						echo $error['error'];
 					}
 					$id = $result['id'];
-					echo form_open_multipart(base_url()."index.php/VesselFixture/edit/$id/$vessel_id/"); ?>
-          <!--     <form method="post" enctype="multipart/form-data" action="<?php echo base_url(); ?>index.php/VesselFixture/edit/<?php echo $id; ?>/<?php echo $vessel_id; ?>"> -->
+					echo form_open_multipart(base_url()."index.php/EditFixture/index/$id/$vessel_id/"); ?>
+        <form method="post" enctype="multipart/form-data" action="<?php echo base_url(); ?>index.php/EditFixture/index/<?php echo $id; ?>/<?php echo $vessel_id; ?>"> 
             <div class="row">
               <div class="form-group col-md-6">
                 <label class="control-label">Fixture No.</label>
@@ -52,14 +52,11 @@ include'includes/header_login.php';
             </div>
 			     <div class="row">
               <div class="form-group col-md-6">
-<<<<<<< HEAD
+
                 <label class="control-label">Freight </label>
                 <input type="text" name="fright" required placeholder="Freight"  value="<?php echo $result['fright']; ?>" class="form-control-text">
-=======
-                <label class="control-label">Frieght</label>
 
-                <input type="text" name="fright" required placeholder="Fright"  value="<?php echo $result['fright']; ?>" class="form-control-text">
->>>>>>> 338f6804e5b5f382bbdf180c2cc472c609b0b4ea
+            
               </div>
               <div class="form-group col-md-6">
                 <label class="control-label">Currency</label>
@@ -85,25 +82,24 @@ include'includes/header_login.php';
               <div class="form-group col-md-12">
                 <label class="control-label">Remarks</label>
                 <input type="text" name="remarks" required placeholder="Remarks"  value="<?php echo $result['remarks']; ?>" class="form-control-text">
-              </div>
-              	
+              </div>	
             </div>
-            <div class="row">
-              <div class="form-group col-md-6">
-                <label class="control-label">Upload contract</label>
-                <input type="file" name="upload_contract" accept="pdf, rtf, excel/*">
-				      <input type="hidden" name="document1-removed" id="document1-removed">
             
-              </div>
-			        <div class="col-md-8">
+            <div class="row">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label class="control-label">Upload Contract </label>
+                    <input type="file" id="document1-chosen" name="upload_contract" accept="png, jpg/*"><br>
+                  </div>
+                  <div class="col-md-8">
                     <br>
-                    <?php if(!empty($result['contract'])) {?>
+                    <?php if(!empty($result['contract'] )) {?>
                     
                       <span id = "show-document1">
-                      <a href="<?php echo base_url()."uploads/".$result['contract']; ?>" class="btn btn-primary"> View</a>&nbsp;
-                      <?php $value = $result['contract'];echo $value; ?>
-                        
-                        <button type="button"  class="btn btn-danger" id="remove-document1" style="margin-left:10px;">Remove</button>
+                      <a href="<?php echo $result['contract']; ?>" class="btn btn-primary"> View</a>&nbsp;
+                      <?php $value = explode("/",$result['contract'] ); 
+                       echo substr($value[6],0,25); ?>
+                       <button type="button"  class="btn btn-danger" id="remove-document1" style="margin-left:10px;">Remove</button>
                       </span>
                       
                       <?php } 
@@ -111,20 +107,23 @@ include'includes/header_login.php';
                       <span> No Document Available </span>
                       <?php } ?>
                   </div>
-                <div class="form-group col-md-6">
-               <label class="control-label">Upload Invoice</label>
-                <input type="file" name="upload_invoice" accept="pdf, rtf, excel/*">
-			           	<input type="hidden" name="document2-removed"  id="document2-removed">
-              </div>
-			         <div class="col-md-8">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label class="control-label">Upload Invoice </label>
+                    <input type="file" id="document2-chosen" name="upload_invoice" accept="png, jpg/*"><br>
+                  </div>
+                  <div class="col-md-8">
                     <br>
-                    <?php if(!empty($result['invoice'])) {?>
+                    <?php if(!empty($result['invoice'] )) {?>
                     
                       <span id = "show-document2">
-                      <a href="<?php echo base_url()."uploads/".$result['invoice']; ?>" class="btn btn-primary"> View</a>&nbsp;
-                      <?php $value = $result['invoice'];echo $value; ?>
-                        
-                        <button type="button"  class="btn btn-danger" id="remove-document2" style="margin-left:10px;">Remove</button>
+                      <a href="<?php echo $result['invoice']; ?>" class="btn btn-primary"> View</a>&nbsp;
+                      <?php $value = explode("/",$result['invoice'] );
+                       echo substr($value[6],0,25); ?>
+                       <button type="button"  class="btn btn-danger" id="remove-document2" style="margin-left:10px;">Remove</button>
                       </span>
                       
                       <?php } 
@@ -132,7 +131,10 @@ include'includes/header_login.php';
                       <span> No Document Available </span>
                       <?php } ?>
                   </div>
+                </div>
             </div>
+           <input type="hidden" name="document1-removed" id="document1-removed">
+           <input type="hidden" name="document2-removed" id="document2-removed">
              <button type="submit" class="btn btn-black">Save </button>
           </form>
         </div>
@@ -157,7 +159,6 @@ include'includes/footer.php';
       document.getElementById("document2-removed").value = '1';
       document.getElementById("show-document2").style.display = 'none';
     });
-
 $("#document1-chosen").click(function(){
       document.getElementById("document1-removed").value = '0';
       // document.getElementById("show-document1").style.display = 'none';
