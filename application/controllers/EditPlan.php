@@ -50,7 +50,7 @@ $vessel_detail_folder = $this->Vessel_model->get_vessel_details_by_id($vessel_id
 			            	if ($_FILES["upload_plan".$i]["name"] != NULL)
 			            {
 			            	
-			                $target_file = $directory_name.'/'. basename($_FILES["upload_plan".$i]["name"]);
+			                $target_file = $plan_directory.'/'. basename($_FILES["upload_plan".$i]["name"]);
 			                //print_r($target_file);die();
 			                move_uploaded_file($_FILES['upload_plan'. $i]['tmp_name'], $target_file);
 			                $upload_plan[$i] = $base_url_website. $_FILES["upload_plan".$i]["name"];   
