@@ -120,7 +120,7 @@ include'includes/header_login.php';
       &nbsp;<span>Due in 45 days</span>&nbsp;&nbsp;
       <form id="drop_down"action="<?php echo base_url(); ?>index.php/VesselCertificate/search_dropdown_status/<?php echo $vessel_id; ?>" method="get">
       <input type="hidden" name="range" value="brown" />
-      <button type="button" id="brownclr" class="update text-center btn btn-brwon btn-sm"></button>
+      <button type="submit" id="brownclr" class="update text-center btn btn-brwon btn-sm"></button>
       </form>
       &nbsp;<span>Due in 30 days</span>&nbsp;&nbsp;
       <form id="drop_down"action="<?php echo base_url(); ?>index.php/VesselCertificate/search_dropdown_status/<?php echo $vessel_id; ?>" method="get">
@@ -200,18 +200,16 @@ include'includes/header_login.php';
             <tbody>
 		<?php foreach($certificate_data as $data)
 				{ 
-					  $now = time(); 
-            $date_of_issue=strtotime($data['date_issue']);
+					  $now = time();
 					  $expiry_date = strtotime($data['date_expiry']);
 					  $extention_date = strtotime($data['extention_until']); 
 					  $caldays = $expiry_date - $now;
-					  if($expiry_date>$date_of_issue && $extention_date>$now)
+					  if($expiry_date>$now && $extention_date>$now)
 					  {
 						$caldays = $expiry_date - $now; 
 						$calday =  round($caldays / (60 * 60 * 24));
 					  }
-					  $calday =  round($caldays / (60 * 60 * 24));
-
+					  $calday =  round($caldays / (60 * 60 * 24)); 
 					?>
 					<?php if($calday>30 && $calday<=45) { ?>
 						<tr class="text-center" id="yellow">

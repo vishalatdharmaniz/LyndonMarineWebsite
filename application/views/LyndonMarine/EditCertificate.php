@@ -265,9 +265,7 @@ $("#document1-chosen").click(function(){
       document.getElementById("document5-removed").value = '0';
       // document.getElementById("show-document5").style.display = 'none';
 });
-</script>
-<!--script>
-  var dateToday = $('#datepicker2').val();
+       var dateToday = $('#date_expiry').val();
 var dates = $("#datepicker2,#datepicker3").datepicker({
     dateFormat: 'dd/mm/yy',
     minDate: dateToday,
@@ -277,5 +275,6 @@ var dates = $("#datepicker2,#datepicker3").datepicker({
             date = $.datepicker.parseDate(instance.settings.dateFormat || $.datepicker._defaults.dateFormat, selectedDate, instance.settings);
         dates.not(this).datepicker("option", option, date);
     }
-});
-</script-->
+}); 
+</script>
+

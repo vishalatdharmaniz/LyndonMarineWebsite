@@ -8,9 +8,10 @@ include'includes/header_login.php';
 			
 			<!--<div class="col-md-3">-->
 
-        <div class="main-edit-add-left">
+      <!--   <div class="main-edit-add-left">
          <a class="btn-blue" href="<?php echo base_url();?>index.php/VesselFixture/index/<?php echo $vessel_id; ?>">Go Back
-         </a>                  </div>       
+         </a>                
+      </div>  -->      
 
       <!--</div>-->
 			
@@ -30,10 +31,10 @@ include'includes/header_login.php';
           <?php
 					if(!empty($error)){
 						echo $error['error'];
-					}
-          echo form_open_multipart(base_url()."index.php/VesselFixture/add/$vessel_id/");
+					}/*
+          echo form_open_multipart(base_url()."index.php/AddFixture/index/$vessel_id/");*/
           ?>
-					<form method="post" enctype="multipart/form-data" action="<?php echo base_url(); ?>index.php/VesselFixture/add/<?php echo $vessel_id; ?>">
+					<form method="post" enctype="multipart/form-data" action="<?php echo base_url(); ?>index.php/AddFixture/add/<?php echo $vessel_id; ?>">
             
             <div class="row">
               <div class="form-group col-md-6">
@@ -57,14 +58,10 @@ include'includes/header_login.php';
             </div>
 			<div class="row">
               <div class="form-group col-md-6">
-<<<<<<< HEAD
+
                 <label class="control-label">Freight</label>
                 <input type="text" name="fright" required placeholder="Freight "  value="<?php echo set_value('fright'); ?>" class="form-control-text">
-=======
-                <label class="control-label">Frieght</label>
 
-                <input type="text" name="fright" required placeholder="Fright"  value="<?php echo set_value('fright'); ?>" class="form-control-text">
->>>>>>> 338f6804e5b5f382bbdf180c2cc472c609b0b4ea
               </div>
               <div class="form-group col-md-6">
                 <label class="control-label">Currency</label>

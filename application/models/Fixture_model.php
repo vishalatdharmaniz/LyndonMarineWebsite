@@ -140,6 +140,16 @@ class Fixture_model extends CI_Model
 		return $result;
 	}
 	
+	public function fixture_data_by_vessel_id($vessel_id)
+	{
+		$fixture_data=$this->db->query("SELECT * FROM vessel_fixtures WHERE vessel_id='$vessel_id' ");
+		return $fixture_data->result_array();
+	}
+	public function fixture_data_by_fixture_id($id)
+	{
+		$fixture_data=$this->db->query("SELECT * FROM vessel_fixtures WHERE id='$id' ");
+		return $fixture_data->result_array();
+	}
 	public function update_fixture($data,$id,$vessel_id)
     {
         $this->db->where('id',$id);
