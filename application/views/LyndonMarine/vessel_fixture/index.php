@@ -29,7 +29,7 @@ if(!isset($search_critria)){
         <div class="col-md-3">
         <div class="main-edit-add-left"> <a class="btn-blue" href="<?php echo base_url();?>index.php/FleetDetails/index/<?php echo $vessel_id; ?>">Go Back</a>                  </div>       
       </div>
-  <!--     <div class="col-md-4">
+      <div class="col-md-4">
 
     <form action="<?php echo base_url()."index.php/VesselFixture/search/$vessel_id" ?>" method="post">
     <div class="input-group">
@@ -61,7 +61,6 @@ if(!isset($search_critria)){
      </div>		
   
       </div>
- -->
       <div class="col-md-4">
       </div>
 			
@@ -71,62 +70,14 @@ if(!isset($search_critria)){
         <ul class="main-edit-add">
 					<li><a class="btn-blue" href="<?php echo base_url();?>index.php/VesselFixture/index/<?php echo $vessel_id; ?>">All Fixture </a></li>
         <li><a class="btn-blue" href="<?php echo base_url();?>index.php/AddFixture/index/<?php echo $vessel_id; ?>">Add New Fixture </a></li>
-				  <li><button class="btn-blue" onclick="mail_selected_vessels()" >Mail Document</button></li>
-         
+				<li><button class="btn-blue" onclick="mail_selected_vessels()" >Mail Document</button></li>
+          <!-- <li><a class="btn-blue" onclick="mail_selected_vessels()" >Mail Document</a></li> -->
           </ul>
 				</br>
-				
-     </div>
-  </div>
+			
+         </div>
+         </div>
          
-   <div class="container">
-     <div class="row">
-       <div class="col-md-12">
-
-  
-      <form class="form-inline" action="<?php echo base_url()."index.php/VesselFixture/search/$vessel_id" ?>" method="post">
-        <div class="input-group">
-              <div class="dropdown">    
-        <input type="text" class="form-control" size="50" placeholder="Search " required>
-      &nbsp <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><span class="caret"></span></button>
-      <button type="submit" class="btn btn-primary"> <span class="glyphicon glyphicon-search" aria-hidden="true"></span> </button>
-         
-         
-        <ul class="dropdown-menu">
-         <li>
-        <div class="col-md-12"><div class="form-group">
-          <label for="inputAddress" style="color:black; margin-bottom:15px; margin-top:12px; font-size:18px;">Advanced Search </label>
-         </div> <hr></div></li>
-         
-          <li>
-        <div class="col-md-12"><div class="form-group">
-          <label for="inputAddress" style="color:black; margin-bottom:15px; margin-top:12px;">Loading Port</label>
-         <input type="text" id="search_box" class="form-control-text" value="<?php if(isset($search_data)){echo $search_data;}?>" placeholder="Loading Port" name="loading_port"> 
-        </div></div></li>
-          <li> <div class="col-md-12"><div class="form-group">
-         <label for="inputAddress" style="color:black; margin-bottom:15px;margin-top:12px;">Discharge Port</label>
-         <input type="text" id="search_box" class="form-control-text" value="<?php if(isset($search_data)){echo $search_data;}?>" placeholder="Discharge port" name="discharge_port">
-        </div></div></li>
-          <li><div class="col-md-12"> <div class="form-group">
-         <label for="inputAddress" style="color:black; margin-bottom:15px;margin-top:12px;">Fixture No</label>
-          <input type="text" id="search_box" class="form-control-text" value="<?php if(isset($search_data)){echo $search_data;}?>" placeholder="Fixture No" name="discharge_port">
-        </div></div></li>
-        <li>
-        <div class="form-group col-md-6">
-            <label for="inputEmail4" style="color:black; margin-bottom:15px;margin-top:12px;">Start Date</label>
-            <input type="text" id="start_date" class="form-control-text" value="<?php if(isset($search_data)){echo $search_data;}?>" placeholder="Start Date" name="start_date">
-          </div>
-        <div class="form-group col-md-6">
-            <label for="inputPassword4" style="color:black; margin-bottom:15px;margin-top:12px;">End Date</label>
-            <input type="text" id="end_date" class="form-control-text" value="<?php if(isset($search_data)){echo $search_data;}?>" placeholder="End Date" name="end_date">
-          </div>
-        </li>
-        </ul>
-     </form>
-    </div>
-</div>
-</div>
-
          
       </div>
     </div>
@@ -175,7 +126,7 @@ if(!isset($search_critria)){
                 <td class="text-center"><?php echo $data['fright']; ?></td>
                  <td class="text-center"><?php echo $data['currency']; ?></td>
                 <td class="text-center">
-                  <a href="<?php echo base_url(); ?>/index.php/ViewFixture/index/<?php echo $data['vessel_id'];?>" class="btn btn-primary">View</a>
+                  <a href="<?php echo base_url(); ?>index.php/ViewFixture/index/<?php echo $data['vessel_id'];?>" class="btn btn-primary">View</a>
                 </td>
                 <td class="text-center">
                     <input type="checkbox" name="checkbox" id="checkbox<?php echo $data['id']; ?>">

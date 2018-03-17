@@ -134,7 +134,10 @@ class EditFixture extends CI_Controller
 			
 		}else{
 			$data = array();
-			redirect("VesselFixture/index/$vessel_id");	
+					
+			$base_url = BASE_URL;
+          
+            header("Location: $base_url/index.php/VesselFixture/index/$vessel_id");
 		}
 		
 	}

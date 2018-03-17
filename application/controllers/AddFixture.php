@@ -7,7 +7,7 @@ class AddFixture extends CI_Controller
 	{
 		
 		$this->load->model('Fixture_model');
-		//echo "<pre>";print_r($_FILES); die;
+	/*	//echo "<pre>";print_r($_FILES); die;
 		$this->load->helper(array('form', 'url'));
         $this->load->library('form_validation');
 		$this->form_validation->set_rules('fixture_no', 'fixture_no', 'required');
@@ -19,15 +19,22 @@ class AddFixture extends CI_Controller
 		$this->form_validation->set_rules('remarks', 'remarks', 'required');
 		if ($this->form_validation->run() == FALSE){
 			//echo "<pre>";print_r($_FILES);die;
-			$data = array();
+			$data = array();*/
 			$data['vessel_id'] = $vessel_id;
 			$this->load->view('LyndonMarine/vessel_fixture/add',$data);
-		}else{
+   }
+
+public function add($vessel_id)
+{
+		   $this->load->model('Fixture_model');
 			$fixture_no = $this->input->post('fixture_no');
 			$fixture_date = $this->input->post('fixture_date');
-			if(!empty($fixture_date)){
+			if(!empty($fixture_date))
+			{
 				$fixture_date = date("Y-m-d",strtotime(str_replace('/', '-', $fixture_date)));
-			}else{
+			}
+			else
+			{
 				$fixture_date = "";
 			}
 			$loading_port = $this->input->post('loading_port');
@@ -108,10 +115,12 @@ class AddFixture extends CI_Controller
 				$user_id = $this->session->userdata('user_id');
 				//header("Location: $base_url/index.php/AllVessels/index");
 				$data['vessel_id'] = $vessel_id;
-				redirect("VesselFixture/index/$vessel_id");
-			//}
+
+			$base_url = BASE_URL;
+          
+            header("Location: $base_url/index.php/VesselFixture/index/$vessel_id");
 		}
 		
-	}
+	
 }
 ?>

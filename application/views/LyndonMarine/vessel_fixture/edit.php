@@ -28,8 +28,8 @@ include'includes/header_login.php';
 						echo $error['error'];
 					}
 					$id = $result['id'];
-					echo form_open_multipart(base_url()."index.php/EditFixture/index/$id/$vessel_id/"); ?>
-        <form method="post" enctype="multipart/form-data" action="<?php echo base_url(); ?>index.php/EditFixture/index/<?php echo $id; ?>/<?php echo $vessel_id; ?>"> 
+				/*	echo form_open_multipart(base_url()."index.php/EditFixture/index/$id/$vessel_id/");*/ ?>
+        <form method="post" enctype="multipart/form-data" action="<?php echo base_url(); ?>index.php/EditFixture/index/<?php echo $id; ?>/<?php echo $vessel_id; ?>"  > 
             <div class="row">
               <div class="form-group col-md-6">
                 <label class="control-label">Fixture No.</label>

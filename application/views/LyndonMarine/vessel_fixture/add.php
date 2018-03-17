@@ -31,10 +31,10 @@ include'includes/header_login.php';
           <?php
 					if(!empty($error)){
 						echo $error['error'];
-					}
-          echo form_open_multipart(base_url()."index.php/AddFixture/index/$vessel_id/");
+					}/*
+          echo form_open_multipart(base_url()."index.php/AddFixture/index/$vessel_id/");*/
           ?>
-					<form method="post" enctype="multipart/form-data" action="<?php echo base_url(); ?>index.php/AddFixture/index/<?php echo $vessel_id; ?>">
+					<form method="post" enctype="multipart/form-data" action="<?php echo base_url(); ?>index.php/AddFixture/add/<?php echo $vessel_id; ?>">
             
             <div class="row">
               <div class="form-group col-md-6">
