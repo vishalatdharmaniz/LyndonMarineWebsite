@@ -50,9 +50,10 @@ $total_certificate = $this->Certificate_model->get_total_certificate($vessel_id)
 
                     $data['offset'] = $offset;
                     // $data['certificate_data'] = $total_certificate;
-    	// $data['certificate_data'] = $certificate_data;
+    	$data['certificate_data'] = $certificate_data;
         
         $data['vessel_id'] = $vessel_id;
+        $data['searchtype'] = '';
 
     	$this->load->view('LyndonMarine/vessel_certificate',$data);
     }
@@ -129,6 +130,8 @@ $total_certificate = $this->Certificate_model->get_total_certificate($vessel_id)
 
 	public function search_certificate_type($searchtype,$vessel_id)
     {
+       /*  $searchtype = $_REQUEST['certificate_type'];*/
+
         $this->load->library('pagination');
         $this->load->model('Certificate_model');
          $this->load->model('Vessel_model');
@@ -161,11 +164,18 @@ $total_certificate = $this->Certificate_model->get_total_certificate($vessel_id)
         $data['vessel_data']= $vessel_data;
 
         $total_search_certificate = $this->Certificate_model->search_total_certificate_type($searchtype,$vessel_id);
+       /*if($total_search_certificate==0)
+        { 
 
-            $config['base_url'] = base_url().'index.php/VesselCertificate/search_certificate_type/'.$searchtype.'/'.$vessel_id;
-            $config['total_rows'] = $total_search_certificate;
-            $config['per_page'] = 10;
-            $config['uri_segment'] = 5;
+            redirect('/VesselCertificate/index/search_certificate_type/'.$searchtype.'/'. $vessel_id ); 
+        }
+       else
+       {*/
+
+        $config['base_url'] = base_url().'index.php/VesselCertificate/search_certificate_type/'.$searchtype.'/'.$vessel_id;
+        $config['total_rows'] = $total_search_certificate;
+        $config['per_page'] = 10;
+        $config['uri_segment'] = 5;
                     
             $this->pagination->initialize($config);
             
@@ -173,9 +183,15 @@ $total_certificate = $this->Certificate_model->get_total_certificate($vessel_id)
 
             $data['offset'] = $offset;
         // $vessel_id = $certificate_data[0]['vessel_id'];
-        $data['vessel_id'] = $vessel_id;  
+        $data['searchtype'] = $searchtype;
+        $data['vessel_id'] = $vessel_id; 
+        
         $this->load->view('LyndonMarine/vessel_certificate',$data);
-    }
+        
+
+       
+}
+
 
     public function search_dropdown_status($vessel_id){
         $range = $_REQUEST['range'];
@@ -230,6 +246,7 @@ $total_certificate = $this->Certificate_model->get_total_certificate($vessel_id)
             $this->pagination->initialize($config);
              $data['links'] = $this->pagination->create_links();
             $data['certificate_data'] = $result;
+            $data['searchtype'] = '';
                     $data['vessel_id'] = $vessel_id;  
             $this->load->view('LyndonMarine/vessel_certificate',$data);
     }   

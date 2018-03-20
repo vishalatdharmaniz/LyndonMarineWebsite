@@ -47,6 +47,8 @@ include'includes/header_login.php';
                   <option value="class">Class</option>
                   <option value="port_state">Port State</option>
                   <option value="captain">Captain</option>
+                  <option value="P and I">P & I</option>
+                  <option value="Other">Other</option>
                 </select>
               </div>
               <div class="form-group col-md-6">

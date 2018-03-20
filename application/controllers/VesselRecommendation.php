@@ -34,18 +34,22 @@ $data['recommendation_data'] = $this->Recommendation_model->get_all_recommendati
 
 $total_recommendation = $this->Recommendation_model->get_total_recommendation($vessel_id);
             
+            $this->load->model('Vessel_model');
+            $vessel_data = $this->Vessel_model->get_vessel_details_by_id($vessel_id);
+            $data['vessel_data'] = $vessel_data;
 
-                $config['base_url'] = base_url().'index.php/VesselRecommendation/index/'.$vessel_id;
-                    $config['total_rows'] = $total_recommendation; 
-                    $config['per_page'] = 10;
-                    $config['uri_segment'] = 5;
-                    
+            $config['base_url'] = base_url().'index.php/VesselRecommendation/index/'.$vessel_id;
+            $config['total_rows'] = $total_recommendation; 
+            $config['per_page'] = 10;
+            $config['uri_segment'] = 5;
+                
                     $this->pagination->initialize($config);
                     
                     $data['links'] = $this->pagination->create_links();
 
                     $data['offset'] = $offset;
 
+        
     	$data['recommendation_data'] = $recommendation_data;
     	$data['vessel_id'] = $vessel_id;
 		$this->load->view('LyndonMarine/VesselRecommendation',$data);
@@ -57,6 +61,8 @@ $total_recommendation = $this->Recommendation_model->get_total_recommendation($v
         $this->load->library('pagination');
         $this->load->model('Recommendation_model');
         $this->load->model('Vessel_model');
+
+          $searchtype=str_replace("%20", "_", $searchtype);
 
           $config['full_tag_open'] = '<ul class="pagination">';
             $config['full_tag_close'] = '</ul>';

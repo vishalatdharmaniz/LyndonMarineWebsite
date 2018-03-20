@@ -34,7 +34,12 @@ include'includes/CheckUserLogin.php';
             <div class="row">
                <div class="form-group col-md-6">
                 <label class="control-label">Currency</label>
-                <input type="text" placeholder="Currency" name="currency" class="form-control-text">
+               <select required class="form-control-text" required id="sel1" name="currency">
+                  <option>Select</option>
+                  <option value="GBP">GBP</option>
+                  <option value="USD">USD</option>
+                  <option value="EURO">EURO</option>
+                </select>
               </div>
                <div class="form-group col-md-6">
                 <label class="control-label">Upload Document</label>

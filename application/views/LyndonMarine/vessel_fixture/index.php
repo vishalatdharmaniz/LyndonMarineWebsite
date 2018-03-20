@@ -33,27 +33,28 @@ if(!isset($search_critria)){
 
     <form action="<?php echo base_url()."index.php/VesselFixture/search/$vessel_id" ?>" method="post">
     <div class="input-group">
-			 <table>
-        <tr>
-          <td>
-            <input type="text" id="search_box" class="form-control-text" value="<?php if(isset($search_data)){echo $search_data;}?>" placeholder="Loading Port" name="loading_port">        
-          </td>
-          <td>
-            <input type="text" id="search_box" class="form-control-text" value="<?php if(isset($search_data)){echo $search_data;}?>" placeholder="Discharge port" name="discharge_port">
-          </td>
-          <td>
-            <input type="text" id="search_box" class="form-control-text" value="<?php if(isset($search_data)){echo $search_data;}?>" placeholder="Fixture No." name="fixture_no">
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <input type="text" id="start_date" class="form-control-text" value="<?php if(isset($search_data)){echo $search_data;}?>" placeholder="Start Date" name="start_date">
-        
-          
-            <input type="text" id="end_date" class="form-control-text" value="<?php if(isset($search_data)){echo $search_data;}?>" placeholder="End Date" name="end_date">
-          </td>
-        </tr>
-      </table>
+			<table>
+				<tr>
+					<td>
+						<input type="text" id="search_box" class="form-control-text" value="<?php if(isset($search_data)){echo $search_data;}?>" placeholder="Loading Port" name="loading_port">				
+					</td>
+					<td>
+						<input type="text" id="search_box" class="form-control-text" value="<?php if(isset($search_data)){echo $search_data;}?>" placeholder="Discharge port" name="discharge_port">
+					</td>
+					<td>
+						<input type="text" id="search_box" class="form-control-text" value="<?php if(isset($search_data)){echo $search_data;}?>" placeholder="Fixture No." name="fixture_no">
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input type="text" id="start_date" class="form-control-text" value="<?php if(isset($search_data)){echo $search_data;}?>" placeholder="Start Date" name="start_date">
+					</td>
+					<td colspan=1></td>
+					<td>
+						<input type="text" id="end_date" class="form-control-text" value="<?php if(isset($search_data)){echo $search_data;}?>" placeholder="End Date" name="end_date">
+					</td>
+				</tr>
+			</table>
     
   <div class="input-group-btn"> <a class="btn btn-default text-muted" href="<?php echo base_url();?>index.php/VesselFixture/index/<?php echo $vessel_id;?>" title="Clear" onclick="reset()"><i class="glyphicon glyphicon-remove"></i> </a>
     <button type="submit" class="btn btn-info"> <span class="glyphicon glyphicon-search" aria-hidden="true"></span> </button>
@@ -69,12 +70,14 @@ if(!isset($search_critria)){
         <div class="list_right">
         <ul class="main-edit-add">
 					<li><a class="btn-blue" href="<?php echo base_url();?>index.php/VesselFixture/index/<?php echo $vessel_id; ?>">All Fixture </a></li>
-        <li><a class="btn-blue" href="<?php echo base_url();?>index.php/AddFixture/index/<?php echo $vessel_id; ?>">Add New Fixture </a></li>
-				<li><button class="btn-blue" onclick="mail_selected_vessels()" >Mail Document</button></li>
+        <li><a class="btn-blue" href="<?php echo base_url();?>index.php/VesselFixture/add/<?php echo $vessel_id; ?>">Add New Fixture </a></li>
+				
           <!-- <li><a class="btn-blue" onclick="mail_selected_vessels()" >Mail Document</a></li> -->
           </ul>
 				</br>
-			
+				<ul class="main-edit-add">
+					<li><button class="btn-blue" onclick="mail_selected_vessels()" >Mail Document</button></li>
+				</ul>
          </div>
          </div>
          
@@ -96,16 +99,16 @@ if(!isset($search_critria)){
           <table class="table table-bordered table-hover">
             <thead>
               <tr>
-                <th class="text-center">Fixture No</th>
-                <th class="text-center">Date</th>
-                <th class="text-center">Loading port(s)</th>
-                <th class="text-center">Discharging Port(s)</th>
-                <th class="text-center">Freight</th>
-                <th class="text-center">Currency</th>
-                <th class="text-center">View Document</th>
-                <th class="text-center">Select</th>
-                <th class="text-center">Action</th>
-
+                <th>Fixture No</th>
+                <th>Date</th>
+                <th>Loading port(s)</th>
+                <th>Discharging Port(s)</th>
+                <th>Freight</th>
+                <th>Currency</th>
+                <th class="text-center">Contract</th>
+                <th class="text-center">Fright Invoice</th>
+                <th>Select</th>
+                
               </tr>
             </thead>
             <tbody>
@@ -113,29 +116,29 @@ if(!isset($search_critria)){
 			//echo "<pre>";print_r($all_fixture);die;
 			foreach($all_fixture as $data) { ?>
               <tr>
-                <td class="text-center"><?php echo $data['fixture_no']; ?></td>
-                <td class="text-center"><?php
+                <td><?php echo $data['fixture_no']; ?></td>
+                <td><?php
 								if($data['fixture_date'] != "0000-00-00 00:00:00"){
 									echo date("d/m/y",strtotime($data['fixture_date'])); 
 								}else{
 									echo "--"; 
 								}
 								?></td>
-                <td class="text-center"><?php echo $data['loading_port']; ?></td>
-                <td class="text-center"><?php echo $data['discharging_port']; ?></td>
-                <td class="text-center"><?php echo $data['fright']; ?></td>
-                 <td class="text-center"><?php echo $data['currency']; ?></td>
-                <td class="text-center">
-                  <a href="<?php echo base_url(); ?>index.php/ViewFixture/index/<?php echo $data['vessel_id'];?>" class="btn btn-primary">View</a>
-                </td>
-                <td class="text-center">
+                <td><?php echo $data['loading_port']; ?></td>
+                <td><?php echo $data['discharging_port']; ?></td>
+                <td><?php echo $data['fright']; ?></td>
+                 <td><?php echo $data['currency']; ?></td>
+                <td class="text-center"><a href="<?php echo base_url(); ?>/uploads/<?php echo $data['contract'];?>" class="btn btn-primary">View</td>
+				<td class="text-center"><a href="<?php echo base_url(); ?>/uploads/<?php echo $data['invoice'];?>" class="btn btn-primary">View</td>
+                 
+                <td>
                     <input type="checkbox" name="checkbox" id="checkbox<?php echo $data['id']; ?>">
                 </td>
                <td class="text-center">
                   <a href="<?php echo base_url();?>index.php/VesselFixture/delete/<?php echo $data['id'] ?>/<?php echo $data['vessel_id']; ?>" Onclick="return confirm('Are you Sure?');" class="btn-bk">
                     <i class="fa fa-trash" aria-hidden="true"></i>
                   </a>
-                  <a href="<?php echo base_url();?>index.php/EditFixture/index/<?php echo $data['id']; ?>/<?php echo $data['vessel_id']; ?>" class="btn-bk">
+                  <a href="<?php echo base_url();?>index.php/VesselFixture/edit/<?php echo $data['id']; ?>/<?php echo $data['vessel_id']; ?>" class="btn-bk">
                     <i class="fa fa-pencil" aria-hidden="true"></i>
                   </a>
                </td>

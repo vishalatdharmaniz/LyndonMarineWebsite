@@ -43,14 +43,40 @@ include'includes/CheckUserLogin.php';
               </div>
             </div>
             <div class="row">
-               <div class="form-group col-md-6">
-                <label class="control-label">Currency</label>
-                <input type="text" placeholder="Currency" name="currency" value="<?php echo $currency; ?>"  class="form-control-text">
+               <div class="form-group col-md-12">
+               <label class="control-label">Currency</label>
+               <select required class="form-control-text" required id="sel1" name="currency">
+                  <option><?php echo $currency; ?></option>
+                  <option value="GBP">GBP</option>
+                  <option value="USD">USD</option>
+                  <option value="EURO">EURO</option>
+                </select>
               </div>
-               <div class="form-group col-md-6">
-                <label class="control-label">Upload Document</label>
-                <input type="file" placeholder="Upload Document" name="document" value="<?php echo $document; ?>"  class="form-control-text">
-              </div>
+            </div>
+           <div class="row">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label class="control-label">Upload Document </label>
+                    <input type="file" id="document1-chosen" name="document" accept="png, jpg/*"><br>
+                  </div>
+                  <div class="col-md-8">
+                    <br>
+                    <?php if(!empty($document )) {?>
+                    
+                      <span id = "show-document1">
+                      <a href="<?php echo $document; ?>" class="btn btn-primary"> View</a>&nbsp;
+                      <?php $value = explode("/",$document );
+                       echo substr($value[6],0,25); ?>
+                       <button type="button"  class="btn btn-danger" id="remove-document1" style="margin-left:10px;">Remove</button>
+                      </span>
+                      
+                      <?php } 
+                      else { ?>
+                      <span> No Document Available </span>
+                      <?php } ?>
+                  </div>
+                    <input type="hidden" name="document1-removed" id="document1-removed">
+                </div>
             </div>
              <button type="submit" class="btn btn-black">Save </button>
           </form>
@@ -66,4 +92,13 @@ include 'includes/footer.php';
   $( function() {
     $( "#datepicker1" ).datepicker({ dateFormat: 'dd/mm/yy' }).val();
   } );
+  $("#remove-document1").click(function(){
+      document.getElementById("document1-removed").value = '1';
+      document.getElementById("show-document1").style.display = 'none';
+    });
+  
+$("#document1-chosen").click(function(){
+      document.getElementById("document1-removed").value = '0';
+      // document.getElementById("show-document1").style.display = 'none';
+    });
 </script>

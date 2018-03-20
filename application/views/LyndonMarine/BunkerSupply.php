@@ -9,7 +9,9 @@ include'includes/CheckUserLogin.php';
     <div class="row">
       <div class="col-md-offset-3 col-md-6">
         <div class="page-heading">
-          <h2>Bunker Supply</h2> <br>
+          <h2>Bunker Supply for <?php foreach ($vessel_data as $vesselname) {
+            echo $vesselname['vessel_name'];
+          } ?> </h2> <br>
         </div> 
        </div>
     </div>
@@ -57,17 +59,17 @@ include'includes/CheckUserLogin.php';
      <div class="black_bg">
      <div class="col-md-8">
       <div class="mar_box">
-      <form id="drop_down"action="<?php echo base_url(); ?>index.php/VesselBunkersSupply/search_dropdown_status/<?php echo $vessel_id; ?>" method="get">
+      <form id="drop_down" action="<?php echo base_url(); ?>index.php/VesselBunkerSupply/search_dropdown_status/<?php echo $vessel_id; ?>" method="get">
       <input type="hidden" name="range" value="red" />
       <button type="submit" id="redclor" class="update text-center btn btn-red btn-sm"></button>
       </form>
       &nbsp;<span>Due in 5 days</span>&nbsp;&nbsp;
-      <form id="drop_down"action="<?php echo base_url(); ?>index.php/VesselBunkerSupply/search_dropdown_status/<?php echo $vessel_id; ?>" method="get">
+      <form id="drop_down" action="<?php echo base_url(); ?>index.php/VesselBunkerSupply/search_dropdown_status/<?php echo $vessel_id; ?>" method="get">
       <input type="hidden" name="range" value="green" />
-      <button type="button" id="greenclr" class="update text-center btn btn-green btn-sm"></button>
+      <button type="submit" id="greenclr" class="update text-center btn btn-green btn-sm"></button>
       </form>
       &nbsp;<span>Valid more than 5 days</span>&nbsp;&nbsp;
-      <form id="drop_down"action="<?php echo base_url(); ?>index.php/VesselBunkerSupply/search_dropdown_status/<?php echo $vessel_id; ?>" method="get">
+      <form id="drop_down" action="<?php echo base_url(); ?>index.php/VesselBunkerSupply/search_dropdown_status/<?php echo $vessel_id; ?>" method="get">
       <input type="hidden" name="range" value="blue" />
       <button type="submit" id="blueclr" class="update text-center btn btn-blue-status btn-sm"></button>
       </form>
@@ -98,7 +100,7 @@ include'includes/CheckUserLogin.php';
            <form id="drop_down" action="<?php echo base_url(); ?>index.php/VesselBunkerSupply/search_dropdown_status/<?php echo $vessel_id; ?>" method="get">
          
             <select class="form-control-text1" name="range" style="width: 169px;" onchange="this.form.submit()">
-              <option selected value="">Select Status</option>
+              <option value="all">Select Status</option>
               <option value="red" <?php if($range == "red"){echo "selected=selected";}?>>Due now or overdue in 5 days</option>
               <option value="green" <?php if($range == "green"){echo "selected=selected";}?>>Valid More than 5 days</option>
               <option value="blue" <?php if($range == "blue"){echo "selected=selected";}?>> Paid</option>
@@ -119,10 +121,10 @@ include'includes/CheckUserLogin.php';
                 <th class="text-center">Supplier Name</th>
                 <th class="text-center">Supply Port</th>
                 <th class="text-center">Supply Date</th>
+                <th class="text-center">Invoice Amount</th>
+                <th class="text-center">Currency</th>
                 <th class="text-center">Due Date</th>
                 <th class="text-center">Paid</th>
-                <th class="text-center">Invocie Amount</th>
-                <th class="text-center">Currency</th>
                 <th class="text-center">View Invoice </th>
                 <th class="text-center">Status</th>
                 <th class="text-center">Select</th>
@@ -163,10 +165,10 @@ include'includes/CheckUserLogin.php';
                 <td class="text-center"><?php echo $suppliers; ?></td>
                 <td class="text-center"><?php echo $port_of_supply; ?></td>
                 <td class="text-center"><?php echo date("d-m-Y",strtotime($supply_date)); ?></td>
-                <td class="text-center"><?php echo date("d-m-Y",strtotime($date_due)); ?></td>
-                <td class="text-center"><?php if($paid_status=="Yes"){echo $paid_status; } else{echo "N/A" ;} ?></td>
                 <td class="text-center"><?php if($paid_status=="Yes"){echo $invoice_amount; } else{echo "N/A" ;} ?></td>
                 <td class="text-center"><?php if($paid_status=="Yes"){echo $currency; } else{echo "N/A" ;}  ?></td>
+                <td class="text-center"><?php echo date("d-m-Y",strtotime($date_due)); ?></td>
+                <td class="text-center"><?php if($paid_status=="Yes"){echo $paid_status; } else{echo "N/A" ;} ?></td>
                 <td class="text-center"><a href="<?php echo base_url(); ?>index.php/ViewBunkerSupply/index/<?php echo $vessel_id ; ?>" class="btn btn-primary">View</td>
                 <td>
                  <?php 

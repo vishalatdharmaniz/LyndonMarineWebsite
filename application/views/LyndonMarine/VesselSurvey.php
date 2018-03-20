@@ -85,6 +85,8 @@ include'includes/header_login.php';
       &nbsp;<span>Valid </span>&nbsp;&nbsp; 
       </div>
     </div>
+    <div class="col-md-2">
+    </div>
 	
 	 <div class="col-md-2">
        <div class="input-group"> 
@@ -105,12 +107,9 @@ include'includes/header_login.php';
       <option value="green" <?php if($range == "green"){echo "selected=selected";}?>>Valid</option>
     </select>
    
-     </form>
-		 
-		 
-		 
-      </div>
-      </div>
+     </form>	 
+    </div>
+  </div>
       </div>
        </div>
    
@@ -235,7 +234,8 @@ include'includes/header_login.php';
 							}
 							
 							?></td>
-              <td><a href="<?php echo base_url();?>index.php/EditSurvey/index/<?php echo $value['id']; ?>/<?php echo $value['vessel_id'];?>" class="btn-bk"> <i class="fa fa-pencil" aria-hidden="true"></i></a> <a href="<?php echo base_url();?>index.php/VesselSurvey/delete/<?php echo $value['id']; ?>/<?php echo $value['vessel_id'];?>" Onclick="return confirm('Are you Sure?');" class="btn-bk"> <i class="fa fa-trash" aria-hidden="true"></i></a></td>
+              <td><a href="<?php echo base_url();?>index.php/EditSurvey/index/<?php echo $value['id']; ?>/<?php echo $value['vessel_id'];?>" class="btn-bk"> <i class="fa fa-pencil" aria-hidden="true"></i></a> 
+              	<a href="<?php echo base_url();?>index.php/VesselSurvey/delete/<?php echo $value['id']; ?>/<?php echo $value['vessel_id'];?>" Onclick="return confirm('Are you Sure?');" class="btn-bk"> <i class="fa fa-trash" aria-hidden="true"></i></a></td>
             </tr>
             <?php } ?>
           </tbody>
