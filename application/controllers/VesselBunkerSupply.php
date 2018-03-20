@@ -35,7 +35,9 @@ class VesselBunkerSupply extends CI_Controller
 $data['bunker_supply_data'] = $this->BunkerSupply_model->get_all_bunker_supply_data_for_pagination($vessel_id,$offset);
 
 $total_bunker = $this->BunkerSupply_model->get_total_bunker($vessel_id);
-            
+$this->load->model('Vessel_model');
+             $vessel_data = $this->Vessel_model->get_vessel_details_by_id($vessel_id);
+       
 
                 $config['base_url'] = base_url().'index.php/VesselBunkerSupply/index/'.$vessel_id;
                     $config['total_rows'] = $total_bunker; 
@@ -48,7 +50,7 @@ $total_bunker = $this->BunkerSupply_model->get_total_bunker($vessel_id);
 
                     $data['offset'] = $offset;
 
-
+        $data['vessel_data']= $vessel_data;
     	$data['bunker_supply_data'] = $bunker_supply_data;
     	$data['vessel_id'] = $vessel_id;
 		$this->load->view('LyndonMarine/BunkerSupply',$data);

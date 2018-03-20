@@ -1,6 +1,7 @@
 <?php
 include'includes/CheckUserLogin.php';
 include'includes/header_login.php';
+
 ?>
 <style>
  /* .form-control-text1{
@@ -35,14 +36,17 @@ include'includes/header_login.php';
     	<div class="row"> 
         
         <div class="col-md-3">
-        <div class="main-edit-add-left"> <a class="btn-blue" href="<?php echo base_url();?>index.php/FleetDetails/index/<?php echo $vessel_id; ?>">Go Back</a>				          </div>       
+        <div class="main-edit-add-left"> <a class="btn-blue" href="<?php echo base_url();?>index.php/FleetDetails/index/<?php echo $vessel_id; ?>">Go Back</a>				         
+         </div>       
          </div>
       
       <div class="col-md-4">
       <div class="input-group">
-        <form onsubmit="searchEnter(document.getElementById('search_vessel').value); return false;">
-          <input type="text" class="form-control-text" placeholder="Search" name="search" id="search_vessel">
+        <form method="post" name="form1" onsubmit="searchEnter(document.getElementById('search_vessel').value); return false;">
+          <input type="text" class="form-control-text" value="" placeholder="Search" name="search" id="search_vessel">
         </form>
+
+
           <span class="input-group-btn">
       			<a class="btn btn-default text-muted" href="#" title="Clear" onclick="reset()"><i class="glyphicon glyphicon-remove"></i> </a>
       			<button onclick="search(document.getElementById('search_vessel').value)" type="button" class="btn btn-info">
@@ -113,32 +117,79 @@ include'includes/header_login.php';
      <div class="black_bg">
      <div class="col-md-8">
      	<div class="mar_box">
-      <form id="drop_down"action="<?php echo base_url(); ?>index.php/VesselCertificate/search_dropdown_status/<?php echo $vessel_id; ?>" method="get">
+      <form id="drop_down" action="<?php echo base_url(); ?>index.php/VesselCertificate/search_dropdown_status/<?php echo $vessel_id; ?>" method="get">
       <input type="hidden" name="range" value="yellow" />
       <button type="submit" id="yellowclor" class="update text-center btn btn-yelow btn-sm"></button>
       </form>
       &nbsp;<span>Due in 45 days</span>&nbsp;&nbsp;
-      <form id="drop_down"action="<?php echo base_url(); ?>index.php/VesselCertificate/search_dropdown_status/<?php echo $vessel_id; ?>" method="get">
+      <form id="drop_down" action="<?php echo base_url(); ?>index.php/VesselCertificate/search_dropdown_status/<?php echo $vessel_id; ?>" method="get">
       <input type="hidden" name="range" value="brown" />
       <button type="submit" id="brownclr" class="update text-center btn btn-brwon btn-sm"></button>
       </form>
       &nbsp;<span>Due in 30 days</span>&nbsp;&nbsp;
-      <form id="drop_down"action="<?php echo base_url(); ?>index.php/VesselCertificate/search_dropdown_status/<?php echo $vessel_id; ?>" method="get">
+      <form id="drop_down" action="<?php echo base_url(); ?>index.php/VesselCertificate/search_dropdown_status/<?php echo $vessel_id; ?>" method="get">
       <input type="hidden" name="range" value="red" />
       <button type="submit" id="redclor" class="update text-center btn btn-red btn-sm"></button>
       </form>
       &nbsp;<span>Due Now or Overdue</span>&nbsp;&nbsp;
-      <form id="drop_down"action="<?php echo base_url(); ?>index.php/VesselCertificate/search_dropdown_status/<?php echo $vessel_id; ?>" method="get">
+      <form id="drop_down" action="<?php echo base_url(); ?>index.php/VesselCertificate/search_dropdown_status/<?php echo $vessel_id; ?>" method="get">
       <input type="hidden" name="range" value="green" />
       <button type="submit" id="greenclr" class="update text-center btn btn-green btn-sm"></button>
       </form>
       &nbsp;<span>Valid More than 45 days</span>&nbsp;&nbsp;
       </div>
     </div>
-     
       <div class="col-md-2">
         <div class="input-group">
-          <select class="form-control-text1" placeholder="Select" name="certificate_type" id="certificate_type">
+        
+       <select class="form-control-text1" placeholder="Select" name="certificate_type" id="certificate_type" >
+            <option 
+               <?php
+
+                if (strlen($searchtype) == 0)
+                {
+                  echo 'selected';
+                }
+
+              ?>
+              value="">Select Certificate Type
+              
+            </option>
+
+            <!-- 
+                Here begins the php code to print all other options
+                with the selected attribute.
+             -->
+
+            <?php
+
+            $all_types = array('Management','Class','Flag','Safety','Other');
+            foreach ($all_types as $type):
+
+            ?>
+
+              <option
+                  <?php 
+                      if($type == $searchtype)
+                      {
+                          echo "selected";
+                      } 
+                  ?> 
+                  value="<?php echo $type; ?>"
+              >
+
+              <?php echo $type; ?>
+
+              </option>
+
+            <?php endforeach; ?>
+
+          </select> 
+       
+
+    <!--  <form id="drop_down" method="get" action="<?php echo  base_url().'index.php/VesselCertificate/search_certificate_type/'.$searchtype.'/'.$vessel_id; ?>">
+      <?php echo $searchtype; ?>
+         <select class="form-control-text1" placeholder="Select" name="certificate_type" id="certificate_type" >
             <option selected value="">Select Certificate Type</option>
             <option value="class">Class</option>
             <option value="flag">Flag</option>
@@ -146,7 +197,9 @@ include'includes/header_login.php';
             <option value="management">Management</option>
             <option value="other">Other</option>
           </select>
-          <!-- <span class="input-group-btn">
+      </form>  
+        -->
+                  <!-- <span class="input-group-btn">
             <button onclick="searchtype(document.getElementById('certificate_type').value)" type="button" class="btn btn-info">
               <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
             </button>
@@ -165,7 +218,7 @@ include'includes/header_login.php';
 <form id="drop_down" action="<?php echo base_url(); ?>index.php/VesselCertificate/search_dropdown_status/<?php echo $vessel_id; ?>" method="get">
          
             <select class="form-control-text1" name="range" style="width: 169px;" onchange="this.form.submit()">
-              <option selected value="">Select Status</option>
+              <option value="all">Select Status</option>
               <option value="yellow" <?php if($range == "yellow"){echo "selected=selected";}?>>Due in 45 days</option>
               <option value="brown" <?php if($range == "brown"){echo "selected=selected";}?>> Due in 30 days </option>
               <option value="red" <?php if($range == "red"){echo "selected=selected";}?>>Due Now or Overdue</option>
@@ -203,13 +256,22 @@ include'includes/header_login.php';
 					  $now = time();
 					  $expiry_date = strtotime($data['date_expiry']);
 					  $extention_date = strtotime($data['extention_until']); 
-					  $caldays = $expiry_date - $now;
-					  if($expiry_date>$now && $extention_date>$now)
-					  {
-						$caldays = $expiry_date - $now; 
-						$calday =  round($caldays / (60 * 60 * 24));
-					  }
-					  $calday =  round($caldays / (60 * 60 * 24)); 
+            if($extention_date!='')
+            {
+            $caldays = $extention_date - $now; 
+            $calday =  round($caldays / (60 * 60 * 24)); 
+            }
+					  elseif($expiry_date>$now && $extention_date='')
+            { 
+            $caldays = $expiry_date - $now; 
+            $calday =  round($caldays / (60 * 60 * 24));
+            }
+            else
+            {
+              $caldays=$expiry_date-$now;
+               $calday =  round($caldays / (60 * 60 * 24));
+            }
+					  					   
 					?>
 					<?php if($calday>30 && $calday<=45) { ?>
 						<tr class="text-center" id="yellow">
@@ -286,8 +348,9 @@ include'includes/header_login.php';
 <?php
 include'includes/footer.php';
 ?>
+
 <script>
-  function search(search_vessel)
+  /*function search(search_vessel)
 {
     if(search_vessel == "")
     {
@@ -325,7 +388,7 @@ function reset(search_vessel)
 {
   $('#search_vessel').val('');
   window.location.href = "<?php echo base_url(); ?>index.php/VesselCertificate/index/"+<?php echo $data['vessel_id'] ?>;
-}
+}*/
 // function mail_details(certificate_id) 
 // { 
 //     var email = prompt("Please enter the Email of recepient:", "abc@gmail.com");
@@ -359,7 +422,7 @@ function reset(search_vessel)
 // });
 // });
 
-function getCheckedBoxes(chkboxName) {
+/*function getCheckedBoxes(chkboxName) {
                                     var checkboxes = document.getElementsByName(chkboxName);
                                     var checkboxesChecked = [];
                                     // loop over them all
@@ -389,9 +452,15 @@ function mail_selected_vessels()
         window.location.href = "<?php echo site_url(); ?>/MailCertificateDetail/multiple_vessels/"+checkbox_ids+"/"+email;
     }
 
-}
+}*/
+
 $('#certificate_type').change(function(){
-      $selected_value=$('#certificate_type option:selected').text();
-      window.location.href = "<?php echo base_url(); ?>index.php/VesselCertificate/search_certificate_type/"+$selected_value+"/"+<?php echo $data['vessel_id'] ?>;
+      var $vessel_id = '<?php echo $vessel_id; ?>';
+
+      var $selected_value=$('#certificate_type option:selected').val();
+
+      window.location.href="<?php echo base_url(); ?>index.php/VesselCertificate/search_certificate_type/"
+      +$selected_value+"/"+$vessel_id;
+
     });
 </script>

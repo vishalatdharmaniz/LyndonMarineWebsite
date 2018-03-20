@@ -144,7 +144,7 @@ class BunkerSupply_model extends CI_Model
 	
 			if(!empty($custom_code))
 			{
-			  if($custom_code == "red")
+			/*  if($custom_code == "red")
 			  {
 				if(empty($where)){
 					$where .=	" WHERE ( due_date <= CURDATE()+ INTERVAL 5 day ) AND vessel_id= '$vessel_id'";	
@@ -152,7 +152,31 @@ class BunkerSupply_model extends CI_Model
 					$where .=	" IF( UNIX_TIMESTAMP(`due_date`) <>0 ,due_date < CURDATE()+ INTERVAL 5 day ) AND vessel_id= '$vessel_id'";
 			  }
 					
-		    }
+		    }*/
+		    if($custom_code == "all")
+			  {
+				if(empty($where))
+				{
+					$where .=	" WHERE vessel_id= '$vessel_id'";	
+				}
+				else
+				{
+					$where .=	" vessel_id= '$vessel_id'";
+				}
+					
+			}
+		      if($custom_code == "red")
+			  {
+				if(empty($where))
+				{
+					$where .=	" WHERE ( due_date <= CURDATE()+ INTERVAL 5 day ) AND vessel_id= '$vessel_id'";	
+				}
+				else
+				{
+					$where .=	"  IF( UNIX_TIMESTAMP(`due_date`) <>0 ,due_date < CURDATE()+ INTERVAL 5 day ) AND vessel_id= '$vessel_id'";
+				}
+					
+			}
 		   
 		     if($custom_code == "green")
 			  {

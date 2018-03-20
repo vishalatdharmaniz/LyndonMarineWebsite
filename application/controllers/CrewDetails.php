@@ -32,7 +32,9 @@ class CrewDetails extends CI_Controller
 $data['crew_data'] = $this->CrewDetails_model->get_all_crew_data_for_pagination($vessel_id,$offset);
 
 $total_crew = $this->CrewDetails_model->get_total_crew($vessel_id);
-            
+            $this->load->model('Vessel_model');
+            $vessel_data = $this->Vessel_model->get_vessel_details_by_id($vessel_id);
+            $data['vessel_data'] = $vessel_data;
 
                 $config['base_url'] = base_url().'index.php/CrewDetails/index/'.$vessel_id;
                 $config['total_rows'] = $total_crew; 

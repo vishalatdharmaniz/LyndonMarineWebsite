@@ -9,7 +9,14 @@ include'includes/CheckUserLogin.php';
     <div class="row">
       <div class="col-md-offset-3 col-md-6">
         <div class="page-heading">
-          <h2>Vessel Recommendations </h2> <br>
+          <h2>
+               Vessel Recommendations 
+               <?php foreach ($vessel_data as $vesselname) 
+                  {
+                    echo $vesselname['vessel_name'];
+                  } 
+               ?> 
+          </h2> <br>
         </div>
         
         
@@ -54,17 +61,17 @@ include'includes/CheckUserLogin.php';
      <div class="black_bg">
      <div class="col-md-8">
       <div class="mar_box">
-      <form id="drop_down"action="<?php echo base_url(); ?>index.php/VesselRecommendation/search_dropdown_status/<?php echo $vessel_id; ?>" method="get">
+      <form id="drop_down" action="<?php echo base_url(); ?>index.php/VesselRecommendation/search_dropdown_status/<?php echo $vessel_id; ?>" method="get">
       <input type="hidden" name="range" value="red" />
       <button type="submit" id="redclor" class="update text-center btn btn-red btn-sm"></button>
       </form>
       &nbsp;<span>Due in 10 days</span>&nbsp;&nbsp;
-      <form id="drop_down"action="<?php echo base_url(); ?>index.php/VesselRecommendation/search_dropdown_status/<?php echo $vessel_id; ?>" method="get">
+      <form id="drop_down" action="<?php echo base_url(); ?>index.php/VesselRecommendation/search_dropdown_status/<?php echo $vessel_id; ?>" method="get">
       <input type="hidden" name="range" value="green" />
-      <button type="button" id="greenclr" class="update text-center btn btn-green btn-sm"></button>
+      <button type="submit" id="greenclr" class="update text-center btn btn-green btn-sm"></button>
       </form>
       &nbsp;<span>Valid more than 10 days</span>&nbsp;&nbsp;
-      <form id="drop_down"action="<?php echo base_url(); ?>index.php/VesselRecommendation/search_dropdown_status/<?php echo $vessel_id; ?>" method="get">
+      <form id="drop_down" action="<?php echo base_url(); ?>index.php/VesselRecommendation/search_dropdown_status/<?php echo $vessel_id; ?>" method="get">
       <input type="hidden" name="range" value="blue" />
       <button type="submit" id="blueclr" class="update text-center btn btn-blue-status btn-sm"></button>
       </form>
@@ -79,8 +86,10 @@ include'includes/CheckUserLogin.php';
             <option selected value="">Recommendation Type</option>
             <option value="management">Management</option>
             <option value="class">Class</option>
-            <option value="port_state">Port_State</option>
+            <option value="port_state">Port State</option>
             <option value="captain">Captain</option>
+              <option value="P&I">P&I</option>
+                  <option value="Other">Other</option>
           </select>
         </div>
      </div>
@@ -113,17 +122,17 @@ include'includes/CheckUserLogin.php';
           <table class="table table-bordered table-hover">
             <thead>
               <tr>
-                <th>Type of Rec.</th>
-                <th>Date of Rec.</th>
-                <th>Due Date</th>
-                <th>Description</th>
-                <th>Rectified</th>
-                <th>Rectified By</th>
-                <th>Rectified Date</th>
-                <th>Status</th>
+                <th class="text-center">Type of Rec.</th>
+                <th class="text-center">Date of Rec.</th>
+                <th class="text-center">Due Date</th>
+                <th class="text-center">Description</th>
+                <th class="text-center">Rectified</th>
+                <th class="text-center">Rectified By</th>
+                <th class="text-center">Rectified Date</th>
+                <th class="text-center">Status</th>
                 <th class="text-center">View Document</th>
-                <th>Select</th>
-                <th>Action</th>
+                <th class="text-center">Select</th>
+                <th class="text-center">Action</th>
                 
               </tr>
             </thead>
