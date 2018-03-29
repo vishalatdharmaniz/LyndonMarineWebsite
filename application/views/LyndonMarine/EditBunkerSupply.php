@@ -7,6 +7,8 @@ include'includes/CheckUserLogin.php';
   <div class="container">
     
     <div class="row">
+        <div class="main-edit-add-left"> <a class="btn-blue" href="<?php echo base_url();?>index.php/VesselBunkerSupply/index/<?php echo $vessel_id; ?>">Go Back</a>             
+        </div>     
       <div class="col-md-offset-3 col-md-6">
         <div class="page-heading">
           <h2>Bunker Supply Form</h2> <br>
@@ -40,6 +42,7 @@ include'includes/CheckUserLogin.php';
                   $remarks=$data['remarks'];
                   $reminder=$data['reminder'];
                   $invoice_amount=$data['invoice_amount'];
+                  $invoice_num=$data['invoice_num'];
                   $currency=$data['currency'];
                   $paid=$data['paid'];
                   $paid_date=$data['paid_date'];
@@ -104,31 +107,34 @@ include'includes/CheckUserLogin.php';
               
             </div>
             <div class="row">
-              <div class="form-group col-md-12">
+              <div class="form-group col-md-6">
                 <label class="control-label">Others</label>
                 <input type="text" placeholder="Others" value="<?php echo $others ; ?>" name="others" class="form-control-text">
               </div>
-            </div>
-            
-            <div class="row">
-              <div class="form-group col-md-6">
+                <div class="form-group col-md-6">
                 <label class="control-label">Remarks</label>
                 <input type="text" placeholder="Remarks" value="<?php echo $remarks ; ?>" name="remarks" class="form-control-text">
               </div>
+            </div>
+            <div class="row"> <div class="form-group col-md-6">
+                <label class="control-label">Invoice Amount</label>
+                <input type="text" placeholder="Invoice Amount" value="<?php echo $invoice_amount ; ?>" name="invoice_amount" required="Invoice Amount" class="form-control-text">
+              </div>
+               <div class="form-group col-md-6">
+                <label class="control-label">Invoice Number</label>
+                <input type="text" placeholder="Invoice Number" value="<?php echo $invoice_num ; ?>" name="invoice_num" required="Invoice Number" class="form-control-text">
+              </div>
+            </div>
+            <div class="row">
+              
               <div class="form-group col-md-6">
                 <label class="control-label">Reminder (Days)</label>
                 <input type="text" placeholder="Reminder (Days)" value="<?php echo $reminder ; ?>" name="reminder" required="Reminder" class="form-control-text">
               </div>
-            </div>
-            <div class="row">
-              <div class="form-group col-md-6">
-                <label class="control-label">Invoice Amount</label>
-                <input type="text" placeholder="Invoice Amount" value="<?php echo $invoice_amount ; ?>" name="invoice_amount" required="Invoice Amount" class="form-control-text">
-              </div>
               <div class="form-group col-md-6">
                 <label class="control-label">Currency</label>
-                <select  class="form-control-text" name="currency">
-                  <option><?php echo $currency ?></option>
+                <select  class="form-control-text" name="currency"> 
+                  <option selected value="" disabled>Select</option>
                   <option value="USD">USD</option>
                   <option value="GBP">GBP</option>
                   <option value="EURO">EURO</option>
@@ -139,7 +145,7 @@ include'includes/CheckUserLogin.php';
               <div class="form-group col-md-6">
                 <label class="control-label">Paid </label>
                <select  class="form-control-text" name="paid">
-                 <option><?php echo $paid ?></option>
+                
                   <option value="Yes">Yes</option>
                   <option value="No">No</option>
                 </select>
@@ -164,7 +170,9 @@ include'includes/CheckUserLogin.php';
                       <span id = "show-document1">
                       <a href="<?php echo $document1 ;  ?>" class="btn btn-primary"> View</a>&nbsp;
                       <?php $value = explode("/",$document1 );
-                       echo substr($value[6],0,25); ?>
+                         
+                            echo substr($value[6],0,25); 
+                        ?>
                        <button type="button"  class="btn btn-danger" id="remove-document1" style="margin-left:10px;">Remove</button>
                       </span>
                       

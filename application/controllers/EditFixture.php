@@ -2,62 +2,45 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class EditFixture extends CI_Controller
- {
-	public function index($id,$vessel_id)
-	{
-		if(!empty($id) && !empty($vessel_id)){
-			if(array_key_exists("fixture_no",$_REQUEST)){
-				$this->load->model('Fixture_model');
-				//echo "<pre>";print_r($_FILES); die;
-				$this->load->helper(array('form', 'url'));
-				$this->load->library('form_validation');
-				$this->form_validation->set_rules('fixture_no', 'fixture_no', 'required');
-				$this->form_validation->set_rules('fixture_date', 'fixture_date', 'required');
-				$this->form_validation->set_rules('loading_port', 'loading_port', 'required');
-				$this->form_validation->set_rules('discharging_port', 'discharging_port', 'required');
-				$this->form_validation->set_rules('fright', 'fright', 'required');
-				$this->form_validation->set_rules('currency', 'currency', 'required');
-				$this->form_validation->set_rules('remarks', 'remarks', 'required');
-				if ($this->form_validation->run() == FALSE){
-					//echo "<pre>";print_r($_FILES);die;
-					$data = array();
-					$res = $this->Fixture_model->get_by_id($id,$vessel_id);
-					$data['vessel_id'] = $vessel_id;
-					$data['result'] = $res[0];
-					$this->load->view('LyndonMarine/vessel_fixture/edit',$data);
-				}else{
+{
 
-                    $this->load->model('Fixture_model');
-                    $fixture_data=$this->Fixture_model->fixture_data_by_fixture_id($id);
-                     $data['fixture_data']=$fixture_data;
-                    /* $document1=$fixture_data[0]['contract'];
-                     $document2=$fixture_data[0]['invoice'];  echo $document1."<br>";
-                      echo $document2 ; die();
-*/
-					$fixture_no = $this->input->post('fixture_no');
-					$fixture_date = $this->input->post('fixture_date');
-					if(!empty($fixture_date)){
-						$fixture_date = date("Y-m-d",strtotime(str_replace('/', '-', $fixture_date)));
-					}else{
-						$fixture_date = "";
-					}
-					$loading_port = $this->input->post('loading_port');
-					$discharging_port = $this->input->post('discharging_port');
-					$fright = $this->input->post('fright');
-					$currency = $this->input->post('currency');
-					$boker = $this->input->post('boker');
-					$commission = $this->input->post('commission');
-					$remarks = $this->input->post('remarks');
-                  
-					$this->load->model('Vessel_model');
-					$vessel_data=$this->Vessel_model->get_vessel_details_by_id($vessel_id);
+  public function index($id,$vessel_id)
+  {
+      $this->load->Model('Fixture_model');
+      $fixture_data=$this->Fixture_model->get_fixture_by_id($id);
+      $data['fixture_data']=$fixture_data;
+      $data['id']=$id;
+      $data['vessel_id']=$vessel_id;
+      $this->load->view('LyndonMarine/vessel_fixture/edit',$data);
+    }
 
-					$vessel_name=$vessel_data[0]['vessel_name'];
-					
 
-				   $directory_name = '../LyndonMarineImages/FixtureDocuments/'.$vessel_name.'/' ; 
-		
+public function edit($id,$vessel_id)
+{
+	       $this->load->model('Fixture_model'); 
+			$this->load->model('Vessel_model');
+            
+			$fixture_no = $_REQUEST['fixture_no'];
+			$fixture_date = $_REQUEST['fixture_date'];
+			if(!empty($fixture_date)){
+				$fixture_date = date("Y-m-d",strtotime(str_replace('/', '-', $fixture_date)));
+			}else{
+				$fixture_date = "";
+			}
+			$loading_port = $_REQUEST['loading_port'];
+			$discharging_port = $_REQUEST['discharging_port'];
+			$fright = $_REQUEST['fright'];
+			$currency = $_REQUEST['currency'];
+			$boker = $_REQUEST['boker'];     
+			$commission = $_REQUEST['commission'];
+			$remarks = $_REQUEST['remarks'];
+         
+			$vessel_data=$this->Vessel_model->get_vessel_details_by_id($vessel_id);
+            $fixture_data=$this->Fixture_model->get_fixture_by_id($id);
 
+		   $directory_name = '../LyndonMarineImages/FixtureDocuments/'.$vessel_name.'/' ; 
+
+		   	
 		        if(!is_dir($directory_name))
 		            {
 		                mkdir($directory_name);
@@ -70,37 +53,50 @@ class EditFixture extends CI_Controller
 
               $base_url_website = FIXTURE_BASE_URL ;
       
-                
-                    if($_FILES["upload_contract"]["name"] != NULL)
-                         {
-                             $target_file = $directory_name.basename($_FILES['upload_contract']['name']); 
-                             move_uploaded_file($_FILES['upload_contract']['tmp_name'], $target_file);
-                             $upload_contract= $base_url_website.'/'.$vessel_name.'/'.$_FILES["upload_contract"]["name"];  
+                if ($_REQUEST['document1-removed'] == '1')
+	            {
+	                $contract = '';
+	            }
+	            else 
+	            {
+                     if($_FILES["contract"]["name"] != NULL)
+		                 {
+		                     $target_file = $directory_name.basename($_FILES['contract']['name']); 
+		                     move_uploaded_file($_FILES['contract']['tmp_name'], $target_file);
+		                     $contract= $base_url_website.'/'.$vessel_name.'/'.$_FILES["contract"]["name"];  
 
-                         }
-                     else
-                         {
-                             $upload_contract=$fixture_data[0]['contract'];
-                         }
-					
-					if($_FILES["upload_invoice"]["name"] != NULL)
-                         {
-                             $target_file = $directory_name.'/'.$vessel_name.'/'.basename($_FILES['upload_invoice']['name']);
-                             move_uploaded_file($_FILES['upload_invoice']['tmp_name'], $target_file);
-                             $upload_invoice= $base_url_website.'/'.$vessel_name.'/'.$_FILES["upload_invoice"]["name"];  
+		                 }
+		             else
+		                 {
+		                     $contract=$fixture_data[0]['contract'];
+		                 }
+			     }
+			      if ($_REQUEST['document2-removed'] == '1')
+	                {
+	                   $invoice = '';
+	                }
+	             else 
+	                {
 
-                         }
-                     else
-                         {
-                             $upload_invoice=$fixture_data[0]['invoice'];
-                         }
+					if($_FILES["invoice"]["name"] != NULL)
+		                 {
+		                     $target_file = $directory_name.'/'.$vessel_name.'/'.basename($_FILES['invoice']['name']);
+		                     move_uploaded_file($_FILES['invoice']['tmp_name'], $target_file);
+		                     $invoice= $base_url_website.'/'.$vessel_name.'/'.$_FILES["invoice"]["name"];  
 
-            
+		                 }
+		             else
+		                 {
+		                     $invoice=$fixture_data[0]['invoice'];
+		                 }
+		            }
+
+            /*
 					$data = array(
 								'vessel_id' => $vessel_id,
 								'fixture_no' => $fixture_no,
 								'fixture_date' => $fixture_date,
-								'loading_port' => $loading_port,
+								'loading_port' => $fixture_date,
 								'discharging_port' => $discharging_port,
 								'fright' => $fright,
 								'currency' => $currency,
@@ -111,35 +107,15 @@ class EditFixture extends CI_Controller
 								'invoice'=>$upload_invoice,
 								'modified' => date("Y-m-d h:i:s"),
 				);
-				
+				*/
 
-					$this->Fixture_model->update_fixture($data,$id,$vessel_id);
-					$message = 'Your data Successfully saved!';
-					$data['message']= $message;
-					$base_url = BASE_URL;
-					$user_id = $this->session->userdata('user_id');
-					//header("Location: $base_url/index.php/AllVessels/index");
-					$data['vessel_id'] = $vessel_id;
-					redirect("VesselFixture/index/$vessel_id");
-				}
-			}else{
-				$data = array();
-				$this->load->model('Fixture_model');
-				$res = $this->Fixture_model->get_by_id($id,$vessel_id);
-				$data['vessel_id'] = $vessel_id;
-				$data['result'] = $res[0];
-				//echo "<pre>";print_r($res);die;
-				$this->load->view('LyndonMarine/vessel_fixture/edit',$data);	
-			}
-			
-		}else{
-			$data = array();
-					
+			$data=$this->Fixture_model->updateFixture($id,$fixture_no,$fixture_date,$fixture_date,$discharging_port,$fright,$currency,$boker,$commission,$remarks,$contract,$invoice);
+
+				$vessel_id=$vessel_data[0]['vessel_id'];
+			$data['vessel_id'] = $vessel_id;   
 			$base_url = BASE_URL;
-          
-            header("Location: $base_url/index.php/VesselFixture/index/$vessel_id");
-		}
-		
-	}
+			header("Location: $base_url/index.php/Vessel_fixture/index/$vessel_id");
 }
-?>	
+
+}
+?>

@@ -37,7 +37,8 @@ class EditBunkerSupply extends CI_Controller
 			$others = $_REQUEST['others'];
 			$remarks = $_REQUEST['remarks'];
 			$reminder = $_REQUEST['reminder'];
-			$invoice_amount = $_REQUEST['invoice_amount'];
+      $invoice_amount = $_REQUEST['invoice_amount'];
+			$invoice_num = $_REQUEST['invoice_num'];
 			$currency = $_REQUEST['currency'];
 			$paid = $_REQUEST['paid'];
 			$paid_date = $_REQUEST['paid_date'];
@@ -61,9 +62,14 @@ class EditBunkerSupply extends CI_Controller
                  /* Upload Bunker Supply Invoice */
 
         $base_url_website = BUNKER_SUPPLY_BASE_URL ; 	
-          
-          for($i=1;$i<=2;$i++)
+             for($i=1;$i<=2;$i++)
             {
+                if ($_REQUEST['document'.$i.'-removed'] == '1')
+                {
+                    $document[$i] = '';
+                }
+                else
+                   {
                 
                     if ($_FILES["document".$i]["name"] != NULL)
                          {
@@ -76,11 +82,12 @@ class EditBunkerSupply extends CI_Controller
                          {
                              $document[$i] =$bunker_supply_data[0]["document".$i];
                          }
+                    }     
 
-            }
+              }
 
 
- 				$update=$this->BunkerSupply_model->update_bunker_supply($bunker_id,$supply_date,$suppliers,$port_of_supply,$mdo,$hfo,$luboil_1_type,$luboil_2_quantity,$luboil_2_type,$luboil_2_quantity,$others,$remarks,$reminder,$date_due,$invoice_amount,$currency,$document[1],$document[2],$paid,$paid_date);
+ 				$update=$this->BunkerSupply_model->update_bunker_supply($bunker_id,$supply_date,$suppliers,$port_of_supply,$mdo,$hfo,$luboil_1_type,$luboil_2_quantity,$luboil_2_type,$luboil_2_quantity,$others,$remarks,$reminder,$date_due,$invoice_amount,$invoice_num,$currency,$document[1],$document[2],$paid,$paid_date);
  				
 			$base_url = BASE_URL;
             //header("Location: $base_url/index.php/VesselRecommendation/index");

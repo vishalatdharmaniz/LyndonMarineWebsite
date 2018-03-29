@@ -5,6 +5,8 @@ include'includes/header_login.php';
 <section id="main-edit">
   <div class="container">
     <div class="row">
+        <div class="main-edit-add-left"> <a class="btn-blue" href="<?php echo base_url();?>index.php/VesselCertificate/index/<?php echo $vessel_id; ?>">Go Back</a>             
+        </div>     
       <div class="col-md-offset-3 col-md-6">
         <div class="page-heading">
           <h2>Edit Certificate</h2>
@@ -52,12 +54,12 @@ include'includes/header_login.php';
                 <label class="control-label">Date of Expiry</label>
                 <input type="text" name="date_expiry" id="datepicker2" placeholder="Date of Expiry" class="form-control-text" value="<?php echo (($certificate_data['date_expiry']) ? date("d/m/Y",strtotime($certificate_data['date_expiry'])) : '');?>">
               </div>
-              <div class="form-group col-md-6">
+              
+              <div class="form-group col-md-6" >
                 <label class="control-label">Extention until</label>
                 <input type="text" name="extention_until" id="datepicker3" placeholder="Extention until" class="form-control-text" value="<?php echo (($certificate_data['extention_until']) ? date("d/m/Y",strtotime($certificate_data['extention_until'])) : '');?>">
               </div>
             </div>
-            
             <div class="row">
               <div class="form-group col-md-6">
                 <label class="control-label">Reminder 1 (Days)</label>
@@ -95,8 +97,16 @@ include'includes/header_login.php';
                     
                       <span id = "show-document1">
                       <a href="<?php echo $certificate_data['document1']; ?>" class="btn btn-primary"> View</a>&nbsp;
-                      <?php $value = explode("/",$certificate_data['document1']);echo substr($value[6],0,20); ?>
-                        
+                      <?php $value = explode("/",$certificate_data['document1']);
+                      if($value=="8")
+                      {
+                      echo substr($value[8],0,20); 
+                      }
+                     else
+                       {
+                        echo substr($value[6],0,20);
+                        }
+                         ?>
                         <button type="button"  class="btn btn-danger" id="remove-document1" style="margin-left:10px;">Remove</button>
                       </span>
                       
@@ -118,8 +128,15 @@ include'includes/header_login.php';
                      <?php if(!empty($certificate_data['document2'])) {?>
                       <span  id = "show-document2">
                         <a href="<?php echo $certificate_data['document2']; ?>" class="btn btn-primary"> View</a>&nbsp;
-                      <?php $value = explode("/",$certificate_data['document2']);echo substr($value[6],0,20); ?>
-                          
+                      <?php $value = explode("/",$certificate_data['document2']); if($value=="8")
+                      {
+                      echo substr($value[8],0,20); 
+                      }
+                     else
+                       {
+                        echo substr($value[6],0,20);
+                        }
+                         ?>
                           <button type="button"  class="btn btn-danger" id="remove-document2" style="margin-left:10px;">Remove</button>
                       </span>
                       
@@ -143,8 +160,15 @@ include'includes/header_login.php';
                       
                       <span id = "show-document3">
                         <a href="<?php echo $certificate_data['document3']; ?>" class="btn btn-primary"> View</a>&nbsp;
-                      <?php $value = explode("/",$certificate_data['document3']);echo substr($value[6],0,20); ?>
-                        
+                      <?php $value = explode("/",$certificate_data['document3']); if($value=="8")
+                      {
+                      echo substr($value[8],0,20); 
+                      }
+                     else
+                       {
+                        echo substr($value[6],0,20);
+                        }
+                         ?>
                         <button type="button"  class="btn btn-danger" id="remove-document3" style="margin-left:10px;">Remove</button>
                       </span>
                      
@@ -166,8 +190,16 @@ include'includes/header_login.php';
                     <?php if(!empty($certificate_data['document4'])) {?> 
                       <span id = "show-document4">
                         <a href="<?php echo $certificate_data['document4']; ?>" class="btn btn-primary"> View</a>&nbsp;
-                      <?php $value = explode("/",$certificate_data['document4']);echo substr($value[6],0,20); ?>  
-                        <button type="button"  class="btn btn-danger" id="remove-document4" style="margin-left:10px;">Remove</button>
+                      <?php $value = explode("/",$certificate_data['document4']); if($value=="8")
+                      {
+                      echo substr($value[8],0,20); 
+                      }
+                     else
+                       {
+                        echo substr($value[6],0,20);
+                        }
+                         ?>
+                         <button type="button"  class="btn btn-danger" id="remove-document4" style="margin-left:10px;">Remove</button>
                       </span>
                       
                       <?php } 
@@ -188,7 +220,16 @@ include'includes/header_login.php';
                      <?php if(!empty($certificate_data['document5'])) {?>
                       <span id = "show-document5">
                         <a href="<?php echo $certificate_data['document5']; ?>" class="btn btn-primary"> View</a>&nbsp;
-                      <?php $value = explode("/",$certificate_data['document5']);echo substr($value[6],0,20); ?>
+                      <?php $value = explode("/",$certificate_data['document5']);
+                       if($value=="8")
+                      {
+                      echo substr($value[8],0,20); 
+                      }
+                     else
+                       {
+                        echo substr($value[6],0,20);
+                        }
+                         ?>
                         <button type="button"  class="btn btn-danger" id="remove-document5" style="margin-left:10px;">Remove</button>
                       </span>
                       
@@ -217,6 +258,14 @@ include'includes/header_login.php';
 include'includes/footer.php';
 ?>
 <script>
+/*
+  function disableTxt() {
+    document.getElementById("datepicker3").disabled = true;
+}
+
+function undisableTxt() {
+    document.getElementById("datepicker3").disabled = false;
+  }*/
   $( function() {
     $( "#datepicker1" ).datepicker({ dateFormat: 'dd/mm/yy' }).val();
     $( "#datepicker2" ).datepicker({ dateFormat: 'dd/mm/yy' }).val();
@@ -275,6 +324,6 @@ var dates = $("#datepicker2,#datepicker3").datepicker({
             date = $.datepicker.parseDate(instance.settings.dateFormat || $.datepicker._defaults.dateFormat, selectedDate, instance.settings);
         dates.not(this).datepicker("option", option, date);
     }
-}); 
+});
 </script>
 

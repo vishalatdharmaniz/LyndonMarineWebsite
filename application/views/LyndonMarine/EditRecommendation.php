@@ -4,6 +4,8 @@ include'includes/header_login.php';
 <section id="main-edit">
   <div class="container">
     <div class="row">
+        <div class="main-edit-add-left"> <a class="btn-blue" href="<?php echo base_url();?>index.php/VesselRecommendation/index/<?php echo $vessel_id; ?>">Go Back</a>             
+        </div>     
       <div class="col-md-offset-3 col-md-6">
         <div class="page-heading">
           <h2>Edit Vessel Recommendation Form</h2>
@@ -47,7 +49,7 @@ include'includes/header_login.php';
                   <option value="class">Class</option>
                   <option value="port_state">Port State</option>
                   <option value="captain">Captain</option>
-                  <option value="P and I">P & I</option>
+                  <option value="P&I">P&I</option>
                   <option value="Other">Other</option>
                 </select>
               </div>
@@ -99,7 +101,7 @@ include'includes/header_login.php';
            <div class="row">
                 <div class="form-group">
                   <div class="col-md-4">
-                    <label class="control-label">Upload Image </label>
+                    <label class="control-label">Upload Document (Max Size 64mb) </label>
                     <input type="file" id="document1-chosen" name="image1" accept="png, jpg/*"><br>
                   </div>
                   <div class="col-md-8">
@@ -124,7 +126,7 @@ include'includes/header_login.php';
              <div class="row">
                 <div class="form-group">
                   <div class="col-md-4">
-                    <label class="control-label">Upload Image </label>
+                    <label class="control-label">Upload Document (Max Size 64mb) </label>
                     <input type="file" id="document2-chosen"  name="image2" accept="png, jpg/*"><br>
                   </div>
                   <div class="col-md-8">
@@ -148,7 +150,7 @@ include'includes/header_login.php';
             <div class="row">
                 <div class="form-group">
                   <div class="col-md-4">
-                    <label class="control-label">Upload Image </label>
+                    <label class="control-label">Upload Document (Max Size 64mb) </label>
                     <input type="file" id="document3-chosen" name="image3" accept="png, jpg/*"><br>
                   </div>
                   <div class="col-md-8">

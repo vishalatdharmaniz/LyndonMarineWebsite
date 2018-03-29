@@ -32,7 +32,7 @@ class Fixture_model extends CI_Model
           
             $where = 'WHERE ';
 			if($and_match_value){
-				$where .= '(';
+				//$where .= '(';
 			}
 			
             switch ($compare_type){
@@ -62,12 +62,12 @@ class Fixture_model extends CI_Model
                 }
             }
 			
-			if($and_match_value){
-				foreach($and_match_value as $key=>$value){                
-					$and_condition .= "AND"." ".$key."="."'".$value."'";
-					$where .= ')';
-				}
-			}
+			//if($and_match_value){
+			//	foreach($and_match_value as $key=>$value){                
+			//		$and_condition .= "AND"." ".$key."="."'".$value."'";
+			//		$where .= ')';
+			//	}
+			//}
 		}
 		
 		
@@ -99,7 +99,17 @@ class Fixture_model extends CI_Model
 			}
 		}
 		
-		
+		if($and_match_value){
+				foreach($and_match_value as $key=>$value){
+					if(!empty($where)){
+						$and_condition .= "AND"." ".$key."="."'".$value."'";
+					}else{
+						$and_condition .= "Where ".$key."="."'".$value."'";
+					}
+					//$and_condition .= "AND"." ".$key."="."'".$value."'";
+					//$where .= ')';
+				}
+			}
 		
 		
 		//echo $orderby;
@@ -140,16 +150,6 @@ class Fixture_model extends CI_Model
 		return $result;
 	}
 	
-	public function fixture_data_by_vessel_id($vessel_id)
-	{
-		$fixture_data=$this->db->query("SELECT * FROM vessel_fixtures WHERE vessel_id='$vessel_id' ");
-		return $fixture_data->result_array();
-	}
-	public function fixture_data_by_fixture_id($id)
-	{
-		$fixture_data=$this->db->query("SELECT * FROM vessel_fixtures WHERE id='$id' ");
-		return $fixture_data->result_array();
-	}
 	public function update_fixture($data,$id,$vessel_id)
     {
         $this->db->where('id',$id);
@@ -177,6 +177,17 @@ class Fixture_model extends CI_Model
 		 $query = $this->db->get();
         $result = $query->result_array();		
 		return $result;	
+	}
+
+	function updateFixture($id,$fixture_no,$fixture_date,$fixture_date,$discharging_port,$fright,$currency,$boker,$commission,$remarks,$contract,$invoice)
+	{
+		$update_soa=$this->db->query("UPDATE vessel_fixtures SET fixture_no='$fixture_no',fixture_date='$fixture_date',discharging_port='$discharging_port',fright='$fright',currency='$currency' ,bokers='$boker',commission='$commission',remarks='$remarks',contract='$contract',invoice='$invoice' WHERE id='$id' ");
+		return true;
+	}
+	public function get_fixture_by_id($id)
+	{
+		$fixture_data=$this->db->query("SELECT * FROM vessel_fixtures WHERE id='$id' ");
+		return $fixture_data->result_array();
 	}
 	
 }

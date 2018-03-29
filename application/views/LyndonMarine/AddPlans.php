@@ -4,10 +4,14 @@ include'includes/header_login.php';
 ?>
 <section id="main-edit">
   <div class="container">
-    <div class="row">
-      <div class="col-md-offset-3 col-md-6">
+    <div class="row"> 
+       <div class="col-md-2">
+        <div class="main-edit-add"> <a class="btn-blue" href="<?php echo base_url();?>index.php/VesselPlans/index/<?php echo $vessel_id ; ?>">Go Back </a> 
+        </div>   
+      </div>
+      <div class="col-md-6 col-md-9">
         <div class="page-heading">
-          <h2>Plans Form </h2>
+          <h2>Add Plans Form</h2>
         </div>
       </div>
     </div>
@@ -39,11 +43,11 @@ include'includes/header_login.php';
             </div>
             <div class="row">
               <div class="form-group col-md-6">
-                <label class="control-label">Upload Plan</label>
+                <label class="control-label">Upload Plan (Max Size 64mb)</label>
                 <input type="file" name="upload_plan1" accept="pdf, rtf, excel/*">
               </div>
               <div class="form-group col-md-6">
-               <label class="control-label">Upload Plan</label>
+               <label class="control-label">Upload Plan (Max Size 64mb)</label>
                 <input type="file" name="upload_plan2" accept="pdf, rtf, excel/*">
               </div>
             </div>

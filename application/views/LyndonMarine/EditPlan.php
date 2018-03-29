@@ -5,6 +5,8 @@ include'includes/header_login.php';
 <section id="main-edit">
   <div class="container">
     <div class="row">
+        <div class="main-edit-add-left"> <a class="btn-blue" href="<?php echo base_url();?>index.php/VesselPlans/index/<?php echo $vessel_id; ?>">Go Back</a>             
+        </div>     
       <div class="col-md-offset-3 col-md-6">
         <div class="page-heading">
           <h2>Edit Plan</h2>

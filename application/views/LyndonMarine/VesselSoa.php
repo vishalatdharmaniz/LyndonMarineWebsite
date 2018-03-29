@@ -9,7 +9,12 @@ include'includes/CheckUserLogin.php';
     <div class="row">
       <div class="col-md-offset-3 col-md-6">
         <div class="page-heading">
-          <h2>SOA</h2> <br>
+          <h2>SOA Details for
+               <?php foreach ($vessel_data as $vesselname) 
+                  {
+                    echo $vesselname['vessel_name'];
+                  } 
+               ?> </h2> <br>
         </div> 
       </div>
     </div>  
@@ -58,6 +63,7 @@ include'includes/CheckUserLogin.php';
   <div class="container">
    
    <div class="row">
+   <div class="col-md-12">
       <div class="panel-body">
         <div class="table-responsive">
           <table class="table table-bordered table-hover">
@@ -116,7 +122,7 @@ include'includes/CheckUserLogin.php';
           
             <?php echo $links; ?>
           
-        </div>
+        </div></div>
       </div>
     </div>
 </section>

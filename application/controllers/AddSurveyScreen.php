@@ -34,25 +34,25 @@ class AddSurveyScreen extends CI_Controller
 			if(!empty($postponed_date)){
 				$postponed_date = date("Y-m-d",strtotime(str_replace('/', '-', $postponed_date)));
 			}else{
-				$postponed_date = 'NULL';
+				$postponed_date = "";
 			}
 			$Due = $this->input->post('Due');
 			if(!empty($Due)){
 				$due_date = date("Y-m-d",strtotime(str_replace('/', '-', $Due)));
 			}else{
-				$due_date = 'NULL';
+				$due_date ="";
 			}
 			$range_from = $this->input->post('range_from');
 			if(!empty($range_from)){
 				$range_from = date("Y-m-d",strtotime(str_replace('/', '-', $range_from)));
 			}else{
-				$range_from ='NULL';
+				$range_from = "";
 			}
 			$range_to = $this->input->post('range_to');
 			if(!empty($range_to)){
 				$range_to = date("Y-m-d",strtotime(str_replace('/', '-', $range_to)));
 			}else{
-				$range_to ='NULL';
+				$range_to = "";
 			}
 			$examption = $this->input->post('examption');
 			$reminder_range = $this->input->post('reminder_range');

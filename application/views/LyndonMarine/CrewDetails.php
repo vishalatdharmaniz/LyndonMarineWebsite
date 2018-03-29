@@ -9,7 +9,10 @@ include'includes/CheckUserLogin.php';
     <div class="row">
       <div class="col-md-offset-3 col-md-6">
         <div class="page-heading">
-          <h2>Crew Details </h2> <br>
+          <h2>Crew Details For <?php foreach ($vessel_data as $data) {
+             $vessel_name=$data['vessel_name'];
+             echo $vessel_name;
+          } ?></h2> <br>
         </div> 
       </div>
     </div>  
@@ -45,7 +48,7 @@ include'includes/CheckUserLogin.php';
               <a class="btn-blue" href="<?php echo base_url();?>index.php/CrewDetails/AddCrewDetailsScreen/<?php echo $vessel_id; ?>">Add </a>
             </li>
             <li>
-              <a class="btn-blue" onclick="mail_selected_vessels()" >Mail Selected Document</a>
+              <button class="btn-blue" onclick="mail_selected_crew()" >Mail Crew Details</button>
             </li>
         </ul>
        </div>
@@ -94,7 +97,7 @@ include'includes/CheckUserLogin.php';
                   <td class="text-center">
                  <a href="<?php echo base_url(); ?>index.php/CrewDetails/view_crew_details/<?php echo $crew_id; ?>" class="btn btn-primary">View
                   </td>
-                  <td>
+                  <td class="text-center">
                     <input type="checkbox" name="checkbox" id="checkbox<?php echo $data['crew_id']; ?>">
                 </td>
                 <td class="text-center">
@@ -176,7 +179,7 @@ function getCheckedBoxes(chkboxName)
       return checkboxesChecked.length > 0 ? checkboxesChecked : null;
       }
 
-function mail_selected_vessels()
+function mail_selected_crew()
 {
     var checkedBoxes = getCheckedBoxes("checkbox");
     var checkbox_ids = ''; 
@@ -185,7 +188,7 @@ function mail_selected_vessels()
         var checkbox_id = checkedBoxes[index].getAttribute("id");
         checkbox_ids+=checkbox_id+"&";
     }
-    var email = prompt("Please enter the Email of recepient:", "abc@gmail.com");
+    var email = prompt("Please enter the Email of recepient:", "office@lyndonmarine.com");
     if (email != null) {
         checkbox_ids = checkbox_ids.slice(0,-1)
         window.location.href = "<?php echo site_url(); ?>/MailCrewDocuments/index/"+checkbox_ids+"/"+email;

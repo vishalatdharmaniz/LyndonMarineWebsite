@@ -6,6 +6,8 @@ include'includes/CheckUserLogin.php';
   <div class="container">
     
     <div class="row">
+        <div class="main-edit-add-left"> <a class="btn-blue" href="<?php echo base_url();?>index.php/CrewDetails/index/<?php echo $vessel_id; ?>">Go Back</a>             
+        </div>     
       <div class="col-md-offset-3 col-md-6">
         <div class="page-heading">
           <h2>Edit Crew Details </h2> <br>

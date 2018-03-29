@@ -18,6 +18,10 @@ include'includes/header_login.php';
           <h2>View Vessel Bunker Supply </h2>
         </div>
       </div>
+       <div class="col-md-2">
+        <div class="main-edit-add"> <a class="btn-blue" href="<?php echo base_url();?>index.php/EditBunkerSupply/index/<?php echo $bunker_id ; ?>">Edit</a> 
+        </div>   
+      </div>
           
     </div>
   </div>
@@ -48,6 +52,7 @@ include'includes/header_login.php';
                   $reminder=$data['reminder'];
                   $date_due=$data['due_date'];
                   $invoice_amount=$data['invoice_amount'];
+                  $invoice_num=$data['invoice_num'];
                   $currency=$data['currency'];
                   $paid_status=$data['paid'];
                   $document1=$data['document1'];    
@@ -112,6 +117,10 @@ include'includes/header_login.php';
                 <tr>
                  <th width="42">Invoice Amount</th>
                  <td><?php if($invoice_amount!=""){echo $invoice_amount ; } else { echo "N/A";} ?> </td>  
+                </tr>
+                <tr>
+                 <th width="42">Invoice Number</th>
+                 <td><?php if($invoice_num!=""){echo $invoice_num ; } else { echo "N/A";} ?> </td>  
                 </tr>
                 <tr>
                  <th width="42">Paid</th>

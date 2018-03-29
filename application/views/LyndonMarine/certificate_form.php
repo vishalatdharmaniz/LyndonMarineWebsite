@@ -1,10 +1,16 @@
 <?php
 include'includes/header_login.php';
+include'includes/CheckUserLogin.php';
 ?>
+
 <section id="main-edit">
   <div class="container">
-    <div class="row">
-      <div class="col-md-offset-3 col-md-6">
+    <div class="row"> 
+       <div class="col-md-2">
+        <div class="main-edit-add"> <a class="btn-blue" href="<?php echo base_url();?>index.php/VesselCertificate/index/<?php echo $vessel_id ; ?>">Go Back </a> 
+        </div>   
+      </div>
+      <div class="col-md-6 col-md-9">
         <div class="page-heading">
           <h2>Certificate Form</h2>
         </div>
@@ -33,7 +39,7 @@ include'includes/header_login.php';
               <div class="form-group col-md-6">
                 <label class="control-label">Certificate Type</label>
                 <select  class="form-control-text" required name="certificate_type" id="certificate_type">
-                  <option>Select Certificate Type</option>
+                  <option selected value="" disabled>Select Certificate Type</option>
                   <option value="class">Class</option>
                   <option value="flag">Flag</option>
                   <option value="safety">Safety</option>
@@ -79,7 +85,7 @@ include'includes/header_login.php';
             </div>
             <div class="row">
               <div class="col-md-4"> 
-                <label class="control-label">Upload Certificates:</label>
+                <label class="control-label">Upload Documents (Max Size 64mb)</label>
               </div>
             </div>
             <div class="row">
@@ -137,9 +143,7 @@ include'includes/footer.php';
   $( function() {
     $( "#datepicker1" ).datepicker({ dateFormat: 'dd/mm/yy' }).val();
     $( "#datepicker2" ).datepicker({ dateFormat: 'dd/mm/yy' }).val();
-    $( "#datepicker3" ).datepicker({ 
-      dateFormat: 'dd/mm/yy'
-    });
+    $( "#datepicker3" ).datepicker({ dateFormat: 'dd/mm/yy'});
   } );
 
   var dateToday = $('#date_expiry').val();

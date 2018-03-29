@@ -3,10 +3,14 @@ include'includes/header_login.php';
 ?>
 <section id="main-edit">
   <div class="container">
-    <div class="row">
-      <div class="col-md-offset-3 col-md-6">
+    <div class="row"> 
+       <div class="col-md-2">
+        <div class="main-edit-add"> <a class="btn-blue" href="<?php echo base_url();?>index.php/VesselRecommendation/index/<?php echo $vessel_id ; ?>">Go Back </a> 
+        </div>   
+      </div>
+      <div class="col-md-6 col-md-9">
         <div class="page-heading">
-          <h2>Vessel Recommendation Form</h2>
+          <h2>Add Recommendation Form</h2>
         </div>
       </div>
     </div>
@@ -23,7 +27,7 @@ include'includes/header_login.php';
               <div class="form-group col-md-6">
                 <label class="control-label">Type of Recommendation</label>
                 <select required class="form-control-text" required id="sel1" name="recommendation_type">
-                  <option>Recommendation Type</option>
+                  <option selected value="" disabled>Recommendation Type</option>
                   <option value="management">Management</option>
                   <option value="class">Class</option>
                   <option value="port_state">Port State</option>
@@ -77,19 +81,19 @@ include'includes/header_login.php';
             </div>
             <div class="row">
               <div class="col-md-12">
-                <label class="control-label">Upload Doc</label>
+                <label class="control-label">Upload Document (Max Size 64mb)</label>
                 <input type="file" name="image1" accept="png, jpg ,pdf/*">
               </div>
             </div>
             <div class="row">
                <div class="col-md-12">
-                <label class="control-label">Upload Doc</label>
+                <label class="control-label">Upload Document (Max Size 64mb)</label>
                 <input type="file" name="image2" accept="png, jpg ,pdf/*">
               </div>
             </div>
             <div class="row">
               <div class="col-md-12">
-                <label class="control-label">Upload Doc</label>
+                <label class="control-label">Upload Document (Max Size 64mb)</label>
                 <input type="file" name="image3" accept="png, jpg,pdf/*">
               </div>
             </div>

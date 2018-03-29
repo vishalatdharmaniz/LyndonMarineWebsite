@@ -93,8 +93,8 @@ $vessel_name = $vessel_detail_folder[0]['vessel_name'];
 				 $this->Update_model->edit_certificate($certificate_id,$certificate_no,$certificate_name,$certificate_type,
 				 		$date_issue,$date_expiry,$extention_until,$reminder1,$reminder2,$examption,
 						$comments,$time,$document[1],$document[2],$document[3],$document[4],$document[5]);
-
-
+          /* $data['vessel_id']=$vessel_id;
+*/
 		$base_url = BASE_URL;
                 header("Location: $base_url/index.php/VesselCertificate/index/$vessel_id"); 
 

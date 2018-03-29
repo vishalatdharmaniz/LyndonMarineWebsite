@@ -69,7 +69,7 @@ include'includes/header_login.php';
                 <th>Plan Name</th>
                 <th>Description</th>
                 <th class="text-center">Vessel Plans</th>
-                <th>Status</th>
+                <th>Select</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -80,7 +80,7 @@ include'includes/header_login.php';
                 <td><?php echo $data['plan_name'];?></td>
                 <td><?php echo $data['description'];?></td>
                 <td class="text-center"><a href="<?php echo base_url(); ?>index.php/VesselPlans/view_plan/<?php echo $data['plan_id']; ?>" class="btn btn-primary"> View</a></td>
-                <td>
+                <td class="text-center">
                 <input type="checkbox" name="checkbox" id="checkbox<?php echo $data['plan_id']; ?>">
               </td>
               <td class="text-center">
@@ -138,7 +138,7 @@ function mail_selected_vessels()
         var checkbox_id = checkedBoxes[index].getAttribute("id");
         checkbox_ids+=checkbox_id+"@";
     }
-    var email = prompt("Please enter the Email of recepient:", "abc@gmail.com");
+    var email = prompt("Please enter the Email of recepient:", "office@lyndonmarine.com");
     if (email != null) {
         checkbox_ids = checkbox_ids.slice(0,-1)
         window.location.href = "<?php echo site_url(); ?>/VesselPlans/multiple_plans/"+checkbox_ids+"/"+email;

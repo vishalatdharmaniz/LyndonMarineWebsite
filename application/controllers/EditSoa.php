@@ -8,7 +8,10 @@ public function index($vessel_id)
   {
     $this->load->Model('Soa_model');
     $soa_data=$this->Soa_model->get_soa_details_by_vessel_id($vessel_id);
-     $data['soa_data'] = $soa_data;
+     
+     $vessel_id=$soa_data[0]['vessel_id'];
+      $data['soa_data'] = $soa_data;
+      $data['vessel_id'] = $vessel_id;
    $this->load->view('LyndonMarine/EditSoa',$data);
     }
 
