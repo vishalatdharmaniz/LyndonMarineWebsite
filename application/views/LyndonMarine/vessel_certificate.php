@@ -1,7 +1,7 @@
 <?php
 include'includes/CheckUserLogin.php';
 include'includes/header_login.php';
-
+ 
 ?>
 <style>
  /* .form-control-text1{
@@ -20,7 +20,7 @@ include'includes/header_login.php';
       <div class="col-md-offset-3 col-md-6">
         <div class="page-heading">
           <h2>Vessel Certificates for <?php foreach ($vessel_data as $vesselname) {
-            echo $vesselname['vessel_name'];
+            echo $vesselname['vessel_name']; 
           } ?> </h2> <br>
         </div>
         
@@ -43,7 +43,7 @@ include'includes/header_login.php';
       <div class="col-md-4">
       <div class="input-group">
         <form method="post" name="form1" onsubmit="searchEnter(document.getElementById('search_vessel').value); return false;">
-          <input type="text" class="form-control-text" value="" placeholder="Search" name="search" id="search_vessel">
+          <input type="text" class="form-control-text" value="<?php echo $searchname; ?>" placeholder="Search" name="search" id="search_vessel">
         </form>
 
 
@@ -61,7 +61,8 @@ include'includes/header_login.php';
         <ul class="main-edit-add"> 
         <li><a class="btn-blue" href="<?php echo base_url();?>index.php/AddCertificateScreen/index/<?php echo $vessel_id; ?>">Add Certificate</a></li>
          <li> <a class="btn-blue" href="<?php echo base_url(); ?>index.php/VesselCertificate/index/<?php echo $vessel_id; ?>">All Certificate</a></li> 
-          <li><button class="btn-blue" onclick="mail_selected_vessels()" >Mail Document</button></li>
+           <li><button class="btn-blue" onclick="mail_selected_vessels()" >Mail Document</button></li>
+           <li><button class="btn-blue" id="selectAll" onclick="mail_all()"  >Mail All </button></li>
           </ul>
          </div>
          </div>
@@ -152,7 +153,7 @@ include'includes/header_login.php';
                 }
 
               ?>
-              value="">Select Certificate Type
+              value=""  disabled>Select Certificate Type
               
             </option>
 
@@ -218,7 +219,7 @@ include'includes/header_login.php';
 <form id="drop_down" action="<?php echo base_url(); ?>index.php/VesselCertificate/search_dropdown_status/<?php echo $vessel_id; ?>" method="get">
          
             <select class="form-control-text1" name="range" style="width: 169px;" onchange="this.form.submit()">
-              <option value="all">Select Status</option>
+              <option selected value="" disabled>Select Status</option>
               <option value="yellow" <?php if($range == "yellow"){echo "selected=selected";}?>>Due in 45 days</option>
               <option value="brown" <?php if($range == "brown"){echo "selected=selected";}?>> Due in 30 days </option>
               <option value="red" <?php if($range == "red"){echo "selected=selected";}?>>Due Now or Overdue</option>
@@ -337,7 +338,7 @@ include'includes/header_login.php';
       <div class="col-md-12">
         <div class="text-center">
           
-            <?php echo $links; ?>
+            <?php echo $links; ?> 
           
         </div>
       </div>
@@ -350,7 +351,7 @@ include'includes/footer.php';
 ?>
 
 <script>
-  /*function search(search_vessel)
+  function search(search_vessel)
 {
     if(search_vessel == "")
     {
@@ -358,7 +359,8 @@ include'includes/footer.php';
     }
     else
     {
-            window.location.href = "<?php echo base_url(); ?>index.php/VesselCertificate/searchdata/"+search_vessel+"/"+<?php echo $data['vessel_id'] ?>;
+           var $vessel_id = '<?php echo $vessel_id; ?>'; 
+          window.location.href = "<?php echo base_url(); ?>index.php/VesselCertificate/searchdata/"+search_vessel+"/"+$vessel_id; 
     }
 }
 function searchEnter(search_vessel)
@@ -369,7 +371,8 @@ function searchEnter(search_vessel)
     }
     else
     {
-      window.location.href = "<?php echo base_url(); ?>index.php/VesselCertificate/searchdata/"+search_vessel+"/"+<?php echo $data['vessel_id'] ?>;
+       var $vessel_id = '<?php echo $vessel_id; ?>';
+       window.location.href = "<?php echo base_url(); ?>index.php/VesselCertificate/searchdata/"+search_vessel+"/"+$vessel_id; 
     }
 }
  function searchtype(certificate_type)
@@ -379,16 +382,18 @@ function searchEnter(search_vessel)
         alert("Please enter a value to be searched");
     }
     else
-    {
-            window.location.href = "<?php echo base_url(); ?>index.php/VesselCertificate/search_certificate_type/"+certificate_type+"/"+<?php echo $data['vessel_id'] ?>;
+    {   
+            var $vessel_id = '<?php echo $vessel_id; ?>';
+            window.location.href = "<?php echo base_url(); ?>index.php/VesselCertificate/search_certificate_type/"+certificate_type+"/"+$vessel_id; 
     }
 }
 
 function reset(search_vessel)
 {
   $('#search_vessel').val('');
-  window.location.href = "<?php echo base_url(); ?>index.php/VesselCertificate/index/"+<?php echo $data['vessel_id'] ?>;
-}*/
+    var $vessel_id = '<?php echo $vessel_id; ?>';
+  window.location.href = "<?php echo base_url(); ?>index.php/VesselCertificate/index/"+$vessel_id;
+}
 // function mail_details(certificate_id) 
 // { 
 //     var email = prompt("Please enter the Email of recepient:", "abc@gmail.com");
@@ -422,7 +427,7 @@ function reset(search_vessel)
 // });
 // });
 
-/*function getCheckedBoxes(chkboxName) {
+function getCheckedBoxes(chkboxName) {
                                     var checkboxes = document.getElementsByName(chkboxName);
                                     var checkboxesChecked = [];
                                     // loop over them all
@@ -446,13 +451,20 @@ function mail_selected_vessels()
         var checkbox_id = checkedBoxes[index].getAttribute("id");
         checkbox_ids+=checkbox_id+"@";
     }
-    var email = prompt("Please enter the Email of recepient:", "abc@gmail.com");
+    var email = prompt("Please enter the Email of recepient:", "office@lyndonmarine.com");
     if (email != null) {
         checkbox_ids = checkbox_ids.slice(0,-1)
         window.location.href = "<?php echo site_url(); ?>/MailCertificateDetail/multiple_vessels/"+checkbox_ids+"/"+email;
     }
 
-}*/
+}
+
+function mail_all()
+{
+  var $vessel_id = '<?php echo $vessel_id; ?>';
+   var email = prompt("Please enter the Email of recepient:", "office@lyndonmarine.com");
+  window.location.href = "<?php echo site_url(); ?>/MailCertificateDetail/all/"+$vessel_id+"/"+email;
+}
 
 $('#certificate_type').change(function(){
       var $vessel_id = '<?php echo $vessel_id; ?>';

@@ -16,13 +16,12 @@ public function index($checkbox_ids,$email_of_recepient)
         }
         $this->load->model('CrewDetails_model');
       
-        $txt = "Good Day <br><br> Please find here list of bunker supply requested:<br><br><br>";
-        $crew_id= $checkbox_ids[0];
-        $crew_data = $this->CrewDetails_model->get_crew_details_by_crew_id($crew_id);
-           $vessel_id = $crew_data[0]["vessel_id"];
-            $vessel_data = $this->CrewDetails_model->get_vessel_details_by_vessel_id($vessel_id); 
-
-
+        $txt = "Good Day <br><br> Please find here list of crew details requested:<br><br><br>";
+        $crew_id= $checkbox_ids[0]; 
+        $crew_data = $this->CrewDetails_model->get_crew_details_by_crew_id($crew_id); 
+        $vessel_id = $crew_data[0]["vessel_id"];             
+        $vessel_data = $this->CrewDetails_model->get_vessel_details_by_vessel_id($vessel_id); 
+              $vessel_name=$vessel_data[0]['vessel_name']; 
         foreach ($checkbox_ids as $crew_id)
         {
 
@@ -30,25 +29,25 @@ public function index($checkbox_ids,$email_of_recepient)
 
             $data['crew_data'] = $crew_data[0];
             $crew_name=$crew_data[0]['name'];
-
-        $crew_id = $crew_data[0]["crew_id"];
-        $document = $crew_data[0]["document"]; 
+            $tourist_passport_num=$crew_data[0]['tourist_p_num'];
+         
+            $document = $crew_data[0]["document"]; 
        
 
                 $exploded_doc = explode("/", $document);
                 $name = isset($exploded_doc[6]) ? $exploded_doc[6] : NULL;
                 $document_name = empty($name) ? "" : $name; 
                 $document = str_replace(" ","%20","$document");  
-            
-         
-            $txt .= $bunker_supply_name."<br>"; 
-        if ($crew_data[0]["document1"] != NULL)
+
+            $txt .= "Crew Name :- ".$crew_name."<br>"; 
+            $txt .= "Tourist Passport Number :- ".$tourist_passport_num."<br>"; 
+            $txt .= "Documents :- <br>";
+
+        if ($crew_data[0]["document"] != NULL)
         {
             $txt .= "<a href=$document > $document_name</a><br>";
 
         }
-      
-        
             $txt .= "<hr>";
             $txt .= "<hr>";
         }
@@ -57,8 +56,7 @@ public function index($checkbox_ids,$email_of_recepient)
 
 
         $to = "$email_of_recepient";
-        $subject = "Crew Details";
-
+        $subject = "Crew Details for ".$vessel_name;
         $headers  = 'MIME-Version: 1.0' . "\r\n";
         $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
         $headers .= "From: office@lyndonmarine.com";

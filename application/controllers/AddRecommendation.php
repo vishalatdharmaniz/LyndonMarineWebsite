@@ -7,6 +7,10 @@ class AddRecommendation extends CI_Controller
 	
 	public function index($vessel_id)
 	{ 	
+
+			
+
+
 		    $this->load->model('Recommendation_model');
 		    $vessel_data=$this->Recommendation_model->get_vessel_details_by_vessel_id($vessel_id);
 		    $vessel_name=$vessel_data[0]['vessel_name'];
@@ -45,7 +49,7 @@ class AddRecommendation extends CI_Controller
             for($i=1;$i<=3;$i++)
             {
                 
-                    if($_FILES["image".$i]["name"] != NULL)
+                    if ($_FILES["image".$i]["name"] != NULL)
                          {
                              $target_file = $directory_name.'/'.  basename($_FILES['image'.$i]['name']);
                              move_uploaded_file($_FILES['image'. $i]['tmp_name'], $target_file);

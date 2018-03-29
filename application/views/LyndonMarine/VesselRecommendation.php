@@ -10,7 +10,7 @@ include'includes/CheckUserLogin.php';
       <div class="col-md-offset-3 col-md-6">
         <div class="page-heading">
           <h2>
-               Vessel Recommendations 
+               Vessel Recommendations for
                <?php foreach ($vessel_data as $vesselname) 
                   {
                     echo $vesselname['vessel_name'];
@@ -42,11 +42,11 @@ include'includes/CheckUserLogin.php';
       <div class="col-md-5">
         <div class="list_right">
         <ul class="main-edit-add"> 
-        <li><a class="btn-blue" href="<?php echo base_url();?>index.php/AddRecommendationScreen/index/<?php echo $vessel_id; ?>">Add Recommendation</a></li>
+        <li><a class="btn-blue" href="<?php echo base_url();?>index.php/AddRecommendationScreen/index/<?php echo $vessel_id; ?>">Add New</a></li>
          <li> 
           <a class="btn-blue" href="<?php echo base_url(); ?>index.php/VesselRecommendation/index/<?php echo $vessel_id; ?>">All Recommendations</a>
          </li>
-          <!-- <li><a class="btn-blue" onclick="mail_selected_vessels()" >Mail Document</a></li> -->
+          <li><button class="btn-blue" onclick="mail_selected_recommendation()" >Mail Document</button></li>
           </ul>
          </div>
          </div>
@@ -82,15 +82,58 @@ include'includes/CheckUserLogin.php';
      
       <div class="col-md-2">
         <div class="input-group">
-          <select class="form-control-text1" placeholder="Select" name="recommendation_type" id="recommendation_type">
-            <option selected value="">Recommendation Type</option>
-            <option value="management">Management</option>
-            <option value="class">Class</option>
-            <option value="port_state">Port State</option>
-            <option value="captain">Captain</option>
-              <option value="P&I">P&I</option>
-                  <option value="Other">Other</option>
-          </select>
+         
+    <select class="form-control-text1" placeholder="Select" name="recommendation_type" id="recommendation_type" >
+            <option 
+               <?php
+
+                if (strlen($searchtype) == 0)
+                {
+                  echo 'selected';
+                }
+
+              ?>
+              value=""  disabled>Recommendation Type
+              
+            </option>
+
+            <!-- 
+                Here begins the php code to print all other options
+                with the selected attribute.
+             -->
+
+            <?php
+
+            $all_types = array('Management','Class','Port State','Captain','P&I','Other');
+            foreach ($all_types as $type):
+
+            ?>
+ 
+              <option
+                  <?php 
+                      if($type == $searchtype)
+                      {
+                          echo "selected";
+                      } 
+                  ?> 
+                  value="<?php echo $type; ?>"
+              >
+
+              <?php echo $type; ?>
+
+              </option>
+
+            <?php endforeach; ?>
+          </select> 
+         <!--  <select class="form-control-text1" placeholder="Select" name="recommendation_type" id="recommendation_type">
+            <option selected value="" disabled>Recommendation Type</option>
+            <option value="management" <?php if($searchtype=='management'){echo 'selected';} ?>>Management</option>
+            <option value="class" <?php if($searchtype=='class'){echo 'selected';} ?>>Class</option>
+            <option value="port_state" <?php if($searchtype=='port_state'){echo 'selected';} ?>>Port State</option>
+            <option value="captain" <?php if($searchtype=='captain'){echo 'selected';} ?>>Captain</option>
+            <option value="P&I" <?php if($searchtype=='P&I'){echo 'selected';} ?>>P&I</option>
+            <option value="Other" <?php if($searchtype=='Other'){echo 'selected';} ?>>Other</option>
+          </select> -->
         </div>
      </div>
    <div class="col-md-2">
@@ -105,7 +148,7 @@ include'includes/CheckUserLogin.php';
            <form id="drop_down" action="<?php echo base_url(); ?>index.php/VesselRecommendation/search_dropdown_status/<?php echo $vessel_id; ?>" method="get">
          
             <select class="form-control-text1" name="range" style="width: 169px;" onchange="this.form.submit()">
-              <option selected value="">Select Status</option>
+              <option selected value="" disabled>Select Status</option>
               <option value="red" <?php if($range == "red"){echo "selected=selected";}?>>Due in 10 days</option>
               <option value="blue" <?php if($range == "blue"){echo "selected=selected";}?>> Rectified</option>
               <option value="green" <?php if($range == "green"){echo "selected=selected";}?>>Valid More than 10 days</option>
@@ -146,7 +189,7 @@ include'includes/CheckUserLogin.php';
 
             if($due_date>$now && $due_date>$rec_date)
             {
-            $caldays = $due_date - $rec_date;  
+            $caldays = $due_date - $now;  
             $calday =  round($caldays / (60 * 60 * 24));
             }
             $calday =  round($caldays / (60 * 60 * 24)); 
@@ -241,13 +284,48 @@ include'includes/footer.php';
     }
     else
     {
-            window.location.href = "<?php echo base_url(); ?>index.php/VesselRecommendation/search_recommendation_type/"+recommendation_type+"/"+<?php echo $data['vessel_id'] ?>;
+              $vessel_id="<?php echo $vessel_id; ?>";
+            window.location.href = "<?php echo base_url(); ?>index.php/VesselRecommendation/search_recommendation_type/"+recommendation_type+"/"+$vessel_id;
     }
 }
 
+function getCheckedBoxes(chkboxName) {
+                                    var checkboxes = document.getElementsByName(chkboxName);
+                                    var checkboxesChecked = [];
+                                    // loop over them all
+                                    for (var i=0; i<checkboxes.length; i++) {
+                                        // And stick the checked ones onto an array...
+                                        if (checkboxes[i].checked) {
+                                            checkboxesChecked.push(checkboxes[i]);
+                                        }
+                                    }
+                                    // Return the array if it is non-empty, or null
+                                    return checkboxesChecked.length > 0 ? checkboxesChecked : null;
+                                    }
+
+// Call as
+function mail_selected_recommendation()
+{
+    var checkedBoxes = getCheckedBoxes("checkbox");
+    var checkbox_ids = '';
+    for (var index = 0; index < checkedBoxes.length; index++) 
+    {
+        var checkbox_id = checkedBoxes[index].getAttribute("id");
+        checkbox_ids+=checkbox_id+"@";
+    }
+    var email = prompt("Please enter the Email of recepient:", "office@lyndonmarine.com");
+    if (email != null) {
+        checkbox_ids = checkbox_ids.slice(0,-1)
+        window.location.href = "<?php echo site_url(); ?>/MailRecommendationDetails/multiple/"+checkbox_ids+"/"+email;
+    }
+
+}
+
+
 $('#recommendation_type').change(function(){
-      $selected_value=$('#recommendation_type option:selected').text();
-      window.location.href = "<?php echo base_url(); ?>index.php/VesselRecommendation/search_recommendation_type/"+$selected_value+"/"+<?php echo $data['vessel_id'] ?>;
+      $selected_value=$('#recommendation_type option:selected').val();
+      $vessel_id="<?php echo $vessel_id; ?>";
+      window.location.href = "<?php echo base_url(); ?>index.php/VesselRecommendation/search_recommendation_type/"+$selected_value+"/"+$vessel_id;
     });
 
 </script>

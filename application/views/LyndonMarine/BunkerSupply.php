@@ -9,9 +9,14 @@ include'includes/CheckUserLogin.php';
     <div class="row">
       <div class="col-md-offset-3 col-md-6">
         <div class="page-heading">
-          <h2>Bunker Supply for <?php foreach ($vessel_data as $vesselname) {
-            echo $vesselname['vessel_name'];
-          } ?> </h2> <br>
+          <h2>Bunker Supply for 
+            <?php foreach ($vessel_data as $data)
+                {
+                    $vessel_name=$data['vessel_name'];
+                    echo $vessel_name;
+                }?>
+            
+          </h2> <br>
         </div> 
        </div>
     </div>
@@ -79,14 +84,15 @@ include'includes/CheckUserLogin.php';
     </div>
      
       <div class="col-md-2">
-        <div class="input-group">
+       <!--  <div class="input-group">
           <select class="form-control-text1" placeholder="Select" name="suppliers" id="suppliers">
             <option selected value="">Supplier Name</option>
             <option value="web">web</option>
             <option value="dsd">dsd</option>
             <option value="text3">text3</option>
           </select>
-        </div>
+        </div> -->
+        <!-- for alignment of status dropdown to right. -->
      </div>
    <div class="col-md-2">
        <div class="input-group">
@@ -100,7 +106,7 @@ include'includes/CheckUserLogin.php';
            <form id="drop_down" action="<?php echo base_url(); ?>index.php/VesselBunkerSupply/search_dropdown_status/<?php echo $vessel_id; ?>" method="get">
          
             <select class="form-control-text1" name="range" style="width: 169px;" onchange="this.form.submit()">
-              <option value="all">Select Status</option>
+              <option selected value="" disabled>Select Status</option>
               <option value="red" <?php if($range == "red"){echo "selected=selected";}?>>Due now or overdue in 5 days</option>
               <option value="green" <?php if($range == "green"){echo "selected=selected";}?>>Valid More than 5 days</option>
               <option value="blue" <?php if($range == "blue"){echo "selected=selected";}?>> Paid</option>
@@ -112,12 +118,13 @@ include'includes/CheckUserLogin.php';
     </div>
 </div>
 </div>
-    <div class="row">
+     <div class="row">
       <div class="panel-body">
         <div class="table-responsive">
           <table class="table table-bordered table-hover">
             <thead>
               <tr>
+                <th class="text-center">Invoice Number</th>
                 <th class="text-center">Supplier Name</th>
                 <th class="text-center">Supply Port</th>
                 <th class="text-center">Supply Date</th>
@@ -144,7 +151,7 @@ include'includes/CheckUserLogin.php';
 
             if($due_date>$now && $due_date>$date_of_supply)
             {
-            $caldays = $due_date - $date_of_supply;   
+            $caldays = $due_date - $now;   
             $calday =  round($caldays / (60 * 60 * 24));  
             }
     
@@ -155,6 +162,7 @@ include'includes/CheckUserLogin.php';
                   $suppliers=$data['suppliers'];
                   $port_of_supply=$data['port_of_supply'];
                   $invoice_amount=$data['invoice_amount'];
+                  $invoice_num=$data['invoice_num'];
                   $currency=$data['currency'];
                   $paid_status=$data['paid'];
                   $document1=$data['document1'];    
@@ -162,15 +170,21 @@ include'includes/CheckUserLogin.php';
                   $date_due=$data['due_date'];
               ?>          
               <tr>
+                
+                <td class="text-center">
+                  <?php if($paid_status=="Yes"){echo $invoice_num; } else{echo "N/A" ;} ?>
+                </td>
                 <td class="text-center"><?php echo $suppliers; ?></td>
                 <td class="text-center"><?php echo $port_of_supply; ?></td>
                 <td class="text-center"><?php echo date("d-m-Y",strtotime($supply_date)); ?></td>
-                <td class="text-center"><?php if($paid_status=="Yes"){echo $invoice_amount; } else{echo "N/A" ;} ?></td>
-                <td class="text-center"><?php if($paid_status=="Yes"){echo $currency; } else{echo "N/A" ;}  ?></td>
+                 <td class="text-center">
+                  <?php if($paid_status=="Yes"){echo $invoice_amount; } else{echo "N/A" ;} ?>
+                </td>
+                <td class="text-center"><?php if($currency!=""){echo $currency; } else{echo "N/A" ;}  ?></td>
                 <td class="text-center"><?php echo date("d-m-Y",strtotime($date_due)); ?></td>
-                <td class="text-center"><?php if($paid_status=="Yes"){echo $paid_status; } else{echo "N/A" ;} ?></td>
-                <td class="text-center"><a href="<?php echo base_url(); ?>index.php/ViewBunkerSupply/index/<?php echo $vessel_id ; ?>" class="btn btn-primary">View</td>
-                <td>
+                <td class="text-center"><?php if($paid_status=="Yes"){echo $paid_status;} else{echo "No";} ?></td>
+                <td class="text-center"><a href="<?php echo base_url(); ?>index.php/ViewBunkerSupply/index/<?php echo $bunker_id ; ?>" class="btn btn-primary">View</td>
+                <td class="text-center">
                  <?php 
                  if($paid_status=="Yes") { ?>
                   <button type="button" class="update text-center btn btn-blue-status btn-sm"></button>
@@ -276,7 +290,7 @@ function mail_selected_vessels()
         var checkbox_id = checkedBoxes[index].getAttribute("id");
         checkbox_ids+=checkbox_id+"&";
     }
-    var email = prompt("Please enter the Email of recepient:", "abc@gmail.com");
+    var email = prompt("Please enter the Email of recepient:", "office@lyndonmarine.com");
     if (email != null) {
         checkbox_ids = checkbox_ids.slice(0,-1)
         window.location.href = "<?php echo site_url(); ?>/MailBunkerSupply/index/"+checkbox_ids+"/"+email;

@@ -27,12 +27,12 @@ class VesselRecommendation extends CI_Controller
                 $config['cur_tag_open'] = '<li class="active"><a href="#">';
                 $config['cur_tag_close'] = '</a></li>';
 
- $offset = ($this->uri->segment(5)) ? $this->uri->segment(5) : $offset;
+     $offset = ($this->uri->segment(5)) ? $this->uri->segment(5) : $offset;
 		
     	$recommendation_data = $this->Recommendation_model->get_recommendation_details_by_vessel_id($vessel_id);
-$data['recommendation_data'] = $this->Recommendation_model->get_all_recommendation_data_for_pagination($vessel_id,$offset);
+     $recommendation_data = $this->Recommendation_model->get_all_recommendation_data_for_pagination($vessel_id,$offset);
 
-$total_recommendation = $this->Recommendation_model->get_total_recommendation($vessel_id);
+     $total_recommendation = $this->Recommendation_model->get_total_recommendation($vessel_id);
             
             $this->load->model('Vessel_model');
             $vessel_data = $this->Vessel_model->get_vessel_details_by_id($vessel_id);
@@ -52,6 +52,7 @@ $total_recommendation = $this->Recommendation_model->get_total_recommendation($v
         
     	$data['recommendation_data'] = $recommendation_data;
     	$data['vessel_id'] = $vessel_id;
+        $data['searchtype']='';
 		$this->load->view('LyndonMarine/VesselRecommendation',$data);
 	}	
 
@@ -103,8 +104,9 @@ $total_recommendation = $this->Recommendation_model->get_total_recommendation($v
             $data['offset'] = $offset;
         // $vessel_id = $recommendation_data[0]['vessel_id'];
             $data['recommendation_data'] = $recommendation_data;
-        $data['vessel_id'] = $vessel_id;  
-        $this->load->view('LyndonMarine/VesselRecommendation',$data);
+            $data['vessel_id'] = $vessel_id;  
+            $data['searchtype'] = $searchtype;  
+            $this->load->view('LyndonMarine/VesselRecommendation',$data);
     }
 
      public function search_dropdown_status($vessel_id)
@@ -161,7 +163,8 @@ $total_recommendation = $this->Recommendation_model->get_total_recommendation($v
             $this->pagination->initialize($config);
              $data['links'] = $this->pagination->create_links();
             $data['recommendation_data'] = $result;
-                    $data['vessel_id'] = $vessel_id;  
+            $data['vessel_id'] = $vessel_id;  
+            $data['searchtype']='';
             $this->load->view('LyndonMarine/VesselRecommendation',$data);
     }  
 

@@ -18,6 +18,9 @@ include'includes/header_login.php';
           <h2>View Plan </h2>
         </div>
       </div>
+      <div class="col-md-2">
+        <div class="main-edit-add"> <a class="btn-blue" href="<?php echo base_url();?>index.php/VesselPlans/edit_plan/<?php echo $plans_id; ?>">Edit</a> </div>       
+      </div>
     </div>
   </div>
 </section>

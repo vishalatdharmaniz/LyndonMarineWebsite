@@ -7,7 +7,9 @@ class VesselBunkerSupply extends CI_Controller
 	public function index($vessel_id,$offset=0)
 	{
         $this->load->library('pagination');
-
+        $this->load->model('Vessel_model');
+        
+       
 		$this->load->model('BunkerSupply_model');
 
          $config['full_tag_open'] = '<ul class="pagination">';
@@ -29,15 +31,14 @@ class VesselBunkerSupply extends CI_Controller
                 $config['cur_tag_open'] = '<li class="active"><a href="#">';
                 $config['cur_tag_close'] = '</a></li>';
 
- $offset = ($this->uri->segment(5)) ? $this->uri->segment(5) : $offset;
+    $offset = ($this->uri->segment(5)) ? $this->uri->segment(5) : $offset;
         
         $bunker_supply_data = $this->BunkerSupply_model->get_bunker_supply_details_by_vessel_id($vessel_id);
-$data['bunker_supply_data'] = $this->BunkerSupply_model->get_all_bunker_supply_data_for_pagination($vessel_id,$offset);
+      $data['bunker_supply_data'] = $this->BunkerSupply_model->get_all_bunker_supply_data_for_pagination($vessel_id,$offset);
 
-$total_bunker = $this->BunkerSupply_model->get_total_bunker($vessel_id);
-$this->load->model('Vessel_model');
-             $vessel_data = $this->Vessel_model->get_vessel_details_by_id($vessel_id);
-       
+       $total_bunker = $this->BunkerSupply_model->get_total_bunker($vessel_id);
+
+            $vessel_data = $this->Vessel_model->get_vessel_details_by_id($vessel_id);     
 
                 $config['base_url'] = base_url().'index.php/VesselBunkerSupply/index/'.$vessel_id;
                     $config['total_rows'] = $total_bunker; 
@@ -50,7 +51,8 @@ $this->load->model('Vessel_model');
 
                     $data['offset'] = $offset;
 
-        $data['vessel_data']= $vessel_data;
+        $data['vessel_data']=$vessel_data;
+        
     	$data['bunker_supply_data'] = $bunker_supply_data;
     	$data['vessel_id'] = $vessel_id;
 		$this->load->view('LyndonMarine/BunkerSupply',$data);

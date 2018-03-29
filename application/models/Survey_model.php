@@ -201,6 +201,15 @@ class Survey_model extends CI_Model
 		}
 		//echo $start_date;
 		if(!empty($custom_code)){
+		/*	if($custom_code == "all"){
+				if(empty($where)){
+
+					$where .=	" WHERE vessel_id='$vessel_id' ";	
+				}else{
+					$where .=	"WHERE vessel_id='$vessel_id' ";
+				}
+					
+			}*/
 			if($custom_code == "red"){
 				if(empty($where)){
 

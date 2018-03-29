@@ -34,7 +34,10 @@ class VesselSoa extends CI_Controller
 
             $total_soa = $this->Soa_model->get_total_soa($vessel_id);
             
-
+                $this->load->model('Vessel_model');
+            $vessel_data = $this->Vessel_model->get_vessel_details_by_id($vessel_id);
+            $data['vessel_data'] = $vessel_data;
+            
                 $config['base_url'] = base_url().'index.php/VesselSoa/index/'.$vessel_id;
                     $config['total_rows'] = $total_soa; 
                     $config['per_page'] = 8;

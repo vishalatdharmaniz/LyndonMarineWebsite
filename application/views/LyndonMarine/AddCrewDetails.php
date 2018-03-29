@@ -4,13 +4,17 @@ include'includes/CheckUserLogin.php';
 ?>
 <section id="main-edit">
   <div class="container">
-    <div class="row">
-      <div class="col-md-offset-3 col-md-6">
-        <div class="page-heading">
-          <h2>Add Crew Details </h2> <br>
-        </div> 
+    <div class="row"> 
+       <div class="col-md-2">
+        <div class="main-edit-add"> <a class="btn-blue" href="<?php echo base_url();?>index.php/CrewDetails/index/<?php echo $vessel_id ; ?>">Go Back </a> 
+        </div>   
       </div>
-    </div>  
+      <div class="col-md-6 col-md-9">
+        <div class="page-heading">
+          <h2>Add Crew Detail Form</h2>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 <section id="main-editone">
@@ -64,7 +68,7 @@ include'includes/CheckUserLogin.php';
             
             <div class="row">
               <div class="form-group col-md-6">
-                <label class="control-label">Upload Document:</label>
+                <label class="control-label">Upload Document (Max Size 64mb)</label>
                 <input type="file" name="document" class="form-control-text">
               </div>
             </div>

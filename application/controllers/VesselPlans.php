@@ -30,26 +30,27 @@ class VesselPlans extends CI_Controller
                 $config['cur_tag_close'] = '</a></li>';
 
                 
-    	$vessel_plans = $this->Plans_model->get_plans_details_by_vessel_id($vessel_id);
+    	// $vessel_plans = $this->Plans_model->get_plans_details_by_vessel_id($vessel_id);
 
         $vessel_data = $this->Vessel_model->get_vessel_details_by_id($vessel_id);
         $data['vessel_data']= $vessel_data;
 
         $offset = ($this->uri->segment(4)) ? $this->uri->segment(4) : $offset;
-    	$data['vessel_plans'] = $this->Plans_model->get_plans_details_by_pagination($vessel_id,$offset);
+    	$vessel_plans = $this->Plans_model->get_plans_details_by_pagination($vessel_id,$offset);
 
         $total_plans = COUNT($this->Plans_model->get_plans_details_by_pagination($vessel_id,$offset));
 
-                $config['base_url'] = base_url().'index.php/VesselPlans/index/'.$vessel_id;
-                    $config['total_rows'] = $total_plans; 
-                    $config['per_page'] = 10;
-                    $config['uri_segment'] = 4;
-                    
-                    $this->pagination->initialize($config);
-                    
-                    $data['links'] = $this->pagination->create_links();
+        $config['base_url'] = base_url().'index.php/VesselPlans/index/'.$vessel_id;
+        $config['total_rows'] = $total_plans; 
+        $config['per_page'] = 10;
+        $config['uri_segment'] = 4;
+        
+        $this->pagination->initialize($config);
+        
+        $data['links'] = $this->pagination->create_links();
 
-                    $data['offset'] = $offset;
+        $data['offset'] = $offset;
+        $data['vessel_plans'] = $vessel_plans;
     	$data['vessel_id'] = $vessel_id;
 
         $this->load->view('LyndonMarine/VesselPlans',$data);
@@ -58,7 +59,8 @@ public function edit_plan($plans_id)
     {
         $this->load->model('Plans_model');
         $vessel_plans = $this->Plans_model->get_vessel_plan_data($plans_id);
-
+        $vessel_id=$vessel_plans[0]['vessel_id'];
+        $data['vessel_id']=$vessel_id;
         $data['vessel_plans'] = $vessel_plans[0];
         $data['plans_id'] = $plans_id;
         $this->load->view('LyndonMarine/EditPlan',$data);
@@ -136,7 +138,7 @@ public function edit_plan($plans_id)
             {
                 $document[$i] = $vessel_plans[0]['upload_plan'.$i];
                 $exploded_doc = explode("/", $document[$i]);
-                $name = isset($exploded_doc[6]) ? $exploded_doc[6] : NULL;
+                $name = isset($exploded_doc[8]) ? $exploded_doc[8] : NULL;
                 $document_name[$i] = empty($name) ? "" : $name;  
                 $document[$i] = str_replace(" ","%20","$document[$i]");
             }

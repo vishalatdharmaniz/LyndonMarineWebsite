@@ -1,0 +1,5 @@
+[19-Jan-2018 11:25:50 UTC] PHP Parse error:  syntax error, unexpected ')', expecting variable (T_VARIABLE) in /home/dharmani/public_html/LyndonMarineWebsite/application/controllers/DeleteCertificate.php on line 6
+[24-Jan-2018 05:00:59 UTC] PHP Parse error:  syntax error, unexpected '"></div>' (T_CONSTANT_ENCAPSED_STRING) in /home/dharmani/public_html/LyndonMarineWebsite/application/views/LyndonMarine/single_vessel.php on line 22
+[24-Jan-2018 05:01:08 UTC] PHP Parse error:  syntax error, unexpected '"></div>' (T_CONSTANT_ENCAPSED_STRING) in /home/dharmani/public_html/LyndonMarineWebsite/application/views/LyndonMarine/single_vessel.php on line 22
+[24-Jan-2018 05:01:17 UTC] PHP Parse error:  syntax error, unexpected '"></div>' (T_CONSTANT_ENCAPSED_STRING) in /home/dharmani/public_html/LyndonMarineWebsite/application/views/LyndonMarine/single_vessel.php on line 22
+[24-Jan-2018 05:01:43 UTC] PHP Parse error:  syntax error, unexpected '"></div>' (T_CONSTANT_ENCAPSED_STRING) in /home/dharmani/public_html/LyndonMarineWebsite/application/views/LyndonMarine/single_vessel.php on line 22

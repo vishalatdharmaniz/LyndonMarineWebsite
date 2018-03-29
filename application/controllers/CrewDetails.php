@@ -26,26 +26,26 @@ class CrewDetails extends CI_Controller
                 $config['cur_tag_open'] = '<li class="active"><a href="#">';
                 $config['cur_tag_close'] = '</a></li>';
 
- $offset = ($this->uri->segment(4)) ? $this->uri->segment(4) : $offset;
+      $offset = ($this->uri->segment(5)) ? $this->uri->segment(5) : $offset;
         
-        $crew_data = $this->CrewDetails_model->get_crew_details_by_vessel_id($vessel_id);
-$data['crew_data'] = $this->CrewDetails_model->get_all_crew_data_for_pagination($vessel_id,$offset);
+       $crew_data = $this->CrewDetails_model->get_crew_details_by_vessel_id($vessel_id);
+       $crew_data = $this->CrewDetails_model->get_all_crew_data_for_pagination($vessel_id,$offset);
 
-$total_crew = $this->CrewDetails_model->get_total_crew($vessel_id);
-            $this->load->model('Vessel_model');
-            $vessel_data = $this->Vessel_model->get_vessel_details_by_id($vessel_id);
-            $data['vessel_data'] = $vessel_data;
+       $total_crew = $this->CrewDetails_model->get_total_crew($vessel_id);
+        $this->load->model('Vessel_model');
+        $vessel_data = $this->Vessel_model->get_vessel_details_by_id($vessel_id);
+        $data['vessel_data'] = $vessel_data;
 
-                $config['base_url'] = base_url().'index.php/CrewDetails/index/'.$vessel_id;
-                $config['total_rows'] = $total_crew; 
-                $config['per_page'] = 8;
-                $config['uri_segment'] = 4;
+        $config['base_url'] = base_url().'index.php/CrewDetails/index/'.$vessel_id;
+        $config['total_rows'] = $total_crew; 
+        $config['per_page'] = 10;
+        $config['uri_segment'] = 5;
                     
-                $this->pagination->initialize($config);
-                    
-                $data['links'] = $this->pagination->create_links();
+        $this->pagination->initialize($config);
+            
+        $data['links'] = $this->pagination->create_links();
 
-                $data['offset'] = $offset;
+        $data['offset'] = $offset;
 
 	 $data['crew_data']=$crew_data ;
 	 $data['vessel_id']=$vessel_id ;
