@@ -7,7 +7,7 @@ class MailBunkerSupply extends CI_Controller
   public function index($checkbox_ids,$email_of_recepient)
     {
         $return_url_after_search_and_mail = $this->agent->referrer();
-        $checkbox_ids_array = explode("&", $checkbox_ids);  
+        $checkbox_ids_array = explode("@", $checkbox_ids);  
         $checkbox_ids = array(); 
         foreach ($checkbox_ids_array as $checkbox_id)
         {
@@ -36,8 +36,8 @@ class MailBunkerSupply extends CI_Controller
             $currency=$bunker_supply_data[0]['currency']; 
 
             $bunker_id = $bunker_supply_data[0]["bunker_id"];
-           /* $document1 = $bunker_supply_data[0]["document1"]; 
-            $document2 = $bunker_supply_data[0]["document2"]; */
+            $document1 = $bunker_supply_data[0]["document1"]; 
+            $document2 = $bunker_supply_data[0]["document2"]; 
         
             for($i = 1; $i <= 2 ; $i++)
             {

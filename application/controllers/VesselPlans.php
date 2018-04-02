@@ -72,7 +72,7 @@ public function edit_plan($plans_id)
         $vessel_plans = $this->Plans_model->get_vessel_plan_data($plans_id);
 
         $data['vessel_plans'] = $vessel_plans[0];
-        // $data['plans_id'] = $plans_id;
+        $data['plans_id'] = $plans_id;
         $vessel_id = $vessel_plans[0]['vessel_id'];
         $data['vessel_id'] = $vessel_id; 
         $this->load->view('LyndonMarine/ViewPlans',$data);

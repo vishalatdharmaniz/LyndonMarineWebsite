@@ -186,7 +186,7 @@ function mail_selected_crew()
     for (var index = 0; index < checkedBoxes.length; index++) 
     {
         var checkbox_id = checkedBoxes[index].getAttribute("id");
-        checkbox_ids+=checkbox_id+"&";
+        checkbox_ids+=checkbox_id+"@";
     }
     var email = prompt("Please enter the Email of recepient:", "office@lyndonmarine.com");
     if (email != null) {

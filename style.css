@@ -159,7 +159,7 @@ input[type="checkbox"] {
 	/* display: block; */
 	width: 100%;
 	height: 34px;
-	padding: 6px 12px;
+	    padding: 6px 70px 0px 12px;
 	font-size: 14px;
 	line-height: 1.42857143;
 	color: #fff;
@@ -887,9 +887,9 @@ a.btn.btn-xcode {
     z-index: 1000;
     display: none;
     float: left;
-    min-width: 330px;
-   padding:15px 15px 15px 15px;
-    margin: 2px 0%;
+    min-width: 249px;
+    padding: 11px 6px 9px 7px;
+    margin: 0px 0px 0px -210px;
     font-size: 14px;
     text-align: left;
     list-style: none;

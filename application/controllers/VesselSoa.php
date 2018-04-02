@@ -68,6 +68,7 @@ class VesselSoa extends CI_Controller
 	 $soa_data=$this->Soa_model->get_soa_details_by_soa_id($soa_id);
 	 $data['soa_data']=$soa_data;
 	 $vessel_id=$soa_data[0]['vessel_id'];
+     $data['soa_id']=$soa_id;
 	 $data['vessel_id']=$vessel_id;
 	 $this->load->view('LyndonMarine/ViewSoa',$data);
 

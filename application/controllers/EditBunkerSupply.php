@@ -8,7 +8,9 @@ class EditBunkerSupply extends CI_Controller
 	{
 		$this->load->model('BunkerSupply_model');
     	$bunker_supply_data = $this->BunkerSupply_model->get_bunker_supply_data($bunker_id);
+      $vessel_id=$bunker_supply_data[0]['vessel_id'];
     	$data['bunker_supply_data'] = $bunker_supply_data; 
+      $data['vessel_id']=$vessel_id; 
     	$data['bunker_id']=$bunker_id; 
     	$this->load->view('LyndonMarine/EditBunkerSupply',$data);
 	}
@@ -87,7 +89,7 @@ class EditBunkerSupply extends CI_Controller
               }
 
 
- 				$update=$this->BunkerSupply_model->update_bunker_supply($bunker_id,$supply_date,$suppliers,$port_of_supply,$mdo,$hfo,$luboil_1_type,$luboil_2_quantity,$luboil_2_type,$luboil_2_quantity,$others,$remarks,$reminder,$date_due,$invoice_amount,$invoice_num,$currency,$document[1],$document[2],$paid,$paid_date);
+ 				$update=$this->BunkerSupply_model->update_bunker_supply($bunker_id,$supply_date,$suppliers,$port_of_supply,$mdo,$hfo,$luboil_1_type,$luboil_1_quantity,$luboil_2_type,$luboil_2_quantity,$others,$remarks,$reminder,$date_due,$invoice_amount,$invoice_num,$currency,$document[1],$document[2],$paid,$paid_date);
  				
 			$base_url = BASE_URL;
             //header("Location: $base_url/index.php/VesselRecommendation/index");

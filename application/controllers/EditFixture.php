@@ -36,7 +36,8 @@ public function edit($id,$vessel_id)
 			$remarks = $_REQUEST['remarks'];
          
 			$vessel_data=$this->Vessel_model->get_vessel_details_by_id($vessel_id);
-            $fixture_data=$this->Fixture_model->get_fixture_by_id($id);
+
+					$vessel_name=$vessel_data[0]['vessel_name'];         
 
 		   $directory_name = '../LyndonMarineImages/FixtureDocuments/'.$vessel_name.'/' ; 
 
@@ -109,9 +110,10 @@ public function edit($id,$vessel_id)
 				);
 				*/
 
-			$data=$this->Fixture_model->updateFixture($id,$fixture_no,$fixture_date,$fixture_date,$discharging_port,$fright,$currency,$boker,$commission,$remarks,$contract,$invoice);
+			$data=$this->Fixture_model->updateFixture($id,$fixture_no,$loading_port,$fixture_date,$discharging_port,$fright,$currency,$boker,$commission,$remarks,$contract,$invoice);
 
-				$vessel_id=$vessel_data[0]['vessel_id'];
+
+		    $vessel_id=$vessel_data[0]['vessel_id'];
 			$data['vessel_id'] = $vessel_id;   
 			$base_url = BASE_URL;
 			header("Location: $base_url/index.php/Vessel_fixture/index/$vessel_id");

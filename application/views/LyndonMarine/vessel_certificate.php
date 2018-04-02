@@ -22,9 +22,7 @@ include'includes/header_login.php';
           <h2>Vessel Certificates for <?php foreach ($vessel_data as $vesselname) {
             echo $vesselname['vessel_name']; 
           } ?> </h2> <br>
-        </div>
-        
-        
+        </div> 
       </div>
     </div>
      
@@ -62,7 +60,7 @@ include'includes/header_login.php';
         <li><a class="btn-blue" href="<?php echo base_url();?>index.php/AddCertificateScreen/index/<?php echo $vessel_id; ?>">Add Certificate</a></li>
          <li> <a class="btn-blue" href="<?php echo base_url(); ?>index.php/VesselCertificate/index/<?php echo $vessel_id; ?>">All Certificate</a></li> 
            <li><button class="btn-blue" onclick="mail_selected_vessels()" >Mail Document</button></li>
-           <li><button class="btn-blue" id="selectAll" onclick="mail_all()"  >Mail All </button></li>
+           <li><button class="btn-blue" id="check_all" onclick="mail_all()" >Mail All </button></li>
           </ul>
          </div>
          </div>
@@ -71,46 +69,6 @@ include'includes/header_login.php';
       </div>
     </div>
 </section>
-
-
-
-<!--<section id="top_mail">
-	<div class="container">
-    	<div class="row"> 
-        
-        <div class="col-md-3">
-        <div class="main-edit-add-left"> <a class="btn-blue" href="<?php echo base_url();?>index.php/FleetDetails/index/<?php echo $vessel_id; ?>">Go Back</a>				          </div>       
-      </div>
-      
-      <!--<div class="col-md-4">
-      <div class="input-group">
-        <form onsubmit="searchEnter(document.getElementById('search_vessel').value); return false;">
-          <input type="text" class="form-control-text" placeholder="Search" name="search" id="search_vessel">
-        </form>
-          <span class="input-group-btn">
-      			<a class="btn btn-default text-muted" href="#" title="Clear" onclick="reset()"><i class="glyphicon glyphicon-remove"></i> </a>
-      			<button onclick="search(document.getElementById('search_vessel').value)" type="button" class="btn btn-info">
-      				<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-      			</button>
-          </span>
-        </div>
-      </div>
-      
-      <div class="col-md-9">
-      	<div class="list_right">
-        <ul class="main-edit-add"> 
-        <li><a class="btn-blue" href="<?php echo base_url();?>index.php/AddCertificateScreen/index/<?php echo $vessel_id; ?>">Add Certificate</a></li>
-         <li> <a class="btn-blue" href="<?php echo base_url(); ?>index.php/VesselCertificate/index/<?php echo $vessel_id; ?>">All Certificate</a></li> 
-          <li><a class="btn-blue" onclick="mail_selected_vessels()" >Mail Document</a></li>
-          </ul>
-         </div>
-         </div>
-         
-         
-      </div>
-    </div>
-</section>-->
-
 
 <section id="work-done">
   <div class="container">
@@ -238,6 +196,7 @@ include'includes/header_login.php';
           <table id="tableselected" class="table table-bordered table-hover">
             <thead>
               <tr>
+ 
                 <th width="75" >Certificate No.</th>
                 <th width="75" >Certificate Type</th>
                 <th width="75" >Certificate Name</th>
@@ -247,7 +206,8 @@ include'includes/header_login.php';
                 <th width="71" >Exemption</th>
                 <th width="33" class="text-center">View</th>
                 <th width="42">Status</th>
-                <th width="41">Select</th>
+                <th width="80"> <input name="checkbox" type="checkbox" id="checkbox_all"> Select All 
+                    </th>
                 <th width="110">Action</th>
               </tr>
             </thead>
@@ -255,6 +215,8 @@ include'includes/header_login.php';
 		<?php foreach($certificate_data as $data)
 				{ 
 					  $now = time();
+           /*  echo "<br>".$data['certificate_id'];*/
+
 					  $expiry_date = strtotime($data['date_expiry']);
 					  $extention_date = strtotime($data['extention_until']); 
             if($extention_date!='')
@@ -316,7 +278,7 @@ include'includes/header_login.php';
 								  <?php } ?>
 							</td>
 							<td>
-								<input type="checkbox" name="checkbox" id="checkbox<?php echo $data['certificate_id']; ?>">
+								<input type="checkbox"  class="checkbox" name="checkbox" id="checkbox<?php echo $data['certificate_id']; ?>">
 							</td>
 							<td class="text-center">
 								<a href="<?php echo base_url();?>index.php/DeleteCertificate/index/<?php echo $data['certificate_id']; ?>/<?php echo $data['vessel_id']; ?>" Onclick="return confirm('Are you Sure?');" class="btn-bk">
@@ -349,8 +311,36 @@ include'includes/header_login.php';
 <?php
 include'includes/footer.php';
 ?>
+          
+<script type="text/javascript">
+  
+  var select_all = document.getElementById("checkbox_all"); //select all checkbox
+var checkboxes = document.getElementsByName("checkbox"); //checkbox items
 
+//select all checkboxes
+select_all.addEventListener("change", function(e){
+    for (i = 0; i < checkboxes.length; i++) { 
+        checkboxes[i].checked = select_all.checked;
+    }
+});
+
+
+for (var i = 0; i < checkboxes.length; i++) {
+    checkboxes[i].addEventListener('change', function(e){ //".checkbox" change 
+        //uncheck "select all", if one of the listed checkbox item is unchecked
+        if(this.checked == false){
+            select_all.checked = false;
+        }
+        //check "select all" if all checkbox items are checked
+        if(document.querySelectorAll('.checkbox:checked').length == checkboxes.length){
+            select_all.checked = true;
+        }
+    });
+}
+</script>
 <script>
+
+
   function search(search_vessel)
 {
     if(search_vessel == "")
@@ -463,7 +453,7 @@ function mail_all()
 {
   var $vessel_id = '<?php echo $vessel_id; ?>';
    var email = prompt("Please enter the Email of recepient:", "office@lyndonmarine.com");
-  window.location.href = "<?php echo site_url(); ?>/MailCertificateDetail/all/"+$vessel_id+"/"+email;
+  window.location.href = "<?php echo site_url(); ?>/MailCertificateDetail/mail_all/"+$vessel_id+"/"+email;
 }
 
 $('#certificate_type').change(function(){
