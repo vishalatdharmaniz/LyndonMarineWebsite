@@ -154,8 +154,8 @@ class MailCertificateDetail extends CI_Controller {
             $txt .= "<hr>";
         }
 
-        $txt .= "Best Regards<br>";
 
+        $txt .= "Best Regards<br>";
 
         $to = "$email_of_recepient";
         $subject = "$vessel_name, $imo_number, Documents";
@@ -168,104 +168,80 @@ class MailCertificateDetail extends CI_Controller {
         
         $base_url = BASE_URL;
         header("Location: $return_url_after_search_and_mail");
+   
     }
 
-     public function all($vessel_id,$email_of_recepient)
-    {
-        $return_url_after_search_and_mail = $this->agent->referrer();
-       
+
+public function all($vessel_id,$email_of_recepient)
+{
         $this->load->model('Certificate_model');
-        $this->load->model('Vessel_model');
+       $certificate_data = $this->Certificate_model->get_certificate_details_by_vessel_id($vessel_id);
 
-        //$txt = "Good Day <br><br> Please find here list of certificates requested:<br><br><br>";
-       
-        $certificate_data = $this->Certificate_model->get_certificate_details_by_vessel_id($vessel_id);
-        $vessel_id = $certificate_data[0]["vessel_id"];
-        $certificate_id = $certificate_data[0]["certificate_id"];
-        $vessel_data = $this->Vessel_model->get_vessel_details_by_id($vessel_id); 
+         $txt = "Good Day <br><br> Please find here list of certificates requested:<br><br><br>";
 
-            $txt .= "M/V &nbsp;".$vessel_data[0]['vessel_name']."<br>";
-            $txt .= "IMO Number &nbsp;".$vessel_data[0]['imo_number']."<br><br>";
-      
-        // $certificate_data = $this->Certificate_model->get_certificate_details_by_certificate_id($certificate_id);
-// print_r($certificate_data);die();
-         $vessel_id = $certificate_data[0]["vessel_id"];
-        $vessel_data = $this->Vessel_model->get_vessel_details_by_id($vessel_id);
-       
-        $data['certificate_data'] = $certificate_data[0];
+        foreach($certificate_data as $key => $value)
+        {
+            $certificate_id = $value["certificate_id"];
+            $certificate_no =$value["certificate_no"];
+            $certificate_name = $value["certificate_name"];
+            $certificate_type =$value["certificate_type"];
 
-        $certificate_id = $certificate_data[0]["certificate_id"];
-        $certificate_no =$certificate_data[0]["certificate_no"];
-        $certificate_name = $certificate_data[0]["certificate_name"];
-        $certificate_type =$certificate_data[0]["certificate_type"];
-
-         var_dump($certificate_no); die();
-
-        $document1 = $certificate_data[0]["document1"];
-        $document2 = $certificate_data[0]["document2"];
-        $document3 = $certificate_data[0]["document3"];
-        $document4 = $certificate_data[0]["document4"];
-        $document5 = $certificate_data[0]["document5"];
+             $document1 = $value["document1"];
+             $document2 = $value["document2"];
+             $document3 = $value["document3"];
+              $document4 = $value["document4"];
+             $document5 = $value["document5"];
         
-          $vessel_name= $vessel_data[0]['vessel_name'];
-          $imo_number= $vessel_data[0]['imo_number'];
+    
+                for($i = 1; $i <= 5 ; $i++)
+                {
+                    $document[$i] = $value['document'.$i];
 
-            for($i = 1; $i <= 5 ; $i++)
-            {
-                $document[$i] = $certificate_data[0]['document'.$i];
-
-                $exploded_doc = explode("/", $document[$i]);
-                $name = isset($exploded_doc[8]) ? $exploded_doc[8] : NULL;
-                $document_name[$i] = empty($name) ? "" : $name;  
-                $document[$i] = str_replace(" ","%20","$document[$i]");
-            }
-            
-
-            /*  $txt .= "<h3>Certificate Name:".$certificate_name."</h3>";
-            $txt .= "<h3>Certificate No:".$certificate_no."</h3><br>"; */
+                    $exploded_doc = explode("/", $document[$i]);
+                    $name = isset($exploded_doc[8]) ? $exploded_doc[8] : NULL;
+                    $document_name[$i] = empty($name) ? "" : $name;  
+                    $document[$i] = str_replace(" ","%20","$document[$i]");
+                }
+        
            
             $txt .= "Certificate Number :- ".$certificate_no."<br>";
             $txt .= "Certificate Name :- ".$certificate_name."<br>";
             $txt .= "Certificate Type :- ".$certificate_type."<br>";
         
-        if ($certificate_data[0]["document1"] != NULL)
-        {
-            $txt .= "<a href=$document[1]>$document_name[1]</a><br>";
+            if ($value["document1"] != NULL)
+            {
+                $txt .= "<a href=$document[1]>$document_name[1]</a><br>";
 
-        }
-        if ($certificate_data[0]["document2"] != NULL)
-        {
-            $txt .= "<a href=$document[2]>$document_name[2]</a><br>";
-        }
-        if ($certificate_data[0]["document3"] != NULL)
-        {
-            $txt .= "<a href=$document[3]>$document_name[3]</a><br>";
-        }
-        if ($certificate_data[0]["document4"] != NULL)
-        {
-            $txt .= "<a href=$document[4]>$document_name[4]</a><br>";
-        }
-        if ($certificate_data[0]["document5"] != NULL)
-        {
-            $txt .= "<a href=$document[5]>$document_name[5]</a><br>";
-        }
-            $txt .= "<hr>";
-            $txt .= "<hr>";
-        }
+            }
+            if ($value["document2"] != NULL)
+            {
+                $txt .= "<a href=$document[2]>$document_name[2]</a><br>";
+            }
+            if ($value["document3"] != NULL)
+            {
+                $txt .= "<a href=$document[3]>$document_name[3]</a><br>";
+            }
+            if ($value["document4"] != NULL)
+            {
+                $txt .= "<a href=$document[4]>$document_name[4]</a><br>";
+            }
+            if ($value["document5"] != NULL)
+            {
+                $txt .= "<a href=$document[5]>$document_name[5]</a><br>";
+            }
+                $txt .= "<hr>";
+                $txt .= "<hr>";
+            }
 
-       // $txt .= "Best Regards<br>";
-
-/*
-        $to = "$email_of_recepient";
-        $subject = "$vessel_name, $imo_number, Documents";
-
+        $txt .= "Best Regards<br>";
         $headers  = 'MIME-Version: 1.0' . "\r\n";
         $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
         $headers .= "From: office@lyndonmarine.com";
         
         mail($to,$subject,$txt,$headers);
-      
-        $base_url = BASE_URL;
-        header("Location: $return_url_after_search_and_mail");
-      */
+        redirect("VesselCertificate/index/$vessel_id");
+        //index.php/VesselSurvey/index/102
+    }   
+   
+
 }

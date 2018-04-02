@@ -179,9 +179,9 @@ class Fixture_model extends CI_Model
 		return $result;	
 	}
 
-	function updateFixture($id,$fixture_no,$fixture_date,$fixture_date,$discharging_port,$fright,$currency,$boker,$commission,$remarks,$contract,$invoice)
+	function updateFixture($id,$fixture_no,$loading_port,$fixture_date,$discharging_port,$fright,$currency,$boker,$commission,$remarks,$contract,$invoice)
 	{
-		$update_soa=$this->db->query("UPDATE vessel_fixtures SET fixture_no='$fixture_no',fixture_date='$fixture_date',discharging_port='$discharging_port',fright='$fright',currency='$currency' ,bokers='$boker',commission='$commission',remarks='$remarks',contract='$contract',invoice='$invoice' WHERE id='$id' ");
+		$update_soa=$this->db->query("UPDATE vessel_fixtures SET fixture_no='$fixture_no',fixture_date='$fixture_date',loading_port='$loading_port',discharging_port='$discharging_port',fright='$fright',currency='$currency' ,bokers='$boker',commission='$commission',remarks='$remarks',contract='$contract',invoice='$invoice' WHERE id='$id' ");
 		return true;
 	}
 	public function get_fixture_by_id($id)

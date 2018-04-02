@@ -172,13 +172,13 @@ include'includes/CheckUserLogin.php';
               <tr>
                 
                 <td class="text-center">
-                  <?php if($paid_status=="Yes"){echo $invoice_num; } else{echo "N/A" ;} ?>
+                  <?php if($invoice_num!=""){echo $invoice_num; } else{echo "N/A" ;} ?>
                 </td>
                 <td class="text-center"><?php echo $suppliers; ?></td>
                 <td class="text-center"><?php echo $port_of_supply; ?></td>
                 <td class="text-center"><?php echo date("d-m-Y",strtotime($supply_date)); ?></td>
                  <td class="text-center">
-                  <?php if($paid_status=="Yes"){echo $invoice_amount; } else{echo "N/A" ;} ?>
+                  <?php if($invoice_amount!=""){echo $invoice_amount; } else{echo "N/A" ;} ?>
                 </td>
                 <td class="text-center"><?php if($currency!=""){echo $currency; } else{echo "N/A" ;}  ?></td>
                 <td class="text-center"><?php echo date("d-m-Y",strtotime($date_due)); ?></td>
@@ -288,7 +288,7 @@ function mail_selected_vessels()
     for (var index = 0; index < checkedBoxes.length; index++) 
     {
         var checkbox_id = checkedBoxes[index].getAttribute("id");
-        checkbox_ids+=checkbox_id+"&";
+        checkbox_ids+=checkbox_id+"@";
     }
     var email = prompt("Please enter the Email of recepient:", "office@lyndonmarine.com");
     if (email != null) {

@@ -11,8 +11,8 @@
 <!--<link rel="stylesheet" href="<?php echo base_url(); ?>bower_components/css/font.css">-->
 <link rel="stylesheet" href="<?php echo base_url(); ?>bower_components/font-awesome/css/font-awesome.min.css">
 
-<link rel="stylesheet" href="<?php echo base_url(); ?>responsive.css">
-<link rel="icon" href="<?php echo base_url(); ?>img/favicon.ico" type="image/x-icon" />
+
+<link rel="icon" href="<?php echo base_url(); ?>img/icon.png" type="image/x-icon" />
 </head>	
 <body>
 <nav class="navbar navbar-inverse navbar-fixed-top">

@@ -135,9 +135,9 @@ include'includes/CheckUserLogin.php';
                 <label class="control-label">Currency</label>
                 <select  class="form-control-text" name="currency"> 
                   <option selected value="" disabled>Select</option>
-                  <option value="USD">USD</option>
-                  <option value="GBP">GBP</option>
-                  <option value="EURO">EURO</option>
+                  <option <?php if($currency=="USD"){echo "selected=selected";} ?> value="USD">USD</option>
+                  <option <?php if($currency=="GBP"){echo "selected=selected";} ?> value="GBP">GBP</option>
+                  <option <?php if($currency=="EURO"){echo "selected=selected";} ?> value="EURO">EURO</option>
                 </select>
               </div>
             </div>
@@ -145,9 +145,9 @@ include'includes/CheckUserLogin.php';
               <div class="form-group col-md-6">
                 <label class="control-label">Paid </label>
                <select  class="form-control-text" name="paid">
-                
-                  <option value="Yes">Yes</option>
-                  <option value="No">No</option>
+                <option selected value="" disabled>Select</option>
+                  <option <?php if($paid=="Yes"){echo "selected=selected";} ?> value="Yes">Yes</option>
+                  <option <?php if($paid=="No"){echo "selected=selected";} ?> value="No">No</option>
                 </select>
               </div>
               <div class="form-group col-md-6">
