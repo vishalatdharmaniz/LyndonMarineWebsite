@@ -36,12 +36,13 @@ include'includes/header_login.php';
           </span>
         </div>
       </div>
+
       
       <div class="col-md-5">
         <div class="list_right">
           <ul class="main-edit-add"> 
            <li><a class="btn-blue" href="<?php echo base_url(); ?>index.php/AddPlansScreen/index/<?php echo $vessel_id;?>">Add Plans</a></li>
-           <!-- <li> <a class="btn-blue" href="<?php echo base_url(); ?>index.php/VesselPlans/index/<?php echo $vessel_id; ?>">All Plan</a></li> --> 
+           <li> <a class="btn-blue" href="<?php echo base_url(); ?>index.php/VesselPlans/index/<?php echo $vessel_id; ?>">All Plans</a></li> 
             <li><button class="btn-blue" onclick="mail_selected_vessels()" >Mail Document</button></li>
           </ul>
          </div>
@@ -153,7 +154,8 @@ function search(search_plan)
     }
     else
     {
-            window.location.href = "<?php echo base_url(); ?>index.php/VesselPlans/search_plan_data/"+search_plan+"/"+<?php echo $data['vessel_id'] ?>;
+           $vessel_id="<?php echo $vessel_id; ?>";
+            window.location.href = "<?php echo base_url(); ?>index.php/VesselPlans/search_plan/"+search_plan+"/"+$vessel_id;
     }
 }
 function searchEnter(search_plan)
@@ -163,14 +165,16 @@ function searchEnter(search_plan)
         alert("Please enter a value to be searched");
     }
     else
-    {
-            window.location.href = "<?php echo base_url(); ?>index.php/VesselPlans/search_plan_data/"+search_plan+"/"+<?php echo $data['vessel_id'] ?>;
+    { 
+            $vessel_id="<?php echo $vessel_id; ?>";
+            window.location.href = "<?php echo base_url(); ?>index.php/VesselPlans/search_plan/"+search_plan+"/"+$vessel_id;
     }
 }
 function reset(search_plan)
 {
   $('#search_plan').val('');
-  window.location.href = "<?php echo base_url(); ?>index.php/VesselPlans/index/"+<?php echo $data['vessel_id'] ?>;
+    $vessel_id="<?php echo $vessel_id; ?>";
+  window.location.href = "<?php echo base_url(); ?>index.php/VesselPlans/index/"+$vessel_id;
 }
 
 </script>
