@@ -69,9 +69,105 @@ include'includes/CheckUserLogin.php';
             <div class="row">
               <div class="form-group col-md-6">
                 <label class="control-label">Upload Document (Max Size 64mb)</label>
-                <input type="file" name="document" class="form-control-text">
+                <input type="file" name="document1" class="form-control-text">
+              </div>
+              <div class="form-group col-md-6">
+                <label class="control-label">Upload Document (Max Size 64mb)</label>
+                <input type="file" name="document2" class="form-control-text">
               </div>
             </div>
+             <div class="row">
+              <div class="form-group col-md-6">
+                <label class="control-label">Upload Document (Max Size 64mb)</label>
+                <input type="file" name="document3" class="form-control-text">
+              </div>
+              <div class="form-group col-md-6">
+                <label class="control-label">Upload Document (Max Size 64mb)</label>
+                <input type="file" name="document4" class="form-control-text">
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group col-md-6">
+                <label class="control-label">Upload Document (Max Size 64mb)</label>
+                <input type="file" name="document5" class="form-control-text">
+              </div>
+              <div class="form-group col-md-6">
+                <label class="control-label">Upload Document (Max Size 64mb)</label>
+                <input type="file" name="document6" class="form-control-text">
+              </div>
+            </div>
+            
+             <div class="row">
+              <div class="form-group col-md-6">
+                <label class="control-label">Upload Document (Max Size 64mb)</label>
+                <input type="file" name="document7" class="form-control-text">
+              </div>
+              <div class="form-group col-md-6">
+                <label class="control-label">Upload Document (Max Size 64mb)</label>
+                <input type="file" name="document8" class="form-control-text">
+              </div>
+            </div>
+             <div class="row">
+              <div class="form-group col-md-6">
+                <label class="control-label">Upload Document (Max Size 64mb)</label>
+                <input type="file" name="document9" class="form-control-text">
+              </div>
+              <div class="form-group col-md-6">
+                <label class="control-label">Upload Document (Max Size 64mb)</label>
+                <input type="file" name="document10" class="form-control-text">
+              </div>
+            </div>
+             <div class="row">
+              <div class="form-group col-md-6">
+                <label class="control-label">Upload Document (Max Size 64mb)</label>
+                <input type="file" name="document11" class="form-control-text">
+              </div>
+              <div class="form-group col-md-6">
+                <label class="control-label">Upload Document (Max Size 64mb)</label>
+                <input type="file" name="document12" class="form-control-text">
+              </div>
+            </div>
+             <div class="row">
+              <div class="form-group col-md-6">
+                <label class="control-label">Upload Document (Max Size 64mb)</label>
+                <input type="file" name="document13" class="form-control-text">
+              </div>
+              <div class="form-group col-md-6">
+                <label class="control-label">Upload Document (Max Size 64mb)</label>
+                <input type="file" name="document14" class="form-control-text">
+              </div>
+            </div>
+             <div class="row">
+              <div class="form-group col-md-6">
+                <label class="control-label">Upload Document (Max Size 64mb)</label>
+                <input type="file" name="document15" class="form-control-text">
+              </div>
+              <div class="form-group col-md-6">
+                <label class="control-label">Upload Document (Max Size 64mb)</label>
+                <input type="file" name="document16" class="form-control-text">
+              </div>
+            </div>
+             <div class="row">
+              <div class="form-group col-md-6">
+                <label class="control-label">Upload Document (Max Size 64mb)</label>
+                <input type="file" name="document17" class="form-control-text">
+              </div>
+              <div class="form-group col-md-6">
+                <label class="control-label">Upload Document (Max Size 64mb)</label>
+                <input type="file" name="document18" class="form-control-text">
+              </div>
+            </div>
+             <div class="row">
+              <div class="form-group col-md-6">
+                <label class="control-label">Upload Document (Max Size 64mb)</label>
+                <input type="file" name="document19" class="form-control-text">
+              </div>
+              <div class="form-group col-md-6">
+                <label class="control-label">Upload Document (Max Size 64mb)</label>
+                <input type="file" name="document20" class="form-control-text">
+              </div>
+            </div> 
+            
             
             <button type="submit" class="btn btn-black">Save </button>
           </form>

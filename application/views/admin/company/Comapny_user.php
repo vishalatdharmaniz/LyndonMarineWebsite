@@ -7,13 +7,11 @@
           </div>
           <div class="title_right">
             <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-				<form method="get" action="<?php echo base_url();?>index.php/admin/company/search_user/<?php echo $id;?>">
               <div class="input-group">
-                <input type="text" class="form-control" value="<?php if(isset($search_kw) && !empty($search_kw)){ echo $search_kw; } ?>" name="search" placeholder="Search for...">
+                <input type="text" class="form-control" placeholder="Search for...">
                 <span class="input-group-btn">
-                <button class="btn btn-default" type="submit">Go!</button>
+                <button class="btn btn-default" type="button">Go!</button>
                 </span> </div>
-			  </form>
             </div>
           </div>
         </div>
@@ -82,12 +80,6 @@
           </div>
           <div class="clearfix"></div>
     
-	<div class="row">
-          <div class="col-md-12">
-            <div class="text-center"> <?php echo $this->pagination->create_links(); ?> </div>
-          </div>
-        </div>  
-	
       </div>
     </div>
     <!-- /page content -->

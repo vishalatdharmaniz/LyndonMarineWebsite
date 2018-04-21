@@ -22,7 +22,9 @@ include'includes/header_login.php';
           <h2>Vessel Certificates for <?php foreach ($vessel_data as $vesselname) {
             echo $vesselname['vessel_name']; 
           } ?> </h2> <br>
-        </div> 
+        </div>
+        
+        
       </div>
     </div>
      
@@ -33,12 +35,12 @@ include'includes/header_login.php';
 	<div class="container">
     	<div class="row"> 
         
-        <div class="col-md-3">
+        <div class="col-md-3" style="padding-top:22px;">
         <div class="main-edit-add-left"> <a class="btn-blue" href="<?php echo base_url();?>index.php/FleetDetails/index/<?php echo $vessel_id; ?>">Go Back</a>				         
          </div>       
          </div>
       
-      <div class="col-md-4">
+      <div class="col-md-4" style="padding-top:22px;">
       <div class="input-group">
         <form method="post" name="form1" onsubmit="searchEnter(document.getElementById('search_vessel').value); return false;">
           <input type="text" class="form-control-text" value="<?php echo $searchname; ?>" placeholder="Search" name="search" id="search_vessel">
@@ -57,10 +59,11 @@ include'includes/header_login.php';
       <div class="col-md-5">
       	<div class="list_right">
         <ul class="main-edit-add"> 
-        <li><a class="btn-blue" href="<?php echo base_url();?>index.php/AddCertificateScreen/index/<?php echo $vessel_id; ?>">Add Certificate</a></li>
-         <li> <a class="btn-blue" href="<?php echo base_url(); ?>index.php/VesselCertificate/index/<?php echo $vessel_id; ?>">All Certificate</a></li> 
-           <li><button class="btn-blue" onclick="mail_selected_vessels()" >Mail Document</button></li>
-           <li><button class="btn-blue" id="check_all" onclick="mail_all()" >Mail All </button></li>
+        <li style="padding-top:10px; padding-bottom:10px;"><a class="btn-blue" href="<?php echo base_url();?>index.php/AddCertificateScreen/index/<?php echo $vessel_id; ?>">Add Certificate</a></li>
+         <li style="padding-top:10px; padding-bottom:10px;"> <a class="btn-blue" href="<?php echo base_url(); ?>index.php/VesselCertificate/index/<?php echo $vessel_id; ?>">All Certificates</a></li> 
+           <li style="padding-top:10px; padding-bottom:10px;"><button class="btn-blue" onclick="mail_selected_vessels()" >Mail Document</button></li>
+           <li style="padding-top:10px; padding-bottom:10px;"><button class="btn-blue" onclick="mail_all()"  >Mail All </button></li>
+           <li style="padding-top:10px; padding-bottom:10px;"><a class="btn-blue" href="<?php echo base_url(); ?>index.php/VesselCertificate/Show_all/<?php echo $vessel_id; ?>" >Show All </a></li>
           </ul>
          </div>
          </div>
@@ -69,6 +72,9 @@ include'includes/header_login.php';
       </div>
     </div>
 </section>
+
+
+
 
 <section id="work-done">
   <div class="container">
@@ -196,7 +202,6 @@ include'includes/header_login.php';
           <table id="tableselected" class="table table-bordered table-hover">
             <thead>
               <tr>
- 
                 <th width="75" >Certificate No.</th>
                 <th width="75" >Certificate Type</th>
                 <th width="75" >Certificate Name</th>
@@ -206,8 +211,7 @@ include'includes/header_login.php';
                 <th width="71" >Exemption</th>
                 <th width="33" class="text-center">View</th>
                 <th width="42">Status</th>
-                <th width="80"> <input name="checkbox" type="checkbox" id="checkbox_all"> Select All 
-                    </th>
+                <th width="41"><input name="check_all" type="checkbox" id="check_all"> Select</th>
                 <th width="110">Action</th>
               </tr>
             </thead>
@@ -215,8 +219,6 @@ include'includes/header_login.php';
 		<?php foreach($certificate_data as $data)
 				{ 
 					  $now = time();
-           /*  echo "<br>".$data['certificate_id'];*/
-
 					  $expiry_date = strtotime($data['date_expiry']);
 					  $extention_date = strtotime($data['extention_until']); 
             if($extention_date!='')
@@ -234,7 +236,7 @@ include'includes/header_login.php';
               $caldays=$expiry_date-$now;
                $calday =  round($caldays / (60 * 60 * 24));
             }
-					  					   
+            var_dump($calday);
 					?>
 					<?php if($calday>30 && $calday<=45) { ?>
 						<tr class="text-center" id="yellow">
@@ -278,7 +280,7 @@ include'includes/header_login.php';
 								  <?php } ?>
 							</td>
 							<td>
-								<input type="checkbox"  class="checkbox" name="checkbox" id="checkbox<?php echo $data['certificate_id']; ?>">
+								<input type="checkbox" name="checkbox" id="checkbox<?php echo $data['certificate_id']; ?>">
 							</td>
 							<td class="text-center">
 								<a href="<?php echo base_url();?>index.php/DeleteCertificate/index/<?php echo $data['certificate_id']; ?>/<?php echo $data['vessel_id']; ?>" Onclick="return confirm('Are you Sure?');" class="btn-bk">
@@ -311,10 +313,10 @@ include'includes/header_login.php';
 <?php
 include'includes/footer.php';
 ?>
-          
+         
 <script type="text/javascript">
   
-  var select_all = document.getElementById("checkbox_all"); //select all checkbox
+  var select_all = document.getElementById("check_all"); //select all checkbox
 var checkboxes = document.getElementsByName("checkbox"); //checkbox items
 
 //select all checkboxes
@@ -339,7 +341,15 @@ for (var i = 0; i < checkboxes.length; i++) {
 }
 </script>
 <script>
-
+    function mail_all()
+  {
+    var email = prompt("Please enter the Email of recepient:", "office@lyndonmarine.com");
+    if (email != null) 
+    {
+        $vessel_id = "<?php echo $vessel_id;?>";
+        window.location.href = "<?php echo site_url(); ?>/MailCertificateDetail/all/"+$vessel_id+"/"+email;
+    }
+  }
 
   function search(search_vessel)
 {
@@ -384,52 +394,22 @@ function reset(search_vessel)
     var $vessel_id = '<?php echo $vessel_id; ?>';
   window.location.href = "<?php echo base_url(); ?>index.php/VesselCertificate/index/"+$vessel_id;
 }
-// function mail_details(certificate_id) 
-// { 
-//     var email = prompt("Please enter the Email of recepient:", "abc@gmail.com");
-//     if (email != null) {
-//         window.location.href = "<?php echo site_url(); ?>/MailCertificateDetail/index/"+certificate_id+"/"+email;
-//     }
-// }
-// $("#yellowclor").click(function() {
-// $("tbody tr#yellow").each(function() {       
-//     $('tbody tr#yellow').show();
-//   $('#green,#red,#brown').hide();
-// });
-// });
-// $("#redclor").click(function() {
-// $("tbody tr#red").each(function() {       
-//    $('tbody tr#red').show();
-//   $('#green,#yellow,#brown').hide();
-// });
-// });
-// $("#brownclr").click(function() {
-// $("tbody tr#brown").each(function() {       
-//    $('tbody tr#brown').show();
-//   $('#green,#yellow,#red').hide();
-// });
-// });
 
-// $("#greenclr").click(function() {
-// $("tbody tr#green").each(function() {       
-//    $('tbody tr#green').show();
-//   $('#brown,#yellow,#red').hide();
-// });
-// });
-
-function getCheckedBoxes(chkboxName) {
-                                    var checkboxes = document.getElementsByName(chkboxName);
-                                    var checkboxesChecked = [];
-                                    // loop over them all
-                                    for (var i=0; i<checkboxes.length; i++) {
-                                        // And stick the checked ones onto an array...
-                                        if (checkboxes[i].checked) {
-                                            checkboxesChecked.push(checkboxes[i]);
-                                        }
-                                    }
-                                    // Return the array if it is non-empty, or null
-                                    return checkboxesChecked.length > 0 ? checkboxesChecked : null;
-                                    }
+function getCheckedBoxes(chkboxName) 
+{
+  var checkboxes = document.getElementsByName(chkboxName);
+  var checkboxesChecked = [];
+  // loop over them all
+  for (var i=0; i<checkboxes.length; i++) {
+      // And stick the checked ones onto an array...
+      if (checkboxes[i].checked) {
+          checkboxesChecked.push(checkboxes[i]);
+      }
+  }
+  // Return the array if it is non-empty, or null
+  return checkboxesChecked.length > 0 ? checkboxesChecked : null;
+                                    
+}
 
 // Call as
 function mail_selected_vessels()
@@ -439,7 +419,10 @@ function mail_selected_vessels()
     for (var index = 0; index < checkedBoxes.length; index++) 
     {
         var checkbox_id = checkedBoxes[index].getAttribute("id");
-        checkbox_ids+=checkbox_id+"@";
+     /*   if (checkbox_id != "checkbox_all")
+        {*/
+            checkbox_ids+=checkbox_id+"@";
+        /*}*/
     }
     var email = prompt("Please enter the Email of recepient:", "office@lyndonmarine.com");
     if (email != null) {
@@ -447,13 +430,6 @@ function mail_selected_vessels()
         window.location.href = "<?php echo site_url(); ?>/MailCertificateDetail/multiple_vessels/"+checkbox_ids+"/"+email;
     }
 
-}
-
-function mail_all()
-{
-  var $vessel_id = '<?php echo $vessel_id; ?>';
-   var email = prompt("Please enter the Email of recepient:", "office@lyndonmarine.com");
-  window.location.href = "<?php echo site_url(); ?>/MailCertificateDetail/mail_all/"+$vessel_id+"/"+email;
 }
 
 $('#certificate_type').change(function(){

@@ -91,7 +91,9 @@ include'includes/header_login.php';
                   <ul>
                       <li>
                         <?php if(!empty($image1)) {?>
-                        <a href="<?php echo $image1; ?>" target="_blank"><img src="http://via.placeholder.com/100x100" class="img-responsive"> </a><br>
+                        <a href="<?php echo $image1; ?>" target="_blank">
+                         <img src="<?php echo base_url(); ?>img/icon_for_documents.PNG" class="img-responsive"> 
+                          </a><br>
                         <span><?php $value = explode("/",$image1);echo substr($value[6],0,20); ?></span>
                         <?php } 
                         else { ?>
@@ -100,7 +102,9 @@ include'includes/header_login.php';
                       </li>
                        <li>
                         <?php if(!empty($image2)) {?>
-                        <a href="<?php echo $image2; ?>" target="_blank"><img src="http://via.placeholder.com/100x100" class="img-responsive"> </a><br>
+                        <a href="<?php echo $image2; ?>" target="_blank">  
+                        <img src="<?php echo base_url(); ?>img/icon_for_documents.PNG" class="img-responsive"> 
+                         </a><br>
                         <span><?php $value = explode("/",$image2);echo substr($value[6],0,20); ?></span>
                         <?php } 
                         else { ?>
@@ -109,7 +113,7 @@ include'includes/header_login.php';
                       </li>
                        <li>
                         <?php if(!empty($image3)) {?>
-                        <a href="<?php echo $image3; ?>" target="_blank"><img src="http://via.placeholder.com/100x100" class="img-responsive"> </a><br>
+                        <a href="<?php echo $image3; ?>" target="_blank"><img src="<?php echo base_url(); ?>img/icon_for_documents.PNG" class="img-responsive">  </a><br>
                         <span><?php $value = explode("/",$image3);echo substr($value[6],0,20); ?></span>
                         <?php } 
                         else { ?>

@@ -2,6 +2,16 @@
 include'includes/CheckUserLogin.php';
 include'includes/header_login.php';
 ?>
+<style>
+ /* .form-control-text1{
+    color: #444;
+    
+ 
+ padding: 15px 10px;
+  font-size: 18px;
+
+  }*/
+</style>
 <section id="tab-bar-img">
   <div class="container">
     <div class="row"> <!-- Nav tabs -->
@@ -10,15 +20,9 @@ include'includes/header_login.php';
           }
           else{ ?>
 
-        <div class="row">
-        <div class="col-md-12 gur">
-          <a class="btn-blue" href="<?php echo base_url(); ?>index.php/AddVesselScreen/index">Add</a>
-          <a class="btn-blue" href="<?php echo base_url(); ?>index.php/AllVessels/user_vessel/<?php $user_id= $this->session->userdata['user_id']; echo $user_id; ?>">All Vessels</a>
-        </div>
-        </div>
-        <?php  } ?>
-        <div class="row">
-          <div class="col-md-4" style="margin-bottom: 10px;">
+       
+		
+		 <div class="col-md-4" style="margin-bottom:15px;margin-top:20px;">
             <div class="input-group">
         <form onsubmit="searchEnter(document.getElementById('search_vessel').value); return false;">
           <input type="text" class="form-control-text" placeholder="Search For" name="search" id="search_vessel">
@@ -31,7 +35,18 @@ include'includes/header_login.php';
           </span>
         </div>
           </div>
+		  <?php  } ?>
+		   <div class="col-md-2">
+		  </div>
+        <div class="col-md-6 text-right" style="margin-bottom:15px;margin-top:20px;">
+		<a href="<?php echo base_url(); ?>index.php/AddVesselScreen/index" class="btn btn-primary btn-primary">Add</a>
+		<a href="<?php echo base_url(); ?>index.php/AllVessels/company_vessel/<?php $company_id= $this->session->userdata['company_id']; echo $company_id; ?>" class="btn btn-primary btn-primary">All Vessels</a>
         </div>
+      
+        
+        
+         
+        
         <div class="col-md-12" style="margin-bottom: 20px;">
           <ul class="nav nav-tabs" role="tablist">
             <li role="presentation" class="active"><a href="#AssignedVessels" aria-controls="home" role="tab" data-toggle="tab">Assigned Vessels</a></li>
@@ -47,7 +62,7 @@ include'includes/header_login.php';
               <div class="row">
                 <div class="main-tab">
                 <?php foreach($all_vessels as $vessel_data) {?>
-                  <div class="col-md-3">
+                  <div class="col-md-3" style="padding-bottom:20px;">
                  
                     <div class="thumbnail-img"><a href="<?php echo base_url(); ?>index.php/FleetDetails/index/<?php echo $vessel_data['vessel_id']; ?>"> <img src="<?php if(!empty($vessel_data['image1'])) { echo $vessel_data['image1']; } else { echo base_url(); ?>img/no_image.png <?php }?>" style="width:290px; height:250px;" alt="" class="img-responsive"></a>
                       
@@ -62,8 +77,8 @@ include'includes/header_login.php';
                           <h4>IMO: </h4>
                         </div>
                         <div class="caption-text">
-                          <h4 class="pull-right"><?php echo $vessel_data['vessel_name']; ?></h4>
-                          <h4>Name : </h4>
+                          <h5 class="pull-right"><?php echo $vessel_data['vessel_name']; ?></h5>
+                          <h5>Name : </h5>
                         </div>
                         <div class="caption-text">
                           <h4 class="pull-right"><?php echo $vessel_data['flag']; ?></h4>
@@ -156,7 +171,8 @@ function searchEnter(search_vessel)
     }
     else
     {
-      window.location.href = "<?php echo base_url(); ?>index.php/AllVessels/searchdata/"+search_vessel+"/"+<?php echo $vessel_data['user_id'] ?>;
+       $company_id = "<?php echo $vessel_data['company_id'] ?>";
+      window.location.href = "<?php echo base_url(); ?>index.php/AllVessels/searchdata/"+search_vessel+"/"+$company_id;
     }
 }
 function searchIcon(search_vessel)
@@ -167,12 +183,14 @@ function searchIcon(search_vessel)
     }
     else
     {
-            window.location.href = "<?php echo base_url(); ?>index.php/AllVessels/searchdata/"+search_vessel+"/"+<?php echo $vessel_data['user_id']?>;
+            $company_id = "<?php echo $vessel_data['company_id'] ?>";
+            window.location.href = "<?php echo base_url(); ?>index.php/AllVessels/searchdata/"+search_vessel+"/"+$company_id;
     }
 }
 function reset(search_vessel)
 {
   $('#search_vessel').val('');
-  window.location.href = "<?php echo base_url(); ?>index.php/AllVessels/user_vessel/"+<?php echo $vessel_data['user_id'] ?>;
+  $company_id = "<?php echo $vessel_data['company_id'] ?>";
+  window.location.href = "<?php echo base_url(); ?>index.php/AllVessels/company_vessel/"+$company_id;
 }
 </script>

@@ -11,7 +11,7 @@ public function index($checkbox_ids,$email_of_recepient)
         
         $return_url_after_search_and_mail = $this->agent->referrer(); 
         
-        $checkbox_ids_array = explode("&", $checkbox_ids);  
+        $checkbox_ids_array = explode("@", $checkbox_ids);  
         $checkbox_ids = array(); 
         foreach ($checkbox_ids_array as $checkbox_id)
         {
@@ -20,12 +20,13 @@ public function index($checkbox_ids,$email_of_recepient)
         }
       
       
-        $txt = "Good Day <br><br> Please find here list of Fixture details requested:<br><br><br>";
-        $id= $checkbox_ids[0];   
+        $txt = "Good Day <br><br> Please find here list of requested fixture details :<br><br><br>";
+        $id= $checkbox_ids[0];   /*var_dump($id); */
         $fixture_data = $this->Fixture_model->get_fixture_by_id($id); 
         $vessel_id = $fixture_data[0]["vessel_id"];             
         $vessel_data = $this->Vessel_model->get_vessel_details_by_id($vessel_id); 
-        $vessel_name=$vessel_data[0]['vessel_name'];   
+        $vessel_name=$vessel_data[0]['vessel_name'];  
+
         foreach ($checkbox_ids as $id)
         {
 
@@ -33,13 +34,15 @@ public function index($checkbox_ids,$email_of_recepient)
 
             $data['fixture_data'] = $fixture_data[0];
             $fixture_no=$fixture_data[0]['fixture_no'];
+            $loading_port=$fixture_data[0]['loading_port'];
+            $discharge_port=$fixture_data[0]['discharging_port'];
             $fixture_date=$fixture_data[0]['fixture_date'];
             $fixture_date=date("d-m-Y",strtotime($fixture_date));
          
             $contract = $fixture_data[0]["contract"]; 
             $invoice = $fixture_data[0]["invoice"]; 
 
-       if($contract!='')
+           if($contract!='')
             {
                 
                 $exploded_doc = explode("/", $contract);
@@ -48,7 +51,7 @@ public function index($checkbox_ids,$email_of_recepient)
                 $contract = str_replace(" ","%20","$contract");  
             }
 
-       if($invoice!='')
+            if($invoice!='')
             {
 
                 $exploded_doc = explode("/", $invoice);
@@ -58,15 +61,17 @@ public function index($checkbox_ids,$email_of_recepient)
             }
 
             $txt .= "Fixture Number :- ".$fixture_no."<br>"; 
+            $txt .= "Loading Port :- ".$loading_port."<br>"; 
+            $txt .= "Discharge Port :- ".$discharge_port."<br>"; 
             $txt .= "Fixture Date :- ".$fixture_date."<br>";   
          /*   $txt .= "Documents :- <br>";
 */
-        if ($fixture_data[0]["contract"] != NULL)
+        if ($fixture_data[0]["contract"] !='')
         {
             $txt .= "Contract : "."<a href=$contract > $contract_name</a><br>";
 
         }
-        if ($fixture_data[0]["invoice"] != NULL)
+        if ($fixture_data[0]["invoice"] != '')
         {
             $txt .= "Invoice : "."<a href=$invoice > $invoice_name</a><br>";
 

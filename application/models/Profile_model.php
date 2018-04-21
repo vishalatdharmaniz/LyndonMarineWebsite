@@ -21,6 +21,13 @@ class Profile_model extends CI_Model
 
 			return $data;
 	 }
+	 function get_profile_by_company_id($company_id)
+	 {
+			$result = $this->db->query("SELECT * FROM company WHERE id='$company_id'");
+			$data = $result->result_array();
+
+			return $data;
+	 }
 
 }
 

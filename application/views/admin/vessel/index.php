@@ -44,30 +44,29 @@
 <div class="modal fade" id="example<?php echo $value['vessel_id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content center1">
-      <div class="modal-header" style="background-color:#337ab7;">
-	   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <div class="modal-header">
+        <h4 class="modal-title" id="exampleModalLongTitle">Assigned Vessels</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-        <h3 class="modal-title" id="exampleModalLongTitle" style="color:white;padding-top:10px;">Assigned Vessels</h3>
-       
       </div>
      <br>
-<div class="container" style="padding:0px;">
+<div class="container">
 <div class="row">
 <div class="col-lg-12 center1">	 
-  <div class="col-lg-5">
+  <div class="col-lg-4">
     <div class="input-group" style="float:right; padding-top:4px;">
-       <label>Search Your Company
+       <label>Search Your Company</label>
 			 <label>Assigned To:</label>
     </div>
   </div>
 
-  <div class="col-lg-7">
+  <div class="col-lg-8">
     <div class="input-group">
 			<form method="post" action="<?php echo base_url();?>index.php/admin/Vessel/add_vessel_to_company" >
 			<input type="hidden" name="vessel_id" value="<?php echo $value['vessel_id'];?>" />
 			<div id='remote'>
-				<input class="typeahead" type = "text" id=  "search_kw" name = "search_kw" value = '' placeholder = "organization name"  style = "width:315px;" autofocus/>
+				<input class="typeahead" type = "text" id=  "search_kw" name = "search_kw" value = '' placeholder = "organization name"  style = "width:343px" autofocus/>
 				<input type="hidden" id="custId" name="company" value="" />
 			</div>
       <!--<select name="company">
@@ -76,7 +75,7 @@
 				<?php // } ?>
 			</select>-->
 			</div>
-     <div class="input-group" style = "width:115px;">
+     <div class="input-group">
 			<?php
 				if(!empty($assined_companies)){
 					if(array_key_exists($value['vessel_id'],$assined_companies)){
@@ -95,7 +94,11 @@
 								}else{
 									echo $all_company[$assined_companies[$value['vessel_id']]];
 								}
+					}else{
+							echo "--";	
 					}
+				}else{
+					echo "--";
 				}
 			?>
 		 </div>
@@ -180,9 +183,9 @@ $('#remote .typeahead').typeahead(null, {
         'unable to find matching product',
       '</div>'
     ].join('\n'),*/
-    suggestion: Handlebars.compile('<div style="background-color:white;width:315px;border: 1px solid rgba(0,0,0,.2);outline: 0;-webkit-box-shadow: 0 3px 9px rgba(0,0,0,.5); box-shadow: 0 3px 9px rgba(0,0,0,.5);z-index:-5000;" class="row_hover"><strong style="width:300px;color:black"><a class="row_hover" href="#-1">{{code}}</a></strong></div>'),
-	header: Handlebars.compile("<div style='background-color:white;width:315px;border: 1px solid rgba(0,0,0,.2);outline: 0;-webkit-box-shadow: 0 3px 9px rgba(0,0,0,.5); box-shadow: 0 3px 9px rgba(0,0,0,.5);z-index:-5000'><b>Search result for ({{query}}) :'</b></div>"),
-	footer: Handlebars.compile("<div style='background-color:white;width:315px;border: 1px solid rgba(0,0,0,.2);outline: 0;-webkit-box-shadow: 0 3px 9px rgba(0,0,0,.5); box-shadow: 0 3px 9px rgba(0,0,0,.5);z-index:-5000'><b>---------lyndonmarine.com---------</b></div>"),
+    suggestion: Handlebars.compile('<div style="background-color:lightgrey;width:400px;z-index:-5000" class="row_hover"><strong style="width:400px;color:black"><a class="row_hover" href="#-1">{{code}}</a></strong></div>'),
+	header: Handlebars.compile("<div style='background-color:lightgrey;width:400px;z-index:-5000'><b>Search result for ({{query}}) :'</b></div>"),
+	footer: Handlebars.compile("<div style='background-color:lightgrey;width:400px;z-index:-5000'><b>---------lyndonmarine.com---------</b></div>"),
   }
 }).on('typeahead:selected', function (obj, datum) {
     $("#custId").val(datum.id);

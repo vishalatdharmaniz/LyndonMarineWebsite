@@ -72,29 +72,28 @@ class MailRecommendationDetails extends CI_Controller {
         $this->load->model('Recommendation_model');
         $this->load->model('Vessel_model');
 
-        $txt = "Good Day <br><br> Please find here list of recommendation details requested:<br><br><br>";
-        $vessel_id= $checkbox_ids[0]; 
+        $txt = "Good Day <br><br> Please find here list of requested recommendation details :<br><br><br>";
+        $id= $checkbox_ids[0]; 
 
-        $recommendation_data = $this->Recommendation_model->get_recommendation_details_by_vessel_id($vessel_id);
-           /*$vessel_id = $recommendation_data[0]["vessel_id"];*/
+        $recommendation_data = $this->Recommendation_model->get_recommendation_data($id);
+           $vessel_id = $recommendation_data[0]["vessel_id"];
             $vessel_data = $this->Vessel_model->get_vessel_details_by_id($vessel_id); 
+            $vessel_name= $vessel_data[0]['vessel_name'];
 
             $txt .= "M/V &nbsp;".$vessel_data[0]['vessel_name']."<br>";
             $txt .= "IMO Number &nbsp;".$vessel_data[0]['imo_number']."<br><br>";  
-        foreach ($checkbox_ids as $vessel_id)
+        foreach ($checkbox_ids as $id)
         {
 
-            $recommendation_data = $this->Recommendation_model->get_recommendation_details_by_vessel_id($vessel_id);
-            $vessel_data = $this->Vessel_model->get_vessel_details_by_id($vessel_id);
+            $recommendation_data = $this->Recommendation_model->get_recommendation_data($id);
+          /*  $vessel_data = $this->Vessel_model->get_vessel_details_by_id($vessel_id);*/
            
             $data['recommendation_data'] = $recommendation_data[0];
-            
+
              $rec_type = $recommendation_data[0]["recommendation_type"];
              $description = $recommendation_data[0]["description"];
             /* var_dump($rec_type); die();*/
             
-            $vessel_name= $vessel_data[0]['vessel_name'];
-            $imo_number= $vessel_data[0]['imo_number'];
 
             for($i = 1; $i <= 3 ; $i++)
             {
@@ -107,24 +106,25 @@ class MailRecommendationDetails extends CI_Controller {
             }
            
          
-            $txt .="Recommendation Type :- ".$rec_type."<br>"; 
-            $txt .="Description :- ".$description."<br>"; 
-        if ($recommendation_data[0]["image1"] != NULL)
-        {
-            $txt .= "<a href=$image[1]>$image_name[1]</a><br>";
+                 $txt .="Recommendation Type :- ".$rec_type."<br>"; 
+                 $txt .="Description :- ".$description."<br>"; 
+                 
+                if ($recommendation_data[0]["image1"] != NULL)
+                {
+                    $txt .= "<a href=$image[1]>$image_name[1]</a><br>";
 
-        }
-        if ($recommendation_data[0]["image2"] != NULL)
-        {
-            $txt .= "<a href=$image[2]>$image_name[2]</a><br>";
-        }
-        if ($recommendation_data[0]["image3"] != NULL)
-        {
-            $txt .= "<a href=$image[3]>$image_name[3]</a><br>";
-        }
-            $txt .= "<hr>";
-            $txt .= "<hr>";
-        }
+                }
+                if ($recommendation_data[0]["image2"] != NULL)
+                {
+                    $txt .= "<a href=$image[2]>$image_name[2]</a><br>";
+                }
+                if ($recommendation_data[0]["image3"] != NULL)
+                {
+                    $txt .= "<a href=$image[3]>$image_name[3]</a><br>";
+                }
+                    $txt .= "<hr>";
+                    $txt .= "<hr>";
+                }
 
         $txt .= "Best Regards<br>";
 

@@ -56,13 +56,15 @@ include'includes/header_login.php';
           </a>
         </li>
          <li>
-          <a class="btn-blue" href="<?php echo base_url();?>index.php/VesselSurvey/index/<?php echo $vessel_id;?>">ALL Survey
+          <a class="btn-blue" href="<?php echo base_url();?>index.php/VesselSurvey/index/<?php echo $vessel_id;?>">ALL Surveys
           </a>
         </li> 
          <li>
              <button class="btn-blue" onclick="mail_selected_survey()">Mail Survey Status</button>
           </li>
-         
+         <li>
+             <button class="btn-blue" onclick="mail_survey()">Mail All Surveys </button>
+          </li>
           </ul>
          </div>
          </div>
@@ -150,7 +152,7 @@ include'includes/header_login.php';
             <?php
 				//echo $date = date("y-m-d");
 				foreach($all_survey_details as $key=> $value){
-				$res = "";
+         				$res = "";
 				if($value['range_from'] != "0000-00-00 00:00:00" && $value['range_to'] != "0000-00-00 00:00:00"){
 					$range_from = strtotime($value['range_from']);
 					$range_to =  strtotime($value['range_to']);
@@ -182,9 +184,7 @@ include'includes/header_login.php';
 							$res ="<button type=button id=yellowclor class='update text-center btn btn-yelow btn-sm'></button>";
 						}
 						
-						//if($current_date>=$range_from && $current_date<=$range_to){
-						//	$res ="<button type=button id=yellowclor class='update text-center btn btn-yelow btn-sm'></button>";
-						//}										
+														
 					}
 					
 				}else{
@@ -239,7 +239,7 @@ include'includes/header_login.php';
                </td>
               <td class="text-center">
                     <?php
-    							if($value['range_from'] != "0000-00-00 00:00:00" && $value['range_from'] != ""){
+    							if($value['range_from'] != "0000-00-00 00:00:00" && $value['range_to'] != ""){
     								echo date("d/m/Y",strtotime($value['range_from']))." to ".date("d/m/Y",strtotime($value['range_to']));
     							}else{
     								echo "N/A";
@@ -325,4 +325,13 @@ function mail_selected_survey()
 
 }
 
+</script>
+<script>
+	function mail_survey(){
+		var email = prompt("Please enter the Email of recepient:", "office@lyndonmarine.com");
+    if (email != null) {
+			vessel_id = "<?php echo $vessel_id;?>";
+        window.location.href = "<?php echo site_url(); ?>/MailSurveyDetails/send_mail/"+vessel_id+"/"+email;
+    }
+	}
 </script>

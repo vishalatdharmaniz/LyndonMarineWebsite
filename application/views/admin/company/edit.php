@@ -20,11 +20,7 @@
           <div class="col-md-12 col-sm-12 col-xs-12">
           		    <div class="x_panel">
             <div class="x_content">
-        <?php
-				if(isset($message) && !empty($message)){
-					echo $message;
-				}
-				?>
+        
                     <form method="post" action="<?php echo base_url();?>index.php/admin/company/edit/<?php echo $company_info['id']; ?>" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
 				
                       <div class="form-group">

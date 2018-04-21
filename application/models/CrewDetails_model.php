@@ -61,9 +61,9 @@ class CrewDetails_model extends CI_Model
         return COUNT($count_crew->result_array());
     }
 
-	function update_crew_details($crew_id,$name,$tourist_p_num,$seaman_p_num,$remark,$rank,$salary,$join_date,$nationality,$document)
+	function update_crew_details($crew_id,$name,$tourist_p_num,$seaman_p_num,$remark,$rank,$salary,$join_date,$nationality,$document1,$document2,$document3,$document4,$document5,$document6,$document7,$document8,$document9,$document10,$document11,$document12,$document13,$document14,$document15,$document16,$document17,$document18,$document19,$document20)
 	{
-		$update_crew=$this->db->query("UPDATE crew_details SET name='$name',tourist_p_num='$tourist_p_num',seaman_p_num='$seaman_p_num',remark='$remark',rank='$rank',salary='$salary',join_date='$join_date',nationality='$nationality',document='$document' WHERE crew_id='$crew_id' ");
+		$update_crew=$this->db->query("UPDATE crew_details SET name='$name',tourist_p_num='$tourist_p_num',seaman_p_num='$seaman_p_num',remark='$remark',rank='$rank',salary='$salary',join_date='$join_date',nationality='$nationality',document1='$document1',document2='$document2',document3='$document3',document4='$document4',document5='$document5',document6='$document6',document7='$document7',document8='$document8',document9='$document9',document10='$document10',document11='$document11',document12='$document12',document13='$document13',document14='$document14',document15='$document15',document16='$document16',document17='$document17',document18='$document18',document19='$document19',document20='$document20' WHERE crew_id='$crew_id' ");
 		return true;
 	}
 

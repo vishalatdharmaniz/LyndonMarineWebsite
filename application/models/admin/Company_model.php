@@ -58,8 +58,8 @@ class Company_model extends CI_Model
 			if($and_match_value){
 				foreach($and_match_value as $key=>$value){                
 					$and_condition .= "AND"." ".$key."="."'".$value."'";
+					$where .= ')';
 				}
-				$where .= ')';
 			}
 		}
 		//echo $orderby;
@@ -224,92 +224,81 @@ class Company_model extends CI_Model
         //echo $this->db->last_query();exit;
         return $query;
 	}
-	
-	
-	public function search_company_user($getfields='', $match_values = '',$condition ='', $compare_type = '', $count = '', $num = '', $offset='', $orderby='', $orderbyfield='', $and_match_value='',$in_value=""){
-	    $fields =  $getfields ? implode(',', $getfields) : '';
-        $sql = 'SELECT ';
-        $sql .= $fields ? $fields : '*';
-        $sql .= ' FROM '.$this->company;
-        $where='';
-        $or_match = $and_condition='';
-		//print_r($match_values);die;
-        if($match_values){
-            $keys = array_keys($match_values);
-            $compare_type = $compare_type ? $compare_type : 'like';
-            if($condition!='')
-                $and_or = $condition;
-            else 
-                $and_or = ($compare_type == 'like') ? ' OR ' : ' AND '; 
-          
-            $where = 'WHERE ';
-			if($and_match_value){
-				$where .= '(';
-			}
-			
-            switch ($compare_type){
-                case 'like':
-                    $where .= $keys[0].' '.$compare_type .'"%'.$match_values[$keys[0]].'%" ';
-                    break;
 
-                case '=':
-                default:
-                    $where .= $keys[0].' '.$compare_type .'"'.$match_values[$keys[0]].'" ';
-                    break;
-            }
-			
-            $match_values = array_slice($match_values, 1);
-            //print_r($match_values);die;
-            foreach($match_values as $key => $value){                
-                $where .= $and_or.' '.$key.' ';
-                switch ($compare_type){
-                    case 'like':
-                        $where .= $compare_type .'"%'.$value.'%"';
-                        break;
-                    
-                    case '=':
-                    default:
-                        $where .= $compare_type .'"'.$value.'"';
-                        break;
-                }
-            }
-			
-			if($and_match_value){
-				foreach($and_match_value as $key=>$value){                
-					$and_condition .= "AND"." ".$key."="."'".$value."'";
-				}
-				$where .= ')';
-			}
-			
-			if($in_value){
-				$where .= "AND role IN ( ".implode(",",$in_value)." ) ";
-				
-			}
+/////////// /////////
+
+	function add_company($data)
+	{
+
+		$this->db->insert('company',$data);
+
+		return true;
+
+	}
+	function add_users($data)
+	{
+
+		$this->db->insert('user_details',$data);
+		return true;
+
+	}
+	function check_email($email)
+	{
+		$this->db->select('*');
+		$this->db->from('company');
+		$this->db->where('email',$email);
+		$query= $this->db->get();
+		if($query->num_rows()>0)
+		{
+			return false;
 		}
-		//echo $orderby;
-        $orderby = ($orderby !='')?' order by '.$orderbyfield.' '.$orderby.'':'order by id desc ';
-        if($offset=="" && $num=="")
-            $sql .= ' '.$where.' '.$and_condition.' '.$or_match.' '.$orderby;
-        elseif($offset=="")
-			$sql .= ' '.$where.' '.$and_condition.' '.$or_match.' '.$orderby.' '.'limit '.$num;
-        else
-            $sql .= ' '.$where.' '.$and_condition.' '.$or_match.' '.$orderby.' '.'limit '.$offset .','.$num;
-        
-        $query = ($count) ? 'SELECT count(*) as total FROM '.$this->company.' '.$where.' '.$and_condition.$or_match.$orderby : $sql;
-		//echo  $query;die;
-        $query = $this->db->query($query);
-		//echo $this->db->last_query();exit;
-		return $query->result_array();
-    }
-	
-	public function check_email($email,$id){
-		$ids = array($id);
-		$this->db->where_not_in("id",$ids);
-		$this->db->where("email",$email);
-		 $this->db->from($this->company);
-		 $query = $this->db->get();
-        $result = $query->result_array();		
-		return $result;		
+		else{
+			return true;
+		}
 	}
 	
+
+	function login_company($email,$password)
+	{
+		
+		$result= $this->db->query("SELECT * FROM company where email='$email' AND password = '$password'");
+			$login_details=$result->result_array();
+			if(isset($login_details[0]))
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		
+	}
+
+ 	public function get_enable_by_company_by_user_id($user_id)
+    {
+         $enabled_query = $this->db->query("SELECT `enabled` FROM company WHERE id = '$user_id'");
+        return $enabled_query->result_array()[0]["enabled"];
+ 	}
+
+	function get_company_profile($email)
+	{
+		$result = $this->db->query("SELECT * FROM company WHERE email='$email'");
+		
+		$data = $result->result_array();
+
+		
+			return $data;
+	}
+	public function get_role_by_company_id($company_id)
+ 	{
+ 		$role_value = $this->db->query("SELECT role FROM company WHERE id='$company_id'");
+ 		return $role_value->result_array();
+ 
+ 	}
+	public function get_user_details_by_company_id($company_id)
+ 	{
+ 		$details = $this->db->query("SELECT * FROM user_details WHERE company_id='$company_id'");
+ 		return $details->result_array();
+ 
+ 	}
 }

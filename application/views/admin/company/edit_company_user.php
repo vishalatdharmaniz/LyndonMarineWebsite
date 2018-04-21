@@ -21,15 +21,11 @@
           		    <div class="x_panel">
             <div class="x_content">
 										
-										<?php
-										if(isset($message) && !empty($message)){
-											echo $message;
-										}
-										echo validation_errors(); ?>
+										<?php echo validation_errors(); ?>
 										
 										
 											<?php
-											$url = base_url()."index.php/admin/company/edit_company_user/".$result['id'];
+											$url = base_url()."index.php/admin/company/add_company_user/".$result['id'];
 											?>
 											<?php echo form_open($url,array("id" => "demo-form2", "class"=> "form-horizontal form-label-left")); ?>
 										
@@ -50,13 +46,11 @@
                           <input type="text" id="first_name" name="fname" required  value="<?php echo set_value('fname',$result['first_name']); ?>" class="form-control col-md-7 col-xs-12" placeholder="First Name">
                         </div>
                       </div>
-                    
+                      
                          <div class="form-group">
                         <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Last Name<span class="required">*</span></label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-													
                           <input id="middle-name" class="form-control col-md-7 col-xs-12" value="<?php echo set_value('last_name',$result['last_name']); ?>" required type="text" name="last_name" placeholder="Last Name">
-													
                         </div>
                            </div>
                       <div class="form-group">

@@ -9,11 +9,7 @@ include'includes/header_login.php';
         </div>     
       <div class="col-md-offset-3 col-md-6">
         <div class="page-heading">
-					<!-- <div class="col-md-3">
-						<div class="main-edit-add">
-					<a class="btn-blue" href="<?php echo base_url();?>index.php/VesselSurvey/index/<?php echo $vessel_id;?>">GO BACK</a>
-						</div>
-					</div> -->
+			
           <h2>Survey Form</h2>
         </div>
       </div>
@@ -32,10 +28,14 @@ include'includes/header_login.php';
             {
               $survey_no=$data['survey_no'];
               $last_survey=$data['last_survey_date'];
-              $last_survey=date("d/m/Y",strtotime($last_survey));
+              $last_survey=date("d-m-Y",strtotime($last_survey));
 
-              $post_date=$data['postponed_date'];
-              
+              $post_date=$data['postponed_date']; 
+              if($post_date!="" && $post_date!='0000-00-00 00:00:00')
+              {
+                 $post_date=date("d-m-Y",strtotime($data['postponed_date']));  
+              }  else { $post_date=''; }
+             
               $due_date=$data['due_date'];
 
               $range_from=$data['range_from'];
@@ -73,22 +73,22 @@ include'includes/header_login.php';
             <div class="row">
               <div class="form-group col-md-6">
                 <label class="control-label">Postponed Date</label>
-								<input type="text" name="postponed_date" id="datepicker2" value = "<?php if($post_date != '0000-00-00 00:00:00' && $post_date != ''){ echo date('d/m/Y',strtotime($post_date));}else{echo '';}?> " placeholder="Postponed Date" class="form-control-text">
+								<input type="text" name="postponed_date" id="datepicker2" value = "<?php if(($post_date != '0000-00-00 00:00:00') && ($post_date != '')){ echo date('d-m-Y',strtotime($data['postponed_date']));}else{echo '';}?> " placeholder="Postponed Date" class="form-control-text">
               </div>
               <div class="form-group col-md-6">
                 <label class="control-label">Due</label>
-                <input type="text" name="Due" id="datepicker3" placeholder="Due" value ="<?php echo date("d/m/Y",strtotime($due_date));?>" class="form-control-text">
+                <input type="text" name="Due" id="datepicker3" placeholder="Due" value ="<?php echo date("d-m-Y",strtotime($due_date));?>" class="form-control-text">
               </div>
             </div>
             
              <div class="row">
               <div class="form-group col-md-6">
                 <label class="control-label">Range From</label>
-								<input type="text" name="range_from" id="datepicker4"  placeholder="Range" value ="<?php if($range_from != '0000-00-00 00:00:00' && $range_from != ''){ echo date('d/m/Y',strtotime($range_from));}else{echo '';}?>" class="form-control-text">
+								<input type="text" name="range_from" id="datepicker4"  placeholder="Range" value ="<?php if($range_from != '0000-00-00 00:00:00' && $range_from != ''){ echo date('d-m-Y',strtotime($range_from));}else{echo '';}?>" class="form-control-text">
               </div>
 							<div class="form-group col-md-6">
                 <label class="control-label">Range To</label>
-								<input type="text" name="range_to" id="datepicker5"  placeholder="Range" value ="<?php if($range_to != '0000-00-00 00:00:00' && $range_to != ''){ echo date('d/m/Y',strtotime($range_to));}else{echo '';}?>" class="form-control-text"> 
+								<input type="text" name="range_to" id="datepicker5"  placeholder="Range" value ="<?php if($range_to != '0000-00-00 00:00:00' && $range_to != ''){ echo date('d-m-Y',strtotime($range_to));}else{echo '';}?>" class="form-control-text"> 
               </div>
             </div>
         

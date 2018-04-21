@@ -52,12 +52,12 @@ include'includes/header_login.php';
             <div class="row">
               <div class="form-group col-md-6">
                 <label class="control-label">Date of Expiry</label>
-                <input type="text" name="date_expiry" id="datepicker2" placeholder="Date of Expiry" class="form-control-text" value="<?php echo (($certificate_data['date_expiry']) ? date("d/m/Y",strtotime($certificate_data['date_expiry'])) : '');?>">
+                <input type="text" name="date_expiry" onclick="check_expiry_date()"  id="datepicker2" placeholder="Date of Expiry" class="form-control-text" value="<?php echo (($certificate_data['date_expiry']) ? date("d/m/Y",strtotime($certificate_data['date_expiry'])) : '');?>">
               </div>
               
               <div class="form-group col-md-6" >
                 <label class="control-label">Extention until</label>
-                <input type="text" name="extention_until" id="datepicker3" placeholder="Extention until" class="form-control-text" value="<?php echo (($certificate_data['extention_until']) ? date("d/m/Y",strtotime($certificate_data['extention_until'])) : '');?>">
+                <input type="text" name="extention_until" id="datepicker3"  placeholder="Extention until" class="form-control-text" value="<?php echo (($certificate_data['extention_until']) ? date("d/m/Y",strtotime($certificate_data['extention_until'])) : '');?>">
               </div>
             </div>
             <div class="row">
@@ -91,7 +91,7 @@ include'includes/header_login.php';
                     <label class="control-label">Document 1 </label>
                     <input type="file" id="document1-chosen" name="document1" accept="pdf/*"><br>
                   </div>
-                  <div class="col-md-8">
+                  <div class="col-md-8" id="document_view">
                     <br>
                     <?php if(!empty($certificate_data['document1'])) {?>
                     
@@ -123,7 +123,7 @@ include'includes/header_login.php';
                     <label class="control-label">Document 2</label>
                     <input type="file" id="document2-chosen" name="document2" accept="pdf/*"><br>
                   </div>
-                  <div class="col-md-8">
+                  <div class="col-md-8" id="document_view">
                     <br>
                      <?php if(!empty($certificate_data['document2'])) {?>
                       <span  id = "show-document2">
@@ -153,7 +153,7 @@ include'includes/header_login.php';
                     <label class="control-label">Document 3</label>
                     <input type="file" id="document3-chosen" name="document3" accept="pdf/*"><br>
                   </div>
-                  <div class="col-md-8">
+                  <div class="col-md-8" id="document_view">
                     <br>
                     <?php if(!empty($certificate_data['document3'])) {?>
                     
@@ -185,7 +185,7 @@ include'includes/header_login.php';
                     <label class="control-label">Document 4</label>
                     <input type="file" id="document4-chosen" name="document4" accept="pdf/*"><br>
                   </div>
-                  <div class="col-md-8">
+                  <div class="col-md-8" id="document_view">
                     <br>
                     <?php if(!empty($certificate_data['document4'])) {?> 
                       <span id = "show-document4">
@@ -215,7 +215,7 @@ include'includes/header_login.php';
                     <label class="control-label">Document 5</label>
                     <input type="file" id="document5-chosen" name="document5" accept="pdf/*"><br>
                   </div>
-                  <div class="col-md-8">
+                  <div class="col-md-8" id="document_view">
                     <br>
                      <?php if(!empty($certificate_data['document5'])) {?>
                       <span id = "show-document5">
@@ -258,14 +258,22 @@ include'includes/header_login.php';
 include'includes/footer.php';
 ?>
 <script>
-/*
-  function disableTxt() {
-    document.getElementById("datepicker3").disabled = true;
+
+function check_expiry_date()
+{
+  var val = document.getElementById('datepicker2').value;
+
+    if(val == '')
+    {  
+     document.getElementById('datepicker3').disabled = false;
+    }
+    else
+    {
+
+      document.getElementById('datepicker3').disabled = true;
+    }
 }
 
-function undisableTxt() {
-    document.getElementById("datepicker3").disabled = false;
-  }*/
   $( function() {
     $( "#datepicker1" ).datepicker({ dateFormat: 'dd/mm/yy' }).val();
     $( "#datepicker2" ).datepicker({ dateFormat: 'dd/mm/yy' }).val();
@@ -314,16 +322,33 @@ $("#document1-chosen").click(function(){
       document.getElementById("document5-removed").value = '0';
       // document.getElementById("show-document5").style.display = 'none';
 });
-       var dateToday = $('#date_expiry').val();
-var dates = $("#datepicker2,#datepicker3").datepicker({
-    dateFormat: 'dd/mm/yy',
-    minDate: dateToday,
-    onSelect: function(selectedDate) {
-        var option = this.id == "datepicker2" ? "minDate" : "maxDate",
-            instance = $(this).data("datepicker"),
-            date = $.datepicker.parseDate(instance.settings.dateFormat || $.datepicker._defaults.dateFormat, selectedDate, instance.settings);
-        dates.not(this).datepicker("option", option, date);
-    }
-});
+       var dateToday = $('#datepicker2').val();
+       if(dateToday == '')
+       {
+
+        var dates = $("#datepicker2,#datepicker3").datepicker({
+            dateFormat: 'dd/mm/yy',
+            minDate: dateToday,
+            onSelect: function(selectedDate) {
+                var option = this.id == "datepicker2" ? "minDate" : "maxDate",
+                    instance = $(this).data("datepicker"),
+                    date = $.datepicker.parseDate(instance.settings.dateFormat || $.datepicker._defaults.dateFormat, selectedDate, instance.settings);
+                dates.not(this).datepicker("option", option, date);
+            }
+        });
+       }
+       else
+       {
+         var dates = $("#datepicker3").datepicker({
+            dateFormat: 'dd/mm/yy',
+            minDate: dateToday,
+            onSelect: function(selectedDate) {
+                var option = this.id == "datepicker3" ? "minDate" : "maxDate",
+                    instance = $(this).data("datepicker"),
+                    date = $.datepicker.parseDate(instance.settings.dateFormat || $.datepicker._defaults.dateFormat, selectedDate, instance.settings);
+                dates.not(this).datepicker("option", option, date);
+            }
+        });
+       }
 </script>
 
