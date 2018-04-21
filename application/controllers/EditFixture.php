@@ -36,16 +36,15 @@ public function edit($id,$vessel_id)
 			$remarks = $_REQUEST['remarks'];
          
 			$vessel_data=$this->Vessel_model->get_vessel_details_by_id($vessel_id);
-			$vessel_name=$vessel_data[0]['vessel_name'];   
-			$fixture_data=$this->Fixture_model->get_fixture_by_id($id);      
+
+					$vessel_name=$vessel_data[0]['vessel_name'];         
 
 		   $directory_name = '../LyndonMarineImages/FixtureDocuments/'.$vessel_name.'/' ; 
 
-		   
-      			
+		   	
 		        if(!is_dir($directory_name))
 		            {
-		                mkdir($directory_name,0777,true);
+		                mkdir($directory_name);
 		                
 		            }
 
@@ -55,14 +54,13 @@ public function edit($id,$vessel_id)
 
               $base_url_website = FIXTURE_BASE_URL ;
       
-
                 if ($_REQUEST['document1-removed'] == '1')
 	            {
 	                $contract = '';
 	            }
 	            else 
 	            {
-                     if($_FILES["contract"]["name"] != Null)
+                     if($_FILES["contract"]["name"] != NULL)
 		                 {
 		                     $target_file = $directory_name.basename($_FILES['contract']['name']); 
 		                     move_uploaded_file($_FILES['contract']['tmp_name'], $target_file);
@@ -74,8 +72,6 @@ public function edit($id,$vessel_id)
 		                     $contract=$fixture_data[0]['contract'];
 		                 }
 			     }
-			   
-
 			      if ($_REQUEST['document2-removed'] == '1')
 	                {
 	                   $invoice = '';
@@ -83,7 +79,7 @@ public function edit($id,$vessel_id)
 	             else 
 	                {
 
-					if($_FILES["invoice"]["name"] != Null)
+					if($_FILES["invoice"]["name"] != NULL)
 		                 {
 		                     $target_file = $directory_name.'/'.$vessel_name.'/'.basename($_FILES['invoice']['name']);
 		                     move_uploaded_file($_FILES['invoice']['tmp_name'], $target_file);

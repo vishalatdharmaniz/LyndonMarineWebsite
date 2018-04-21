@@ -37,7 +37,7 @@ include'includes/CheckUserLogin.php';
           <input type="text" class="form-control-text" placeholder="Search" name="search" id="search_bunker">
         </form>
           <span class="input-group-btn">
-            <a class="btn btn-default text-muted" href="#" title="Clear" onclick="reset()"><i class="glyphicon glyphicon-remove"></i> </a>
+            <a class="btn btn-default text-muted" href="" title="Clear" onclick="reset()"><i class="glyphicon glyphicon-remove"></i> </a>
             <button onclick="search(document.getElementById('search_bunker').value)" type="button" class="btn btn-info">
               <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
             </button>
@@ -107,7 +107,7 @@ include'includes/CheckUserLogin.php';
          
             <select class="form-control-text1" name="range" style="width: 169px;" onchange="this.form.submit()">
               <option selected value="" disabled>Select Status</option>
-              <option value="red" <?php if($range == "red"){echo "selected=selected";}?>>Due in 5 days</option>
+              <option value="red" <?php if($range == "red"){echo "selected=selected";}?>>Due now or overdue in 5 days</option>
               <option value="green" <?php if($range == "green"){echo "selected=selected";}?>>Valid More than 5 days</option>
               <option value="blue" <?php if($range == "blue"){echo "selected=selected";}?>> Paid</option>
               
@@ -144,18 +144,18 @@ include'includes/CheckUserLogin.php';
                 foreach ($bunker_supply_data as $data) 
                 {
                     $now = time(); 
-                  $due_date =strtotime($data['due_date']) ;  
-                  $date_of_supply =strtotime($data['date_of_supply']);
+            $due_date =strtotime($data['due_date']) ;  
+            $date_of_supply =strtotime($data['date_of_supply']);
 
-                  $caldays = $due_date - $now; 
+            $caldays = $due_date - $now; 
 
-                  if($due_date>$now && $due_date>$date_of_supply)
-                  {
-                  $caldays = $due_date - $now;   
-                  $calday =  round($caldays / (60 * 60 * 24));  
-                  }
-          
-                  $calday =  round($caldays / (60 * 60 * 24)); 
+            if($due_date>$now && $due_date>$date_of_supply)
+            {
+            $caldays = $due_date - $now;   
+            $calday =  round($caldays / (60 * 60 * 24));  
+            }
+    
+            $calday =  round($caldays / (60 * 60 * 24)); 
              
             
                   $bunker_id=$data['bunker_id'];
@@ -176,12 +176,12 @@ include'includes/CheckUserLogin.php';
                 </td>
                 <td class="text-center"><?php echo $suppliers; ?></td>
                 <td class="text-center"><?php echo $port_of_supply; ?></td>
-                <td class="text-center"><?php  echo date("d-m-Y",strtotime($supply_date)); ?></td>
+                <td class="text-center"><?php echo date("d-m-Y",strtotime($supply_date)); ?></td>
                  <td class="text-center">
                   <?php if($invoice_amount!=""){echo $invoice_amount; } else{echo "N/A" ;} ?>
                 </td>
                 <td class="text-center"><?php if($currency!=""){echo $currency; } else{echo "N/A" ;}  ?></td>
-                <td class="text-center"><?php if($date_due!=""){echo date("d-m-Y",strtotime($date_due));} else{echo $date_due="N/A";} ?></td>
+                <td class="text-center"><?php echo date("d-m-Y",strtotime($date_due)); ?></td>
                 <td class="text-center"><?php if($paid_status=="Yes"){echo $paid_status;} else{echo "No";} ?></td>
                 <td class="text-center"><a href="<?php echo base_url(); ?>index.php/ViewBunkerSupply/index/<?php echo $bunker_id ; ?>" class="btn btn-primary">View</td>
                 <td class="text-center">
@@ -245,8 +245,7 @@ include'includes/footer.php';
     }
     else
     {
-            $vessel_id="<?php echo $vessel_id; ?>";
-            window.location.href = "<?php echo base_url(); ?>index.php/VesselBunkerSupply/searchdata/"+search_bunker+"/"+$vessel_id;
+            window.location.href = "<?php echo base_url(); ?>index.php/VesselBunkerSupply/searchdata/"+search_bunker+"/"+<?php echo $data['vessel_id'] ?>;
     }
 }
 function searchEnter(search_bunker)
@@ -257,16 +256,14 @@ function searchEnter(search_bunker)
     }
     else
     {
-       $vessel_id="<?php echo $vessel_id; ?>";
-      window.location.href = "<?php echo base_url(); ?>index.php/VesselBunkerSupply/searchdata/"+search_bunker+"/"+$vessel_id;
+      window.location.href = "<?php echo base_url(); ?>index.php/VesselBunkerSupply/searchdata/"+search_bunker+"/"+<?php echo $data['vessel_id'] ?>;
     }
 }
 
 function reset(search_bunker)
 {
   $('#search_bunker').val('');
-  $vessel_id="<?php echo $vessel_id; ?>";
-  window.location.href = "<?php echo base_url(); ?>index.php/VesselBunkerSupply/index/"+$vessel_id;
+  window.location.href = "<?php echo base_url(); ?>index.php/VesselBunkerSupply/index/"+<?php echo $data['vessel_id'] ?>;
 }
 
 function getCheckedBoxes(chkboxName) 
@@ -303,8 +300,7 @@ function mail_selected_vessels()
 
 $('#suppliers').change(function(){
       $selected_value=$('#suppliers option:selected').text();
-      $vessel_id="<?php echo $vessel_id; ?>";
-      window.location.href = "<?php echo base_url(); ?>index.php/VesselBunkerSupply/search_supplier_type/"+$vessel_id;
+      window.location.href = "<?php echo base_url(); ?>index.php/VesselBunkerSupply/search_supplier_type/"+$selected_value+"/"+<?php echo $data['vessel_id'] ?>;
     });
 
 </script>

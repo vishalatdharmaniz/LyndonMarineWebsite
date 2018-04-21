@@ -11,33 +11,33 @@ class Profile extends CI_Controller
 
 	public function index()
 	{
-		$this->company_profile();
+		$this->profile();
 	}
 
-	function company_profile()
+	function profile()
     {
 
     	$this->load->model('Profile_model');
-    	$company_id = $this->session->userdata('company_id');
-    	$company_data = $this->Profile_model->get_profile_by_company_id($company_id);
+    	$user_id = $this->session->userdata('user_id');
+    	$user_data = $this->Profile_model->get_profile_by_user_id($user_id);
 			
-		$data['company_data'] = $company_data;
+		$data['user_data'] = $user_data;
 
 		//print_r($user_data);
 
-    	$this->load->view('LyndonMarine/company_profile',$data);
+    	$this->load->view('LyndonMarine/profile',$data);
     }
 
     function edit_profile()
     {
     	$this->load->model('Profile_model');
     
-    	$company_id = $this->session->userdata('company_id');
-    	$company_data = $this->Profile_model->get_profile_by_company_id($company_id);
+    	$user_id = $this->session->userdata('user_id');
+    	$user_data = $this->Profile_model->get_profile_by_user_id($user_id);
 			
-		$data['company_data'] = $company_data;
+		$data['user_data'] = $user_data;
 			
-    	$this->load->view('LyndonMarine/edit_company_profile',$data);
+    	$this->load->view('LyndonMarine/edit_profile',$data);
 
 		
     }

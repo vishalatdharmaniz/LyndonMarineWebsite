@@ -33,7 +33,7 @@ include'includes/CheckUserLogin.php';
           <input type="text" class="form-control-text" placeholder="Search" name="search" id="search_crew">
         </form>
           <span class="input-group-btn">
-            <a class="btn btn-default text-muted" href="#" title="Clear" onclick="reset()"><i class="glyphicon glyphicon-remove"></i> </a>
+            <a class="btn btn-default text-muted" href="" title="Clear" onclick="reset()"><i class="glyphicon glyphicon-remove"></i> </a>
             <button onclick="search(document.getElementById('search_crew').value)" type="button" class="btn btn-info">
               <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
             </button>
@@ -47,7 +47,6 @@ include'includes/CheckUserLogin.php';
             <li>
               <a class="btn-blue" href="<?php echo base_url();?>index.php/CrewDetails/AddCrewDetailsScreen/<?php echo $vessel_id; ?>">Add </a>
             </li>
-           <li><a class="btn-blue" href="<?php echo base_url(); ?>index.php/CrewDetails/index/<?php echo $vessel_id; ?>" >All Crew Details</a></li>
             <li>
               <button class="btn-blue" onclick="mail_selected_crew()" >Mail Crew Details</button>
             </li>
@@ -81,11 +80,11 @@ include'includes/CheckUserLogin.php';
                 foreach ($crew_data as $data) 
                 {
                   $crew_id=$data['crew_id'];
-                  $name=$data['name'];
-                  $tourist_p_number=$data['tourist_p_num'];
-                  $seaman_p_number=$data['seaman_p_num'];
-                  $rank=$data['rank'];
-                  $salary=$data['salary'];
+                $name=$data['name'];
+                $tourist_p_number=$data['tourist_p_num'];
+                $seaman_p_number=$data['seaman_p_num'];
+                $rank=$data['rank'];
+                $salary=$data['salary'];
                 
 
                 ?>
@@ -144,8 +143,7 @@ include'includes/footer.php';
     }
     else
     {
-           $vessel_id="<?php echo $vessel_id; ?>"; 
-            window.location.href = "<?php echo base_url(); ?>index.php/CrewDetails/searchdata/"+search_crew+"/"+$vessel_id;
+            window.location.href = "<?php echo base_url(); ?>index.php/CrewDetails/searchdata/"+search_crew+"/"+<?php echo $data['vessel_id'] ?>;
     }
 }
 function searchEnter(search_crew)
@@ -156,16 +154,14 @@ function searchEnter(search_crew)
     }
     else
     {
-       $vessel_id="<?php echo $vessel_id; ?>";
-      window.location.href = "<?php echo base_url(); ?>index.php/CrewDetails/searchdata/"+search_crew+"/"+$vessel_id;
+      window.location.href = "<?php echo base_url(); ?>index.php/CrewDetails/searchdata/"+search_crew+"/"+<?php echo $data['vessel_id'] ?>;
     }
 }
 
 function reset(search_crew)
 {
   $('#search_crew').val('');
-  $vessel_id="<?php echo $vessel_id; ?>";
-  window.location.href = "<?php echo base_url(); ?>index.php/CrewDetails/index/"+$vessel_id;
+  window.location.href = "<?php echo base_url(); ?>index.php/CrewDetails/index/"+<?php echo $data['vessel_id'] ?>;
 }
 
 function getCheckedBoxes(chkboxName) 
@@ -190,7 +186,7 @@ function mail_selected_crew()
     for (var index = 0; index < checkedBoxes.length; index++) 
     {
         var checkbox_id = checkedBoxes[index].getAttribute("id");
-        checkbox_ids+=checkbox_id+"&";
+        checkbox_ids+=checkbox_id+"@";
     }
     var email = prompt("Please enter the Email of recepient:", "office@lyndonmarine.com");
     if (email != null) {

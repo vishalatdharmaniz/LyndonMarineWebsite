@@ -54,7 +54,7 @@ include'includes/header_login.php';
             <div class="row">
               <div class="form-group col-md-6">
                 <label class="control-label">Fixture No.</label>
-                <input type="text" name="fixture_no" pattern="^\d{1,1000}$" required placeholder="Fixture No." value="<?php echo $fixture_no; ?>" class="form-control-text">
+                <input type="text" name="fixture_no" required placeholder="Fixture No." value="<?php echo $fixture_no; ?>" class="form-control-text">
               </div>
               <div class="form-group col-md-6">
                 <label class="control-label">Fixture Date:</label>
@@ -74,7 +74,7 @@ include'includes/header_login.php';
 			<div class="row">
               <div class="form-group col-md-6">
                 <label class="control-label">Freight</label>
-                <input type="text" name="fright" required  pattern="^\d{1,1000}$" placeholder="Freight"  value="<?php echo $fright; ?>" class="form-control-text">
+                <input type="text" name="fright" required placeholder="Freight"  value="<?php echo $fright; ?>" class="form-control-text">
               </div>
               <div class="form-group col-md-6">
                 <label class="control-label">Currency</label>
@@ -109,9 +109,9 @@ include'includes/header_login.php';
                 <div class="form-group">
                   <div class="col-md-4">
                     <label class="control-label">Upload Contract (Max Size 64mb)</label>
-                    <input type="file" id="document1-chosen" name="contract"><br>
+                    <input type="file" id="document1-chosen" name="contract"  accept="png, jpg/*"><br>
                   </div>
-                  <div class="col-md-8" id="document_view">
+                  <div class="col-md-8">
                     <br>
                     <?php if(!empty($contract)) {?>
                     
@@ -134,9 +134,9 @@ include'includes/header_login.php';
                 <div class="form-group">
                   <div class="col-md-4">
                     <label class="control-label">Upload Invoice (Max Size 64mb)</label>
-                    <input type="file" id="document2-chosen" name="invoice"><br>
+                    <input type="file" id="document2-chosen" name="invoice"  accept="png, jpg/*"><br>
                   </div>
-                  <div class="col-md-8" id="document_view">
+                  <div class="col-md-8">
                     <br>
                     <?php if(!empty($invoice)) {?>
                     
@@ -146,6 +146,7 @@ include'includes/header_login.php';
                        echo substr($value[6],0,25); ?>
                        <button type="button"  class="btn btn-danger" id="remove-document2" style="margin-left:10px;">Remove</button>
                       </span>
+                      
                       <?php } 
                       else { ?>
                       <span> No Document Available </span>

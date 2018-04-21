@@ -19,30 +19,20 @@ public function index($id,$vessel_id)
 		$this->load->model('Survey_model');
 
 		if(array_key_exists('id',$_REQUEST)){
-			/*$id = $_REQUEST['id'];*/
+			$id = $_REQUEST['id'];
 			$Survey = $_REQUEST['Survey'];
 			$last_survey_date = $_REQUEST['Lastsurvey'];
-
 			if(!empty($last_survey_date)){
 				$last_survey_date = date("Y-m-d",strtotime(str_replace('/', '-', $last_survey_date)));
 			}else{
 				$last_survey_date = "";
 			}
-
-			$post_date = $_REQUEST['postponed_date'];	   
-
-			$postponed_date=str_replace('/', '-', $post_date);	
-			
-			if(($postponed_date == ' ') || ($postponed_date == '0000-00-00 00:00:00'))
-			{
-				$postponed_date = ""; 
-			 
+			$postponed_date = $_REQUEST['postponed_date'];		
+			if(!empty($postponed_date)){
+				$postponed_date = date("Y-m-d",strtotime(str_replace('/', '-', $postponed_date)) );
 			}else{
-				
-				$postponed_date = date("Y-m-d",strtotime($postponed_date));
+				$postponed_date = ''; 
 			}
-
-			
 			$Due = $_REQUEST['Due'];
 			if(!empty($Due)){
 				$due_date = date("Y-m-d",strtotime(str_replace('/', '-', $Due)));

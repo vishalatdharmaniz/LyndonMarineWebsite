@@ -33,7 +33,7 @@ include'includes/header_login.php';
             <div class="row">
               <div class="form-group col-md-6">
                 <label class="control-label">Fixture No.</label>
-                <input type="text" name="fixture_no" pattern="^\d{1,1000}$" required placeholder="Fixture No." class="form-control-text">
+                <input type="text" name="fixture_no" required placeholder="Fixture No." class="form-control-text">
               </div>
               <div class="form-group col-md-6">
                 <label class="control-label">Fixture Date:</label>
@@ -50,10 +50,10 @@ include'includes/header_login.php';
                 <input type="text" name="discharging_port" required placeholder="Discharging Port(s)" class="form-control-text">
               </div>
             </div>
-			      <div class="row">
+			<div class="row">
               <div class="form-group col-md-6">
                 <label class="control-label">Freight</label>
-                <input type="text" name="fright" pattern="^\d{1,1000}$" required placeholder="Freight" class="form-control-text">
+                <input type="text" name="fright" required placeholder="Freight" class="form-control-text">
               </div>
               <div class="form-group col-md-6">
                 <label class="control-label">Currency</label>
@@ -85,11 +85,11 @@ include'includes/header_login.php';
             <div class="row">
               <div class="form-group col-md-6">
                 <label class="control-label">Upload contract</label>
-                <input type="file" name="upload_contract">
+                <input type="file" name="upload_contract" accept="pdf, rtf, excel/*">
               </div>
               <div class="form-group col-md-6">
                <label class="control-label">Upload Invoice</label>
-                <input type="file" name="upload_invoice" ><!-- accept="pdf,png,jpg, rtf, excel/*" -->
+                <input type="file" name="upload_invoice" accept="pdf, rtf, excel/*">
               </div>
             </div>
              <button type="submit" class="btn btn-black">Save </button>

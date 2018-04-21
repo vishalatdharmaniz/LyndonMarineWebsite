@@ -14,14 +14,6 @@ class Edit_profile_model extends CI_Model
 						WHERE id='$user_id'");
 		return true;
 	} 
-	public function edit_company_profile($company_id,$name,$organization,$telephone,$address,$city,$country,$note,$account_type)
-	{
-		$this->db->query("UPDATE company SET name='$name',organization='$organization',
-						telephone='$telephone',address='$address',city='$city',country='$country',note='$note',
-						account_type='$account_type'
-						WHERE id='$company_id'");
-		return true;
-	} 
 }
 
 ?>

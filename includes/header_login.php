@@ -25,21 +25,18 @@
   <div class="row">
   <div class="col-md-12">
     <div class=" col-md-6 navbar-header">
-       <a class="navbar-brand" style="margin-top:7px" href="<?php echo base_url();?>index.php/AllVessels/company_vessel/<?php $company_id = $this->session->userdata('company_id');echo $company_id; ?>"><img src="<?php echo base_url(); ?>img/logo@1x.png" ></a> 
+       <a class="navbar-brand" style="margin-top:7px" href="<?php echo base_url();?>index.php/AllVessels/user_vessel/<?php $user_id = $this->session->userdata('user_id');echo $user_id; ?>"><img src="<?php echo base_url(); ?>img/logo@1x.png" ></a> 
 	   </div>
 	   <div class="col-md-6" style="text-align:right; margin-top:25px;">
    		 <ul class="navbar-right">
                             
-                <li class="dropdown" style="margin-top:20px"><a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color:white;"><?php $company_id = $this->session->userdata('email'); echo $company_id;?><b class="caret"></b></a>
+                <li class="dropdown" style="margin-top:20px"><a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color:white;"><?php $user_id = $this->session->userdata('email'); echo $user_id;?><b class="caret"></b></a>
               
                     <ul class="dropdown-menu">
                          	<p>User Menu Options</p>
                          <li><a href="<?php echo base_url(); ?>index.php/Profile/index"><i class="fa fa-user"></i>&nbsp; My Profile</a></li>
-                          <li class="divider"></li>
-                        <li><a href="<?php echo base_url(); ?>index.php/AdminAndRoles/index"><i class="fa fa-user"></i>&nbsp; Admin & Roles</a></li>
                         <li class="divider"></li>
                         <li><a href="<?php echo base_url(); ?>index.php/Logout/index"><i class="fa fa-key"></i>&nbsp; Logout</a></li>
-                       
                     </ul>
                 </li>
             </ul></div>

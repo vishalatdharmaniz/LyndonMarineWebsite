@@ -2,21 +2,11 @@
 include'includes/CheckUserLogin.php';
 include'includes/header_login.php';
 ?>
- <style type="text/css">
-/*input[type='file'] 
-{
-  color: transparent;
-}
-*/
-</style> 
 <section id="main-edit">
   <div class="container">
-    <div class="row"> <?php foreach($vessel_details as $vessels) { ?>
-        <div class="main-edit-add-left"> 
-          <a class="btn-blue" href="<?php echo base_url();?>index.php/FleetDetails/index/<?php echo $vessels['vessel_id']; ?>">
-          Go Back
-        </a>             
-        </div>     
+    <div class="row">
+        <!-- <div class="main-edit-add-left"> <a class="btn-blue" href="<?php echo base_url();?>index.php/VesselSurvey/index/<?php echo $vessel_id; ?>">Go Back</a>             
+        </div>   -->   
       <div class="col-md-offset-3 col-md-6">
         <div class="page-heading">
           <h2>Edit Vessel</h2>
@@ -29,6 +19,7 @@ include'includes/header_login.php';
   <div class="container">
     <div class="row">
       <div class="col-md-8 col-md-offset-2">
+      <?php foreach($vessel_details as $vessels) { ?>
         <div class="form-action">
           <form action="<?php echo base_url(); ?>index.php/EditVessel/index/<?php echo $vessels['vessel_id']; ?>" method="post" enctype="multipart/form-data">
             <div class="row">
@@ -40,21 +31,19 @@ include'includes/header_login.php';
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="exampleInputEmail1">Image1 </label>
-                
                   <input type="file" id="image1-chosen" name="image1" accept="image/*">
-                   <span id="show-image1">
-                    <img src="<?php echo $vessels['image1']; ?>" style="width:100px; height:100px; margin-top:10px;" alt="" class="img-responsive">
+                 <span id="show-image1"><img src="<?php echo $vessels['image1']; ?>" style="width:100px; height:100px;" alt="" class="img-responsive">
                   <?php if(!empty($vessels['image1'])) { ?><button type="button" class="btn btn-danger" id="remove-image1" style="margin-top:10px;">Remove</button> <?php $value = explode("/",$vessels['image1']);echo substr($value[7],0,10); } else { echo "";}?>
                   </span>
+                  <?php if(!empty($vessels['image1'])) {  }?>
                   
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="exampleInputPassword1">Image2</label>
-
                   <input type="file" id="image2-chosen" name="image2" accept="image/*">
-                 <span id="show-image2"><img src="<?php echo $vessels['image2']; ?>" style="width:100px; height:100px; margin-top:10px;" alt="" class="img-responsive">
+                  <span id="show-image2"><img src="<?php echo $vessels['image2']; ?>" style="width:100px; height:100px;" alt="" class="img-responsive">
                      <?php if(!empty($vessels['image2'])) { ?><button type="button" class="btn btn-danger" id="remove-image2" style="margin-top:10px;">Remove</button> <?php $value = explode("/",$vessels['image2']);echo substr($value[7],0,10); } else { echo "";}?>
                   </span>
                  
@@ -63,9 +52,8 @@ include'includes/header_login.php';
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="exampleInputPassword1">Image3</label>
-                  
                   <input type="file" id="image3-chosen" name="image3" accept="image/*">
-                  <span id="show-image3"><img src="<?php echo $vessels['image3']; ?>" style="width:100px; height:100px; margin-top:10px;" alt="" class="img-responsive">
+                  <span id="show-image3"><img src="<?php echo $vessels['image3']; ?>" style="width:100px; height:100px;" alt="" class="img-responsive">
                   <?php if(!empty($vessels['image3'])) { ?><button type="button" class="btn btn-danger" id="remove-image3" style="margin-top:10px;">Remove</button> <?php $value = explode("/",$vessels['image3']);echo substr($value[7],0,10); } else { echo "";}?>
                    </span>
                  
@@ -75,19 +63,19 @@ include'includes/header_login.php';
             <div class="row">
               <div class="col-md-4">
                 <div class="form-group">
-                  <label for="exampleInputEmail1">Image4 </label> 
-                  
+                  <label for="exampleInputEmail1">Image4 </label>
                   <input type="file" id="image4-chosen" name="image4" accept="image/*">
-                  <span id="show-image4"><img src="<?php echo $vessels['image4']; ?>" style="width:100px; height:100px; margin-top:10px;" alt="" class="img-responsive">
+                  <span id="show-image4"><img src="<?php echo $vessels['image4']; ?>" style="width:100px; height:100px;" alt="" class="img-responsive">
                   <?php if(!empty($vessels['image4'])) { ?><button type="button" class="btn btn-danger" id="remove-image4" style="margin-top:10px;">Remove</button> <?php $value = explode("/",$vessels['image4']);echo substr($value[7],0,10); } else { echo "";}?>
                   </span>
+                  
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="exampleInputPassword1">Image5</label>
                   <input type="file" id="image5-chosen" name="image5" accept="image/*">
-                  <span id="show-image5"><img src="<?php echo $vessels['image5']; ?>" style="width:100px; height:100px; margin-top:10px;" alt="" class="img-responsive">
+                  <span id="show-image5"><img src="<?php echo $vessels['image5']; ?>" style="width:100px; height:100px;" alt="" class="img-responsive">
                   <?php if(!empty($vessels['image5'])) { ?><button type="button" class="btn btn-danger" id="remove-image5" style="margin-top:10px;">Remove</button> <?php $value = explode("/",$vessels['image5']);echo substr($value[7],0,10); } else { echo "";}?>
                   </span>
                   
@@ -188,8 +176,8 @@ include'includes/header_login.php';
                 <input type="text" required placeholder="IMO Number" name="imo_number" class="form-control-text" value="<?php echo $vessels['imo_number']; ?>">
               </div>
               <div class="form-group col-md-6">
-                <label class="control-label">Length Overall</label>
-                <input type="text" required placeholder="Length Overall" name="loa" class="form-control-text" value="<?php echo $vessels['loa']; ?>">
+                <label class="control-label">LOA</label>
+                <input type="text" required placeholder="LOA" name="loa" class="form-control-text" value="<?php echo $vessels['loa']; ?>">
               </div>
             </div>
 			<div class="row">

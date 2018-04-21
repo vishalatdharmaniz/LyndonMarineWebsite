@@ -162,8 +162,8 @@ color: red;
 					<span class="imomessage"></span>
 				</div>
 				<div class="form-group col-md-6">
-                <label class="control-label">Length Overall</label>
-                <input type="text" required placeholder="Length Overall" name="loa" class="form-control-text">
+                <label class="control-label">LOA</label>
+                <input type="text" required placeholder="LOA" name="loa" class="form-control-text">
               </div>
              
 			  

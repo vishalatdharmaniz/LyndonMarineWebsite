@@ -55,13 +55,14 @@ include'includes/CheckUserLogin.php';
             <div class="row">
               <div class="form-group col-md-6">
                 <label class="control-label">Date of Expiry</label>
-                <input type="text" name="date_expiry" onclick="check_expiry_date()" id="datepicker2" placeholder="Date of Expiry" class="form-control-text">
+                <input type="text" name="date_expiry" id="datepicker2" placeholder="Date of Expiry" class="form-control-text">
               </div>
               <div class="form-group col-md-6">
                 <label class="control-label">Extention until</label>
-                <input type="text" name="extention_until" id="datepicker3" disabled  placeholder="Extention until" class="form-control-text">
+                <input type="text" name="extention_until" id="datepicker3"  placeholder="Extention until" class="form-control-text">
               </div>
             </div>
+            
             <div class="row">
               <div class="form-group col-md-6">
                 <label class="control-label">Reminder 1 (Days)</label>
@@ -138,23 +139,6 @@ include'includes/footer.php';
 
 ?>
 <script>
-function check_expiry_date()
-{
-  var val = document.getElementById('datepicker2').value;
-
-    if(val == '')
-    {  
-     document.getElementById('datepicker3').disabled = false;
-    }
-    else
-    {
-
-      document.getElementById('datepicker3').disabled = true;
-    }
-}
-
-
-
 
   $( function() {
     $( "#datepicker1" ).datepicker({ dateFormat: 'dd/mm/yy' }).val();
@@ -162,7 +146,7 @@ function check_expiry_date()
     $( "#datepicker3" ).datepicker({ dateFormat: 'dd/mm/yy'});
   } );
 
-  var dateToday = $('#datepicker2').val();
+  var dateToday = $('#date_expiry').val();
 var dates = $("#datepicker2,#datepicker3").datepicker({
     dateFormat: 'dd/mm/yy',
     minDate: dateToday,

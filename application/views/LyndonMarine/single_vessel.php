@@ -8,7 +8,7 @@ include'includes/header_login.php';
     <?php  foreach($vessel_data as $vessel) { ?>
     <div class="row">
 
-        <div class="main-edit-add"> <a class="btn-blue" href="<?php echo base_url();?>index.php/AllVessels/company_vessel/<?php echo $vessel['company_id']; ?>">Go Back</a> </div>       
+        <div class="main-edit-add"> <a class="btn-blue" href="<?php echo base_url();?>index.php/AllVessels/user_vessel/<?php echo $vessel['user_id']; ?>">Go Back</a> </div>       
 <?php if($role=="user2" || $role=="user1") { }
           else{ ?>
       <div class="button-right"> <a href="<?php echo base_url();?>index.php/AllVessels/view_vessel/<?php echo $vessel['vessel_id']; ?>" class="btn btn-view">View</a> <a href="<?php echo base_url();?>index.php/AllVessels/edit_vessel/<?php echo $vessel['vessel_id']; ?>" class="btn btn-edit">Edit</a> <a href="<?php echo base_url();?>index.php/DeleteVessel/index/<?php echo $vessel['vessel_id']; ?>" Onclick="return confirm('Are you sure?');" class="btn btn-del">Delete</a>
@@ -73,7 +73,7 @@ include'includes/header_login.php';
       <div class="work-done-text">
 		<div class="col-md-3">
           <div class="done-text"> <a href="<?php echo base_url();?>index.php/AllVessels/view_fullvessel/<?php echo $vessel['vessel_id']; ?>"><img src="<?php echo base_url(); ?>img/icon/ship.png" class="img-responsive"></a>
-            <h3>Vessel Particulars</h3>
+            <h3>Vessel Particular</h3>
           </div>
         </div>
         <div class="col-md-3">
@@ -124,7 +124,7 @@ include'includes/header_login.php';
       <div class="work-done-text">
         <div class="col-md-3">
           <div class="done-text"> <a href="<?php echo base_url(); ?>index.php/VesselBunkerSupply/index/<?php echo $vessel['vessel_id']; ?>">
-            <img src="<?php echo base_url(); ?>img/icon/Bunker.png" class="img-responsive"></a>
+            <img src="<?php echo base_url(); ?>img/icon/bunker_icon.jpg" class="img-responsive"></a>
             <h3>Bunker </h3>
           </div>
         </div>
@@ -132,18 +132,6 @@ include'includes/header_login.php';
           <div class="done-text"> <a href="<?php echo base_url(); ?>index.php/VesselSoa/index/<?php echo $vessel['vessel_id']; ?>">
             <img src="<?php echo base_url(); ?>img/icon/Soa.png" class="img-responsive"></a>
             <h3>Soa </h3>
-          </div>
-        </div>
-         <div class="col-md-3">
-          <div class="done-text"> <a href="<?php echo base_url(); ?>index.php/VesselOldDocuments/index/<?php echo $vessel['vessel_id']; ?>">
-            <img src="<?php echo base_url(); ?>img/icon/Memo.png" class="img-responsive"></a>
-            <h3>Old Documents </h3>
-          </div>
-        </div>
-         <div class="col-md-3">
-          <div class="done-text"> <a href="<?php echo base_url(); ?>index.php/VesselPaymentReminder/index/<?php echo $vessel['vessel_id']; ?>">
-            <img src="<?php echo base_url(); ?>img/icon/assignment.png" class="img-responsive"></a>
-            <h3>Payment Reminder</h3>
           </div>
         </div>
       </div>

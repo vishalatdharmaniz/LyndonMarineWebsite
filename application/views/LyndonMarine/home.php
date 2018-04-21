@@ -18,22 +18,7 @@ include'includes/header.php';
             <h2>Request account</h2>
             <p>Enter your personal details below:</p>
           </div>
-	 
-					
-			
-			
-		<form action="<?php echo base_url(); ?>index.php/SignUp/index" id="signup_form" method="post" enctype="multipart/form-data">
-       <div class="col-md-12 text-center">
-          <img src="http://staging.lyndonmarine.com/img/placeholder.png" id="profile-img-tag" width="150px" height="150px" style="border-radius:50%;" />
-       </div>
-          <div class="row"> 
-              <div class="col-md-3"></div>
-              <div class="col-md-4">
-              
-                <input name="profile_pic" style="border: 1px solid gray;background-color: white; display:none;"  type="file" id="profile-img">
-              </div>
-              <div class="col-md-4"></div>
-          </div> 
+          <form action="<?php echo base_url(); ?>index.php/SignUp/index" id="signup_form" method="post" enctype="multipart/form-data">
             <div class="row">
               <div class="col-sm-6 col-xs-12">
                 <div class="form-group">
@@ -102,7 +87,7 @@ include'includes/header.php';
               <div class="col-sm-12">
                 <div class="checkbox">
                   <label>
-                    <input type="checkbox" value="" >
+                    <input type="checkbox" value="">
                     &nbsp;&nbsp;I agree to the Terms of Use and Privacy Policy</label>
                 </div>
               </div>
@@ -124,26 +109,6 @@ include'includes/header.php';
 include'includes/footer.php';
 ?>
 
-
-
-
-<script type="text/javascript">
-    function readURL(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            
-            reader.onload = function (e) {
-                $('#profile-img-tag').attr('src', e.target.result);
-            }
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-    $("#profile-img").change(function(){
-        readURL(this);
-    });
-	
-	$('#profile-img-tag').click(function(){ $('#profile-img').trigger('click'); });
-</script>
 <!--script>
 function check_email_exists() 
 {

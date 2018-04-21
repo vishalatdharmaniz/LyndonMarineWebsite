@@ -36,6 +36,7 @@ include'includes/header_login.php';
           </span>
         </div>
       </div>
+
       
       <div class="col-md-5">
         <div class="list_right">
@@ -145,35 +146,6 @@ function mail_selected_vessels()
     }
 
 }
-/*
-function search(search_plan)
-{
-    if(search_plan == "")
-    {
-        alert("Please enter a value to be searched");
-    }
-    else
-    {
-            window.location.href = "<?php echo base_url(); ?>index.php/VesselPlans/search_plan_data/"+search_plan+"/"+<?php echo $data['vessel_id'] ?>;
-    }
-}
-function searchEnter(search_plan)
-{
-    if(search_plan == "")
-    {
-        alert("Please enter a value to be searched");
-    }
-    else
-    {
-            window.location.href = "<?php echo base_url(); ?>index.php/VesselPlans/search_plan_data/"+search_plan+"/"+<?php echo $data['vessel_id'] ?>;
-    }
-}
-function reset(search_plan)
-{
-  $('#search_plan').val('');
-  window.location.href = "<?php echo base_url(); ?>index.php/VesselPlans/index/"+<?php echo $data['vessel_id'] ?>;
-}*/
-
 function search(search_plan)
 {
     if(search_plan == "")

@@ -27,39 +27,31 @@ class EditBunkerSupply extends CI_Controller
             $vessel_name=$vessel_data[0]['vessel_name']; 
      
         $date_of_supply = $_REQUEST['date_of_supply'];  
-			  $port_of_supply = $_REQUEST['port_of_supply'];  
-		  	$suppliers = $_REQUEST['suppliers'];
-		  	$due_date = $_REQUEST['due_date'];
-		  	$mdo = $_REQUEST['mdo'];
-			  $hfo = $_REQUEST['hfo'];
-  			$luboil_1_type = $_REQUEST['luboil_1_type'];
-  			$luboil_1_quantity = $_REQUEST['luboil_1_quantity'];
-  			$luboil_2_type = $_REQUEST['luboil_2_type'];
-  			$luboil_2_quantity= $_REQUEST['luboil_2_quantity'];
-  			$others = $_REQUEST['others'];
-  			$remarks = $_REQUEST['remarks'];
-  			$reminder = $_REQUEST['reminder'];
-        $invoice_amount = $_REQUEST['invoice_amount'];
-  			$invoice_num = $_REQUEST['invoice_num'];
-  			$currency = $_REQUEST['currency'];
-  			$paid = $_REQUEST['paid'];
-  			$paid_date = $_REQUEST['paid_date'];
+			$port_of_supply = $_REQUEST['port_of_supply'];  
+			$suppliers = $_REQUEST['suppliers'];
+			$due_date = $_REQUEST['due_date'];
+			$mdo = $_REQUEST['mdo'];
+			$hfo = $_REQUEST['hfo'];
+			$luboil_1_type = $_REQUEST['luboil_1_type'];
+			$luboil_1_quantity = $_REQUEST['luboil_1_quantity'];
+			$luboil_2_type = $_REQUEST['luboil_2_type'];
+			$luboil_2_quantity= $_REQUEST['luboil_2_quantity'];
+			$others = $_REQUEST['others'];
+			$remarks = $_REQUEST['remarks'];
+			$reminder = $_REQUEST['reminder'];
+      $invoice_amount = $_REQUEST['invoice_amount'];
+			$invoice_num = $_REQUEST['invoice_num'];
+			$currency = $_REQUEST['currency'];
+			$paid = $_REQUEST['paid'];
+			$paid_date = $_REQUEST['paid_date'];
 		          
 
 
                $supply_date=str_replace("/", "-", $date_of_supply); 
                $supply_date=date("Y-m-d",strtotime($supply_date)); 
                
-               if($due_date!='')
-               {
                $date_due=str_replace("/", "-", $due_date);
                $date_due=date("Y-m-d",strtotime($date_due));
-               }
-               else
-               {
-                $date_due='';
-               }
-                   
 
 			 $directory_name = '../LyndonMarineImages/BunkerSupplyDocuments/'.$vessel_name; 
 

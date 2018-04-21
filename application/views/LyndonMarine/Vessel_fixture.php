@@ -9,8 +9,8 @@ class Vessel_fixture extends CI_Controller
 		$this->load->model('Fixture_model');
 		$config = array();
 		
-		    $config["base_url"] = base_url() . "index.php/Vessel_fixture/index/$vessel_id";
-		    $config['per_page'] = '10';
+		$config["base_url"] = base_url() . "index.php/Vessel_fixture/index/$vessel_id";
+		$config['per_page'] = '10';
             $config['num_links'] = '5';
 			$config['full_tag_open'] = '<ul class="pagination">';
 			$config['full_tag_close'] = '</ul>';

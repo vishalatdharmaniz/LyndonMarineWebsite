@@ -50,7 +50,7 @@ include'includes/header_login.php';
                     <label class="control-label">Upload Plan </label>
                     <input type="file" id="document1-chosen" name="upload_plan1" accept="pdf/*"><br>
                   </div>
-                  <div class="col-md-8" id="document_view">
+                  <div class="col-md-8">
                     <br>
                     <?php if(!empty($vessel_plans['upload_plan1'])) {?>
                     
@@ -74,7 +74,7 @@ include'includes/header_login.php';
                     <label class="control-label">Upload Plan</label>
                     <input type="file" id="document2-chosen" name="upload_plan2" accept="pdf/*"><br>
                   </div>
-                  <div class="col-md-8" id="document_view">
+                  <div class="col-md-8">
                     <br>
                      <?php if(!empty($vessel_plans['upload_plan2'])) {?>
                       <span  id = "show-document2">

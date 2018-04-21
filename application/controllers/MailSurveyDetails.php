@@ -25,7 +25,6 @@ class MailSurveyDetails extends CI_Controller {
         $range_from = $survey_data[0]["range_from"];
         $range_from=date("d-m-Y",strtotime($range_from));
 
-
         $range_to = $survey_data[0]["range_to"];
         $range_to=date("d-m-Y",strtotime($range_to));
 
@@ -93,6 +92,8 @@ class MailSurveyDetails extends CI_Controller {
 
     public function multiple($checkbox_ids, $email_of_recepient)
     {   
+        $this->load->model('Survey_model');
+        $this->load->model('Vessel_model');
         
         $return_url_after_search_and_mail = $this->agent->referrer();
         $checkbox_ids_array = explode("@", $checkbox_ids);  
@@ -102,139 +103,124 @@ class MailSurveyDetails extends CI_Controller {
             $checkbox_id = str_replace("checkbox","", $checkbox_id);
             array_push($checkbox_ids, $checkbox_id);
         }
-     
-         $this->load->model('Survey_model');
-         $this->load->model('Vessel_model');
+         $id= $checkbox_ids[0]; 
+         $survey_data=$this->Survey_model->get_survey_details_by_id($id);
+         $data['survey_data']=$survey_data;
+
+         /*$vessel_id = $survey_data[0]["vessel_id"];
+         $vessel_data = $this->Vessel_model->get_vessel_details_by_id($vessel_id);
+         $vessel_name=$vessel_data[0]['vessel_name'];
+         $imo=$vessel_data[0]['imo_number'];*/
+
+          foreach ($checkbox_ids as $id)
+        {
+              $survey_data=$this->Survey_model->get_survey_details_by_id($id);
+         $data['survey_data']=$survey_data;
+
+        $survey_no = $survey_data[0]["survey_no"];
+
+        $last_date = $survey_data[0]["last_survey_date"];
+        $last_date=date("d-m-Y",strtotime($last_date));
+
+        $post_date = $survey_data[0]["postponed_date"];
+        $post_date=date("d-m-Y",strtotime($post_date));
+
+        $due_date = $survey_data[0]["due_date"];
+        $due_date=date("d-m-Y",strtotime($due_date));
+
+         $range_from = $survey_data[0]["range_from"];
+         $range_to = $survey_data[0]["range_to"];
         
-            $id= $checkbox_ids[0]; 
-           /* $survey_data=$this->Survey_model->get_survey_details_by_id($id);
-            $data['survey_data']=$survey_data;*/
-            $txt = "Good Day <br><br> Please find here list of requested surveys :<br><br><br>";
-            foreach ($checkbox_ids as $id)
-            {
-                 $survey_data=$this->Survey_model->get_survey_details_by_id($id);
-                 $data['survey_data']=$survey_data;
-
-                 $vessel_id = $survey_data[0]["vessel_id"];
-                 $vessel_data = $this->Vessel_model->get_vessel_details_by_id($vessel_id);
-                 $vessel_name=$vessel_data[0]['vessel_name'];
-                 $imo=$vessel_data[0]['imo_number'];
-
-                $survey_no = $survey_data[0]["survey_no"];
-
-                $last_date = $survey_data[0]["last_survey_date"];
-                $last_date=date("d-m-Y",strtotime($last_date));
-
-                $post_date = $survey_data[0]["postponed_date"]; 
-                $post_date=str_replace('00:00:00', '', $post_date);
-                if($post_date != "0000-00-00 " )
-                {
-
-                $post_date=$survey_data[0]["postponed_date"];
-                 $post_date=date("d-m-Y",strtotime($post_date));
-
-
-                }
-                else
-                {
-                    $post_date = "N-A"; 
-                }
-
-                $due_date = $survey_data[0]["due_date"];
-                $due_date=date("d-m-Y",strtotime($due_date));
-
-                 $range_from = $survey_data[0]["range_from"];
-                 $range_to = $survey_data[0]["range_to"];
-                 
-                if($range_from!="")
-                {
-               
-                $range_from=date("d-m-Y",strtotime($range_from));
-                }
-                else{
-                    $range_from="N-A";
-                }
-                if($range_to!="")
-                {
-                
-                $range_to=date("d-m-Y",strtotime($range_to));
-                }
-                else
-                {
-                    $range_to="N-A";
-                }
-                if($reminder_due!="0")
-                {
-                $reminder_due = $survey_data[0]["reminder_due"];
-                } 
-                else
-                {
-                    $reminder_due="N-A";
-                }
-                if($reminder_range!="0")
-                {
-                $reminder_range = $survey_data[0]["reminder_range"];        
-                 }
-                 else
-                {
-                    $reminder_range="N-A";
-                }
-
-                $txt .= "Survey Number :- ".$survey_no."<br>";   
-                $txt .= "Last Date Of Survey :- ".$last_date."<br>";
-                $txt .= "Postponed Date :- ".$post_date."<br>";
-                $txt .= "Due Date :- ".$due_date."<br>";
-                $txt .= "Range From :- ".$range_from."<br>";
-                $txt .= "Range To :- ".$range_to."<br>";
-                $txt .= "Comments :- ".$comments."<br>";
-                $txt .= "Reminder Due :- ".$reminder_due."<br>";
-                $txt .= "Reminder Range :- ".$reminder_range."<br>"; /*var_dump($comments); die();*/
-                $txt .= "<hr>";
-                $txt .= "<hr>";
-            
-            }
+         
+        if($range_from!="")
+        {
+       
+        $range_from=date("d-m-Y",strtotime($range_from));
+        }
+        else{
+            $range_from="N-A";
+        }
+        if($range_to!="")
+        {
+        
+        $range_to=date("d-m-Y",strtotime($range_to));
+        }
+        else
+        {
+            $range_to="N-A";
+        }
+        if($reminder_due!="0" OR $reminder_due!="")
+        {
+        $reminder_due = $survey_data[0]["reminder_due"];
+        } 
+        else
+        {
+            $reminder_due="N-A";
+        }
+        if($reminder_range!="0" OR $reminder_range!="")
+        {
+        $reminder_range = $survey_data[0]["reminder_range"];        
+         }
+         else
+        {
+            $reminder_range="N-A";
+        }
+            $txt = "Survey Number :- ".$survey_no."<br>"; 
+            $txt .= "Last Date Of Survey :- ".$last_date."<br>";
+            $txt .= "Postponed Date :- ".$post_date."<br>";
+            $txt .= "Due Date :- ".$due_date."<br>";
+            $txt .= "Range From :- ".$range_from."<br>";
+            $txt .= "Range To :- ".$range_to."<br>";
+            $txt .= "Comments :- ".$comments."<br>";
+            $txt .= "Reminder Due :- ".$reminder_due."<br>";
+            $txt .= "Reminder Range :- ".$reminder_range."<br>"; /*var_dump($comments); die();*/
+            $txt .= "<hr>";
+            $txt .= "<hr>";
            
-             $txt .= "Best Regards<br>";
-             $to = "$email_of_recepient";
-            $subject = "Survey Details For : $vessel_name";
+       
+        
+        }
+         $txt .= "Best Regards<br>";
+        $to = "$email_of_recepient";
+        $subject = "Survey Details For : $vessel_name";
 
-            $headers  = 'MIME-Version: 1.0' . "\r\n";
-            $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-            $headers .= "From: office@lyndonmarine.com";
-            $mail=mail($to,$subject,$txt,$headers);
-/* var_dump($mail);*/
-                
-            $base_url = BASE_URL;
-            header("Location: $return_url_after_search_and_mail");
+        $headers  = 'MIME-Version: 1.0' . "\r\n";
+        $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+        $headers .= "From: office@lyndonmarine.com";
+        
+        mail($to,$subject,$txt,$headers);
+        
+        $base_url = BASE_URL;
+        header("Location: $return_url_after_search_and_mail");
     }
 
-	public function send_mail($vessel_id,$email_of_recepient)
-    {
+    
+    public function send_mail($vessel_id,$email_of_recepient){
         $this->load->model('Survey_model');
-		$this->load->model('Vessel_model');
-		$survey_data = $this->Survey_model->get_details_by_vessel_id($vessel_id);
-		 $txt = "Good Day <br><br> Please find here list of requested surveys :<br><br><br>";
+        $this->load->model('Vessel_model');
+        $survey_data = $this->Survey_model->get_details_by_vessel_id($vessel_id);
+         $txt = "Good Day <br><br> Please find here list of plans requested:<br><br><br>";
         $vessel_data = $this->Vessel_model->get_vessel_details_by_id($vessel_id);
         $vessel_name=$vessel_data[0]['vessel_name'];
-		foreach($survey_data as $key => $value)
+        foreach($survey_data as $key => $value)
         {
 
-			$survey_no = $value["survey_no"];
-			$last_date = $value["last_survey_date"];
-			$last_date=date("d-m-Y",strtotime($last_date));
-	
-			$post_date = $value["postponed_date"];
+            $survey_no = $value["survey_no"];
+            $last_date = $value["last_survey_date"];
+            $last_date=date("d-m-Y",strtotime($last_date));
+    
+            $post_date = $value["postponed_date"];
             if($post_date!='')
             {
-			$post_date=date("d-m-Y",strtotime($post_date));
+            $post_date=date("d-m-Y",strtotime($post_date));
             }
             else
             {
                 $post_date= 'N-A';
             }
-	
-			$due_date = $value["due_date"];
-			if($due_date!='')
+    
+            $due_date = $value["due_date"];
+            if($due_date!='')
             {
             $due_date=date("d-m-Y",strtotime($due_date));  
             }
@@ -242,52 +228,38 @@ class MailSurveyDetails extends CI_Controller {
             {
                 $due_date= 'N-A';
             }
-			$range_from = $value["range_from"];  
-            if($range_from!='') 
-                {
-                    $range_from=date("d-m-Y",strtotime($range_from));
-                }
-			else
-            {
-                $range_from='N-A';
-            }
-	
-			$range_to = $value["range_to"];
-			 if($range_to!='') 
-                {
-                    $range_to=date("d-m-Y",strtotime($range_to));
-                }
-            else
-            {
-                $range_to='N-A';
-            }
-	
-			$comments = $value["comments"];
-			$reminder_due = $value["reminder_due"]; 
-			$reminder_range = $value["reminder_range"];
-			
-			$to = "$email_of_recepient";
-			$subject = "$certificate_name";
-			 $txt .= "Survey Number :- ".$survey_no."<br>"; 
-			$txt .= "Last Date Of Survey :- ".$last_date."<br>";
-			$txt .= "Postponed Date :- ".$post_date."<br>";
-			$txt .= "Due Date :- ".$due_date."<br>";
-			$txt .= "Range From :- ".$range_from."<br>";
-			$txt .= "Range To :- ".$range_to."<br>";
-			$txt .= "Comments :- ".$comments."<br>";
-			$txt .= "Reminder Due :- ".$reminder_due."<br>";
-			$txt .= "Reminder Range :- ".$reminder_range."<br>";
-			$txt .= "<hr>";
-			$txt .= "<hr>";
-		}
-		$txt .= "Best Regards<br>";
+            $range_from = $value["range_from"];
+            $range_from=date("d-m-Y",strtotime($range_from));
+    
+            $range_to = $value["range_to"];
+            $range_to=date("d-m-Y",strtotime($range_to));
+    
+            $comments = $value["comments"];
+            $reminder_due = $value["reminder_due"]; 
+            $reminder_range = $value["reminder_range"];
+            
+            $to = "$email_of_recepient";
+            $subject = "$certificate_name";
+             $txt .= "Survey Number :- ".$survey_no."<br>"; 
+                $txt .= "Last Date Of Survey :- ".$last_date."<br>";
+                $txt .= "Postponed Date :- ".$post_date."<br>";
+                $txt .= "Due Date :- ".$due_date."<br>";
+                $txt .= "Range From :- ".$range_from."<br>";
+                $txt .= "Range To :- ".$range_to."<br>";
+                $txt .= "Comments :- ".$comments."<br>";
+                $txt .= "Reminder Due :- ".$reminder_due."<br>";
+                $txt .= "Reminder Range :- ".$reminder_range."<br>";
+                $txt .= "<hr>";
+                $txt .= "<hr>";
+        }
+        $txt .= "Best Regards<br>";
         $subject="Survey Details for : ".$vessel_name ;
-		$headers  = 'MIME-Version: 1.0' . "\r\n";
+        $headers  = 'MIME-Version: 1.0' . "\r\n";
         $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
         $headers .= "From: office@lyndonmarine.com";
         
         mail($to,$subject,$txt,$headers);
-		redirect("VesselSurvey/index/$vessel_id");
-		//index.php/VesselSurvey/index/102
-	}   
+        redirect("VesselSurvey/index/$vessel_id");
+        //index.php/VesselSurvey/index/102
+    }   
 }

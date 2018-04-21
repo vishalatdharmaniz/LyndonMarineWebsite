@@ -34,31 +34,18 @@ public function index($crew_id)
 
         $base_url_website = CREW_DETAILS_BASE_URL ; 
                
-                    for($i=1;$i<=20;$i++)
-                   {
-                        if ($_REQUEST['document'.$i.'-removed'] == '1')
-                        {
-                            $document[$i] = '';
-                        }
-                        else
-                           {
-                        
-                            if ($_FILES["document".$i]["name"] != NULL)
-                                 {
-                                     $target_file = $directory_name.'/'.  basename($_FILES['document'.$i]['name']); 
-                                     move_uploaded_file($_FILES['document'. $i]['tmp_name'], $target_file);
-                                     $document[$i] = $base_url_website.'/'.$vessel_name.'/'.$_FILES["document".$i]["name"];  
-
-                                 }
-                             else
-                                 {
-                                     $document[$i] =$crew_data[0]["document".$i];
-                                 }
-                            }     
-
-                    }
+                    if ($_FILES["document"]["name"] != NULL)
+                     {
+                         $target_file = $directory_name.'/'.basename($_FILES['document']['name']);
+                         move_uploaded_file($_FILES['document']['tmp_name'], $target_file);
+                         $document = $base_url_website.'/'.$vessel_name.'/'.$_FILES["document"]["name"]; 
+                     }
+                    else
+                     {
+                         $document=$crew_data[0]["document"]; 
+                     }
              
-         $var= $this->CrewDetails_model->update_crew_details($crew_id,$name,$tourist_p_num,$seaman_p_num,$remark,$rank,$salary,$join_date,$nationality,$document[1],$document[2],$document[3],$document[4],$document[5],$document[6],$document[7],$document[8],$document[9],$document[10],$document[11],$document[12],$document[13],$document[14],$document[15],$document[16],$document[17],$document[18],$document[19],$document[20]); 
+         $var= $this->CrewDetails_model->update_crew_details($crew_id,$name,$tourist_p_num,$seaman_p_num,$remark,$rank,$salary,$join_date,$nationality,$document); 
 
 			$base_url = BASE_URL;
 			header("Location: $base_url/index.php/CrewDetails/index/$vessel_id");

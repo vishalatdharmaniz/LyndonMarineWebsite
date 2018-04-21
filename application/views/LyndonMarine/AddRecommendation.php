@@ -51,31 +51,31 @@ include'includes/header_login.php';
                 <input type="text" name="description" placeholder="Description" class="form-control-text">
               </div>
             </div>
-           <div class="row">
+            <div class="row">
               <div class="form-group col-md-12">
-                  <p>Is it rectified?</p>
+                  <p>Is it get rectified</p>
                 <label class="control-label" >Yes
-                <input type="radio" name="rectified_status" id="chkYes" value="Yes"  required></label>
+                <input type="radio" name="rectified_status" value="Yes"  required></label>
                  <label class="control-label">No
-                <input type="radio" name="rectified_status" id="chkNo" value="No" required></label>
+                <input type="radio" name="rectified_status" value="No" required></label>
+               
               </div>
+              <p id="demo"></p>
             </div>
-            <div id="hidden_div" style="display: none;">
-              <div class="row" >
-                <div class="form-group col-md-6">
-                  <label class="control-label">Rectifed  Date</label>
-                  <input type="text" id="datepicker3" name="rectified_date" placeholder="Rectifed  Date"  class="form-control-text">
-                </div>
-                <div class="form-group col-md-6">
-                  <label class="control-label">Rectifed  By </label>
-                  <input type="text" id="rectified_by" name="rectified_by"  placeholder="Rectifed  By " class="form-control-text">
-                </div>
+            <div class="row">
+              <div class="form-group col-md-6">
+                <label class="control-label">Rectifed  Date</label>
+                <input type="text" id="datepicker3" onclick="check_status()" name="rectified_date" placeholder="Rectifed  Date"  class="form-control-text">
+              </div>
+              <div class="form-group col-md-6">
+                <label class="control-label">Rectifed  By </label>
+                <input type="text" id="rectified_by" name="rectified_by" onclick="check_status()" placeholder="Rectifed  By " class="form-control-text">
               </div>
             </div>
             <div class="row">
               <div class="form-group col-md-12">
                 <label class="control-label">Reminder (days)</label>
-                <input type="text" name="reminder" placeholder="Reminder 1 (Days)" class="form-control-text">
+                <input type="text" name="reminder" required placeholder="Reminder 1 (Days)" class="form-control-text">
               </div>
              
             </div>
@@ -116,14 +116,30 @@ include'includes/footer.php';
   } );
 
 
-  //function for displaying hidden div which contains rectified date and rectified by when clicked on yes it willappear otherwise it will remain hidden.
-    $(function () {
-        $("input[name='rectified_status']").click(function () {
-            if ($("#chkYes").is(":checked")) {
-                $("#hidden_div").show();
-            } else {
-                $("#hidden_div").hide();
-            }
-        });
-    });
+  function check_status()
+  {
+    var radios = document.getElementsByName('rectified_status');
+
+    for (var i = 0, length = radios.length; i < length; i++)
+    {
+     if (radios[i].checked)
+     {
+     // alert(radios[i].value); 
+       var $status = radios[i].value; 
+      
+       if($status != 'Yes')
+       {   
+       document.getElementById('datepicker3').required="required"; 
+      //document.getElementById('rectified_by').setAttribute("required", "false"); 
+       }
+       else
+       {
+         document.getElementById('datepicker3').required = false;
+       }
+       
+     }
+    }
+    
+
+  }
 </script>

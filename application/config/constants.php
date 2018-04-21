@@ -223,21 +223,6 @@ else
     define('SOA_DETAILS_BASE_URL', 'http://root.lyndonmarine.com/LyndonMarineImages/SoaDocuments');
 }
 
-/*Old Documents Base Url */
-
-if (ENVIRONMENT == 'development')
-{
-    define('OLD_DOCUMENT_BASE_URL', 'http://localhost/LyndonMarineImages/OldDocuments/');
-}
-elseif(ENVIRONMENT == 'production')
-{
-    define('OLD_DOCUMENT_BASE_URL', 'http://dharmani.com/LyndonMarineImages/OldDocuments/');
-}
-else
-{
-    define('OLD_DOCUMENT_BASE_URL', 'http://root.lyndonmarine.com/LyndonMarineImages/OldDocuments/');
-}
-
 /* Target Dir */
 
 

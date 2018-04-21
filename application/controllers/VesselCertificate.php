@@ -257,22 +257,6 @@ class VesselCertificate extends CI_Controller
             $data['vessel_id'] = $vessel_id;  
             $this->load->view('LyndonMarine/vessel_certificate',$data);
     }   
-     public function Show_all($vessel_id)
-  {
-    
-    $this->load->model('Certificate_model');
-    $this->load->model('Vessel_model');
-
-    $certificate_data=$this->Certificate_model->get_certificates_by_vessel_id($vessel_id);
-     $data['certificate_data']=$certificate_data;
-     $vessel_data = $this->Vessel_model->get_vessel_details_by_id($vessel_id);
-     $data['vessel_data']= $vessel_data;
-      $data['links'] = "";
-     $data['vessel_id'] = $vessel_id; 
-     $data['searchtype'] = '';
-     $data['searchname'] = '';
-     $this->load->view('LyndonMarine/vessel_certificate',$data);
-  }  
 }
 
 ?>

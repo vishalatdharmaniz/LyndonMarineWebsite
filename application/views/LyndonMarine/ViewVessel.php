@@ -11,7 +11,7 @@ include'includes/header_login.php';
       </div>
       <div class="col-md-offset-1 col-md-6">
         <div class="page-heading">
-          <h2><?php echo $vessels['vessel_name']; ?> Particulars</h2>
+          <h2><?php echo $vessels['vessel_name']; ?> Particular</h2>
         </div>
       </div>
       <?php } ?>

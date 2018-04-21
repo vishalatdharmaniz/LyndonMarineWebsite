@@ -19,7 +19,7 @@ include'includes/header_login.php';
         </div>
       </div>
        <div class="col-md-2">
-        <div class="main-edit-add"> <a class="btn-blue" href="<?php echo base_url();?>index.php/EditSoa/index/<?php echo $soa_id; ?>/<?php echo $vessel_id; ?>">Edit</a> </div>       
+        <div class="main-edit-add"> <a class="btn-blue" href="<?php echo base_url();?>index.php/EditSoa/index/<?php echo $vessel_id; ?>">Edit</a> </div>       
       </div>
     </div>
   </div>
@@ -36,30 +36,24 @@ include'includes/header_login.php';
                 <?php
                 foreach ($soa_data as $data)
                  {
-                 $soa_id= $data['soa_id']; 
-                 $soa_num=$data['soa_num'];
-                 $from_date=$data['from_date'];
-                 $to_date=$data['to_date'];
-                 $currency=$data['currency'];
-                 $document=$data['document']; 
+                $soa_num=$data['soa_num'];
+                $soa_date=$data['soa_date'];
+                $currency=$data['currency'];
+                $document=$data['document'];
                 }
                 ?>
                 <tr>
                   <th width="40%">SOA No.</th>
-                  <th width="60%"><?php if($soa_num!=''){echo $soa_num;}else{echo "N/A";} ?></th>
+                  <th width="60%"><?php echo $soa_num; ?></th>
                 
                 </tr>
                 <tr>
-                  <th scope="row">From Date</th>
-                  <td><?php  if($from_date!=''){echo $from_date; }else{echo "N/A";}?></td>
-                </tr>
-                <tr>
-                  <th scope="row">To Date</th>
-                  <td><?php  if($to_date!=''){echo $to_date; }else{echo "N/A";} ?></td>
+                  <th scope="row">Date</th>
+                  <td><?php echo $soa_date; ?></td>
                 </tr>
                 <tr>
                   <th scope="row">Currency</th>
-                  <td><?php  if($currency!=''){echo $currency; }else{echo "N/A";}?></td>  
+                  <td><?php echo $currency; ?></td>  
                 </tr>
               </tbody>  
           </table>
@@ -69,22 +63,7 @@ include'includes/header_login.php';
                 	<ul>
                     	<li> 
                       <?php if(!empty($document)) {?>
-                      <a href="<?php echo $document; ?>" target="_blank">
-                        <?php 
-                        $matches = preg_match('/^.jpg/', substr($document,3), $matches, PREG_OFFSET_CAPTURE);
-                        if($matches==0)
-                        {
-                          echo "<img src='$document;' height='100px' width='100px'> " ;
-                        }
-                        elseif ( $matches = preg_match('/^.png/', substr($document,3), $matches, PREG_OFFSET_CAPTURE)) {
-                         echo "<img src='$document;'  height='100px' width='100px'> " ;
-                        }
-                        else
-                        {
-                         ?>
-                        <img src="<?php echo base_url(); ?>img/icon_for_documents.PNG" class="img-responsive"> 
-                        <?php } ?>
-                         </a><br>
+                      <a href="<?php echo $document; ?>" target="_blank"><img src="http://via.placeholder.com/100x100" class="img-responsive"> </a><br>
                       <span><?php $value = explode("/",$document);echo substr($value[6],0,20); ?></span>
                       <?php } 
                       else { ?>

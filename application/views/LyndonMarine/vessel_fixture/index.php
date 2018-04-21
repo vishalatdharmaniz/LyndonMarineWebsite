@@ -29,14 +29,14 @@ if(!isset($search_critria)){
   <div class="container">
       <div class="row"> 
         
-        <div class="col-md-2" style="padding-top:27px;">
+        <div class="col-md-2">
             <div class="main-edit-add-left"> 
               <a class="btn-blue" href="<?php echo base_url();?>index.php/FleetDetails/index/<?php echo $vessel_id; ?>">
               Go Back
               </a>
           </div>       
         </div>
-      <div class="col-md-6 text-center" style="padding-top:27px;">
+      <div class="col-md-6 text-center">
 
     <form class="form-inline" action="<?php echo base_url()."index.php/Vessel_fixture/search/$vessel_id" ?>" method="post">
     <div class="input-group">
@@ -46,7 +46,7 @@ if(!isset($search_critria)){
 		  <div class="input-group-btn"> <a class="btn btn-default text-muted" href="<?php echo base_url();?>index.php/Vessel_fixture/index/<?php echo $vessel_id;?>" title="Clear" onclick="reset()"><i class="glyphicon glyphicon-remove"></i> </a>
   		   <button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown"><span class="caret"></span></button>
             
-      <ul class="dropdown-menu" style="margin:6px 0px 16px -213px;">
+      <ul class="dropdown-menu">
 
              <li>
               <div class="col-md-12">
@@ -94,7 +94,7 @@ if(!isset($search_critria)){
 			
 			<li>
             <div class="form-group col-md-12 text-center" style="margin-bottom:15px;margin-top:12px;">
-                <button type="submit" class="btn btn-info" style="font-size:15px;">Search </button>
+                <button type="submit" class="btn btn-info">Search </button>
 				</div>
             </li>
 			 
@@ -111,15 +111,15 @@ if(!isset($search_critria)){
       <div class="col-md-4">
         <div class="list_right">
         <ul class="main-edit-add">
-             <li style="padding-top:15px;">
+             <li>
                 <a class="btn-blue" href="<?php echo base_url();?>index.php/AddFixture/index/<?php echo $vessel_id; ?>">Add New Fixture 
                 </a>
              </li>
-             <li style="padding-top:15px;" >
-               <a class="btn-blue" href="<?php echo base_url();?>index.php/Vessel_fixture/index/<?php echo $vessel_id; ?>">All Fixtures
+             <li>
+               <a class="btn-blue" href="<?php echo base_url();?>index.php/Vessel_fixture/index/<?php echo $vessel_id; ?>">All Fixture
                </a>
              </li>
-              <li style="padding-top:15px;">
+              <li>
                 <button class="btn-blue" onclick="mail_selected_vessels()" >Mail Document</button>
               </li>
 			

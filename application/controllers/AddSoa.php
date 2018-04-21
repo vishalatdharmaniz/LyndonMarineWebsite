@@ -10,8 +10,7 @@ public function index($vessel_id)
 		$vessel_name=$vessel_data[0]['vessel_name'];
 
 		$soa_num=$_REQUEST['soa_num'];
-    $from_date=$_REQUEST['from_date'];
-		$to_date=$_REQUEST['to_date'];
+		$date=$_REQUEST['soa_date'];
 		$currency=$_REQUEST['currency'];
 		
 	$directory_name = '../LyndonMarineImages/SoaDocuments/'.$vessel_name; 
@@ -46,8 +45,7 @@ public function index($vessel_id)
                $data = array(
                				      'vessel_id'=>$vessel_id,
                              'soa_num' =>$soa_num , 
-                             'from_date' =>$from_date , 
-               	             'to_date' =>$to_date , 
+               	             'soa_date' =>$date , 
                	             'currency' =>$currency ,
                	             'document' =>$document , 
                             );

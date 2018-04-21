@@ -4,13 +4,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class EditSoa extends CI_Controller
 {
 
-public function index($soa_id,$vessel_id)
+public function index($vessel_id)
   {
     $this->load->Model('Soa_model');
-    $soa_data=$this->Soa_model->get_soa_details_by_soa_id($soa_id);
+    $soa_data=$this->Soa_model->get_soa_details_by_vessel_id($vessel_id);
      
+     $vessel_id=$soa_data[0]['vessel_id'];
       $data['soa_data'] = $soa_data;
-      $data['soa_id'] = $soa_id;
       $data['vessel_id'] = $vessel_id;
    $this->load->view('LyndonMarine/EditSoa',$data);
     }
@@ -25,8 +25,7 @@ public function edit_soa($soa_id)
 		$vessel_name=$vessel_data[0]['vessel_name'];
 
 		$soa_num=$_REQUEST['soa_num'];
-    $from_date=$_REQUEST['from_date'];
-		$to_date=$_REQUEST['to_date'];
+		$date=$_REQUEST['date'];
 		$currency=$_REQUEST['currency'];
 		
 	$directory_name = '../LyndonMarineImages/SoaDocuments/'.$vessel_name; 
@@ -42,26 +41,22 @@ public function edit_soa($soa_id)
                  /* Upload Crew details */
 
         $base_url_website = SOA_DETAILS_BASE_URL ; 
-               if ($_REQUEST['document1-removed'] == '1')
-                {
-                    $document = '';
-                }
-                else
-                  {
-                    if ($_FILES["document"]["name"] != NULL)
-                       {
-                           $target_file = $directory_name.'/'.  basename($_FILES['document']['name']); 
-                           move_uploaded_file($_FILES['document'. $i]['tmp_name'], $target_file);
-                           $document = $base_url_website.'/'.$vessel_name.'/'.$_FILES["document"]["name"];  
+       
+     
+        if ($_FILES["document"]["name"] != NULL)
+             {
+                 $target_file = $directory_name.'/'.  basename($_FILES['document']['name']); 
+                 move_uploaded_file($_FILES['document'. $i]['tmp_name'], $target_file);
+                 $document = $base_url_website.'/'.$vessel_name.'/'.$_FILES["document"]["name"];  
 
-                       }
-                   else
-                       {
-                           $document=$soa_data[0]['document']; 
-                       }   
-                  }
+             }
+         else
+             {
+                 $document=""; 
+             }   
+
                
-         $var= $this->Soa_model->update_soa_details($soa_id,$soa_num,$from_date,$to_date,$currency,$document); 
+         $var= $this->Soa_model->update_soa_details($soa_id,$soa_num,$date,$currency,$document); 
 
 			$base_url = BASE_URL;
 			header("Location: $base_url/index.php/VesselSoa/index/$vessel_id");

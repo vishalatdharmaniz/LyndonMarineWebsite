@@ -401,7 +401,7 @@ class Vessel_fixture extends CI_Controller
 				}
 
 				$result = $this->Fixture_model->get_data('', $match, 'OR', "like", '', $config['per_page'], $uri_segment,"","",$and_match_value,$start_date,$last_date);
-			//echo $this->db->last_query();die;
+			
 			$abc = count($this->Fixture_model->get_data('', $match, 'OR', "like", '', "", "","","",$and_match_value,$start_date,$last_date));	
 						}else{
 

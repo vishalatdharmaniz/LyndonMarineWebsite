@@ -35,35 +35,9 @@ class SignUp extends CI_Controller
 			$email = $this->input->post('email');
 			$password = $this->input->post('password');
 			
-			     $directory_name = '../LyndonMarineImages/ProfileImages';
-
-			if(!is_dir($directory_name))
-			    {
-			        mkdir($directory_name,0777,true);
-			    }	
-			
-			
-					 /* Upload Documents */
-			$target_dir = TARGET_DIR;
-
-			$base_url_website = PROFILE_IMAGES_BASE_URL;
-
-		          if ($_FILES["profile_pic"]["name"] != NULL)
-		            {	
-		                $target_file = $directory_name.'/'. basename($_FILES["profile_pic"]["name"]);
-		                move_uploaded_file($_FILES['profile_pic']['tmp_name'], $target_file);
-		                $profile_pic = $base_url_website.$_FILES["profile_pic"]["name"];      
-		            }
-		          else
-		            {
-		                $profile_pic = '';
-		            }
-	       
-			$this->load->model('admin/Company_model');
-		//	$this->load->model('admin/Home_model');
+			$this->load->model('Home_model');
 		
 			$data = array(
-				'image' => $profile_pic,
 				'name' => $name,
 				'organization' => $organization,
 				'address' => $address,
@@ -73,18 +47,17 @@ class SignUp extends CI_Controller
 				'account_type' => $account_type,
 				'note' => $note,
 				'email' => $email,
-				'password' => $password,
-				'role' => 1
+				'password' => $password
 				
 			);
 			//print_r($data);
 			//$this->Home_model->insert_user($data);
 			
-			$email_check= $this->Company_model->check_email($data['email']);
+			$email_check= $this->Home_model->check_email($data['email']);
 			if($email_check){
 				if (filter_var($data['email'], FILTER_VALIDATE_EMAIL))
 				{
-				$this->Company_model->add_company($data);
+				$this->Home_model->insert_user($data);
 
 				$message = "Your request for signup has been sent to admin, We will contact you soon";
 				$data["message"] = $message;

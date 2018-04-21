@@ -76,7 +76,6 @@ class CrewDetails extends CI_Controller
 		$crew_details=$this->CrewDetails_model->get_crew_details_by_crew_id($crew_id);
 		$data['crew_details']=$crew_details;
 		$vessel_id=$crew_details[0]['vessel_id'] ; 
-        $data['crew_id'] = $crew_id;
 		$data['vessel_id'] = $vessel_id;
         $this->load->view('LyndonMarine/ViewCrewDetails',$data);
 	}
