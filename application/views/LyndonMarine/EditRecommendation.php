@@ -84,11 +84,11 @@ include'includes/header_login.php';
             <div class="row">
               <div class="form-group col-md-6">
                 <label class="control-label">Rectifed  Date</label>
-                <input type="text" id="datepicker3" name="rectified_date" value="<?php echo $rectified_date; ?>" class="form-control-text">
+                <input type="text" id="datepicker3" name="rectified_date" value="<?php echo $rectified_date; ?>" <?php  echo (($rectified_status == 'Yes') ? "required" : "" ); ?> class="form-control-text">
               </div>
               <div class="form-group col-md-6">
                 <label class="control-label">Rectifed  By </label>
-                <input type="text" name="rectified_by" value="<?php echo $rectified_by; ?>" class="form-control-text">
+                <input type="text" name="rectified_by" value="<?php echo $rectified_by; ?>" <?php  echo (($rectified_status == 'Yes') ? "required" : "" ); ?> class="form-control-text">
               </div>
             </div>
             <div class="row">
@@ -104,7 +104,7 @@ include'includes/header_login.php';
                     <label class="control-label">Upload Document (Max Size 64mb) </label>
                     <input type="file" id="document1-chosen" name="image1" accept="png, jpg/*"><br>
                   </div>
-                  <div class="col-md-8">
+                  <div class="col-md-8" id="document_view">
                     <br>
                     <?php if(!empty($image1 )) {?>
                     
@@ -129,11 +129,11 @@ include'includes/header_login.php';
                     <label class="control-label">Upload Document (Max Size 64mb) </label>
                     <input type="file" id="document2-chosen"  name="image2" accept="png, jpg/*"><br>
                   </div>
-                  <div class="col-md-8">
+                  <div class="col-md-8" id="document_view">
                     <br>
                     <?php if(!empty($image2)) {?>
                     
-                      <span id = "show-document2">
+                      <span id = "show-document2" >
                       <a href="<?php echo $image2 ; ?>" class="btn btn-primary"> View</a>&nbsp;
                        <?php $value = explode("/",$image2);
                         echo substr($value[6],0,25); ?>   
@@ -153,7 +153,7 @@ include'includes/header_login.php';
                     <label class="control-label">Upload Document (Max Size 64mb) </label>
                     <input type="file" id="document3-chosen" name="image3" accept="png, jpg/*"><br>
                   </div>
-                  <div class="col-md-8">
+                  <div class="col-md-8" id="document_view">
                     <br>
                     <?php if(!empty($image3)) {?>
                     

@@ -7,9 +7,12 @@ include'includes/header_login.php';
     <div class="row">
       <div class="col-md-offset-3 col-md-6">
         <div class="page-heading">
-          <h2>Vessel Plans for <?php foreach ($vessel_data as $vesselname) {
-            echo $vesselname['vessel_name'];
-          } ?></h2>
+          <h2>Vessel Old Documents for  
+            <?php foreach ($vessel_data as $data) 
+                  {
+                    echo $data['vessel_name'];
+                  } 
+               ?> </h2>
         </div>
       </div>
     </div>
@@ -23,30 +26,36 @@ include'includes/header_login.php';
           <div class="main-edit-add-left"> <a class="btn-blue" href="<?php echo base_url();?>index.php/FleetDetails/index/<?php echo $vessel_id; ?>">Go Back</a> </div>       
         </div>
       
-      <div class="col-md-4">
+    <!--   <div class="col-md-4">
       <div class="input-group">
-        <form onsubmit="searchEnter(document.getElementById('search_plan').value); return false;">
-          <input type="text" class="form-control-text" placeholder="Search" name="search" id="search_plan">
+        <form onsubmit="searchEnter(document.getElementById('search_document').value); return false;">
+          <input type="text" class="form-control-text" placeholder="Search" name="search" id="search_document">
         </form>
           <span class="input-group-btn">
             <a class="btn btn-default text-muted" href="#" title="Clear" onclick="reset()"><i class="glyphicon glyphicon-remove"></i> </a>
-            <button onclick="search(document.getElementById('search_plan').value)" type="button" class="btn btn-info">
+            <button onclick="search(document.getElementById('search_document').value)" type="button" class="btn btn-info">
               <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
             </button>
           </span>
         </div>
       </div>
-
-      
+      -->
+      <div class="col-md-4">
+        <!-- For spacing it is required or search implementation. -->
+      </div>
       <div class="col-md-5">
         <div class="list_right">
-          <ul class="main-edit-add"> 
-           <li><a class="btn-blue" href="<?php echo base_url(); ?>index.php/AddPlansScreen/index/<?php echo $vessel_id;?>">Add Plans</a></li>
-           <li> <a class="btn-blue" href="<?php echo base_url(); ?>index.php/VesselPlans/index/<?php echo $vessel_id; ?>">All Plans</a></li> 
-            <li><button class="btn-blue" onclick="mail_selected_vessels()" >Mail Document</button></li>
+          <ul class="main-edit-add">
+             <li> 
+              <a class="btn-blue" href="<?php echo base_url(); ?>index.php/AddOldDocuments/index/<?php echo $vessel_id; ?>">Add</a>
+            </li> 
+             <li>
+              <a class="btn-blue" href="<?php echo base_url(); ?>index.php/VesselOldDocuments/index/<?php echo $vessel_id; ?>">All Documents</a>
+            </li> 
+             <li><button class="btn-blue" onclick="mail_selected_vessels()" >Mail Document</button></li>
           </ul>
          </div>
-      </div>
+      </div> 
          
          
       </div>
@@ -66,34 +75,44 @@ include'includes/header_login.php';
           <table class="table table-bordered table-hover">
             <thead>
               <tr>
-                <th>Plan Number</th>
-                <th>Plan Name</th>
-                <th>Description</th>
-                <th class="text-center">Vessel Plans</th>
-                <th>Select</th>
-                <th>Action</th>
+              
+                <th class="text-center">Document Name</th>
+                <th class="text-center">Description</th>
+                <th class="text-center">Documents</th>
+                <th class="text-center">Select</th>
+                <th class="text-center">Action</th>
               </tr>
             </thead>
             <tbody>
-            <?php foreach($vessel_plans as $data) { ?>
+              <?php
+                  foreach ($old_documents_data as $data)
+                   {
+                   
+                   $document_name=$data['name'];
+                   $description=$data['description'];
+                   $document1=$data['document1'];
+                   $document2=$data['document2'];
+                   $document_id=$data['document_id'];
+              ?>
+           
               <tr>
-                <td><?php echo $data['plan_no'];?></td>
-                <td><?php echo $data['plan_name'];?></td>
-                <td><?php echo $data['description'];?></td>
-                <td class="text-center"><a href="<?php echo base_url(); ?>index.php/VesselPlans/view_plan/<?php echo $data['plan_id']; ?>" class="btn btn-primary"> View</a></td>
+                <td class="text-center"><?php echo $document_name; ?></td>
+                <td class="text-center"><?php echo $description; ?></td>
+                <td class="text-center"><a href="<?php echo base_url(); ?>index.php/VesselOldDocuments/view/<?php echo $document_id; ?>" class="btn btn-primary"> View</a></td>
                 <td class="text-center">
-                <input type="checkbox" name="checkbox" id="checkbox<?php echo $data['plan_id']; ?>">
+                <input type="checkbox" name="checkbox" id="checkbox<?php echo $document_id; ?>">
               </td>
               <td class="text-center">
-                <a href="<?php echo base_url();?>index.php/VesselPlans/delete_plan/<?php echo $data['plan_id']; ?>/<?php echo $data['vessel_id']; ?>" Onclick="return confirm('Are you Sure?');" class="btn-bk">
+                <a href="<?php echo base_url(); ?>index.php/VesselOldDocuments/delete/<?php echo $document_id; ?>/<?php echo $vessel_id; ?>" Onclick="return confirm('Are you Sure?');" class="btn-bk">
                   <i class="fa fa-trash" aria-hidden="true"></i>
                 </a>
-                <a href="<?php echo base_url();?>index.php/VesselPlans/edit_plan/<?php echo $data['plan_id']; ?>" class="btn-bk">
+                <a href="<?php echo base_url(); ?>index.php/EditOldDocuments/index/<?php echo $document_id; ?>/<?php echo $data['vessel_id']; ?>" class="btn-bk">
                   <i class="fa fa-pencil" aria-hidden="true"></i>
                 </a>
               </td>
-              </tr>
-             <?php } ?>  
+              </tr> 
+             <?php    } ?>
+          
             </tbody>
           </table>
         </div>
@@ -142,39 +161,39 @@ function mail_selected_vessels()
     var email = prompt("Please enter the Email of recepient:", "office@lyndonmarine.com");
     if (email != null) {
         checkbox_ids = checkbox_ids.slice(0,-1)
-        window.location.href = "<?php echo site_url(); ?>/VesselPlans/multiple_plans/"+checkbox_ids+"/"+email;
+        window.location.href = "<?php echo site_url(); ?>/VesselOldDocuments/multiple_mail/"+checkbox_ids+"/"+email;
     }
 
 }
-function search(search_plan)
+function search(search_document)
 {
-    if(search_plan == "")
+    if(search_document == "")
     {
         alert("Please enter a value to be searched");
     }
     else
     {
            $vessel_id="<?php echo $vessel_id; ?>";
-            window.location.href = "<?php echo base_url(); ?>index.php/VesselPlans/search_plan/"+search_plan+"/"+$vessel_id;
+            window.location.href = "<?php echo base_url(); ?>index.php/VesselOldDocuments/search_document/"+search_document+"/"+$vessel_id;
     }
 }
-function searchEnter(search_plan)
+function searchEnter(search_document)
 {
-    if(search_plan == "")
+    if(search_document == "")
     {
         alert("Please enter a value to be searched");
     }
     else
     { 
             $vessel_id="<?php echo $vessel_id; ?>";
-            window.location.href = "<?php echo base_url(); ?>index.php/VesselPlans/search_plan/"+search_plan+"/"+$vessel_id;
+            window.location.href = "<?php echo base_url(); ?>index.php/VesselOldDocuments/search_document/"+search_document+"/"+$vessel_id;
     }
 }
-function reset(search_plan)
+function reset(search_document)
 {
-  $('#search_plan').val('');
+  $('#search_document').val('');
     $vessel_id="<?php echo $vessel_id; ?>";
-  window.location.href = "<?php echo base_url(); ?>index.php/VesselPlans/index/"+$vessel_id;
+  window.location.href = "<?php echo base_url(); ?>index.php/VesselOldDocuments/index/"+$vessel_id;
 }
 
 </script>

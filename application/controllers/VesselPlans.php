@@ -172,7 +172,7 @@ public function edit_plan($plans_id)
         header("Location: $return_url_after_search_and_mail");
     }
 
-    public function search_plan_data($searchplan,$vessel_id,$offset=0)
+    public function search_plan($searchplan,$vessel_id,$offset=0)
     {
          $this->load->library('pagination');
         $this->load->model('Plans_model');
@@ -206,7 +206,7 @@ public function edit_plan($plans_id)
 
         $total_search_certificate = COUNT($this->Plans_model->search_by_plan($searchplan,$vessel_id,$offset));
 
-            $config['base_url'] = base_url().'index.php/VesselPlans/search_plan_data/'.$searchplan.'/'.$vessel_id;
+            $config['base_url'] = base_url().'index.php/VesselPlans/search_plan/'.$searchplan.'/'.$vessel_id;
             $config['total_rows'] = $total_search_certificate;
             $config['per_page'] = 5;
             $config['uri_segment'] = 5;
