@@ -17,8 +17,8 @@
           <form action="" method="post" enctype="multipart/form-data">
             <div class="row">
               <div class="col-sm-6 col-xs-12">
-                <div class="form-group" >
-                  <input type="text" style="max-width:100%;background-color: #ffffff;"  placeholder="Name" class="form-control" name="name">
+                <div class="form-group">
+                  <input type="text" placeholder="Name" class="form-control" name="name">
                 </div>
               </div>
               <div class="col-sm-6 col-xs-12">
