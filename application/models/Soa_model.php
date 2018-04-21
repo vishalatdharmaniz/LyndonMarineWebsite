@@ -31,9 +31,9 @@ class Soa_model extends CI_Model
 		$vessel_data = $this->db->query("SELECT * FROM vessels WHERE vessel_id='$vessel_id'");
 		return $vessel_data->result_array();
 	}
-	function update_soa_details($soa_id,$soa_num,$date,$currency,$document)
+	function update_soa_details($soa_id,$soa_num,$from_date,$to_date,$currency,$document)
 	{
-		$update_soa=$this->db->query("UPDATE soa_details SET soa_num='$soa_num',soa_date='$date',currency='$currency',document='$document' WHERE soa_id='$soa_id' ");
+		$update_soa=$this->db->query("UPDATE soa_details SET soa_num='$soa_num',from_date='$from_date',to_date='$to_date',currency='$currency',document='$document' WHERE soa_id='$soa_id' ");
 		return true;
 	}
 	/*function delete_soa_details($soa_id)
@@ -51,6 +51,20 @@ class Soa_model extends CI_Model
         $count_soa = $this->db->query("SELECT * FROM soa_details WHERE vessel_id = '$vessel_id'");
         return COUNT($count_soa->result_array());
     }
+
+     function searchtable($searchname,$vessel_id,$offset)
+    {
+
+        $searchdata = $this->db->query("SELECT * FROM soa_details WHERE (soa_num LIKE '%$searchname%') AND (vessel_id='$vessel_id') LIMIT 10 OFFSET $offset");
+			return $searchdata->result_array();
+	}
+
+	function searchtable_total($searchname,$vessel_id)
+    {
+        $searchtable_total = $this->db->query("SELECT * FROM soa_details WHERE (soa_num LIKE '%$searchname%') AND (vessel_id='$vessel_id') ");
+			return COUNT($searchtable_total->result_array());
+	}
+
 
 }
 ?>

@@ -16,12 +16,12 @@ class MailBunkerSupply extends CI_Controller
         }
         $this->load->model('BunkerSupply_model');
       
-        $txt = "Good Day <br><br> Please find here list of bunker supply requested:<br><br><br>";
+        $txt = "Good Day <br><br> Please find here list of requested bunker supply :<br><br><br>";
         $bunker_id= $checkbox_ids[0];
         $bunker_supply_data = $this->BunkerSupply_model->get_bunker_supply_data($bunker_id);
         $vessel_id = $bunker_supply_data[0]["vessel_id"];
         $vessel_data = $this->BunkerSupply_model->get_vessel_details_by_vessel_id($vessel_id); 
-
+        $vessel_name=$vessel_data['vessel_name'];
 
         foreach ($checkbox_ids as $bunker_id)
         {
@@ -36,8 +36,8 @@ class MailBunkerSupply extends CI_Controller
             $currency=$bunker_supply_data[0]['currency']; 
 
             $bunker_id = $bunker_supply_data[0]["bunker_id"];
-            $document1 = $bunker_supply_data[0]["document1"]; 
-            $document2 = $bunker_supply_data[0]["document2"]; 
+           /* $document1 = $bunker_supply_data[0]["document1"]; 
+            $document2 = $bunker_supply_data[0]["document2"]; */
         
             for($i = 1; $i <= 2 ; $i++)
             {
@@ -54,6 +54,7 @@ class MailBunkerSupply extends CI_Controller
             $txt .= "Supply Date :- ".$supply_date."<br>"; 
             $txt .= "Invoice Amount :- ".$invoice_amount."<br>"; 
             $txt .= "Currency :- ".$currency."<br>";  
+            $txt .= "Documents :- <br>";  
         if ($bunker_supply_data[0]["document1"] != NULL)
         {
             $txt .= "<a href=$document[1]>$document_name[1]</a><br>";
@@ -67,12 +68,12 @@ class MailBunkerSupply extends CI_Controller
             $txt .= "<hr>";
             $txt .= "<hr>";
         }
-
+        
         $txt .= "Best Regards<br>"; 
        
 
         $to = "$email_of_recepient";
-        $subject = "Bunker Supply Documents";
+        $subject = "Bunker Supply Documents for : ";
 
         $headers  = 'MIME-Version: 1.0' . "\r\n";
         $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";

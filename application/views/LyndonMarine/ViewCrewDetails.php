@@ -38,13 +38,32 @@ include'includes/header_login.php';
                 { 
                   $name=$data['name'] ; 
                   $tourist_p_number=$data['tourist_p_num'];
-	              $seaman_p_number=$data['seaman_p_num'];
-	              $rank=$data['rank'];
-	              $salary=$data['salary']; 
+	                $seaman_p_number=$data['seaman_p_num'];
+	                $rank=$data['rank'];
+	                $salary=$data['salary']; 
                   $join_date=$data['join_date'];
                   $nationality=$data['nationality'];
                   $remark=$data['remark'];
-                  $document=$data['document'];
+                  $document1=$data['document1'];
+                  $document2=$data['document2'];
+                  $document3=$data['document3'];
+                  $document4=$data['document4'];
+                  $document5=$data['document5'];
+                  $document6=$data['document6'];
+                  $document7=$data['document7'];
+                  $document8=$data['document8'];
+                  $document9=$data['document9'];
+                  $document10=$data['document10'];
+                  $document11=$data['document11'];
+                  $document12=$data['document12'];
+                  $document13=$data['document13'];
+                  $document14=$data['document14'];
+                  $document15=$data['document15'];
+                  $document16=$data['document16'];
+                  $document17=$data['document17'];
+                  $document18=$data['document18'];
+                  $document19=$data['document19'];
+                  $document20=$data['document20'];
                 }
               ?>
                 <tr>
@@ -86,16 +105,192 @@ include'includes/header_login.php';
           <div class="row">
             	<div class="doc-img">
                 	<ul>
-                    	<li>
-                      <?php if(!empty($document)) {?>
-                      <a href="<?php echo $document; ?>" target="_blank"><img src="http://via.placeholder.com/100x100" class="img-responsive"> </a><br>
-                      <span><?php $value = explode("/",$document);echo substr($value[6],0,20); ?></span>
-                      <?php } 
-                      else { ?>
-                     <!-- <span> No Document Available </span>-->
-                      <?php } ?></li>
-                      
-                	</ul>
+                      <li>
+                          <?php if(!empty($document1)) {?>
+                          <a href="<?php echo $document1; ?>" target="_blank"><img src="<?php echo base_url(); ?>img/icon_for_documents.PNG" class="img-responsive">  </a><br>
+                          <span><?php $value = explode("/",$document1);echo substr($value[6],0,20); ?></span>
+                          <?php } 
+                          else { ?>
+                         <!-- <span> No Document Available </span>-->
+                          <?php } ?>
+                      </li>
+                      <li>
+                          <?php if(!empty($document2)) {?>
+                          <a href="<?php echo $document2; ?>" target="_blank"><img src="<?php echo base_url(); ?>img/icon_for_documents.PNG" class="img-responsive">  </a><br>
+                          <span><?php $value = explode("/",$document2);echo substr($value[6],0,20); ?></span>
+                          <?php } 
+                          else { ?>
+                         <!-- <span> No Document Available </span>-->
+                          <?php } ?>
+                      </li>
+                      <li>
+                          <?php if(!empty($document3)) {?>
+                          <a href="<?php echo $document3; ?>" target="_blank"><img src="<?php echo base_url(); ?>img/icon_for_documents.PNG" class="img-responsive">  </a><br>
+                          <span><?php $value = explode("/",$document3);echo substr($value[6],0,20); ?></span>
+                          <?php } 
+                          else { ?>
+                         <!-- <span> No Document Available </span>-->
+                          <?php } ?>
+                      </li>
+                      <li>
+                          <?php if(!empty($document4)) {?>
+                          <a href="<?php echo $document4; ?>" target="_blank"><img src="<?php echo base_url(); ?>img/icon_for_documents.PNG" class="img-responsive">  </a><br>
+                          <span><?php $value = explode("/",$document4);echo substr($value[6],0,20); ?></span>
+                          <?php } 
+                          else { ?>
+                         <!-- <span> No Document Available </span>-->
+                          <?php } ?>
+                      </li>
+                      <li>
+                          <?php if(!empty($document5)) {?>
+                          <a href="<?php echo $document5; ?>" target="_blank"><img src="<?php echo base_url(); ?>img/icon_for_documents.PNG" class="img-responsive">  </a><br>
+                          <span><?php $value = explode("/",$document5);echo substr($value[6],0,20); ?></span>
+                          <?php } 
+                          else { ?>
+                         <!-- <span> No Document Available </span>-->
+                          <?php } ?>
+                      </li>
+                      <li>
+                          <?php if(!empty($document6)) {?>
+                          <a href="<?php echo $document6; ?>" target="_blank"><img src="<?php echo base_url(); ?>img/icon_for_documents.PNG" class="img-responsive">  </a><br>
+                          <span><?php $value = explode("/",$document6);echo substr($value[6],0,20); ?></span>
+                          <?php } 
+                          else { ?>
+                         <!-- <span> No Document Available </span>-->
+                          <?php } ?>
+                      </li>
+                      <li>
+                          <?php if(!empty($document7)) {?>
+                          <a href="<?php echo $document7; ?>" target="_blank"><img src="<?php echo base_url(); ?>img/icon_for_documents.PNG" class="img-responsive">  </a><br>
+                          <span><?php $value = explode("/",$document7);echo substr($value[6],0,20); ?></span>
+                          <?php } 
+                          else { ?>
+                         <!-- <span> No Document Available </span>-->
+                          <?php } ?>
+                      </li>
+                      <li>
+                          <?php if(!empty($document8)) {?>
+                          <a href="<?php echo $document8; ?>" target="_blank"><img src="<?php echo base_url(); ?>img/icon_for_documents.PNG" class="img-responsive">  </a><br>
+                          <span><?php $value = explode("/",$document8);echo substr($value[6],0,20); ?></span>
+                          <?php } 
+                          else { ?>
+                         <!-- <span> No Document Available </span>-->
+                          <?php } ?>
+                      </li>
+                      <li>
+                          <?php if(!empty($document9)) {?>
+                          <a href="<?php echo $document9; ?>" target="_blank"><img src="<?php echo base_url(); ?>img/icon_for_documents.PNG" class="img-responsive">  </a><br>
+                          <span><?php $value = explode("/",$document9);echo substr($value[6],0,20); ?></span>
+                          <?php } 
+                          else { ?>
+                         <!-- <span> No Document Available </span>-->
+                          <?php } ?>
+                      </li>
+               
+                      <li>
+                          <?php if(!empty($document10)) {?>
+                          <a href="<?php echo $document10; ?>" target="_blank"><img src="<?php echo base_url(); ?>img/icon_for_documents.PNG" class="img-responsive">  </a><br>
+                          <span><?php $value = explode("/",$document10);echo substr($value[6],0,20); ?></span>
+                          <?php } 
+                          else { ?>
+                         <!-- <span> No Document Available </span>-->
+                          <?php } ?>
+                      </li>
+                </ul>
+                <ul>
+                      <li>
+                          <?php if(!empty($document11)) {?>
+                          <a href="<?php echo $document11; ?>" target="_blank"><img src="<?php echo base_url(); ?>img/icon_for_documents.PNG" class="img-responsive">  </a><br>
+                          <span><?php $value = explode("/",$document11);echo substr($value[6],0,20); ?></span>
+                          <?php } 
+                          else { ?>
+                         <!-- <span> No Document Available </span>-->
+                          <?php } ?>
+                      </li>
+                      <li>
+                          <?php if(!empty($document12)) {?>
+                          <a href="<?php echo $document12; ?>" target="_blank"><img src="<?php echo base_url(); ?>img/icon_for_documents.PNG" class="img-responsive">  </a><br>
+                          <span><?php $value = explode("/",$document12);echo substr($value[6],0,20); ?></span>
+                          <?php } 
+                          else { ?>
+                         <!-- <span> No Document Available </span>-->
+                          <?php } ?>
+                      </li>
+                      <li>
+                          <?php if(!empty($document13)) {?>
+                          <a href="<?php echo $document13; ?>" target="_blank"><img src="<?php echo base_url(); ?>img/icon_for_documents.PNG" class="img-responsive">  </a><br>
+                          <span><?php $value = explode("/",$document13);echo substr($value[6],0,20); ?></span>
+                          <?php } 
+                          else { ?>
+                         <!-- <span> No Document Available </span>-->
+                          <?php } ?>
+                      </li>
+                      <li>
+                          <?php if(!empty($document14)) {?>
+                          <a href="<?php echo $document14; ?>" target="_blank"><img src="<?php echo base_url(); ?>img/icon_for_documents.PNG" class="img-responsive">  </a><br>
+                          <span><?php $value = explode("/",$document14);echo substr($value[6],0,20); ?></span>
+                          <?php } 
+                          else { ?>
+                         <!-- <span> No Document Available </span>-->
+                          <?php } ?>
+                      </li>
+                      <li>
+                          <?php if(!empty($document15)) {?>
+                          <a href="<?php echo $document15; ?>" target="_blank"><img src="<?php echo base_url(); ?>img/icon_for_documents.PNG" class="img-responsive">  </a><br>
+                          <span><?php $value = explode("/",$document15);echo substr($value[6],0,20); ?></span>
+                          <?php } 
+                          else { ?>
+                         <!-- <span> No Document Available </span>-->
+                          <?php } ?>
+                      </li>
+                      <li>
+                          <?php if(!empty($document16)) {?>
+                          <a href="<?php echo $document16; ?>" target="_blank"><img src="<?php echo base_url(); ?>img/icon_for_documents.PNG" class="img-responsive">  </a><br>
+                          <span><?php $value = explode("/",$document16);echo substr($value[6],0,20); ?></span>
+                          <?php } 
+                          else { ?>
+                         <!-- <span> No Document Available </span>-->
+                          <?php } ?>
+                      </li>
+                      <li>
+                          <?php if(!empty($document17)) {?>
+                          <a href="<?php echo $document17; ?>" target="_blank"><img src="<?php echo base_url(); ?>img/icon_for_documents.PNG" class="img-responsive">  </a><br>
+                          <span><?php $value = explode("/",$document17);echo substr($value[6],0,20); ?></span>
+                          <?php } 
+                          else { ?>
+                         <!-- <span> No Document Available </span>-->
+                          <?php } ?>
+                      </li>
+                      <li>
+                          <?php if(!empty($document18)) {?>
+                          <a href="<?php echo $document18; ?>" target="_blank"><img src="<?php echo base_url(); ?>img/icon_for_documents.PNG" class="img-responsive">  </a><br>
+                          <span><?php $value = explode("/",$document18);echo substr($value[6],0,20); ?></span>
+                          <?php } 
+                          else { ?>
+                         <!-- <span> No Document Available </span>-->
+                          <?php } ?>
+                      </li>
+                      <li>
+                          <?php if(!empty($document19)) {?>
+                          <a href="<?php echo $document19; ?>" target="_blank"><img src="<?php echo base_url(); ?>img/icon_for_documents.PNG" class="img-responsive">  </a><br>
+                          <span><?php $value = explode("/",$document19);echo substr($value[6],0,20); ?></span>
+                          <?php } 
+                          else { ?>
+                         <!-- <span> No Document Available </span>-->
+                          <?php } ?>
+                      </li>
+                      <li>
+                          <?php if(!empty($document20)) {?>
+                          <a href="<?php echo $document20; ?>" target="_blank"><img src="<?php echo base_url(); ?>img/icon_for_documents.PNG" class="img-responsive">  </a><br>
+                          <span><?php $value = explode("/",$document20);echo substr($value[6],0,20); ?></span>
+                          <?php } 
+                          else { ?>
+                         <!-- <span> No Document Available </span>-->
+                          <?php } ?>
+                      </li>
+                  
+                </ul>
+            
             	</div>	
             </div>
 

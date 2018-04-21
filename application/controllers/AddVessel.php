@@ -13,7 +13,7 @@ class AddVessel extends CI_Controller
 	
     function add_vessel()
     {
-            $user_id = $this->session->userdata('user_id');
+            $company_id = $this->session->userdata('company_id');
     		$vessel_name = $this->input->post('vessel_name');
 			$imo_number = $this->input->post('imo_number');
             $flag = $this->input->post('flag');
@@ -120,7 +120,7 @@ class AddVessel extends CI_Controller
     	$this->load->model('AddVessel_model');
 
     	$data = array(
-                'user_id' => $user_id,
+                'company_id' => $company_id,
     			'vessel_name' => $vessel_name,
     			'imo_number' => $imo_number,
                 'flag' => $flag,
@@ -172,7 +172,7 @@ class AddVessel extends CI_Controller
 	    	
     	       $base_url = BASE_URL;
                 //header("Location: $base_url/index.php/AllVessels/index"); 
-                header("Location: $base_url/index.php/AllVessels/user_vessel/$user_id"); 
+                header("Location: $base_url/index.php/AllVessels/company_vessel/$company_id"); 
     }
 
     function get_all_vessel_data()

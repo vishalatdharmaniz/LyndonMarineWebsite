@@ -111,6 +111,7 @@ include'includes/CheckUserLogin.php';
  
               <option
                   <?php 
+                    
                       if($type == $searchtype)
                       {
                           echo "selected";
@@ -239,7 +240,7 @@ include'includes/CheckUserLogin.php';
               </td>
                  <td class="text-center"><a href="<?php echo base_url(); ?>index.php/ViewRecommendation/index/<?php echo $recommendation_id;?>" class="btn btn-primary">View</td>
                 <td class="text-center">
-                    <input type="checkbox" name="checkbox" id="checkbox<?php echo $data['vessel_id']; ?>">
+                    <input type="checkbox" name="checkbox" id="checkbox<?php echo $data['recommendation_id']; ?>">
                 </td>
                <td class="text-center">
                   <a href="<?php echo base_url();?>index.php/DeleteRecommendation/index/<?php echo $data['recommendation_id']; ?>/<?php echo $data['vessel_id']; ?>" Onclick="return confirm('Are you Sure?');" class="btn-bk">

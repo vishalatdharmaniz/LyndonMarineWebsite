@@ -69,7 +69,7 @@ include'includes/CheckUserLogin.php';
               </div>
                 <div class="form-group col-md-6">
                 <label class="control-label">Due Date</label>
-                <input type="text" id="datepicker2" placeholder="Due Date" value="<?php echo date("d-m-Y",strtotime($due_date)); ?>" name="due_date" class="form-control-text">
+                <input type="text" id="datepicker2" placeholder="Due Date" value="<?php if($due_date!=''){echo date("d-m-Y",strtotime($due_date));}else{echo $due_date='';} ?>" name="due_date" class="form-control-text">
               </div>
             </div>
             
@@ -144,7 +144,7 @@ include'includes/CheckUserLogin.php';
             <div class="row">
               <div class="form-group col-md-6">
                 <label class="control-label">Paid </label>
-               <select  class="form-control-text" name="paid">
+               <select  class="form-control-text" required name="paid">
                 <option selected value="" disabled>Select</option>
                   <option <?php if($paid=="Yes"){echo "selected=selected";} ?> value="Yes">Yes</option>
                   <option <?php if($paid=="No"){echo "selected=selected";} ?> value="No">No</option>
@@ -163,7 +163,7 @@ include'includes/CheckUserLogin.php';
                     <label class="control-label">Upload Document </label>
                     <input type="file" id="document1-chosen" name="document1"  accept="png, jpg/*"><br>
                   </div>
-                   <div class="col-md-8">
+                   <div class="col-md-8" id="document_view">
                     <br>
                     <?php if(!empty($document1 )) {?>
                     
@@ -189,7 +189,7 @@ include'includes/CheckUserLogin.php';
                     <label class="control-label">Other Document </label>
                     <input type="file" id="document2-chosen" value="<?php echo $document2; ?>" name="document2"  accept="png, jpg/*"><br>
                   </div>
-                  <div class="col-md-8">
+                  <div class="col-md-8" id="document_view">
                     <br>
                     <?php if(!empty($document2 )) {?>
                     

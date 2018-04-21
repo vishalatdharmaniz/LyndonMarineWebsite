@@ -6,7 +6,7 @@ include'includes/header_login.php';
     <div class="row">
       <div class="col-md-offset-3 col-md-6">
         <div class="page-heading">
-          <h2>Profiles</h2>
+          <h2>Company Profile</h2>
         </div>
       </div>
       <div class="col-md-3">
@@ -23,48 +23,48 @@ include'includes/header_login.php';
       </div>
     </div>
     <div class="row">
-     <?php foreach($user_data as $user) { ?>
+     <?php foreach($company_data as $company) { ?>
       <div class="panel-body">
         <div class="table-responsive">
           <table class="table table-bordered table-hover">
             <thead>
               <tr>
                 <th>Username</th>
-                <th><?php echo $user['email']; ?></th>
+                <th><?php echo $company['email']; ?></th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td>First Name</td>
-                <td><?php echo $user['name']; ?></td>
+                <td><?php echo $company['name']; ?></td>
               </tr>
               <tr>
                 <td>Surname</td>
-                <td><?php echo $user['last_name']; ?></td>
+                <td><?php echo $company['last_name']; ?></td>
               </tr>
               <tr>
                 <td>Organization</td>
-                <td><?php echo $user['organization']; ?></td>
+                <td><?php echo $company['organization']; ?></td>
               </tr>
               <tr>
                 <td>Telephone</td>
-                <td><?php echo $user['telephone']; ?></td>
+                <td><?php echo $company['telephone']; ?></td>
               </tr>
               <tr>
                 <td>Address</td>
-                <td><?php echo $user['address']; ?></td>
+                <td><?php echo $company['address']; ?></td>
               </tr>
               <tr>
                 <td>City</td>
-                <td><?php echo $user['city']; ?></td>
+                <td><?php echo $company['city']; ?></td>
               </tr>
               <tr>
                 <td>Country</td>
-                <td><?php echo $user['country']; ?></td>
+                <td><?php echo $company['country']; ?></td>
               </tr>
               <tr>
                 <td>Notes</td>
-                <td><?php echo $user['note']; ?></td>
+                <td><?php echo $company['note']; ?></td>
               </tr>
             </tbody>
           </table>

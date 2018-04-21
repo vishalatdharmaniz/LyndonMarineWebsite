@@ -4,8 +4,15 @@
 */
 #document_view
 {
-	margin-top: 38px;	
+	margin-top: 22px!important;	
 }
+/*for setting length of input name in file type*/
+input[type=file] { 
+    display: block;
+    width: 190px;
+	
+}
+
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
 	margin: 0;
 	padding: 0;
@@ -37,6 +44,10 @@ table {
 }
 select#sel1 {
 	color: #999;
+}
+select#sel2 {
+	color: #fff;
+	    background-color: #337ab7;
 }
 body {
 	font-family: 'Raleway', sans-serif;
@@ -162,11 +173,12 @@ input[type="checkbox"] {
 	/* display: block; */
 	width: 100%;
 	height: 34px;
-	    padding: 6px 70px 0px 12px;
+	    margin: 0 85px 0 0px;
+	    padding: 6px 5px 0px 12px;
 	font-size: 14px;
 	line-height: 1.42857143;
 	color: #fff;
-	background-color: transparent;
+	background-color: #ffffff;
 	background-image: none;
 	border: 1px solid #ccc;
 	border-radius: 0px;
@@ -183,7 +195,7 @@ input[type="checkbox"] {
 footer {
 	background-color: #000;
 	padding: 30px 0;
-	margin-top:180px;
+	margin-top:215px;
 	left: 0;
     bottom: 0;
 	width:100%;
@@ -474,10 +486,10 @@ footer .text-left p {
 	font-size: 24px;
 	font-weight: 600;
 }
-ul.dropdown-menu p {
+ul.dropdown-menu .dropdown-menu1  p {
 	padding: 10px;
 }
-.dropdown-menu>li>a {
+.dropdown-menu .dropdown-menu1>li>a {
 	padding: 10px 20px;
 }
 #navbar a {
@@ -531,10 +543,11 @@ ul.dropdown-menu p {
 	float: right;
 }
 .page-heading h2 {
-	font-size: 24px;
-	text-align: center;
-	color: #555;
-	font-weight: 600;
+    font-size: 24px;
+    text-align: center;
+    color: #555;
+    font-weight: 600;
+    margin-left: -49px !important; /*for alignment of heading names*/
 }
 #main-edit .main-edit-add ul li {
 	display: inline;
@@ -594,7 +607,7 @@ input.form-control-text::placeholder {
 	text-align: right;
 }
 #tab-bar-img .card .gur .btn-blue {
-	display: inline-block;
+
 	color: #fff;
 	text-decoration: none;
 	font-size: 18px;
@@ -608,6 +621,7 @@ input.form-control-text::placeholder {
 .button-right {
 	float: right;
 	padding: 15px;
+	margin-top: -38px; /*for alignment of buttons.*/
 }
 .img-size {
 	width: 35px;
@@ -683,7 +697,6 @@ a.btn-bk .fa {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	background-color: #fff;
 	margin-bottom: 20px;
 }
 #table-data {
@@ -891,8 +904,8 @@ a.btn.btn-xcode {
     display: none;
     float: left;
     min-width: 249px;
-    padding: 11px 6px 9px 7px;
-    margin: 0px 0px 0px -210px;
+        padding: 15px -1px 9px 20px;
+    margin: 6px 0px 16px 60px;
     font-size: 14px;
     text-align: left;
     list-style: none;
@@ -905,6 +918,42 @@ a.btn.btn-xcode {
     -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
     box-shadow: 0 6px 12px rgba(0,0,0,.175);
 }
+/*
+.dropdown-menu1 {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 249px;
+        padding: 15px -1px 9px 20px;
+    margin: 6px 0px 16px -240px;
+    font-size: 14px;
+    text-align: left;
+    list-style: none;
+    background-color:#fff;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: 4px;
+    -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+    box-shadow: 0 6px 12px rgba(0,0,0,.175);
+}
+.open>.dropdown-menu1 {
+    display: block;
+}
+.dropdown-menu1>li>a {
+    display: block;
+    padding: 10px 20px;
+    clear: both;
+    font-weight: 400;
+    line-height: 1.42857143;
+    color: #333;
+    white-space: nowrap;
+}
+*/
 .font-class {
 	margin-top:15px;
 	margin-bottom:15px;
@@ -922,4 +971,47 @@ hr {
     width: 50px;
     height: 40px;
     border-radius: 0px;
+}
+
+/* dropdown user*/
+
+.form-control {
+    display: block;
+    width: 100%;
+  
+    height: 34px;
+    padding: 6px 12px;
+	margin-top:29px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+        background-color: #fff;
+    background-image: none;
+    border: 1px solid #337ab7;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+.form-control12 {
+    display: block;
+    width: 100%;
+  
+    height: 34px;
+    padding: 6px 12px;
+	margin-top:29px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+        background-color: #337ab7;
+    background-image: none;
+    border: 1px solid #337ab7;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
 }

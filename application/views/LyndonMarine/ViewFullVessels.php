@@ -11,11 +11,11 @@ include'includes/header_login.php';
       </div>
       <div class="col-md-offset-1 col-md-6">
         <div class="page-heading">
-          <h2><?php echo $vessels['vessel_name']; ?> Particular</h2>
+          <h2><?php echo $vessels['vessel_name']; ?> Particulars</h2>
         </div>
       </div>
       <div class="main-edit-add">
-        <button class="btn-blue" onclick="mail_vessel_details(<?php echo $vessels["vessel_id"];?>)" >Mail Vessel Particular</button>
+        <button class="btn-blue" onclick="mail_vessel_details(<?php echo $vessels["vessel_id"];?>)" >Mail Vessel Particulars</button>
       </div>
       <?php } ?>
     </div>
@@ -58,12 +58,32 @@ include'includes/header_login.php';
         
       <div class="col-md-10 col-md-offset-1">
         <div class="table-responsive">
+          <div class="row">
+               <div class="col-md-2">
+               </div>
+              <div class="col-md-10">
+                        <a href="http://www.marinetraffic.com/en/ais/details/ships/imo:<?php echo $vessels['imo_number']; ?>" target="_blank">
+                            1.Show vessel in marine traffic.
+                       </a> &nbsp;&nbsp;
+                        <a href="http://www.ship-info.com/prog/skip.asp?id=<?php echo $vessels['imo_number']; ?>" target="_blank">
+                            2. Ship Info.
+                       </a> &nbsp;&nbsp;
+                        <a href="http://www.shipspotting.com/gallery/search.php?query=<?php echo $vessels['imo_number']; ?>" target="_blank">
+                            3. Shipspotting Photos.
+                        </a>&nbsp;&nbsp;
+                        <a href="http://www.ship-info.com/prog/vtr.asp?id=<?php echo $vessels['imo_number']; ?>" target="_blank">
+                            4. Vessel Tracker Position.
+                        </a>
+                        <br><br>
+              </div>
+          </div>
         <table class="table table-bordered">
 
               <thead>
                 
               </thead>
               <tbody>
+              
                 <tr>
                   <th scope="row">Vessel Type</th>
                   <td><?php echo $vessels['vessel_type']; ?></td>
@@ -80,7 +100,7 @@ include'includes/header_login.php';
                   
                 </tr>
                 <tr>
-                  <th scope="row">LOA</th>
+                  <th scope="row">Length Overall</th>
                   <td><?php echo $vessels['loa']; ?></td>
                 </tr>
                 
@@ -162,7 +182,7 @@ include'includes/footer.php';
 <script>
   function mail_vessel_details(vessel_id) 
 {
-    var email = prompt("Please enter the Email of recepient:", "abc@gmail.com");
+    var email = prompt("Please enter the Email of recepient:", "office@lyndonmarine.com");
     if (email != null) {
         window.location.href = "<?php echo site_url(); ?>/MailVesselDetails/vessel_mail/"+vessel_id+"/"+email;
     }

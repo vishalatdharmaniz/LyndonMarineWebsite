@@ -6,7 +6,7 @@ include'includes/header_login.php';
     <div class="row">
       <div class="col-md-offset-3 col-md-6">
         <div class="page-heading">
-          <h2>Edit Profile</h2>
+          <h2>Edit Company Profile</h2>
         </div>
       </div>
     </div>

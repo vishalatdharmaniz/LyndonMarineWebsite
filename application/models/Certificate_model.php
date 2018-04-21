@@ -27,6 +27,12 @@ class Certificate_model extends CI_Model
 		return $get_all_certificate_details->result_array();
 	}
 
+	function get_certificates_by_vessel_id($vessel_id)
+	{
+		$details_by_vessel_id = $this->db->query("SELECT * FROM certificate WHERE vessel_id='$vessel_id' ");
+		return $details_by_vessel_id->result_array();
+	}
+
 	function get_certificate_details_by_vessel_id($vessel_id)
 	{
 		$details_by_vessel_id = $this->db->query("SELECT * FROM certificate WHERE vessel_id='$vessel_id' ORDER BY certificate_name ASC ");
@@ -154,11 +160,11 @@ class Certificate_model extends CI_Model
 				if(empty($where)){
 					$where .=	" WHERE ( 
 								          (
-								          	date_expiry <= CURDATE() AND ( date_expiry!='' AND extention_until='' )
+								          	date_expiry <= CURDATE() + INTERVAL 1 day AND ( date_expiry!='' AND extention_until='' )
 								          )
 								           OR 
 								           (
-								           extention_until <= CURDATE() AND (date_expiry!='' AND extention_until!='')
+								           extention_until <= CURDATE() + INTERVAL 1 day AND (date_expiry!='' AND extention_until!='')
 								           )
 								         )
 								          AND vessel_id='$vessel_id'";	
@@ -171,7 +177,7 @@ class Certificate_model extends CI_Model
 			
 			if($custom_code == "brown"){
 				if(empty($where)){
-					$where .=	"WHERE ((extention_until <= CURRENT_DATE() + INTERVAL 29 day AND extention_until > CURDATE() AND extention_until!='' ) OR (date_expiry <= CURRENT_DATE() + INTERVAL 29 day AND date_expiry > CURDATE() AND extention_until='')) AND vessel_id='$vessel_id'";	
+					$where .=	"WHERE ((extention_until <= CURRENT_DATE() + INTERVAL 31 day AND extention_until > CURDATE() + INTERVAL 1 day AND extention_until!='' ) OR (date_expiry <= CURRENT_DATE() + INTERVAL 31 day AND date_expiry > CURDATE() + INTERVAL 1 day AND extention_until='')) AND vessel_id='$vessel_id'";	
 				}else{
 					$where .=	" IF( UNIX_TIMESTAMP(`date_expiry`) <>0 ,date_expiry <= CURRENT_DATE() + INTERVAL 1 MONTH AND date_expiry > CURDATE() AND (date_expiry!='' AND extention_until!='')) AND vessel_id='$vessel_id'";
 				}
@@ -180,17 +186,17 @@ class Certificate_model extends CI_Model
 			
 			if($custom_code == "green"){
 				if(empty($where)){
-					$where .=	"  WHERE (date_expiry >= CURRENT_DATE() + INTERVAL 45 day OR extention_until >= CURRENT_DATE() + INTERVAL 45 day OR date_expiry='') AND vessel_id='$vessel_id'";	
+					$where .=	"  WHERE (date_expiry > CURRENT_DATE() + INTERVAL 46 day OR extention_until >CURRENT_DATE() + INTERVAL 46 day OR date_expiry='') AND vessel_id='$vessel_id'";	
 				}else{
-					$where .=	" IF( UNIX_TIMESTAMP(`date_expiry`) <>0 ,date_expiry >= CURRENT_DATE() + INTERVAL 45 day or extention_until >= CURRENT_DATE() + INTERVAL 45 day ) AND vessel_id= '$vessel_id'";
+					$where .=	" IF( UNIX_TIMESTAMP(`date_expiry`) <>0 ,date_expiry > CURRENT_DATE() + INTERVAL 46 day or extention_until > CURRENT_DATE() + INTERVAL 46 day ) AND vessel_id= '$vessel_id'";
 				}
 			}
 			 
 			if($custom_code == "yellow"){
 				if(empty($where)){
-					$where .=	" WHERE  ( (date_expiry > CURRENT_DATE() + INTERVAL 30 day AND date_expiry <= CURRENT_DATE() + INTERVAL 45 day) OR (extention_until > CURRENT_DATE() + INTERVAL 30 day AND extention_until <= CURRENT_DATE() + INTERVAL 45 day)) AND vessel_id= '$vessel_id'";	
+					$where .=	" WHERE  ( (date_expiry > CURRENT_DATE() + INTERVAL 32 day AND date_expiry <= CURRENT_DATE() + INTERVAL 46 day) OR (extention_until > CURRENT_DATE() + INTERVAL 32 day AND extention_until <= CURRENT_DATE() + INTERVAL 46 day)) AND vessel_id= '$vessel_id'";	
 				}else{
-					$where .=	"  IF( UNIX_TIMESTAMP(`date_expiry`) <>0 ,date_expiry <= CURRENT_DATE() + INTERVAL 1 MONTH AND date_expiry > CURDATE(),extention_until <= CURRENT_DATE() + INTERVAL 1 MONTH AND extention_until > CURDATE()) AND vessel_id= '$vessel_id'";
+					$where .=	"  IF( UNIX_TIMESTAMP(`date_expiry`) <>0 ,date_expiry > CURRENT_DATE() + INTERVAL 32 day AND date_expiry > CURDATE(),extention_until > CURRENT_DATE() + INTERVAL 32 day AND extention_until > CURDATE()) AND vessel_id= '$vessel_id'";
 				}
 			}
 

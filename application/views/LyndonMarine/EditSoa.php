@@ -26,10 +26,10 @@ include'includes/CheckUserLogin.php';
             foreach ($soa_data as $data) 
             {
              $soa_id= $data['soa_id']; 
-             $soa_num=$data['soa_num']; 
-             $soa_date=$data['soa_date']; 
-             $currency=$data['currency']; 
-             $document=$data['document']; 
+             $soa_num=$data['soa_num'];
+             $from_date=$data['from_date'];
+             $to_date=$data['to_date'];
+             $currency=$data['currency'];
             }
 
           ?>
@@ -40,28 +40,33 @@ include'includes/CheckUserLogin.php';
                 <input type="text" placeholder="SOA No." name="soa_num" value="<?php echo $soa_num; ?>" required class="form-control-text">
               </div>
               <div class="form-group col-md-6">
-                <label class="control-label">Date</label>
-                <input type="text" id="datepicker1" placeholder="Date" name="date" value="<?php echo $soa_date; ?>"  required class="form-control-text">
-              </div>
-            </div>
-            <div class="row">
-               <div class="form-group col-md-12">
                <label class="control-label">Currency</label>
                <select required class="form-control-text" required id="sel1" name="currency">
-                  <option><?php echo $currency; ?></option>
-                  <option value="GBP">GBP</option>
-                  <option value="USD">USD</option>
-                  <option value="EURO">EURO</option>
+                  <option selected value="" disabled>Select </option>
+                  <option <?php if($currency=="GBP"){echo "selected=selected";} ?> value="GBP">GBP</option>
+                  <option <?php if($currency=="USD"){echo "selected=selected";} ?> value="USD">USD</option>
+                  <option <?php if($currency=="EURO"){echo "selected=selected";} ?> value="EURO">EURO</option>
                 </select>
               </div>
+              
+            </div>
+            <div class="row">
+              <div class="form-group col-md-6">
+                <label class="control-label">From Date</label>
+                <input type="text" id="datepicker1" placeholder="Date" name="from_date" value="<?php echo $from_date; ?>"  required class="form-control-text">
+              </div>
+              <div class="form-group col-md-6">
+                <label class="control-label">To Date</label>
+                <input type="text" id="datepicker2" placeholder="Date" name="to_date" value="<?php echo $to_date; ?>"  required class="form-control-text">
+              </div> 
             </div>
            <div class="row">
                 <div class="form-group">
                   <div class="col-md-4">
-                    <label class="control-label">Upload Document </label>
+                    <label class="control-label">Upload Document (Max Size 64mb)</label>
                     <input type="file" id="document1-chosen" name="document" accept="png, jpg/*"><br>
                   </div>
-                  <div class="col-md-8">
+                  <div class="col-md-8" id="document_view">
                     <br>
                     <?php if(!empty($document )) {?>
                     
@@ -91,9 +96,11 @@ include'includes/CheckUserLogin.php';
 include 'includes/footer.php';
 ?>
 <script>
-  $( function() {
-    $( "#datepicker1" ).datepicker({ dateFormat: 'dd/mm/yy' }).val();
+ $( function() {
+    $( "#datepicker1" ).datepicker({ dateFormat: 'dd/mm/yy' }).val(); 
+    $( "#datepicker2" ).datepicker({ dateFormat: 'dd/mm/yy' }).val();
   } );
+
   $("#remove-document1").click(function(){
       document.getElementById("document1-removed").value = '1';
       document.getElementById("show-document1").style.display = 'none';
@@ -103,4 +110,15 @@ $("#document1-chosen").click(function(){
       document.getElementById("document1-removed").value = '0';
       // document.getElementById("show-document1").style.display = 'none';
     });
+ var dateToday = $('#date_expiry').val();
+var dates = $("#datepicker1,#datepicker2").datepicker({
+    dateFormat: 'dd/mm/yy',
+    minDate: dateToday,
+    onSelect: function(selectedDate) {
+        var option = this.id == "datepicker1" ? "minDate" : "maxDate",
+            instance = $(this).data("datepicker"),
+            date = $.datepicker.parseDate(instance.settings.dateFormat || $.datepicker._defaults.dateFormat, selectedDate, instance.settings);
+        dates.not(this).datepicker("option", option, date);
+    }
+});
 </script>

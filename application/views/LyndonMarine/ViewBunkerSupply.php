@@ -139,7 +139,7 @@ include'includes/header_login.php';
                   <ul>
                       <li>
                         <?php if(!empty($document1)) {?>
-                        <a href="<?php echo $document1; ?>" target="_blank"><img src="http://via.placeholder.com/100x100" class="img-responsive"> </a><br>
+                        <a href="<?php echo $document1; ?>" target="_blank"><img src="<?php echo base_url(); ?>img/icon_for_documents.PNG" class="img-responsive">  </a><br>
                         <span><?php $value = explode("/",$document1);echo substr($value[6],0,20); ?></span>
                         <?php } 
                         else { ?>
@@ -148,7 +148,7 @@ include'includes/header_login.php';
                       </li>
                        <li>
                         <?php if(!empty($document2)) {?>
-                        <a href="<?php echo $document2; ?>" target="_blank"><img src="http://via.placeholder.com/100x100" class="img-responsive"> </a><br>
+                        <a href="<?php echo $document2; ?>" target="_blank"><img src="<?php echo base_url(); ?>img/icon_for_documents.PNG" class="img-responsive">  </a><br>
                         <span><?php $value = explode("/",$document2);echo substr($value[6],0,20); ?></span>
                         <?php } 
                         else { ?>
